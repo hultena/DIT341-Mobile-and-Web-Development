@@ -61,12 +61,42 @@ Open the `server` and `client` in separate VSCode workspaces or open the combine
 
 ### Purpose
 
-2-5 sentences describing what the system does
+Yummy is a social media platform for recipes and ingredients, with user driven content. The functionalities of this platform can be accessed through a MEVN web application, where the end-user can create, change, and share ingredients and recipes, as well as create and update shopping lists to help with their baking and cooking.
+
+The goals of the end-users of this system are to get inspiration for what to eat - by viewing recipes posted by other users, as well as storing, maintaining, and sharing their own favourite recipes.
+
 
 ### Pages
 
-* Home: 1-3 sentences describing what the page displays and what a user can do
-* Shopping cart: ...
+* **1 Landing page:**
+This page displays highlights of popular recipes, like a featured items page. The user can sort the displayed recipes through popularity or date published.
+* **2 Profile page:**
+This page displays the users personal profile as it is seen by other users.
+    * **2.1 User settings page:**
+This page displays editable user settings. These include avatar image, email address and name.
+* **3 My recipes page:**
+This page displays a list of all the end users existing recipes, along with an option to click on a recipe to view it individually, or add a new recipe.
+* **4 Add new recipe page:**
+This page lets a user create a new recipe to be published on our platform, which includes features to write instructions on how to prepare said recipe, a general description of what the recipe is and add ingredients to it.
+* **5 Add new ingredient page:**
+This page lets the user add a new ingredient to the database.
+* **6 View recipe page:**
+This page displays the recipe that was selected by the user. Here it is possible to delete or edit the recipe if the user is the owner of the recipe.
+    * **6.1 Change existing recipe page:**
+This page displays the recipe in update mode, where the instructions and description of the recipe can be edited. Ingredients can also be added or removed from the recipe. This is only accessible if the user is the owner of the recipe.
+* **7 Shopping lists page:**
+This page displays a user’s shopping lists and has the option to add new shopping lists or open a specific one.
+    * **7.1 View existing shopping list page:**
+This page displays a previously existing or new shopping list, with an editable name of the shopping list as well as the option to add ingredients and their quantities.
+* **8 Search page:**
+This page lets the user search for recipes based on different criteria
+* **9 About page:**
+This page displays a description of the web app features, the reason why we built this platform, as well as a link to an external git project.
+* **10 Q&A page:**
+This page displays simple and frequently asked questions.
+* **11 Contact page:**
+This page displays a contact form where the user can contact the developers of the web application to ask questions.
+
 
 ### Entity-Relationship (ER) Diagram
 

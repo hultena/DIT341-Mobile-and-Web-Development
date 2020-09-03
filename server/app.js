@@ -32,7 +32,7 @@ app.use(cors());
 
 // Import routes
 app.get('/api', function(req, res) {
-    res.json({'message': 'Welcome to your DIT341 backend ExpressJS project!'});
+    res.json({'message': 'See if heroku works'});
 });
 
 // Catch all non-error handler for api (i.e., 404 Not Found)
