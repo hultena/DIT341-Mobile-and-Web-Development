@@ -49,6 +49,11 @@ npm run dev
 # Setup frontend
 cd client && npm install
 npm run serve
+
+# Setup app concurrently
+npm run setup
+npm run fix (only needed if install shows issues)
+npm run start
 ```
 
 > Check out the detailed instructions for [backend](./server/README.md) and [frontend](./client/README.md).
