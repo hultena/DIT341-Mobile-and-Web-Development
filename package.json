@@ -4,7 +4,16 @@
   "description": "This collection package integrates the server and client for deployment.",
   "main": "server/app.js",
   "scripts": {
-    "postinstall": "npm install --prefix server && npm install --prefix client && npm install --only=dev --prefix client && npm run build --prefix client"
+    "postinstall": "npm install --prefix server && npm install --prefix client && npm install --only=dev --prefix client && npm run build --prefix client",
+    "installServer": "cd server && npm install",
+    "installClient": "cd client && npm install",
+    "fixServer": "cd server && npm audit fix",
+    "fixClient": "cd client && npm audit fix",
+    "startServer": "cd server && npm run dev",
+    "startClient": "cd client && npm run serve",
+    "setup": "concurrently \"npm run installServer\" \"npm run installClient\"",
+    "fix": "concurrently \"npm run fixServer\" \"npm run fixClient\"",
+    "start": "concurrently \"npm run startServer\" \"npm run startClient\""
   },
   "dependencies": {
     "concurrently": "^5.3.0"
