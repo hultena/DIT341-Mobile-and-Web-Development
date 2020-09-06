@@ -51,9 +51,9 @@ cd client && npm install
 npm run serve
 
 # Setup app concurrently
-npm run setup
-npm run fix (only needed if install shows issues)
-npm run start
+npm run setup (same as npm install, but for both server and client concurrently)
+npm run fix (runs npm audit fix on both server and client concurrently)
+npm run start (starts server and client concurrently)
 ```
 
 > Check out the detailed instructions for [backend](./server/README.md) and [frontend](./client/README.md).
