@@ -5,6 +5,7 @@ var morgan = require('morgan');
 var path = require('path');
 var cors = require('cors');
 var history = require('connect-history-api-fallback');
+const usersRoute = require('./routes/users');
 
 // Variables
 var mongoURI = process.env.MONGODB_URI || 'mongodb://localhost:27017/animalDevelopmentDB';
@@ -29,6 +30,9 @@ app.use(morgan('dev'));
 // Enable cross-origin resource sharing for frontend must be registered before api
 app.options('*', cors());
 app.use(cors());
+
+// Router middleware
+app.use('/api/users', usersRoute);
 
 // Import routes
 app.get('/api', function(req, res) {
