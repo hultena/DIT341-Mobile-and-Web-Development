@@ -10,10 +10,10 @@ router.route('/')
 router.route('/:userId')
     .get(users.getOneUser)
 
-router.route('/:userId/recipes')
-    .get(users.getAllUserRecipes)
+router.route('/:userId/shoppinglists')
+    .get(users.getAllUserShoppingLists)
 
-router.route('/:userId/recipes/:recipeId')
-    .get(users.getOneUserRecipe)
+router.route('/:userId/shoppinglists/:shoppingListId')
+    .get(users.getOneUserShoppingList)
 
 module.exports = router;

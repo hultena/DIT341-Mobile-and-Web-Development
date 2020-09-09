@@ -1,5 +1,5 @@
 const User = require('../models/user');
-const Recipe = require('../models/recipe');
+const ShoppingList = require('../models/shoppinglist');
 
 module.exports = {
 
@@ -35,10 +35,10 @@ module.exports = {
         }
     },
 
-    getAllUserRecipes: async function(req, res, next){
+    getAllUserShoppingLists: async function(req, res, next){
         try {
             const user = await User.findById(req.params.userId)
-                .populate('recipes');
+                .populate('shoppingLists');
             if(user === null){
                 next();
             }else {
@@ -49,14 +49,14 @@ module.exports = {
         }
     },
 
-    getOneUserRecipe: async function(req, res, next){
+    getOneUserShoppingList: async function(req, res, next){
         try {
-            const recipe = await Recipe.findById(req.params.recipeId);
-            if(recipe === null){
+            const shoppingList = await ShoppingList.findById(req.params.shoppingListId);
+            if(shoppingList === null){
                 next();
             }else{
-                if(recipe.user._id == req.params.userId) {
-                    res.status(200).json(recipe);
+                if(shoppingList.user._id == req.params.userId) {
+                    res.status(200).json(shoppingList);
                 }else{
                     next();
                 }
