@@ -4,17 +4,16 @@ const users = require('../controllers/users')
 const router = express.Router();
 
 router.route('/')
-    .get(users.getAll);
+    .get(users.getAllUsers)
+    .post(users.postUser);
 
 router.route('/:userId')
-    .get(users.getOne);
+    .get(users.getOneUser)
 
 router.route('/:userId/recipes')
-    .get(users.getAllRecipes);
+    .get(users.getAllUserRecipes)
 
 router.route('/:userId/recipes/:recipeId')
-    .get(users.getOneRecipe);
-
-
+    .get(users.getOneUserRecipe)
 
 module.exports = router;

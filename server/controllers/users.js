@@ -1,19 +1,68 @@
+const User = require('../models/user');
+const Recipe = require('../models/recipe');
 
 module.exports = {
 
-    getAll: async function (req, res){
-        res.status(200).send('Sending all users');
+    getAllUsers: async function (req, res, next){
+        try {
+            const users = await User.find();
+            res.status(200).json(users);
+        }catch (err) {
+            next(err);
+        }
     },
 
-    getOne: async function(req, res){
-        res.status(200).send(`sending user ${req.params.userId}`)
+    postUser: async function(req, res, next){
+        try{
+            const user = new User(req.body);
+            await user.save();
+            res.status(201).json(user);
+        }catch(err){
+            next(err);
+        }
     },
 
-    getAllRecipes: async function(req,res){
-        res.status(200).send(`sending all recipes belonging to user ${req.params.userId}`)
+    getOneUser: async function(req, res, next){
+        try {
+            const user = await User.findById(req.params.userId);
+            if(user === null){
+                next();
+            }else {
+                res.status(200).json(user);
+            }
+        }catch (err) {
+            next(err);
+        }
     },
 
-    getOneRecipe: async function(req,res){
-        res.status(200).send(`sending recipe ${req.params.recipeId} belonging to user ${req.params.userId}`)
+    getAllUserRecipes: async function(req, res, next){
+        try {
+            const user = await User.findById(req.params.userId)
+                .populate('recipes');
+            if(user === null){
+                next();
+            }else {
+                res.status(200).json(user.recipes);
+            }
+        }catch (err) {
+            next(err);
+        }
+    },
+
+    getOneUserRecipe: async function(req, res, next){
+        try {
+            const recipe = await Recipe.findById(req.params.recipeId);
+            if(recipe === null){
+                next();
+            }else{
+                if(recipe.user._id == req.params.userId) {
+                    res.status(200).json(recipe);
+                }else{
+                    next();
+                }
+            }
+        }catch (err) {
+            next(err);
+        }
     }
 };
