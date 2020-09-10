@@ -1,5 +1,6 @@
 const express = require('express');
 const users = require('../controllers/users')
+const ingredients = require('../controllers/ingredients');
 
 const router = express.Router();
 
@@ -21,5 +22,11 @@ router.route('/:userId/shoppinglists')
 router.route('/:userId/shoppinglists/:shoppingListId')
     .get(users.getOneUserShoppingList)
     .delete(users.deleteOneUserShoppingList);
+
+router.route('/:userId/ingredients')
+    .get(ingredients.getAllUserIngredients);
+
+router.route('/:userId/ingredients/:ingredientId')
+    .get(ingredients.getOneUserIngredient);
 
 module.exports = router;
