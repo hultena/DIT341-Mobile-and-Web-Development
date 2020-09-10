@@ -24,8 +24,8 @@ const recipeSchema = new Schema({
         ref: 'ingredient'
     }],
     image: {
-        data: Buffer,
-        contentType: String
+        type: String,
+        data: Buffer
     },
     instructions: [{ type: String }]
 });
