@@ -14,7 +14,32 @@ const recipeSchema = new Schema({
         type: String,
         enum: [/* TODO: What types of cuisines should we allow? */]
     },
-    dietaryRestriction: String,
+    dietaryRestriction: {
+        type: String,
+        enum: [
+            'Vegan',
+            'Ovo-Vegetarian',
+            'Lacto-Vegetarian',
+            'Lacto-Ovo Vegetarian',
+            'Halaal',
+            'Kosher',
+            'Pescetarian'
+        ]
+    },
+    allergies: {
+        type: String,
+        enum: [
+            'Gluten',
+            'Peanut',
+            'Nuts',
+            'Lactose',
+            'Egg',
+            'Wheat',
+            'Soy',
+            'Fish',
+            'Shellfish'
+        ]
+    },
     author: {
         type: Schema.Types.ObjectId,
         ref: 'user'
