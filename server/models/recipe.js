@@ -8,12 +8,10 @@ const recipeSchema = new Schema({
     },
     category: {
         type: String,
-        enum: ['Baking', 'Cooking']
+        enum: ['Baking', 'Cooking'],
+        required: true
     },
-    cuisine: {
-        type: String,
-        enum: [/* TODO: What types of cuisines should we allow? */]
-    },
+    cuisine: String,
     dietaryRestriction: {
         type: String,
         enum: [
@@ -42,11 +40,13 @@ const recipeSchema = new Schema({
     },
     author: {
         type: Schema.Types.ObjectId,
-        ref: 'user'
+        ref: 'user',
+        required: true
     },
     ingredients: [{
         type: Schema.Types.ObjectId,
-        ref: 'ingredient'
+        ref: 'ingredient',
+        required: true
     }],
     image: {
         type: String,
