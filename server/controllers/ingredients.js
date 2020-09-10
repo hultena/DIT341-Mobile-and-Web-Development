@@ -1,0 +1,33 @@
+const Ingredient = require('../models/ingredient');
+const User = require('../models/user');
+
+module.exports = {
+    // Get all of the ingredients belonging to a user
+    getAllUserIngredients: async function (req, res, next) {
+        try {
+            const user = await User.findById(req.params.userId)
+                .populate('ingredients');
+            if(user === null){
+                next();
+            } else {
+                res.status(200).json(user.ingredients);
+            }
+        } catch (err) {
+            next(err);
+        }
+    },
+
+    // Get a specific ingredient belonging to a user
+    getOneUserIngredient: async function (req, res, next) {
+        try {
+            const ingredient = await Ingredient.findById(req.params.ingredientId);
+            if(ingredient === null){
+                next();
+            } else {
+                res.status(200).json(ingredient);
+            }
+        } catch (err) {
+            next(err);
+        }
+    }
+};
