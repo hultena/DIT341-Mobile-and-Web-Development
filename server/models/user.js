@@ -5,7 +5,7 @@ const userSchema = new Schema({
     name:{type: String, required: true},
     email:{type: String, required: true},
     password:{type: String, required: true},
-    shoppingLists: [{type: Schema.Types.ObjectId, ref: 'shoppingList'}],
+    shoppingLists: [{type: Schema.Types.ObjectId, ref: 'shoppinglist'}],
     ingredients: [{type: Schema.Types.ObjectId, ref: 'ingredient'}],
     recipes: [{type: Schema.Types.ObjectId, ref: 'recipe'}]
 });
