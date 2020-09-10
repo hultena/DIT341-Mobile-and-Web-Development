@@ -23,8 +23,7 @@ const recipeSchema = new Schema({
             'Lacto-Ovo Vegetarian',
             'Halaal',
             'Kosher',
-            'Pescetarian',
-            null
+            'Pescetarian'
         ]
     },
     allergies: {
@@ -38,8 +37,7 @@ const recipeSchema = new Schema({
             'Wheat',
             'Soy',
             'Fish',
-            'Shellfish',
-            null
+            'Shellfish'
         ]
     },
     author: {
