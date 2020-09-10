@@ -52,6 +52,8 @@ const recipeSchema = new Schema({
         type: String,
         data: Buffer
     },
+    // Instructions are stored as an array in order
+    // to allow for the ui to display them as a list.
     instructions: [{ type: String }]
 });
 
