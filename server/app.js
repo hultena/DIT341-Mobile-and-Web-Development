@@ -32,7 +32,6 @@ app.use(cors());
 
 // Router middleware
 app.use('/api/users', usersRoute);
-app.use('/api/recipes',recipesRoute);
 
 // Import routes
 app.get('/api', function(req, res) {
