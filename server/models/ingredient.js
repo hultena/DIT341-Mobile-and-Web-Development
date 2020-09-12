@@ -8,4 +8,4 @@ const ingredientSchema = new Schema({
     description:{type: String, maxlength: 140}
 });
 
-module.export = mongoose.model('ingredient', ingredientSchema);
+module.exports = mongoose.model('ingredient', ingredientSchema);
