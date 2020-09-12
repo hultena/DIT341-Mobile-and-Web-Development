@@ -2,6 +2,34 @@ const Ingredient = require('../models/ingredient');
 const User = require('../models/user');
 
 module.exports = {
+    // Get all ingredients
+    getAllIngredients: async function (req, res, next) {
+        try {
+            const ingredients = await Ingredient.find().populate('user');
+            if (ingredients === null) {
+                next();
+            } else {
+                res.status(200).json(ingredients);
+            }
+        } catch (err) {
+            next(err);
+        }
+    },
+
+    // Get one ingredient
+    getIngredient: async function (req, res, next) {
+        try {
+            const ingredient = await Ingredient.find(req.params.ingredientId);
+            if (ingredient === null) {
+                next();
+            } else {
+                res.status(200).json(ingredient);
+            }
+        } catch (err) {
+            next(err);
+        }
+    },
+    
     // Get all of the ingredients belonging to a user
     getAllUserIngredients: async function (req, res, next) {
         try {
