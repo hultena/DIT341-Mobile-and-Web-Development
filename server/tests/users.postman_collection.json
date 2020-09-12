@@ -21,7 +21,7 @@
 							"});",
 							"",
 							"pm.test(\"response should have valid JSON data\", function() {",
-							"    pm.expect(jsonData.name).to.eql('Alexander');",
+							"    pm.expect(jsonData.username).to.eql('Alexander');",
 							"    pm.expect(jsonData.email).to.eql('asd@asd.com');",
 							"    pm.expect(jsonData.password).to.eql('abc123')",
 							"});"
@@ -42,7 +42,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n\t\"name\":\"Alexander\",\r\n\t\"email\":\"asd@asd.com\",\r\n\t\"password\":\"abc123\"\r\n}"
+					"raw": "{\r\n\t\"username\":\"Alexander\",\r\n\t\"email\":\"asd@asd.com\",\r\n\t\"password\":\"abc123\"\r\n}"
 				},
 				"url": {
 					"raw": "http://localhost:3000/api/users/",
@@ -77,7 +77,7 @@
 							"})",
 							"",
 							"pm.test(\"last entry in the array should be the posted user\", function() {",
-							"    pm.expect(jsonData[arrayLength-1].name).to.eql(\"Alexander\");",
+							"    pm.expect(jsonData[arrayLength-1].username).to.eql(\"Alexander\");",
 							"    pm.expect(jsonData[arrayLength-1].email).to.eql('asd@asd.com');",
 							"    pm.expect(jsonData[arrayLength-1].password).to.eql('abc123');",
 							"    ",
@@ -122,7 +122,7 @@
 							"});",
 							"",
 							"pm.test(\"response should have valid JSON data\", function() {",
-							"    pm.expect(jsonData.name).to.eql('Alexander');",
+							"    pm.expect(jsonData.username).to.eql('Alexander');",
 							"    pm.expect(jsonData.email).to.eql('asd@asd.com');",
 							"    pm.expect(jsonData.password).to.eql('abc123');",
 							"});"
