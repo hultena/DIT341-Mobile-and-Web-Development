@@ -6,6 +6,7 @@ var path = require('path');
 var cors = require('cors');
 var history = require('connect-history-api-fallback');
 const usersRoute = require('./routes/users');
+const recipesRoute = require('./routes/recipes');
 
 // Variables
 var mongoURI = process.env.MONGODB_URI || 'mongodb://localhost:27017/animalDevelopmentDB';
@@ -20,7 +21,6 @@ mongoose.connect(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true }, 
     }
     console.log(`Connected to MongoDB with URI: ${mongoURI}`);
 });
-
 // Create Express app
 var app = express();
 // Parse requests of content-type 'application/json'
@@ -33,6 +33,7 @@ app.use(cors());
 
 // Router middleware
 app.use('/api/users', usersRoute);
+app.use('/api/recipes',recipesRoute);
 
 // Import routes
 app.get('/api', function(req, res) {
@@ -52,9 +53,23 @@ var root = path.normalize(__dirname + '/..');
 var client = path.join(root, 'client', 'dist');
 app.use(express.static(client));
 
+// Error handler for duplicate keys
+app.use(function (err,req,res,next){
+    if(err.name === 'MongoError' && err.code === 11000){
+        const err_res = {
+            'message': 'Duplicate key',
+        }
+        err_res['keyValue'] = err.keyValue;
+        res.status(400).json(err_res);
+    }else {
+        next(err);
+    }
+});
+
 // Error handler (i.e., when exception is thrown) must be registered last
 var env = app.get('env');
 // eslint-disable-next-line no-unused-vars
+
 app.use(function(err, req, res, next) {
     console.error(err.stack);
     var err_res = {
