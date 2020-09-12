@@ -56,7 +56,7 @@
 							"});",
 							"",
 							"pm.test(\"response should have valid JSON data\", function() {",
-							"    pm.expect(jsonData.name).to.eql('Alexander');",
+							"    pm.expect(jsonData.username).to.eql('Alexander');",
 							"    pm.expect(jsonData.email).to.eql('asd@asd.com');",
 							"    pm.expect(jsonData.password).to.eql('abc123')",
 							"});"
@@ -70,14 +70,14 @@
 				"header": [
 					{
 						"key": "Content-Type",
-						"name": "Content-Type",
+						"username": "Content-Type",
 						"value": "application/json",
 						"type": "text"
 					}
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n\t\"name\":\"Alexander\",\r\n\t\"email\":\"asd@asd.com\",\r\n\t\"password\":\"abc123\"\r\n}"
+					"raw": "{\r\n\t\"username\":\"Alexander\",\r\n\t\"email\":\"asd@asd.com\",\r\n\t\"password\":\"abc123\"\r\n}"
 				},
 				"url": {
 					"raw": "{{host}}/api/users/",
@@ -110,7 +110,7 @@
 							"})",
 							"",
 							"pm.test(\"last entry in the array should be the posted user\", function() {",
-							"    pm.expect(jsonData[arrayLength-1].name).to.eql(\"Alexander\");",
+							"    pm.expect(jsonData[arrayLength-1].username).to.eql(\"Alexander\");",
 							"    pm.expect(jsonData[arrayLength-1].email).to.eql('asd@asd.com');",
 							"    pm.expect(jsonData[arrayLength-1].password).to.eql('abc123');",
 							"    ",
@@ -153,7 +153,7 @@
 							"});",
 							"",
 							"pm.test(\"response should have valid JSON data\", function() {",
-							"    pm.expect(jsonData.name).to.eql('Alexander');",
+							"    pm.expect(jsonData.username).to.eql('Alexander');",
 							"    pm.expect(jsonData.email).to.eql('asd@asd.com');",
 							"    pm.expect(jsonData.password).to.eql('abc123');",
 							"});"
@@ -318,7 +318,7 @@
 							"});",
 							"",
 							"pm.test(\"response should have valid JSON data\", function() {",
-							"    pm.expect(jsonData.name).to.eql('Alexander');",
+							"    pm.expect(jsonData.username).to.eql('Alexander');",
 							"    pm.expect(jsonData.email).to.eql('asd@asd.com');",
 							"    pm.expect(jsonData.password).to.eql('abc123')",
 							"});"
@@ -339,7 +339,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n\t\"name\":\"Alexander\",\r\n\t\"email\":\"asd@asd.com\",\r\n\t\"password\":\"abc123\"\r\n}"
+					"raw": "{\r\n\t\"username\":\"Alexander\",\r\n\t\"email\":\"asd@asd.com\",\r\n\t\"password\":\"abc123\"\r\n}"
 				},
 				"url": {
 					"raw": "{{host}}/api/users/",
@@ -371,7 +371,7 @@
 							"});",
 							"",
 							"pm.test(\"response should have valid JSON data\", function() {",
-							"    pm.expect(jsonData.name).to.eql('Alexander');",
+							"    pm.expect(jsonData.username).to.eql('Alexander');",
 							"    pm.expect(jsonData.email).to.eql('asd@asd.com');",
 							"    pm.expect(jsonData.password).to.eql('abc123');",
 							"    pm.expect(jsonData._id).to.eql(pm.environment.get('userId'));",
@@ -433,7 +433,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"shoppingLists\": [],\n    \"ingredients\": [],\n    \"recipes\": [],\n    \"name\": \"Alexander2\",\n    \"email\": \"asd@asd.com\",\n    \"password\": \"abc123\"\n}"
+					"raw": "{\n    \"shoppingLists\": [],\n    \"ingredients\": [],\n    \"recipes\": [],\n    \"username\": \"Alexander2\",\n    \"email\": \"asd@asd.com\",\n    \"password\": \"abc123\"\n}"
 				},
 				"url": {
 					"raw": "{{host}}/api/users/{{userId}}",
@@ -484,7 +484,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"shoppingLists\": [],\n    \"ingredients\": [],\n    \"recipes\": [],\n    \"name\": \"Alexander3\",\n    \"email\": \"asd@asd.com\",\n    \"password\": \"abc123\"\n}"
+					"raw": "{\n    \"shoppingLists\": [],\n    \"ingredients\": [],\n    \"recipes\": [],\n    \"username\": \"Alexander3\",\n    \"email\": \"asd@asd.com\",\n    \"password\": \"abc123\"\n}"
 				},
 				"url": {
 					"raw": "{{host}}/api/users/{{userId}}",
@@ -535,7 +535,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"shoppingLists\": [],\n    \"ingredients\": [],\n    \"recipes\": [],\n    \"name\": \"Alexander4\",\n    \"email\": \"abc@abc.com\",\n    \"password\": \"abc1234\"\n}"
+					"raw": "{\n    \"shoppingLists\": [],\n    \"ingredients\": [],\n    \"recipes\": [],\n    \"username\": \"Alexander4\",\n    \"email\": \"abc@abc.com\",\n    \"password\": \"abc1234\"\n}"
 				},
 				"url": {
 					"raw": "{{host}}/api/users/{{userId}}",
@@ -586,7 +586,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"shoppingLists\": [],\n    \"ingredients\": [],\n    \"recipes\": [],\n    \"name\": \"Alexander5\",\n    \"email\": \"def@def.com\",\n    \"password\": \"abc12345\"\n}"
+					"raw": "{\n    \"shoppingLists\": [],\n    \"ingredients\": [],\n    \"recipes\": [],\n    \"username\": \"Alexander5\",\n    \"email\": \"def@def.com\",\n    \"password\": \"abc12345\"\n}"
 				},
 				"url": {
 					"raw": "{{host}}/api/users/{{userId}}",
