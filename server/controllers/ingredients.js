@@ -1,4 +1,5 @@
 const Ingredient = require('../models/ingredient');
+const shoppinglist = require('../models/shoppinglist');
 const User = require('../models/user');
 
 module.exports = {
@@ -62,10 +63,17 @@ module.exports = {
     // Posts a new ingredient, by user
     postOneUserIngredient: async function (req, res, next) {
         try {
-            // TODO update user with reference to new ingredient
-            const ingredient = await new Ingredient(req.body);
-            await ingredient.save();
-            res.status(201).json(ingredient);
+            const user = await User.findById(req.params.userId).populate('ingredients');
+            if (user === null) {
+                next();
+            } else {
+                const ingredient = new Ingredient(req.body);
+                ingredient.user = user._id;
+                await ingredient.save();
+                await user.ingredients.push(ingredient);
+                await user.save();
+                res.status(201).json(ingredient);
+            }
         } catch (err) {
             next(err);
         }
