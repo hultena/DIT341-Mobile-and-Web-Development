@@ -62,7 +62,7 @@ module.exports = {
     // Posts a new ingredient, by user
     postOneUserIngredient: async function (req, res, next) {
         try {
-            const ingredient = new Ingredient(req.body);
+            const ingredient = await new Ingredient(req.body);
             await ingredient.save();
             res.status(201).json(ingredient);
         } catch (err) {
@@ -73,7 +73,12 @@ module.exports = {
     // Deletes an ingredient
     deleteOneUserIngredient: async function (req, res, next) {
         try {
-            // TODO
+            const ingredient = await Ingredient.findByIdAndDelete(req.params.ingredientId);
+            if (ingredient === null) {
+                next();
+            } else {
+                res.status(200).json(ingredient);
+            }
         } catch (err) {
             next(err);
         }
