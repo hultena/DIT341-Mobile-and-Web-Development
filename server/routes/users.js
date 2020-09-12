@@ -18,9 +18,11 @@ router.route('/:userId/shoppinglists/:shoppingListId')
     .get(users.getOneUserShoppingList)
 
 router.route('/:userId/ingredients')
-    .get(ingredients.getAllUserIngredients);
+    .get(ingredients.getAllUserIngredients)
+    .post(ingredients.postOneUserIngredient);
 
 router.route('/:userId/ingredients/:ingredientId')
-    .get(ingredients.getOneUserIngredient);
+    .get(ingredients.getOneUserIngredient)
+    .delete(ingredients.deleteOneUserIngredient);
 
 module.exports = router;
