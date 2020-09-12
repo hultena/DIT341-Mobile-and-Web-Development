@@ -62,6 +62,7 @@ module.exports = {
     // Posts a new ingredient, by user
     postOneUserIngredient: async function (req, res, next) {
         try {
+            // TODO update user with reference to new ingredient
             const ingredient = await new Ingredient(req.body);
             await ingredient.save();
             res.status(201).json(ingredient);
@@ -73,12 +74,15 @@ module.exports = {
     // Deletes an ingredient
     deleteOneUserIngredient: async function (req, res, next) {
         try {
+            const user = await User.findById(req.params.userId).populate('ingredients');
+            
+            // Remove reference to ingredient in user
+            await user.ingredients.pull(req.params.ingredientId);
+            await user.save();
+
+            // Delete ingredient
             const ingredient = await Ingredient.findByIdAndDelete(req.params.ingredientId);
-            if (ingredient === null) {
-                next();
-            } else {
-                res.status(200).json(ingredient);
-            }
+            res.status(200).json(ingredient);
         } catch (err) {
             next(err);
         }
