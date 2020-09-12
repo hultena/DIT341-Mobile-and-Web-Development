@@ -57,5 +57,25 @@ module.exports = {
         } catch (err) {
             next(err);
         }
+    },
+
+    // Posts a new ingredient, by user
+    postOneUserIngredient: async function (req, res, next) {
+        try {
+            const ingredient = new Ingredient(req.body);
+            await ingredient.save();
+            res.status(201).json(ingredient);
+        } catch (err) {
+            next(err);
+        }
+    },
+
+    // Deletes an ingredient
+    deleteOneUserIngredient: async function (req, res, next) {
+        try {
+            // TODO
+        } catch (err) {
+            next(err);
+        }
     }
 };
