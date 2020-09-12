@@ -6,7 +6,6 @@ var path = require('path');
 var cors = require('cors');
 var history = require('connect-history-api-fallback');
 const usersRoute = require('./routes/users');
-const recipesRoute = require('./routes/recipes');
 
 // Variables
 var mongoURI = process.env.MONGODB_URI || 'mongodb://localhost:27017/animalDevelopmentDB';
