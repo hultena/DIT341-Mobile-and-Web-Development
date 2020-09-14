@@ -5,7 +5,8 @@ module.exports = {
 
     getAllUsers: async function (req, res, next){
         try {
-            const users = await User.find();
+            console.log(req.query);
+            const users = await User.find(req.query).select('-password');
             res.status(200).json(users);
         }catch (err) {
             next(err);
@@ -14,7 +15,7 @@ module.exports = {
 
     postUser: async function(req, res, next){
         try{
-            const user = new User(req.body);
+            const user = new User(req.value.body);
             await user.save();
             res.status(201).json(user);
         }catch(err){
@@ -46,7 +47,9 @@ module.exports = {
 
     replaceUser: async function(req, res, next){
         try{
-            const user = await User.findByIdAndUpdate(req.params.userId, req.body);
+            console.log(req.params.userId);
+            console.log(req.value.body);
+            const user = await User.findByIdAndUpdate(req.params.userId, req.value.body);
             res.status(200).json(user);
         }catch(err){
             next(err);
@@ -68,7 +71,7 @@ module.exports = {
 
     updateUser: async function(req, res, next){
         try{
-            const user = await User.findByIdAndUpdate(req.params.userId, req.body);
+            const user = await User.findByIdAndUpdate(req.params.userId, req.value.body);
             res.status(200).json(user);
         }catch(err){
             next(err);
