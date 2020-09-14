@@ -1113,6 +1113,80 @@
 					"response": []
 				},
 				{
+					"name": "delete all recipes",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/recipes",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"recipes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "admin creates apple pie recipe",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "244a4d97-8f6f-4c25-8682-e265bec83259",
+								"exec": [
+									"var jsonData = pm.response.json();",
+									"postman.setEnvironmentVariable(\"recipeId\", jsonData._id);",
+									"",
+									"pm.test(\"response is CREATED\", function() {",
+									"    pm.response.to.have.status(201);",
+									"});",
+									"",
+									"pm.test(\"response should have valid JSON data\", function() {",
+									"    pm.expect(jsonData.user).to.eql(pm.environment.get('userId'));",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Apple pie\",\n    \"category\": \"Baking\",\n    \"ingredients\": []\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/users/{{userId}}/recipes",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"{{userId}}",
+								"recipes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "delete admin user",
 					"event": [
 						{
@@ -1147,24 +1221,6 @@
 								"api",
 								"users",
 								"{{userId}}"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "delete all recipes",
-					"request": {
-						"method": "DELETE",
-						"header": [],
-						"url": {
-							"raw": "{{host}}/api/recipes",
-							"host": [
-								"{{host}}"
-							],
-							"path": [
-								"api",
-								"recipes"
 							]
 						}
 					},
@@ -1205,6 +1261,62 @@
 							"listen": "test",
 							"script": {
 								"id": "8864d080-9928-4149-9ca4-977ec39b6337",
+								"exec": [
+									"var jsonData = pm.response.json();",
+									"",
+									"pm.test(\"response is OK\", function() {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"response should have valid JSON data\", function() {",
+									"    pm.expect(jsonData.length).to.eql(1);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/recipes",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"recipes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete all recipes in database",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/recipes",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"recipes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "check if any recipes left in database",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "f17d8c46-6002-4ea0-b46d-5d098477c905",
 								"exec": [
 									"var jsonData = pm.response.json();",
 									"",
