@@ -35,6 +35,12 @@ module.exports = {
         }
     },
 
+    // TODO: getUserRecipe, should this be here or in the user controller?
+
+    // TODO: get all recipes by most likes, returning 5 at a time (?)
+
+    // TODO: get all recipes filtered by newest, returning 5 at a time (?)
+
     deleteAllRecipes: async function (req, res, next) {
         try {
             const recipes = await Recipe.deleteMany({});
