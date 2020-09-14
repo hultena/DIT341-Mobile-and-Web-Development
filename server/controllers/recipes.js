@@ -1,13 +1,23 @@
-const Recipe = require('../models/user');
+const Recipe = require('../models/recipe');
+const User = require('../models/user');
 
 module.exports = {
 
     postRecipe: async function (req, res, next) {
         try {
-            const recipe = new Recipe(req.body);
-            await recipe.save();
-            res.status(201).json(recipe);
+            const user = await User.findById(req.params.userId).populate('recipes');
 
+            if (user === null) next();
+            else {
+                const recipe = new Recipe(req.body);
+                recipe.user = user._id;
+
+                await recipe.save();
+                await user.recipes.push(recipe);
+                await user.save();
+
+                res.status(201).json(recipe);
+            }
         } catch (error) {
             next(error);
         }
