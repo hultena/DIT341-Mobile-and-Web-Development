@@ -5,6 +5,8 @@ const validationSchemas = require('../utilities/schemas');
 
 const router = express.Router();
 
+// ------------------ User
+
 router.route('/')
     .get(users.getAllUsers)
     .post(validators.bodyValidator(validationSchemas.newUserSchema), users.postUser)
@@ -15,6 +17,19 @@ router.route('/:userId')
     .put(validators.bodyValidator(validationSchemas.newUserSchema),users.replaceUser)
     .delete(users.deleteUser)
     .patch(validators.bodyValidator(validationSchemas.patchUserSchema),users.updateUser);
+
+// ------------------ Recipe
+
+router.route('/:userId/recipes')
+    .post(users.postUserRecipe)
+    .get(users.getAllUserRecipes);
+
+router.route('/:userId/recipes/:recipeId')
+    .get(users.getOneUserRecipe)
+    .patch(users.updateOneUserRecipe)
+    .delete(users.deleteOneUserRecipe);
+
+// ------------------ Shopping list
 
 router.route('/:userId/shoppinglists')
     .get(users.getAllUserShoppingLists)

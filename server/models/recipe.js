@@ -42,7 +42,7 @@ const recipeSchema = new Schema({
             'Shellfish'
         ]
     }],
-    author: {
+    user: {
         type: Schema.Types.ObjectId,
         ref: 'user',
         required: true
@@ -68,8 +68,14 @@ const recipeSchema = new Schema({
     * We might not use the two below, but they're
     * there if we need them for filtering options in the UI.
     */
-    createdOn: Date,
-    likes: Number
+    createdOn: {
+        type: Date,
+        default: Date.now()
+    },
+    likes: {
+        type: Number,
+        default: 0
+    }
 });
 
 module.exports = mongoose.model('recipe', recipeSchema);
