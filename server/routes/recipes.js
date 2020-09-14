@@ -7,7 +7,4 @@ router.route('/')
     .get(recipes.getAllRecipes)
     .delete(recipes.deleteAllRecipes);
 
-router.route('/:recipeId')
-    .get(recipes.getOneRecipe);
-
 module.exports = router;
