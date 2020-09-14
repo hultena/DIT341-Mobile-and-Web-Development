@@ -29,14 +29,8 @@ router.route('/:userId/ingredients')
 
 router.route('/:userId/ingredients/:ingredientId')
     .get(ingredients.getOneUserIngredient)
-    .delete(ingredients.deleteOneUserIngredient);
-
-router.route('/:userId/ingredients')
-    .get(ingredients.getAllUserIngredients)
-    .post(ingredients.postOneUserIngredient);
-
-router.route('/:userId/ingredients/:ingredientId')
-    .get(ingredients.getOneUserIngredient)
-    .delete(ingredients.deleteOneUserIngredient);
+    .delete(ingredients.deleteOneUserIngredient)
+    .patch(ingredients.updateIngredient)
+    .put(ingredients.replaceIngredient);
 
 module.exports = router;
