@@ -12,18 +12,6 @@ module.exports = {
         }
     },
 
-    getOneRecipe: async function (req, res, next) {
-        try {
-            const recipe = await Recipe.findById(req.params.recipeId);
-
-            if (recipe === null) next();
-            else res.status(200).json(recipe);
-
-        } catch (error) {
-            next(error);
-        }
-    },
-
     // TODO: get all recipes by most likes, returning 5 at a time (?)
 
     // TODO: get all recipes filtered by newest, returning 5 at a time (?)
