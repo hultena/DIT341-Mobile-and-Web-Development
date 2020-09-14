@@ -42,7 +42,7 @@ const recipeSchema = new Schema({
             'Shellfish'
         ]
     }],
-    author: {
+    user: {
         type: Schema.Types.ObjectId,
         ref: 'user',
         required: true

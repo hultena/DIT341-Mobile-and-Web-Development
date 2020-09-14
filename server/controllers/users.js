@@ -87,7 +87,7 @@ module.exports = {
             if (user === null) next();
             else {
                 const recipe = new Recipe(req.body);
-                recipe.author = user._id;
+                recipe.user = user._id;
 
                 await recipe.save();
                 await user.recipes.push(recipe);
