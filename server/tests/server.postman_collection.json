@@ -1187,6 +1187,62 @@
 					"response": []
 				},
 				{
+					"name": "update specific admin recipe",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "f3b396da-667c-4be5-a207-43b6c318891a",
+								"exec": [
+									"var jsonData = pm.response.json();",
+									"",
+									"pm.test(\"response is OK\", function() {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"response should indicate correct recipe was updated\", function() {",
+									"    pm.expect(jsonData._id).to.eql(pm.environment.get('recipeId'));",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"allergies\": [\"Nuts\"]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/users/{{userId}}/recipes/{{recipeId}}",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"{{userId}}",
+								"recipes",
+								"{{recipeId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "delete admin user",
 					"event": [
 						{
