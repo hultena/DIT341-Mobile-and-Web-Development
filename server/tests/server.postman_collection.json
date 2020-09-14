@@ -975,6 +975,48 @@
 					"response": []
 				},
 				{
+					"name": "return specific admin recipe",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "3c9c16ba-dc6a-405d-8665-43e45d297f1a",
+								"exec": [
+									"var jsonData = pm.response.json();",
+									"",
+									"pm.test(\"response is OK\", function() {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"response should have valid JSON data\", function() {",
+									"    pm.expect(jsonData.user._id).to.eql(pm.environment.get('userId'));",
+									"    pm.expect(jsonData._id).to.eql(pm.environment.get('recipeId'));",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/users/{{userId}}/recipes/{{recipeId}}",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"{{userId}}",
+								"recipes",
+								"{{recipeId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "admin creates swedish meatball recipe",
 					"event": [
 						{
