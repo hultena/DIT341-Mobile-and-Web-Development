@@ -4,6 +4,7 @@ const recipes = require('../controllers/recipes');
 const router = express.Router();
 
 router.route('/')
+    .post(recipes.postRecipe)
     .get(recipes.getAllRecipes)
     .patch(recipes.updateAllRecipes)
     .delete(recipes.deleteAllRecipes);

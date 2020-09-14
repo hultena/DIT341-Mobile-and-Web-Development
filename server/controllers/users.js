@@ -1,6 +1,5 @@
 const User = require('../models/user');
 const ShoppingList = require('../models/shoppinglist');
-const Recipe = require('../models/recipe');
 
 module.exports = {
 
@@ -135,27 +134,6 @@ module.exports = {
             res.status(200).json(query);
         } catch (err) {
             next(err);
-        }
-    },
-
-    postRecipe: async function (req, res, next) {
-        try {
-            const user = await User.findById(req.params.userId).populate('recipes');
-
-            if (user === null) next();
-            else {
-                const recipe = new Recipe(req.body);
-                recipe.user = user._id;
-
-                await recipe.save();
-                await user.recipes.push(recipe);
-                await user.save();
-
-                res.status(201).json(recipe);
-            }
-
-        } catch (error) {
-            next(error);
         }
     }
 };
