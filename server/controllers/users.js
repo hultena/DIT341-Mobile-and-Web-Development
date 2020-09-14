@@ -87,7 +87,7 @@ module.exports = {
             if (user === null) next();
             else {
                 const recipe = new Recipe(req.body);
-                recipe.user = user._id;
+                recipe.author = user._id;
 
                 await recipe.save();
                 await user.recipes.push(recipe);
@@ -95,8 +95,9 @@ module.exports = {
 
                 res.status(201).json(recipe);
             }
-        } catch (error) {
-            next(error);
+
+        } catch (err) {
+            next(err);
         }
     },
 
