@@ -18,14 +18,14 @@ router.route('/:userId')
 
 // ------------------ Recipe
 
-router.route('/:userId/recipes/:recipeId')
+router.route('/:userId/recipes')
     .post(users.postUserRecipe)
+    .get(users.getAllUserRecipes);
+
+router.route('/:userId/recipes/:recipeId')
     .get(users.getOneUserRecipe)
     .patch(users.updateOneUserRecipe)
     .delete(users.deleteOneUserRecipe);
-
-router.route('/:userId/recipes')
-    .get(users.getAllUserRecipes);
 
 // ------------------ Shopping list
 
