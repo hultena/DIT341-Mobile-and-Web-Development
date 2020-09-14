@@ -22,4 +22,7 @@ router.route('/:userId/shoppinglists/:shoppingListId')
     .get(users.getOneUserShoppingList)
     .delete(users.deleteOneUserShoppingList);
 
+router.route('/:userId/recipes/:recipeId')
+    .post(users.postRecipe);
+
 module.exports = router;

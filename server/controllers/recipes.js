@@ -2,17 +2,6 @@ const Recipe = require('../models/user');
 
 module.exports = {
 
-    postRecipe: async function (req, res, next) {
-        try {
-            const recipe = new Recipe(req.body);
-            await recipe.save();
-            res.status(201).json(recipe);
-
-        } catch (error) {
-            next(error);
-        }
-    },
-
     getAllRecipes: async function (req, res, next) {
         try {
             const recipes = await Recipe.find();
