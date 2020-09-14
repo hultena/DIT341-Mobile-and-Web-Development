@@ -79,7 +79,16 @@ module.exports = {
         }
     },
     // TODO implement PUT
-    // TODO implement PATCH
+
+    // Updates/Patches an ingredient
+    updateIngredient: async function(req, res, next) {
+        try{
+            const ingredient = await Ingredient.findByIdAndUpdate(req.params.ingredientId, req.body);
+            res.status(200).json(user);
+        }catch(err){
+            next(err);
+        }
+    },
 
     // Deletes an ingredient belonging to user
     deleteOneUserIngredient: async function (req, res, next) {
