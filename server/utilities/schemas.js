@@ -15,15 +15,18 @@ module.exports = {
         name: Joi.string().required(),
         category: Joi.string().valid('Baking', 'Cooking').required(),
         cuisine: Joi.string().required(),
-        dietaryRestriction: Joi.string().valid(
+        dietaryRestriction: Joi.array().items(
+            Joi.string().valid(
             'Vegan',
             'Ovo-Vegetarian',
             'Lacto-Vegetarian',
             'Lacto-Ovo Vegetarian',
             'Halaal',
             'Kosher',
-            'Pescetarian'),
-        allergies: Joi.string().valid(
+            'Pescetarian')
+        ),
+        allergies: Joi.array().items(
+            Joi.string().valid(
             'Gluten',
             'Peanut',
             'Nuts',
@@ -32,9 +35,14 @@ module.exports = {
             'Wheat',
             'Soy',
             'Fish',
-            'Shellfish'),
+            'Shellfish')
+        ),
         author: Joi.string().regex(regexPattern).required(),
-        ingredients: Joi.array().items(Joi.string().regex(regexPattern)).required(),
-        instructions: Joi.array().items(Joi.string())
+        ingredients: Joi.array().items(
+            Joi.string().regex(regexPattern)
+        ).required(),
+        instructions: Joi.array().items(
+            Joi.string()
+        )
     })
 }
