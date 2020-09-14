@@ -1,5 +1,7 @@
 const express = require('express');
-const users = require('../controllers/users')
+const users = require('../controllers/users');
+const validators = require('../utilities/validators');
+const validationSchemas = require('../utilities/schemas');
 
 const router = express.Router();
 
@@ -7,14 +9,14 @@ const router = express.Router();
 
 router.route('/')
     .get(users.getAllUsers)
-    .post(users.postUser)
+    .post(validators.bodyValidator(validationSchemas.newUserSchema), users.postUser)
     .delete(users.deleteAllUsers);
 
 router.route('/:userId')
     .get(users.getOneUser)
-    .put(users.replaceUser)
+    .put(validators.bodyValidator(validationSchemas.newUserSchema),users.replaceUser)
     .delete(users.deleteUser)
-    .patch(users.updateUser);
+    .patch(validators.bodyValidator(validationSchemas.patchUserSchema),users.updateUser);
 
 // ------------------ Recipe
 
