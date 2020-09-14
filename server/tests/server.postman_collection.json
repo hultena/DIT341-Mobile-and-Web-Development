@@ -864,7 +864,7 @@
 			"protocolProfileBehavior": {}
 		},
 		{
-			"name": "recipe",
+			"name": "user recipes",
 			"item": [
 				{
 					"name": "create admin user",
@@ -975,7 +975,63 @@
 					"response": []
 				},
 				{
-					"name": "return all recipes",
+					"name": "admin creates swedish meatball recipe",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "1d11005e-ae6b-4d3c-aa86-59874c24c26d",
+								"exec": [
+									"var jsonData = pm.response.json();",
+									"postman.setEnvironmentVariable(\"recipeId\", jsonData._id);",
+									"",
+									"pm.test(\"response is CREATED\", function() {",
+									"    pm.response.to.have.status(201);",
+									"});",
+									"",
+									"pm.test(\"response should have valid JSON data\", function() {",
+									"    pm.expect(jsonData.user).to.eql(pm.environment.get('userId'));",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Swedish meatballs\",\n    \"category\": \"Cooking\",\n    \"ingredients\": []\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/users/{{userId}}/recipes",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"{{userId}}",
+								"recipes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "return all admin's recipes",
 					"event": [
 						{
 							"listen": "test",
@@ -983,14 +1039,13 @@
 								"id": "73e3841d-2ca5-44bf-9575-95bd2158c61d",
 								"exec": [
 									"var jsonData = pm.response.json();",
-									"var arrayLength = jsonData.length;",
 									"",
 									"pm.test(\"response is OK\", function() {",
 									"    pm.response.to.have.status(200);",
-									"})",
+									"});",
 									"",
-									"pm.test(\"last entry in the array should be the posted user\", function() {",
-									"    pm.expect(jsonData[arrayLength-1].name).to.eql(\"Blueberry pie\"); ",
+									"pm.test(\"response should have valid JSON data\", function() {",
+									"    pm.expect(jsonData.length).to.eql(2);",
 									"});"
 								],
 								"type": "text/javascript"
@@ -1001,12 +1056,14 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{host}}/api/recipes",
+							"raw": "{{host}}/api/users/{{userId}}/recipes",
 							"host": [
 								"{{host}}"
 							],
 							"path": [
 								"api",
+								"users",
+								"{{userId}}",
 								"recipes"
 							]
 						}
@@ -1072,10 +1129,32 @@
 					"response": []
 				}
 			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "66e5c689-d688-4a03-a58c-9751d1ef6466",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "69fb8fc7-5963-40bb-9bf6-f2e92eaf16d2",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
 			"protocolProfileBehavior": {}
 		},
 		{
-			"name": "ingredients",
+			"name": "public recipes",
 			"item": [],
 			"protocolProfileBehavior": {}
 		}
