@@ -103,7 +103,7 @@ module.exports = {
 
     getAllUserRecipes: async function (req, res, next) {
         try {
-            const user = await User.findById(req.params.userId).popullate('recipes');
+            const user = await User.findById(req.params.userId).populate('recipes');
 
             if (user === null) next();
             else res.status(200).json(user.recipes);
