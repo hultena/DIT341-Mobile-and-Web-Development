@@ -78,13 +78,22 @@ module.exports = {
             next(err);
         }
     },
-    // TODO implement PUT
 
     // Updates/Patches an ingredient
     updateIngredient: async function(req, res, next) {
         try{
             const ingredient = await Ingredient.findByIdAndUpdate(req.params.ingredientId, req.body);
-            res.status(200).json(user);
+            res.status(200).json(ingredient);
+        }catch(err){
+            next(err);
+        }
+    },
+
+    // Replaces an ingredient
+    replaceIngredient: async function(req, res, next) {
+        try{
+            const ingredient = await Ingredient.findByIdAndUpdate(req.params.ingredientId, req.body);
+            res.status(200).json(ingredient);
         }catch(err){
             next(err);
         }
