@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "1cdcd6da-f007-4d61-a6f4-c2a0c307c9ac",
+		"_postman_id": "eaf50eb2-9882-4e5e-b989-2bf7791c5672",
 		"name": "server",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -11,7 +11,7 @@
 				{
 					"listen": "prerequest",
 					"script": {
-						"id": "b58d92ec-5214-450c-adb0-28e068aa71b9",
+						"id": "41588586-a47a-478c-8d5f-5fc26bf519aa",
 						"exec": [
 							""
 						],
@@ -46,7 +46,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "c1b6fc77-7da9-45a1-899b-363837b1f21c",
+						"id": "569beac6-8445-4e52-b4e0-f04eac1bd63b",
 						"exec": [
 							"var jsonData = pm.response.json();",
 							"postman.setEnvironmentVariable(\"userId\", jsonData._id);",
@@ -100,7 +100,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "9d3f0f14-fdeb-487a-9f04-ed670061d340",
+						"id": "1c84ad74-884c-4f69-bc06-4f9db260cbed",
 						"exec": [
 							"var jsonData = pm.response.json();",
 							"var arrayLength = jsonData.length;",
@@ -111,9 +111,7 @@
 							"",
 							"pm.test(\"last entry in the array should be the posted user\", function() {",
 							"    pm.expect(jsonData[arrayLength-1].username).to.eql(\"Alexander\");",
-							"    pm.expect(jsonData[arrayLength-1].email).to.eql('asd@asd.com');",
-							"    pm.expect(jsonData[arrayLength-1].password).to.eql('abc123');",
-							"    ",
+							"    pm.expect(jsonData[arrayLength-1].email).to.eql('asd@asd.com');    ",
 							"});"
 						],
 						"type": "text/javascript"
@@ -144,7 +142,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "bec54fce-105d-4aac-be9c-cd5dcde0a48a",
+						"id": "0b44a458-155e-4bd2-bdd2-33a813f42a4d",
 						"exec": [
 							"var jsonData = pm.response.json();",
 							"",
@@ -186,7 +184,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "248f8266-ef5e-4764-94f4-2fdbb5f90421",
+						"id": "ab37ca06-aec5-498a-b6cb-07f786a3542d",
 						"exec": [
 							"var jsonData = pm.response.json();",
 							"",
@@ -226,7 +224,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "a0ef6a5d-e73e-427d-aef2-55a094faa273",
+						"id": "256efe9d-ae9c-4ab0-a60f-f257d8c2e261",
 						"exec": [
 							"var jsonData = pm.response.json();",
 							"var arrayLength = jsonData.length;",
@@ -268,7 +266,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "dad284cc-6e29-4d61-8ec3-3fef087c4429",
+						"id": "3aecb922-aca6-4100-8294-855c66d1077d",
 						"exec": [
 							"var jsonData = pm.response.json();",
 							"",
@@ -308,7 +306,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "48b78a54-afe6-492e-9cbb-9da45a1d4307",
+						"id": "0026ad9a-c252-47f2-9d14-e625652bed1a",
 						"exec": [
 							"var jsonData = pm.response.json();",
 							"postman.setEnvironmentVariable(\"userId\", jsonData._id);",
@@ -362,7 +360,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "2296442f-9cd9-4f0a-86aa-bfdd7d9a33b4",
+						"id": "ba084575-23da-49c5-a8c6-1fbb179fcb2e",
 						"exec": [
 							"var jsonData = pm.response.json();",
 							"",
@@ -405,7 +403,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "26df66f2-14a0-4839-ad40-8a82cb3ea582",
+						"id": "7f66e0e7-6494-4e22-9d68-afac7d4a1acc",
 						"exec": [
 							"var jsonData = pm.response.json();",
 							"",
@@ -433,7 +431,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"shoppingLists\": [],\n    \"ingredients\": [],\n    \"recipes\": [],\n    \"username\": \"Alexander2\",\n    \"email\": \"asd@asd.com\",\n    \"password\": \"abc123\"\n}"
+					"raw": "{\n    \"username\": \"Alexander2\",\n    \"email\": \"asd@asd.com\",\n    \"password\": \"abc123\"\n}"
 				},
 				"url": {
 					"raw": "{{host}}/api/users/{{userId}}",
@@ -456,7 +454,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "1d29899a-f4cb-4ff5-9e28-121636267982",
+						"id": "99f4b500-0ccb-4f49-866e-8f3f5d9bcf4f",
 						"exec": [
 							"var jsonData = pm.response.json();",
 							"",
@@ -484,7 +482,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"shoppingLists\": [],\n    \"ingredients\": [],\n    \"recipes\": [],\n    \"username\": \"Alexander3\",\n    \"email\": \"asd@asd.com\",\n    \"password\": \"abc123\"\n}"
+					"raw": "{\n    \"username\": \"Alexander3\",\n    \"email\": \"asd@asd.com\",\n    \"password\": \"abc123\"\n}"
 				},
 				"url": {
 					"raw": "{{host}}/api/users/{{userId}}",
@@ -507,7 +505,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "b4d14ddc-239d-4fb1-9fb3-08188be35a5a",
+						"id": "5a3b0457-b0dd-40d3-9b3a-294ea0dd317f",
 						"exec": [
 							"var jsonData = pm.response.json();",
 							"",
@@ -535,7 +533,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"shoppingLists\": [],\n    \"ingredients\": [],\n    \"recipes\": [],\n    \"username\": \"Alexander4\",\n    \"email\": \"abc@abc.com\",\n    \"password\": \"abc1234\"\n}"
+					"raw": "{\n    \"username\": \"Alexander4\",\n    \"email\": \"abc@abc.com\",\n    \"password\": \"abc1234\"\n}"
 				},
 				"url": {
 					"raw": "{{host}}/api/users/{{userId}}",
@@ -558,7 +556,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "f0680e60-b424-45e4-877f-1d491689d007",
+						"id": "8a1f6ed4-5396-4afb-aef6-00b67ab8c9cb",
 						"exec": [
 							"var jsonData = pm.response.json();",
 							"",
@@ -586,7 +584,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"shoppingLists\": [],\n    \"ingredients\": [],\n    \"recipes\": [],\n    \"username\": \"Alexander5\",\n    \"email\": \"def@def.com\",\n    \"password\": \"abc12345\"\n}"
+					"raw": "{\n    \"username\": \"Alexander5\",\n    \"email\": \"def@def.com\",\n    \"password\": \"abc12345\"\n}"
 				},
 				"url": {
 					"raw": "{{host}}/api/users/{{userId}}",
@@ -609,7 +607,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "47bbf9ff-1a20-48dc-8cf3-9237af31a74b",
+						"id": "7c8d423c-ce78-4ac9-931d-6f937b938045",
 						"exec": [
 							"var jsonData = pm.response.json();",
 							"postman.setEnvironmentVariable(\"shoppingListId\", jsonData._id);",
@@ -662,7 +660,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "7bcfbef3-0c97-41d4-831a-73654cbf83dd",
+						"id": "af4d0eb3-863c-4c6d-9267-26994bf2b024",
 						"exec": [
 							"var jsonData = pm.response.json();",
 							"",
@@ -705,7 +703,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "24d8e011-6ae2-4619-9360-4a36144d5a90",
+						"id": "18019e46-fe36-45ce-9956-18713d9490ac",
 						"exec": [
 							"var jsonData = pm.response.json();",
 							"",
@@ -749,7 +747,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "712a62a2-e393-4da7-b6eb-ccb4b0fcdc68",
+						"id": "83ff5e93-c04a-4051-b3dc-f468610a03de",
 						"exec": [
 							"var jsonData = pm.response.json();\r",
 							"\r",
@@ -789,7 +787,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "6e780d06-1d18-4c6f-8a09-920e09dec5f0",
+						"id": "f618acd5-d859-4a60-9b30-23031205c66f",
 						"exec": [
 							"var jsonData = pm.response.json();\r",
 							"\r",
@@ -829,7 +827,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "d1b47474-15ad-488c-9e30-beb057a617c5",
+						"id": "a9582631-676b-445d-93dd-6c9e4e97763d",
 						"exec": [
 							"var jsonData = pm.response.json();\r",
 							"\r",
@@ -864,7 +862,7 @@
 		{
 			"listen": "prerequest",
 			"script": {
-				"id": "05864cff-5cba-4070-bac3-a59328954ebf",
+				"id": "fb8d1d7b-4c27-41bd-bcaa-7f0c9eeaab6e",
 				"type": "text/javascript",
 				"exec": [
 					""
@@ -874,7 +872,7 @@
 		{
 			"listen": "test",
 			"script": {
-				"id": "e9c319be-3306-4fc5-ba34-fcf64391213a",
+				"id": "327707bf-2e9e-4e19-baa4-2ab59dcb7c97",
 				"type": "text/javascript",
 				"exec": [
 					""
@@ -889,5 +887,6 @@
 			"value": "http://localhost:3000",
 			"type": "string"
 		}
-	]
+	],
+	"protocolProfileBehavior": {}
 }
