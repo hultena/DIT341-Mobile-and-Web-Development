@@ -78,8 +78,10 @@ module.exports = {
             next(err);
         }
     },
+    // TODO implement PUT
+    // TODO implement PATCH
 
-    // Deletes an ingredient
+    // Deletes an ingredient belonging to user
     deleteOneUserIngredient: async function (req, res, next) {
         try {
             const user = await User.findById(req.params.userId).populate('ingredients');
@@ -91,6 +93,16 @@ module.exports = {
             // Delete ingredient
             const ingredient = await Ingredient.findByIdAndDelete(req.params.ingredientId);
             res.status(200).json(ingredient);
+        } catch (err) {
+            next(err);
+        }
+    },
+
+    // Deletes all ingredients in the database
+    deleteAllIngredients: async function (req, res, next) {
+        try {
+            const ingredients = await Ingredient.deleteMany({});
+            res.status(200).json(ingredients);
         } catch (err) {
             next(err);
         }
