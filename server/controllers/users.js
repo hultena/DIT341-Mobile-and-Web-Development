@@ -8,7 +8,6 @@ module.exports = {
 
     getAllUsers: async function (req, res, next){
         try {
-            console.log(req.query);
             const users = await User.find(req.query).select('-password');
             res.status(200).json(users);
         }catch (err) {
@@ -50,8 +49,6 @@ module.exports = {
 
     replaceUser: async function(req, res, next){
         try{
-            console.log(req.params.userId);
-            console.log(req.value.body);
             const user = await User.findByIdAndUpdate(req.params.userId, req.value.body);
             res.status(200).json(user);
         }catch(err){
