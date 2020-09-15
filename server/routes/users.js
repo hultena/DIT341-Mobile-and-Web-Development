@@ -21,12 +21,12 @@ router.route('/:userId')
 // ------------------ Recipe
 
 router.route('/:userId/recipes')
-    .post(users.postUserRecipe)
+    .post(validators.bodyValidator(validationSchemas.newRecipeSchema), users.postUserRecipe)
     .get(users.getAllUserRecipes);
 
 router.route('/:userId/recipes/:recipeId')
     .get(users.getOneUserRecipe)
-    .patch(users.updateOneUserRecipe)
+    .patch(validators.bodyValidator(validationSchemas.patchRecipeSchema), users.updateOneUserRecipe)
     .delete(users.deleteOneUserRecipe);
 
 // ------------------ Shopping list
