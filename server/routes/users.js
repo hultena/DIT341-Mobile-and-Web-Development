@@ -2,13 +2,14 @@ const express = require('express');
 const users = require('../controllers/users');
 const validators = require('../utilities/validators');
 const validationSchemas = require('../utilities/schemas');
+const queryString = require('../utilities/query-parser');
 
 const router = express.Router();
 
 // ------------------ User
 
 router.route('/')
-    .get(users.getAllUsers)
+    .get(queryString.query(),users.getAllUsers)
     .post(validators.bodyValidator(validationSchemas.newUserSchema), users.postUser)
     .delete(users.deleteAllUsers);
 
