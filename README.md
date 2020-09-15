@@ -99,8 +99,6 @@ This page lets the user search for recipes based on different criteria
 This page displays a description of the web app features, the reason why we built this platform, as well as a link to an external git project.
 * **10 Q&A page:**
 This page displays simple and frequently asked questions.
-* **11 Contact page:**
-This page displays a contact form where the user can contact the developers of the web application to ask questions.
 
 
 ### Entity-Relationship (ER) Diagram
