@@ -40,7 +40,8 @@ module.exports = {
 
     getOneUser: async function(req, res, next){
         try {
-            const user = await User.findById(req.params.userId);
+            const user = await User.findById(req.params.userId)
+                .select(req.value.select);
             if(user === null){
                 next();
             }else {
@@ -107,7 +108,12 @@ module.exports = {
 
     getAllUserRecipes: async function (req, res, next) {
         try {
-            const user = await User.findById(req.params.userId).populate('recipes');
+            const user = await User.findById(req.params.userId)
+                .populate('recipes')
+                .select(req.value.select)
+                .sort(req.value.sort)
+                .skip(req.value.page)
+                .limit(req.value.limit);
 
             if (user === null) next();
             else res.status(200).json(user.recipes);
@@ -119,7 +125,9 @@ module.exports = {
 
     getOneUserRecipe: async function (req, res, next) {
         try {
-            const recipe = await Recipe.findById(req.params.recipeId).populate('user');
+            const recipe = await Recipe.findById(req.params.recipeId)
+                .populate('user')
+                .select(req.value.select);
 
             if (recipe === null) next();
             else {
@@ -162,7 +170,12 @@ module.exports = {
     getAllUserShoppingLists: async function(req, res, next){
         try {
             const user = await User.findById(req.params.userId)
-                .populate('shoppingLists');
+                .populate('shoppingLists')
+                .select(req.value.select)
+                .sort(req.value.sort)
+                .skip(req.value.page)
+                .limit(req.value.limit);
+
             if(user === null){
                 next();
             }else {
@@ -193,8 +206,9 @@ module.exports = {
 
     getOneUserShoppingList: async function(req, res, next){
         try {
-            const shoppingList = await ShoppingList
-                .findById(req.params.shoppingListId).populate('user');
+            const shoppingList = await ShoppingList.findById(req.params.shoppingListId)
+                .populate('user')
+                .select(req.value.select);
             if(shoppingList === null){
                 next();
             }else{
