@@ -10,7 +10,9 @@ module.exports = {
         try {
             const users = await User.find(req.value.filter)
                 .select(req.value.select)
-                .sort(req.value.sort);
+                .sort(req.value.sort)
+                .skip(req.value.page)
+                .limit(req.value.limit);
             res.status(200).json(users);
         }catch (err) {
             next(err);
