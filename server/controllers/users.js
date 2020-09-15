@@ -8,7 +8,9 @@ module.exports = {
 
     getAllUsers: async function (req, res, next){
         try {
-            const users = await User.find(req.value.filter).select('-password').sort(req.value.sort);
+            const users = await User.find(req.value.filter)
+                .select(req.value.select)
+                .sort(req.value.sort);
             res.status(200).json(users);
         }catch (err) {
             next(err);
