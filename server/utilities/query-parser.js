@@ -13,8 +13,8 @@ module.exports = {
             }
             if(req.query.sort){
                 const attribute = req.query.sort;
-                if(req.query.order){
-                    req.value.sort[attribute]=req.query.order;
+                if(req.query.order&&(req.query.order==="asc"||req.query.order==="desc")){
+                    req.value.sort[attribute] = req.query.order;
                 }else{
                     req.value.sort[attribute] = "";
                 }
