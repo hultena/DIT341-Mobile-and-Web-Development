@@ -3,11 +3,11 @@ const ingredients = require('../controllers/ingredients');
 
 const router = express.Router();
 
-router.route('/ingredients')
+router.route('/')
     .get(ingredients.getAllIngredients)
     .delete(ingredients.deleteAllIngredients);
 
-router.route('/ingredients/:ingredientId')
+router.route('/:ingredientId')
     .get(ingredients.getIngredient);
 
 module.exports = router;
