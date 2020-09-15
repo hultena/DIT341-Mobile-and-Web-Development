@@ -82,5 +82,19 @@ module.exports = {
         instructions: Joi.array().items(
             Joi.string()
         )
+    }),
+
+    newIngredientSchema: Joi.object().keys({
+        user: Joi.string().regex(regexPattern).required(),
+        name: Joi.string().required(),
+        foodType: Joi.string(),
+        description: Joi.string().max(140)
+    }),
+
+    patchIngredientSchema: Joi.object().keys({
+        user: Joi.string().regex(regexPattern),
+        name: Joi.string(),
+        foodType: Joi.string(),
+        description: Joi.string().max(140)
     })
 }
