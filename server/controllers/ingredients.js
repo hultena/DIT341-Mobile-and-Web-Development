@@ -20,7 +20,7 @@ module.exports = {
     // Get one ingredient
     getIngredient: async function (req, res, next) {
         try {
-            const ingredient = await Ingredient.find(req.params.ingredientId);
+            const ingredient = await Ingredient.findById(req.params.ingredientId);
             if (ingredient === null) {
                 next();
             } else {
