@@ -2,41 +2,42 @@ const express = require('express');
 const users = require('../controllers/users');
 const validators = require('../utilities/validators');
 const validationSchemas = require('../utilities/schemas');
+const queryString = require('../utilities/query-parser');
 
 const router = express.Router();
 
 // ------------------ User
 
 router.route('/')
-    .get(users.getAllUsers)
+    .get(queryString.query(), users.getAllUsers)
     .post(validators.bodyValidator(validationSchemas.newUserSchema), users.postUser)
     .delete(users.deleteAllUsers);
 
 router.route('/:userId')
-    .get(users.getOneUser)
-    .put(validators.bodyValidator(validationSchemas.newUserSchema),users.replaceUser)
+    .get(queryString.query(), users.getOneUser)
+    .put(validators.bodyValidator(validationSchemas.newUserSchema), users.replaceUser)
     .delete(users.deleteUser)
-    .patch(validators.bodyValidator(validationSchemas.patchUserSchema),users.updateUser);
+    .patch(validators.bodyValidator(validationSchemas.patchUserSchema), users.updateUser);
 
 // ------------------ Recipe
 
 router.route('/:userId/recipes')
     .post(validators.bodyValidator(validationSchemas.newRecipeSchema), users.postUserRecipe)
-    .get(users.getAllUserRecipes);
+    .get(queryString.query(),users.getAllUserRecipes);
 
 router.route('/:userId/recipes/:recipeId')
-    .get(users.getOneUserRecipe)
+    .get(queryString.query(), users.getOneUserRecipe)
     .patch(validators.bodyValidator(validationSchemas.patchRecipeSchema), users.updateOneUserRecipe)
     .delete(users.deleteOneUserRecipe);
 
 // ------------------ Shopping list
 
 router.route('/:userId/shoppinglists')
-    .get(users.getAllUserShoppingLists)
+    .get(queryString.query(), users.getAllUserShoppingLists)
     .post(users.postUserShoppingList);
 
 router.route('/:userId/shoppinglists/:shoppingListId')
-    .get(users.getOneUserShoppingList)
+    .get(queryString.query(), users.getOneUserShoppingList)
     .delete(users.deleteOneUserShoppingList);
 
 module.exports = router;

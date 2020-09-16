@@ -4,7 +4,11 @@ module.exports = {
 
     getAllRecipes: async function (req, res, next) {
         try {
-            const recipes = await Recipe.find();
+            const recipes = await Recipe.find(req.value.filter)
+                .select(req.value.select)
+                .sort(req.value.sort)
+                .skip(req.value.page)
+                .limit(req.value.limit);
             res.status(200).json(recipes);
 
         } catch (error) {
