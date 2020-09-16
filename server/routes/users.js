@@ -43,12 +43,12 @@ router.route('/:userId/shoppinglists/:shoppingListId')
 
 router.route('/:userId/ingredients')
     .get(queryString.query(), ingredients.getAllUserIngredients)
-    .post(ingredients.postOneUserIngredient);
+    .post(validators.bodyValidator(validationSchemas.newIngredientSchema), ingredients.postOneUserIngredient);
 
 router.route('/:userId/ingredients/:ingredientId')
     .get(queryString.query(), ingredients.getOneUserIngredient)
     .delete(ingredients.deleteOneUserIngredient)
-    .patch(ingredients.updateIngredient)
-    .put(ingredients.replaceIngredient);
+    .patch(validators.bodyValidator(validationSchemas.patchIngredientSchema), ingredients.updateIngredient)
+    .put(validators.bodyValidator(validationSchemas.newIngredientSchema), ingredients.replaceIngredient);
 
 module.exports = router;

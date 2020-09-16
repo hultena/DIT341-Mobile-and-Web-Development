@@ -79,7 +79,7 @@ module.exports = {
             if (user === null) {
                 next();
             } else {
-                const ingredient = new Ingredient(req.body);
+                const ingredient = new Ingredient(req.value.body);
                 ingredient.user = user._id;
                 await ingredient.save();
                 await user.ingredients.push(ingredient);
@@ -94,7 +94,7 @@ module.exports = {
     // Updates/Patches an ingredient
     updateIngredient: async function(req, res, next) {
         try{
-            const ingredient = await Ingredient.findByIdAndUpdate(req.params.ingredientId, req.body);
+            const ingredient = await Ingredient.findByIdAndUpdate(req.params.ingredientId, req.value.body);
             res.status(200).json(ingredient);
         }catch(err){
             next(err);
@@ -104,7 +104,7 @@ module.exports = {
     // Replaces an ingredient
     replaceIngredient: async function(req, res, next) {
         try{
-            const ingredient = await Ingredient.findByIdAndUpdate(req.params.ingredientId, req.body);
+            const ingredient = await Ingredient.findByIdAndUpdate(req.params.ingredientId, req.value.body);
             res.status(200).json(ingredient);
         }catch(err){
             next(err);
