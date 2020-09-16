@@ -41,11 +41,13 @@ module.exports = {
             if(req.query.select){
                 //selecting what fields to not show to prevent leaking passwords
                 const attribute = req.query.select;
-                const selection = {};
+                let selection = {};
                 if(Array.isArray(attribute)){
                     for(const value of attribute){
                         selection[value]=0;
                     }
+                }else{
+                    selection[attribute]=0;
                 }
                 req.value.select = selection;
             }

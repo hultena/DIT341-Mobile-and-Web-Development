@@ -42,11 +42,11 @@ router.route('/:userId/shoppinglists/:shoppingListId')
     .delete(users.deleteOneUserShoppingList);
 
 router.route('/:userId/ingredients')
-    .get(ingredients.getAllUserIngredients)
+    .get(queryString.query(), ingredients.getAllUserIngredients)
     .post(ingredients.postOneUserIngredient);
 
 router.route('/:userId/ingredients/:ingredientId')
-    .get(ingredients.getOneUserIngredient)
+    .get(queryString.query(), ingredients.getOneUserIngredient)
     .delete(ingredients.deleteOneUserIngredient)
     .patch(ingredients.updateIngredient)
     .put(ingredients.replaceIngredient);
