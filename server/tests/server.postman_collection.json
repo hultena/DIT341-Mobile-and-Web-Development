@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "75fc3224-6308-44ea-b891-446331635569",
+		"_postman_id": "36f348a9-3f3f-41d1-81d1-471f0a8aed5a",
 		"name": "server",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -14,7 +14,7 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "ed9aa2c8-1883-4dea-92d2-8b6c097d3330",
+								"id": "fbc3c272-32cf-434b-ba18-f132cbb6dafd",
 								"exec": [
 									""
 								],
@@ -49,7 +49,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "77e5ba75-64f5-483c-8d95-ba0c89972720",
+								"id": "465b0284-f41b-4fca-afa5-ff7dedb69e9f",
 								"exec": [
 									"var jsonData = pm.response.json();",
 									"postman.setEnvironmentVariable(\"userId\", jsonData._id);",
@@ -103,7 +103,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "db603d43-008f-4342-8232-fe3f8ce3b92c",
+								"id": "75419583-cf8f-4823-833a-245fb6503350",
 								"exec": [
 									"var jsonData = pm.response.json();",
 									"var arrayLength = jsonData.length;",
@@ -145,7 +145,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "2bea0124-fb1f-430b-8f51-156b44fda229",
+								"id": "ebff8bc1-4791-44a6-a1d7-19a6ea4dd9a4",
 								"exec": [
 									"var jsonData = pm.response.json();",
 									"",
@@ -186,7 +186,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "74714a10-70fd-4653-aae3-5ef2db45820a",
+								"id": "1fea239b-c4cf-45a5-8906-305b3292468f",
 								"exec": [
 									"var jsonData = pm.response.json();",
 									"",
@@ -226,7 +226,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "b215b1f0-171c-40d6-ade9-049c3eda4b3d",
+								"id": "2225f93c-dcfa-4efa-929f-5ea63e8e613e",
 								"exec": [
 									"var jsonData = pm.response.json();",
 									"var arrayLength = jsonData.length;",
@@ -268,7 +268,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "328036e0-cd43-47c7-b204-561c3cc55c34",
+								"id": "ed8b3a67-4d5d-4a2c-ab43-60a18c8aed81",
 								"exec": [
 									"var jsonData = pm.response.json();",
 									"",
@@ -308,7 +308,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "f7928304-780a-48f5-b0bd-958de6e1c5ee",
+								"id": "62bf7b10-f97b-4753-830c-9c21a7ca3eed",
 								"exec": [
 									"var jsonData = pm.response.json();",
 									"postman.setEnvironmentVariable(\"userId\", jsonData._id);",
@@ -362,7 +362,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "6072f97c-82bf-4baf-ae2a-d757a43fb143",
+								"id": "5e51ed96-37f5-4a9c-8064-26562f4392a9",
 								"exec": [
 									"var jsonData = pm.response.json();",
 									"",
@@ -404,7 +404,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "4938c9f6-1fa7-49af-a5c8-ebce81a69af9",
+								"id": "22a0fd8c-f2b3-4907-b6dd-49ac19c04b8e",
 								"exec": [
 									"var jsonData = pm.response.json();",
 									"",
@@ -455,7 +455,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "4e4bcb0d-7225-45dc-934b-d6b1b667d571",
+								"id": "632d8eb7-3ef5-42fe-9907-9ab42f98fbbd",
 								"exec": [
 									"var jsonData = pm.response.json();",
 									"",
@@ -506,7 +506,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "b400a79c-bb44-443f-82d1-c256ea313039",
+								"id": "f713f809-f05c-4ae4-934a-704cec839cd5",
 								"exec": [
 									"var jsonData = pm.response.json();",
 									"",
@@ -557,7 +557,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "2ea779ee-f018-40c5-8472-9127bb430256",
+								"id": "98c51129-9b51-4a7f-92d9-59a3bfdd1064",
 								"exec": [
 									"var jsonData = pm.response.json();",
 									"",
@@ -608,7 +608,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "030d09be-4090-461c-aea4-0129f7682546",
+								"id": "6e9f644c-0bfd-4186-ac85-146545d5ee61",
 								"exec": [
 									"var jsonData = pm.response.json();",
 									"postman.setEnvironmentVariable(\"shoppingListId\", jsonData._id);",
@@ -661,7 +661,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "e8743335-6c56-48f3-8003-0365c32b8c95",
+								"id": "86a9f157-eedb-49f7-9667-105e45cda020",
 								"exec": [
 									"var jsonData = pm.response.json();",
 									"",
@@ -704,7 +704,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "6ab95d88-9c59-478c-823d-9e72ee2a8857",
+								"id": "21995780-900c-40ac-b6b4-03207ffdfa34",
 								"exec": [
 									"var jsonData = pm.response.json();",
 									"",
@@ -748,7 +748,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "0469f19b-053b-479c-899c-7523daf9460b",
+								"id": "2cfbc6f4-85b0-44c2-a21a-4f20fedeaf47",
 								"exec": [
 									"var jsonData = pm.response.json();\r",
 									"\r",
@@ -788,7 +788,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "2ca3b82f-92b3-42af-bb70-cafdb94c15a0",
+								"id": "cb889ad2-dbd8-4175-a805-56c558db0272",
 								"exec": [
 									"var jsonData = pm.response.json();\r",
 									"\r",
@@ -828,7 +828,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "0868e39b-30c4-4ffb-9a32-ea2a830c7d94",
+								"id": "e8a8c239-fc56-4b39-a3c3-5658960f0c1a",
 								"exec": [
 									"var jsonData = pm.response.json();\r",
 									"\r",
@@ -870,7 +870,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "7e51eccd-bd3c-4da2-8275-67cdfce524a6",
+								"id": "63bdceae-970a-47a9-a0d5-0f72ddf7c04a",
 								"exec": [
 									"var jsonData = pm.response.json();",
 									"postman.setEnvironmentVariable(\"userId\", jsonData._id);",
@@ -922,7 +922,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "f19ccc2f-5002-4b57-bf4e-9d4f79a182c3",
+								"id": "f06edb9b-24c1-46f1-a7d0-7c6eaec6da85",
 								"exec": [
 									"var jsonData = pm.response.json();",
 									"postman.setEnvironmentVariable(\"recipeId\", jsonData._id);",
@@ -978,7 +978,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "8319668a-29a4-494f-a99a-02c8467e4074",
+								"id": "f14e351a-0b7a-4b45-8fb0-7418b5b75b2f",
 								"exec": [
 									"var jsonData = pm.response.json();",
 									"",
@@ -1020,7 +1020,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "cbb2f60b-1d90-4777-a1b6-eb637a8fb4fd",
+								"id": "934a44ae-e292-4139-b326-778a88a44d63",
 								"exec": [
 									"var jsonData = pm.response.json();",
 									"postman.setEnvironmentVariable(\"recipeId\", jsonData._id);",
@@ -1076,7 +1076,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "e7ba6cc7-9813-4cad-85e0-41455328b34d",
+								"id": "1a731998-c1ee-4336-823d-4a24d7e6a609",
 								"exec": [
 									"var jsonData = pm.response.json();",
 									"",
@@ -1134,7 +1134,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "ee3af91a-12ea-4d76-96bf-ed599a031f87",
+								"id": "85813968-1f64-4aed-821b-e6c20f0db6be",
 								"exec": [
 									"var jsonData = pm.response.json();",
 									"postman.setEnvironmentVariable(\"recipeId\", jsonData._id);",
@@ -1190,7 +1190,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "236ba5a0-98c0-4035-be15-c061497d3a0b",
+								"id": "0d2e3372-0251-4db9-8523-8b05aa1a1efe",
 								"exec": [
 									"var jsonData = pm.response.json();",
 									"",
@@ -1267,7 +1267,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "12af1479-7336-4faa-86ad-57f209bb8433",
+								"id": "8df1a491-e537-4f1e-b68b-c9cd091cd8fa",
 								"exec": [
 									"var jsonData = pm.response.json();",
 									"postman.setEnvironmentVariable(\"recipeId\", jsonData._id);",
@@ -1323,7 +1323,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "62521a58-0d84-4257-8482-05a8a8f8006d",
+								"id": "a70e885c-caff-4678-9c00-3570b4a1e8a9",
 								"exec": [
 									"var jsonData = pm.response.json();",
 									"",
@@ -1362,7 +1362,7 @@
 				{
 					"listen": "prerequest",
 					"script": {
-						"id": "08278f6a-1deb-4fdf-860a-40ac9bf8aab9",
+						"id": "75d2109e-bafa-47b6-8868-12ca2fd88467",
 						"type": "text/javascript",
 						"exec": [
 							""
@@ -1372,7 +1372,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "f8a9ed8d-0285-4a89-830f-3c761146fac8",
+						"id": "f5150ae3-e38f-408e-9259-5bcf96be2993",
 						"type": "text/javascript",
 						"exec": [
 							""
@@ -1391,7 +1391,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "30d3335b-9241-4455-9af9-68137af2de0e",
+								"id": "87b44fb5-3c46-4492-af58-0d5eacf16c60",
 								"exec": [
 									"var jsonData = pm.response.json();",
 									"",
@@ -1447,7 +1447,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "0e6900de-651a-4d0d-b5c3-501b04ab9d39",
+								"id": "c16d0cbc-f60a-4a40-a37c-72b209a2780f",
 								"exec": [
 									"var jsonData = pm.response.json();",
 									"",
@@ -1481,13 +1481,517 @@
 				}
 			],
 			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "ingredients",
+			"item": [
+				{
+					"name": "POST user for ingredient testing",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "3f1a6978-d391-401c-ae38-e62991ad0dd1",
+								"exec": [
+									"var jsonData = pm.response.json();",
+									"pm.environment.set(\"userId\", jsonData._id);",
+									"console.log(pm.environment.get(\"userId\"));",
+									"",
+									"",
+									"pm.test(\"Response is CREATED\", function() {",
+									"    pm.response.to.have.status(201);",
+									"});",
+									"",
+									"pm.test(\"Response contains correct JSON data\", function() {",
+									"    pm.expect(jsonData.username).to.eql('Chef Ramsay');",
+									"    pm.expect(jsonData.email).to.eql('angry@always.com');",
+									"    pm.expect(jsonData.password).to.eql('RAGE');",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"username": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"username\":\"Chef Ramsay\",\r\n\t\"email\":\"angry@always.com\",\r\n\t\"password\":\"RAGE\"\r\n}"
+						},
+						"url": {
+							"raw": "{{host}}/api/users",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"users"
+							]
+						},
+						"description": "Posting a user."
+					},
+					"response": []
+				},
+				{
+					"name": "POST ingredient 1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "c1e2de35-4972-4b93-8a96-7ca0f1c033bb",
+								"exec": [
+									"var jsonData = pm.response.json();\r",
+									"pm.environment.set(\"ingredientId\", jsonData._id);\r",
+									"\r",
+									"pm.test(\"Response is CREATED\", function() {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response contains correct JSON data\", function() {\r",
+									"    pm.expect(jsonData.user).to.eql(pm.environment.get(\"userId\"));\r",
+									"    pm.expect(jsonData.name).to.eql('Tomatoes');\r",
+									"    pm.expect(jsonData.foodType).to.eql('Vegetable');\r",
+									"    pm.expect(jsonData.description).to.eql('The tomato is the edible, often red berry of the plant Solanum lycopersicum.');\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"user\": \"{{userId}}\",\r\n    \"name\": \"Tomatoes\",\r\n    \"foodType\": \"Vegetable\",\r\n    \"description\": \"The tomato is the edible, often red berry of the plant Solanum lycopersicum.\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/users/{{userId}}/ingredients",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"{{userId}}",
+								"ingredients"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET all ingredients",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "1ea2f3d7-e9e9-4b8e-b7d9-b7a7e2b2e3a1",
+								"exec": [
+									"var jsonData = pm.response.json();\r",
+									"var arrayLength = jsonData.length;\r",
+									"\r",
+									"pm.test(\"Response is OK\", function() {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Last entry in the array should be the posted ingredient\", function() {\r",
+									"    pm.expect(jsonData[arrayLength-1].name).to.eql(\"Tomatoes\");    \r",
+									"});\r",
+									"\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/ingredients",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"ingredients"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET specific ingredient",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "f46946fb-848b-4a8a-a197-69fc76f0a70f",
+								"exec": [
+									"var jsonData = pm.response.json();\r",
+									"\r",
+									"pm.test(\"Response is OK\", function() {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response contains correct JSON data\", function() {\r",
+									"    pm.expect(jsonData.user).to.eql(pm.environment.get(\"userId\"));\r",
+									"    pm.expect(jsonData.name).to.eql('Tomatoes');\r",
+									"    pm.expect(jsonData.foodType).to.eql('Vegetable');\r",
+									"    pm.expect(jsonData.description).to.eql('The tomato is the edible, often red berry of the plant Solanum lycopersicum.');\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/ingredients/{{ingredientId}}/",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"ingredients",
+								"{{ingredientId}}",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET all user ingredients",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "7470377b-c312-4d28-b42e-7357a95ea5de",
+								"exec": [
+									"var jsonData = pm.response.json();\r",
+									"var arrayLength = jsonData.length;\r",
+									"\r",
+									"pm.test(\"Response is OK\", function() {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Last entry in the array should be the users posted ingredient\", function() {\r",
+									"    pm.expect(jsonData[arrayLength-1].name).to.eql(\"Tomatoes\");    \r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/users/{{userId}}/ingredients/",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"{{userId}}",
+								"ingredients",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET one user ingredient",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "a7f236f0-ceb6-4b84-a9c7-26f65cfe990b",
+								"exec": [
+									"var jsonData = pm.response.json();\r",
+									"\r",
+									"pm.test(\"Response is OK\", function() {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response contains correct JSON data\", function() {\r",
+									"    pm.expect(jsonData.user).to.eql(pm.environment.get(\"userId\"));\r",
+									"    pm.expect(jsonData.name).to.eql('Tomatoes');\r",
+									"    pm.expect(jsonData.foodType).to.eql('Vegetable');\r",
+									"    pm.expect(jsonData.description).to.eql('The tomato is the edible, often red berry of the plant Solanum lycopersicum.');\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/users/{{userId}}/ingredients/{{ingredientId}}",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"{{userId}}",
+								"ingredients",
+								"{{ingredientId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PATCH one user ingredient",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "1eb75d34-84b4-4f94-b1b3-5c4760d7d6df",
+								"exec": [
+									"var jsonData = pm.response.json();\r",
+									"\r",
+									"pm.test(\"Response is OK\", function() {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response should indicate correct ingredient was updated\", function() {\r",
+									"    pm.expect(jsonData._id).to.eql(pm.environment.get('ingredientId'));\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"foodType\": \"Tomatoes are actually fruit\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/users/{{userId}}/ingredients/{{ingredientId}}",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"{{userId}}",
+								"ingredients",
+								"{{ingredientId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PUT one user ingredient",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "88b3d026-0473-41fe-820d-eb59bfea47f9",
+								"exec": [
+									"var jsonData = pm.response.json();\r",
+									"\r",
+									"pm.test(\"Response is OK\", function() {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response should indicate correct ingredient was replaced\", function() {\r",
+									"    pm.expect(jsonData._id).to.eql(pm.environment.get('ingredientId'));\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"user\": \"{{userId}}\",\r\n    \"name\": \"Green Tomatoes\",\r\n    \"foodType\": \"Vegetable\",\r\n    \"description\": \"You are both wrong, tomatoes are green vegetables.\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/users/{{userId}}/ingredients/{{ingredientId}}",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"{{userId}}",
+								"ingredients",
+								"{{ingredientId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE specific user ingredient",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "f8f0018a-5b17-4f7c-8745-07e06ae0a1ef",
+								"exec": [
+									"var jsonData = pm.response.json();\r",
+									"\r",
+									"pm.test(\"Response is OK\", function() {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response should indicate correct list was deleted\", function() {\r",
+									"    pm.expect(jsonData._id).to.eql(pm.environment.get('ingredientId'));\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/users/{{userId}}/ingredients/{{ingredientId}}",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"{{userId}}",
+								"ingredients",
+								"{{ingredientId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE all ingredients",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "08da2b0b-0dd5-4a68-ae02-86bf5f7c2e69",
+								"exec": [
+									"var jsonData = pm.response.json();\r",
+									"\r",
+									"pm.test(\"Response is OK\", function() {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response should indicate deletion was successful\", function() {\r",
+									"    pm.expect(jsonData.ok).to.eql(1);    \r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/ingredients",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"ingredients"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE all users",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "07c7f035-2896-44a3-be51-2485f82f4a1f",
+								"exec": [
+									"var jsonData = pm.response.json();",
+									"",
+									"pm.test(\"response is OK\", function() {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"response should indicate deletion was successful\", function() {",
+									"    pm.expect(jsonData.ok).to.eql(1);    ",
+									"    pm.expect(jsonData.deletedCount).to.eql(1);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/users",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"users"
+							]
+						},
+						"description": "delete all users"
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
 		}
 	],
 	"event": [
 		{
 			"listen": "prerequest",
 			"script": {
-				"id": "d438bfa2-5b24-464c-8e77-2e7035a57abe",
+				"id": "a199de00-f05e-4572-97cd-b69080a8155d",
 				"type": "text/javascript",
 				"exec": [
 					""
@@ -1497,7 +2001,7 @@
 		{
 			"listen": "test",
 			"script": {
-				"id": "74de82c1-5c51-415e-96de-eb2639add369",
+				"id": "2a19431a-778e-4ff4-a3d7-a7124b375796",
 				"type": "text/javascript",
 				"exec": [
 					""
