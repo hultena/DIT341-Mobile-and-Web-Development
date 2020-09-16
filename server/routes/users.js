@@ -39,6 +39,8 @@ router.route('/:userId/shoppinglists')
 
 router.route('/:userId/shoppinglists/:shoppingListId')
     .get(queryString.query(), users.getOneUserShoppingList)
+    .patch(validators.bodyValidator(validationSchemas.patchShoppingListSchema), users.updateUserShoppingList)
+    .put(validators.bodyValidator(validationSchemas.putShoppingListSchema), users.updateUserShoppingList)
     .delete(users.deleteOneUserShoppingList);
 
 router.route('/:userId/ingredients')

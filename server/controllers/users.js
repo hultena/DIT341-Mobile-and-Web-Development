@@ -207,8 +207,9 @@ module.exports = {
     getOneUserShoppingList: async function(req, res, next){
         try {
             const shoppingList = await ShoppingList.findById(req.params.shoppingListId)
-                .populate('user')
+                .populate('ingredients')
                 .select(req.value.select);
+            console.log(shoppingList.ingredients);
             if(shoppingList === null){
                 next();
             }else{
@@ -231,6 +232,18 @@ module.exports = {
             const query = await ShoppingList.findByIdAndDelete(req.params.shoppingListId);
             res.status(200).json(query);
         } catch (err) {
+            next(err);
+        }
+    },
+
+    updateUserShoppingList: async function (req, res, next){
+        try{
+            const shoppingList = await ShoppingList.findByIdAndUpdate(req.params.shoppingListId, req.value.body);
+            console.log(shoppingList);
+            console.log(req.value.body);
+
+            res.status(200).json(shoppingList);
+        }catch (err){
             next(err);
         }
     }
