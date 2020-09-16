@@ -1,11 +1,18 @@
 const User = require('../models/user');
+const Recipe = require('../models/recipe');
 const ShoppingList = require('../models/shoppinglist');
 
 module.exports = {
 
+    // ------------------ User
+
     getAllUsers: async function (req, res, next){
         try {
-            const users = await User.find();
+            const users = await User.find(req.value.filter)
+                .select(req.value.select)
+                .sort(req.value.sort)
+                .skip(req.value.page)
+                .limit(req.value.limit);
             res.status(200).json(users);
         }catch (err) {
             next(err);
@@ -14,7 +21,7 @@ module.exports = {
 
     postUser: async function(req, res, next){
         try{
-            const user = new User(req.body);
+            const user = new User(req.value.body);
             await user.save();
             res.status(201).json(user);
         }catch(err){
@@ -33,7 +40,8 @@ module.exports = {
 
     getOneUser: async function(req, res, next){
         try {
-            const user = await User.findById(req.params.userId);
+            const user = await User.findById(req.params.userId)
+                .select(req.value.select);
             if(user === null){
                 next();
             }else {
@@ -46,7 +54,7 @@ module.exports = {
 
     replaceUser: async function(req, res, next){
         try{
-            const user = await User.findByIdAndUpdate(req.params.userId, req.body);
+            const user = await User.findByIdAndUpdate(req.params.userId, req.value.body);
             res.status(200).json(user);
         }catch(err){
             next(err);
@@ -68,17 +76,106 @@ module.exports = {
 
     updateUser: async function(req, res, next){
         try{
-            const user = await User.findByIdAndUpdate(req.params.userId, req.body);
+            const user = await User.findByIdAndUpdate(req.params.userId, req.value.body);
             res.status(200).json(user);
         }catch(err){
             next(err);
         }
     },
 
+    // ------------------ Recipe
+
+    postUserRecipe: async function (req, res, next) {
+        try {
+            const user = await User.findById(req.params.userId).populate('recipes');
+
+            if (user === null) next();
+            else {
+                const recipe = new Recipe(req.body);
+                recipe.user = user._id;
+
+                await recipe.save();
+                await user.recipes.push(recipe);
+                await user.save();
+
+                res.status(201).json(recipe);
+            }
+
+        } catch (err) {
+            next(err);
+        }
+    },
+
+    getAllUserRecipes: async function (req, res, next) {
+        try {
+            const user = await User.findById(req.params.userId)
+                .populate('recipes')
+                .select(req.value.select)
+                .sort(req.value.sort)
+                .skip(req.value.page)
+                .limit(req.value.limit);
+
+            if (user === null) next();
+            else res.status(200).json(user.recipes);
+
+        } catch (error) {
+            next(error);
+        }
+    },
+
+    getOneUserRecipe: async function (req, res, next) {
+        try {
+            const recipe = await Recipe.findById(req.params.recipeId)
+                .populate('user')
+                .select(req.value.select);
+
+            if (recipe === null) next();
+            else {
+                if(recipe.user._id == req.params.userId) res.status(200).json(recipe);
+                else next();
+            }
+
+        } catch (error) {
+            next(error);
+        }
+    },
+
+    updateOneUserRecipe: async function (req, res, next) {
+        try {
+            const recipe = await Recipe.findByIdAndUpdate(req.params.recipeId).populate('user');
+            res.status(200).json(recipe);
+
+        } catch (error) {
+            next(error);
+        }
+    },
+
+    deleteOneUserRecipe: async function (req, res, next) {
+        try {
+            const user = await User.findById(req.params.userId).populate('recipe');
+
+            await user.recipes.pull(req.params.recipeId);
+            await user.save();
+
+            const query = await Recipe.findByIdAndDelete(req.params.recipeId);
+            res.status(200).json(query);
+
+        } catch (error) {
+            next(error);
+        }
+    },
+
+    // ------------------ Shopping list
+
     getAllUserShoppingLists: async function(req, res, next){
         try {
             const user = await User.findById(req.params.userId)
-                .populate('shoppingLists');
+                .populate('shoppingLists')
+                .select(req.value.select)
+                .sort(req.value.sort)
+                .skip(req.value.page)
+                .limit(req.value.limit);
+
             if(user === null){
                 next();
             }else {
@@ -109,8 +206,9 @@ module.exports = {
 
     getOneUserShoppingList: async function(req, res, next){
         try {
-            const shoppingList = await ShoppingList
-                .findById(req.params.shoppingListId).populate('user');
+            const shoppingList = await ShoppingList.findById(req.params.shoppingListId)
+                .populate('user')
+                .select(req.value.select);
             if(shoppingList === null){
                 next();
             }else{
