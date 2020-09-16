@@ -1,0 +1,537 @@
+{
+	"info": {
+		"_postman_id": "4abd1b5e-cb95-4af1-8286-738a11eaa9c6",
+		"name": "ingredients",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "POST user for ingredient testing",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "b1154106-059c-47ca-b442-c9de08d27831",
+						"exec": [
+							"var jsonData = pm.response.json();",
+							"pm.environment.set(\"userId\", jsonData._id);",
+							"console.log(pm.environment.get(\"userId\"));",
+							"",
+							"",
+							"pm.test(\"Response is CREATED\", function() {",
+							"    pm.response.to.have.status(201);",
+							"});",
+							"",
+							"pm.test(\"Response contains correct JSON data\", function() {",
+							"    pm.expect(jsonData.username).to.eql('Chef Ramsay');",
+							"    pm.expect(jsonData.email).to.eql('angry@always.com');",
+							"    pm.expect(jsonData.password).to.eql('RAGE');",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"username": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\"username\":\"Chef Ramsay\",\r\n\t\"email\":\"angry@always.com\",\r\n\t\"password\":\"RAGE\"\r\n}"
+				},
+				"url": {
+					"raw": "{{host}}/api/users",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"users"
+					]
+				},
+				"description": "Posting a user."
+			},
+			"response": []
+		},
+		{
+			"name": "POST ingredient 1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "7de20c26-6617-4885-a87b-e9c4dd819bbd",
+						"exec": [
+							"var jsonData = pm.response.json();\r",
+							"pm.environment.set(\"ingredientId\", jsonData._id);\r",
+							"\r",
+							"pm.test(\"Response is CREATED\", function() {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response contains correct JSON data\", function() {\r",
+							"    pm.expect(jsonData.user).to.eql(pm.environment.get(\"userId\"));\r",
+							"    pm.expect(jsonData.name).to.eql('Tomatoes');\r",
+							"    pm.expect(jsonData.foodType).to.eql('Vegetable');\r",
+							"    pm.expect(jsonData.description).to.eql('The tomato is the edible, often red berry of the plant Solanum lycopersicum.');\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"user\": \"{{userId}}\",\r\n    \"name\": \"Tomatoes\",\r\n    \"foodType\": \"Vegetable\",\r\n    \"description\": \"The tomato is the edible, often red berry of the plant Solanum lycopersicum.\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/api/users/{{userId}}/ingredients",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"users",
+						"{{userId}}",
+						"ingredients"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET all ingredients",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "25ec0d21-8463-49cd-a981-ec4022c751aa",
+						"exec": [
+							"var jsonData = pm.response.json();\r",
+							"var arrayLength = jsonData.length;\r",
+							"\r",
+							"pm.test(\"Response is OK\", function() {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Last entry in the array should be the posted ingredient\", function() {\r",
+							"    pm.expect(jsonData[arrayLength-1].name).to.eql(\"Tomatoes\");    \r",
+							"});\r",
+							"\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/api/ingredients",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"ingredients"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET specific ingredient",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "868d8fcb-2a88-44e1-80c8-eeb28cde3773",
+						"exec": [
+							"var jsonData = pm.response.json();\r",
+							"\r",
+							"pm.test(\"Response is OK\", function() {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response contains correct JSON data\", function() {\r",
+							"    pm.expect(jsonData.user).to.eql(pm.environment.get(\"userId\"));\r",
+							"    pm.expect(jsonData.name).to.eql('Tomatoes');\r",
+							"    pm.expect(jsonData.foodType).to.eql('Vegetable');\r",
+							"    pm.expect(jsonData.description).to.eql('The tomato is the edible, often red berry of the plant Solanum lycopersicum.');\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/api/ingredients/{{ingredientId}}/",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"ingredients",
+						"{{ingredientId}}",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET all user ingredients",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "61e2ff22-dc85-4a62-94c8-e4bdcdd312f1",
+						"exec": [
+							"var jsonData = pm.response.json();\r",
+							"var arrayLength = jsonData.length;\r",
+							"\r",
+							"pm.test(\"Response is OK\", function() {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Last entry in the array should be the users posted ingredient\", function() {\r",
+							"    pm.expect(jsonData[arrayLength-1].name).to.eql(\"Tomatoes\");    \r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/api/users/{{userId}}/ingredients/",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"users",
+						"{{userId}}",
+						"ingredients",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET one user ingredient",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "bdab8cc5-b61a-4d44-9c92-9a15728dd581",
+						"exec": [
+							"var jsonData = pm.response.json();\r",
+							"\r",
+							"pm.test(\"Response is OK\", function() {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response contains correct JSON data\", function() {\r",
+							"    pm.expect(jsonData.user).to.eql(pm.environment.get(\"userId\"));\r",
+							"    pm.expect(jsonData.name).to.eql('Tomatoes');\r",
+							"    pm.expect(jsonData.foodType).to.eql('Vegetable');\r",
+							"    pm.expect(jsonData.description).to.eql('The tomato is the edible, often red berry of the plant Solanum lycopersicum.');\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/api/users/{{userId}}/ingredients/{{ingredientId}}",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"users",
+						"{{userId}}",
+						"ingredients",
+						"{{ingredientId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PATCH one user ingredient",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "ae3bfeaa-929f-40d9-918a-e65d250f37d0",
+						"exec": [
+							"var jsonData = pm.response.json();\r",
+							"\r",
+							"pm.test(\"Response is OK\", function() {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response should indicate correct ingredient was updated\", function() {\r",
+							"    pm.expect(jsonData._id).to.eql(pm.environment.get('ingredientId'));\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"foodType\": \"Tomatoes are actually fruit\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/api/users/{{userId}}/ingredients/{{ingredientId}}",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"users",
+						"{{userId}}",
+						"ingredients",
+						"{{ingredientId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PUT one user ingredient",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "be998eec-d8b6-43bf-b9ec-bc4320c885c1",
+						"exec": [
+							"var jsonData = pm.response.json();\r",
+							"\r",
+							"pm.test(\"Response is OK\", function() {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response should indicate correct ingredient was replaced\", function() {\r",
+							"    pm.expect(jsonData._id).to.eql(pm.environment.get('ingredientId'));\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"user\": \"{{userId}}\",\r\n    \"name\": \"Green Tomatoes\",\r\n    \"foodType\": \"Vegetable\",\r\n    \"description\": \"You are both wrong, tomatoes are green vegetables.\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/api/users/{{userId}}/ingredients/{{ingredientId}}",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"users",
+						"{{userId}}",
+						"ingredients",
+						"{{ingredientId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE specific user ingredient",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "42470c69-60a2-4457-9b4d-08186382f426",
+						"exec": [
+							"var jsonData = pm.response.json();\r",
+							"\r",
+							"pm.test(\"Response is OK\", function() {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response should indicate correct list was deleted\", function() {\r",
+							"    pm.expect(jsonData._id).to.eql(pm.environment.get('ingredientId'));\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/api/users/{{userId}}/ingredients/{{ingredientId}}",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"users",
+						"{{userId}}",
+						"ingredients",
+						"{{ingredientId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE all ingredients",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "60e77d0a-f111-4efa-a65c-db78df628dda",
+						"exec": [
+							"var jsonData = pm.response.json();\r",
+							"\r",
+							"pm.test(\"Response is OK\", function() {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response should indicate deletion was successful\", function() {\r",
+							"    pm.expect(jsonData.ok).to.eql(1);    \r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/api/ingredients",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"ingredients"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE all users",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "4dc6d43d-e7f4-4e24-9206-1a514823533c",
+						"exec": [
+							"var jsonData = pm.response.json();",
+							"",
+							"pm.test(\"response is OK\", function() {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"response should indicate deletion was successful\", function() {",
+							"    pm.expect(jsonData.ok).to.eql(1);    ",
+							"    pm.expect(jsonData.deletedCount).to.eql(1);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/api/users",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"users"
+					]
+				},
+				"description": "delete all users"
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "2820a344-7a3b-4870-858b-93f77df3e518",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "59b7ca36-c951-45df-ae67-b314de3bc09f",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"id": "fe40ff50-9ee1-4aae-b428-1e43439d3a3e",
+			"key": "host",
+			"value": "http://localhost:3000"
+		}
+	],
+	"protocolProfileBehavior": {}
+}

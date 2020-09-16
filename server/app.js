@@ -6,6 +6,7 @@ var path = require('path');
 var cors = require('cors');
 var history = require('connect-history-api-fallback');
 const usersRoute = require('./routes/users');
+const ingredientsRoute = require('./routes/ingredients');
 const recipesRoute = require('./routes/recipes');
 
 // Variables
@@ -33,6 +34,7 @@ app.use(cors());
 
 // Router middleware
 app.use('/api/users', usersRoute);
+app.use('/api/ingredients', ingredientsRoute);
 app.use('/api/recipes', recipesRoute);
 
 // Import routes

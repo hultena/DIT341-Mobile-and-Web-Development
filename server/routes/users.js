@@ -1,5 +1,6 @@
 const express = require('express');
-const users = require('../controllers/users');
+const users = require('../controllers/users')
+const ingredients = require('../controllers/ingredients');
 const validators = require('../utilities/validators');
 const validationSchemas = require('../utilities/schemas');
 const queryString = require('../utilities/query-parser');
@@ -39,5 +40,15 @@ router.route('/:userId/shoppinglists')
 router.route('/:userId/shoppinglists/:shoppingListId')
     .get(queryString.query(), users.getOneUserShoppingList)
     .delete(users.deleteOneUserShoppingList);
+
+router.route('/:userId/ingredients')
+    .get(ingredients.getAllUserIngredients)
+    .post(ingredients.postOneUserIngredient);
+
+router.route('/:userId/ingredients/:ingredientId')
+    .get(ingredients.getOneUserIngredient)
+    .delete(ingredients.deleteOneUserIngredient)
+    .patch(ingredients.updateIngredient)
+    .put(ingredients.replaceIngredient);
 
 module.exports = router;
