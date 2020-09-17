@@ -10,7 +10,7 @@ module.exports = {
 
             if (user === null) next();
             else {
-                const recipe = new Recipe(req.body);
+                const recipe = new Recipe(req.value.body);
                 recipe.user = user._id;
 
                 await recipe.save();
@@ -27,7 +27,7 @@ module.exports = {
 
     updateRecipe: async function (req, res, next) {
         try {
-            const recipe = await Recipe.findByIdAndUpdate(req.params.recipeId, req.body).populate('user');
+            const recipe = await Recipe.findByIdAndUpdate(req.params.recipeId, req.value.body).populate('user');
             res.status(200).json(recipe);
 
         } catch (error) {
@@ -37,7 +37,7 @@ module.exports = {
 
     replaceRecipe: async function (req, res, next) {
         try {
-            const recipe = await Recipe.findByIdAndUpdate(req.params.recipeId, req.body).populate('user');
+            const recipe = await Recipe.findByIdAndUpdate(req.params.recipeId, req.value.body).populate('user');
             res.status(200).json(recipe);
 
         } catch (error) {
