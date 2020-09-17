@@ -952,7 +952,7 @@
 									"});",
 									"",
 									"pm.test(\"response should have valid JSON data\", function() {",
-									"    pm.expect(jsonData.user._id).to.eql(pm.environment.get('userId'));",
+									"    pm.expect(jsonData.user).to.eql(pm.environment.get('userId'));",
 									"    pm.expect(jsonData._id).to.eql(pm.environment.get('recipeId'));",
 									"});"
 								],
@@ -1365,7 +1365,7 @@
 									"});",
 									"",
 									"pm.test(\"response should have valid JSON data\", function() {",
-									"    pm.expect(jsonData.length).to.eql(1);",
+									"    pm.expect(jsonData.length).to.eql(0);",
 									"});"
 								],
 								"type": "text/javascript"

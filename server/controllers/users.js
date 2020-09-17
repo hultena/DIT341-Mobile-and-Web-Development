@@ -126,7 +126,7 @@ module.exports = {
     getOneUserRecipe: async function (req, res, next) {
         try {
             const recipe = await Recipe.findById(req.params.recipeId)
-                .populate('user')
+                .populate('ingredients')
                 .select(req.value.select);
 
             if (recipe === null) next();
@@ -209,7 +209,6 @@ module.exports = {
             const shoppingList = await ShoppingList.findById(req.params.shoppingListId)
                 .populate('ingredients')
                 .select(req.value.select);
-            console.log(shoppingList.ingredients);
             if(shoppingList === null){
                 next();
             }else{
