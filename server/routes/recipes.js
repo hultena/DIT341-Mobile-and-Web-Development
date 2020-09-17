@@ -4,8 +4,11 @@ const queryString = require('../utilities/query-parser');
 
 const router = express.Router();
 
+// ------------------ All recipes in database
 router.route('/')
-    .get(queryString.query(), recipes.getAllRecipes)
-    .delete(recipes.deleteAllRecipes);
+    .get(queryString.query(), recipes.getAllDatabaseRecipes);
+
+router.route('/:recipeId')
+    .get(queryString.query(), recipes.getDatabaseRecipe);
 
 module.exports = router;
