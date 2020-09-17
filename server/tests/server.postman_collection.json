@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "36f348a9-3f3f-41d1-81d1-471f0a8aed5a",
+		"_postman_id": "17519af6-09bf-49a8-8e8c-e04ae001f9d5",
 		"name": "server",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -9,47 +9,12 @@
 			"name": "user",
 			"item": [
 				{
-					"name": "GET /api",
-					"event": [
-						{
-							"listen": "prerequest",
-							"script": {
-								"id": "fbc3c272-32cf-434b-ba18-f132cbb6dafd",
-								"exec": [
-									""
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "Accept",
-								"value": "application/json",
-								"type": "text"
-							}
-						],
-						"url": {
-							"raw": "{{host}}/api",
-							"host": [
-								"{{host}}"
-							],
-							"path": [
-								"api"
-							]
-						}
-					},
-					"response": []
-				},
-				{
 					"name": "add user 1",
 					"event": [
 						{
 							"listen": "test",
 							"script": {
-								"id": "465b0284-f41b-4fca-afa5-ff7dedb69e9f",
+								"id": "ab5832aa-ab15-4535-9dbb-12e1a8ae738a",
 								"exec": [
 									"var jsonData = pm.response.json();",
 									"postman.setEnvironmentVariable(\"userId\", jsonData._id);",
@@ -103,7 +68,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "75419583-cf8f-4823-833a-245fb6503350",
+								"id": "61fa734b-2cb6-4cb1-87eb-8b528b0e4910",
 								"exec": [
 									"var jsonData = pm.response.json();",
 									"var arrayLength = jsonData.length;",
@@ -145,7 +110,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "ebff8bc1-4791-44a6-a1d7-19a6ea4dd9a4",
+								"id": "cfe22b96-bce5-4c77-8aa8-6f31c2e732eb",
 								"exec": [
 									"var jsonData = pm.response.json();",
 									"",
@@ -186,7 +151,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "1fea239b-c4cf-45a5-8906-305b3292468f",
+								"id": "69fa09db-89ba-41c4-8532-549421d796cc",
 								"exec": [
 									"var jsonData = pm.response.json();",
 									"",
@@ -226,7 +191,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "2225f93c-dcfa-4efa-929f-5ea63e8e613e",
+								"id": "906f5fdd-2cb9-4868-b777-2c988ef24ce0",
 								"exec": [
 									"var jsonData = pm.response.json();",
 									"var arrayLength = jsonData.length;",
@@ -268,7 +233,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "ed8b3a67-4d5d-4a2c-ab43-60a18c8aed81",
+								"id": "13801c86-d18f-424e-a56c-421abccb8e4a",
 								"exec": [
 									"var jsonData = pm.response.json();",
 									"",
@@ -308,7 +273,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "62bf7b10-f97b-4753-830c-9c21a7ca3eed",
+								"id": "009cfaf2-05d1-4bbe-bf84-2433521a7a74",
 								"exec": [
 									"var jsonData = pm.response.json();",
 									"postman.setEnvironmentVariable(\"userId\", jsonData._id);",
@@ -362,7 +327,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "5e51ed96-37f5-4a9c-8064-26562f4392a9",
+								"id": "fd3e767d-a800-4cd4-af27-b00de3da5712",
 								"exec": [
 									"var jsonData = pm.response.json();",
 									"",
@@ -404,7 +369,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "22a0fd8c-f2b3-4907-b6dd-49ac19c04b8e",
+								"id": "5672bf68-b514-4b0d-9c45-09b248731e51",
 								"exec": [
 									"var jsonData = pm.response.json();",
 									"",
@@ -455,7 +420,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "632d8eb7-3ef5-42fe-9907-9ab42f98fbbd",
+								"id": "e3928943-443c-49bb-9ed1-2d1ee101469b",
 								"exec": [
 									"var jsonData = pm.response.json();",
 									"",
@@ -506,7 +471,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "f713f809-f05c-4ae4-934a-704cec839cd5",
+								"id": "fe9f5353-022a-48aa-a65e-8d9bb295a949",
 								"exec": [
 									"var jsonData = pm.response.json();",
 									"",
@@ -557,7 +522,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "98c51129-9b51-4a7f-92d9-59a3bfdd1064",
+								"id": "33094f14-f0fe-4ff7-9c99-9904c29707cb",
 								"exec": [
 									"var jsonData = pm.response.json();",
 									"",
@@ -608,7 +573,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "6e9f644c-0bfd-4186-ac85-146545d5ee61",
+								"id": "2dfc0bf3-d2d1-46f7-ad1c-211ec32609c8",
 								"exec": [
 									"var jsonData = pm.response.json();",
 									"postman.setEnvironmentVariable(\"shoppingListId\", jsonData._id);",
@@ -661,7 +626,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "86a9f157-eedb-49f7-9667-105e45cda020",
+								"id": "d4a66592-b40d-4b80-bc28-41f613559cd3",
 								"exec": [
 									"var jsonData = pm.response.json();",
 									"",
@@ -670,7 +635,7 @@
 									"});",
 									"",
 									"pm.test(\"response should have valid JSON data\", function() {",
-									"    pm.expect(jsonData.user._id).to.eql(pm.environment.get('userId'));",
+									"    pm.expect(jsonData.user).to.eql(pm.environment.get('userId'));",
 									"    pm.expect(jsonData._id).to.eql(pm.environment.get('shoppingListId'));",
 									"});"
 								],
@@ -704,7 +669,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "21995780-900c-40ac-b6b4-03207ffdfa34",
+								"id": "dfafedd7-a83b-4160-ae86-5a8300ea76c8",
 								"exec": [
 									"var jsonData = pm.response.json();",
 									"",
@@ -748,7 +713,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "2cfbc6f4-85b0-44c2-a21a-4f20fedeaf47",
+								"id": "6d4ad542-dd63-4f72-8318-c251a275166a",
 								"exec": [
 									"var jsonData = pm.response.json();\r",
 									"\r",
@@ -788,7 +753,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "cb889ad2-dbd8-4175-a805-56c558db0272",
+								"id": "c596d76d-6764-40f2-b574-f5a8b9b18e25",
 								"exec": [
 									"var jsonData = pm.response.json();\r",
 									"\r",
@@ -828,7 +793,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "e8a8c239-fc56-4b39-a3c3-5658960f0c1a",
+								"id": "583e3337-02ec-4ff3-a952-5f6d35c90299",
 								"exec": [
 									"var jsonData = pm.response.json();\r",
 									"\r",
@@ -870,7 +835,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "63bdceae-970a-47a9-a0d5-0f72ddf7c04a",
+								"id": "648914b3-cb00-4c6d-a684-660f65ba680e",
 								"exec": [
 									"var jsonData = pm.response.json();",
 									"postman.setEnvironmentVariable(\"userId\", jsonData._id);",
@@ -922,7 +887,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "f06edb9b-24c1-46f1-a7d0-7c6eaec6da85",
+								"id": "4be2b0ad-fc25-445d-b233-79b736a0ef0c",
 								"exec": [
 									"var jsonData = pm.response.json();",
 									"postman.setEnvironmentVariable(\"recipeId\", jsonData._id);",
@@ -978,7 +943,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "f14e351a-0b7a-4b45-8fb0-7418b5b75b2f",
+								"id": "3019f6d1-a37e-4b0f-8f2d-ff10f4eee243",
 								"exec": [
 									"var jsonData = pm.response.json();",
 									"",
@@ -1020,7 +985,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "934a44ae-e292-4139-b326-778a88a44d63",
+								"id": "460e1fe3-b0eb-4416-af88-f7f39347fd02",
 								"exec": [
 									"var jsonData = pm.response.json();",
 									"postman.setEnvironmentVariable(\"recipeId\", jsonData._id);",
@@ -1076,7 +1041,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "1a731998-c1ee-4336-823d-4a24d7e6a609",
+								"id": "9540e952-ebe0-43a4-aec5-bdd4fc946c73",
 								"exec": [
 									"var jsonData = pm.response.json();",
 									"",
@@ -1134,7 +1099,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "85813968-1f64-4aed-821b-e6c20f0db6be",
+								"id": "3b4427de-59c6-4677-b63b-164b770c6b70",
 								"exec": [
 									"var jsonData = pm.response.json();",
 									"postman.setEnvironmentVariable(\"recipeId\", jsonData._id);",
@@ -1190,7 +1155,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "0d2e3372-0251-4db9-8523-8b05aa1a1efe",
+								"id": "429edfa6-23e6-456c-a124-b0173d0cd208",
 								"exec": [
 									"var jsonData = pm.response.json();",
 									"",
@@ -1267,7 +1232,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "8df1a491-e537-4f1e-b68b-c9cd091cd8fa",
+								"id": "6dc76459-552a-44b4-98d6-fcbaa2eeffe0",
 								"exec": [
 									"var jsonData = pm.response.json();",
 									"postman.setEnvironmentVariable(\"recipeId\", jsonData._id);",
@@ -1323,7 +1288,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "a70e885c-caff-4678-9c00-3570b4a1e8a9",
+								"id": "1130a237-8824-48a7-b93c-c6acd24768a8",
 								"exec": [
 									"var jsonData = pm.response.json();",
 									"",
@@ -1362,7 +1327,7 @@
 				{
 					"listen": "prerequest",
 					"script": {
-						"id": "75d2109e-bafa-47b6-8868-12ca2fd88467",
+						"id": "1ac1fe99-c89b-4ac7-8e32-7ea95ffc65af",
 						"type": "text/javascript",
 						"exec": [
 							""
@@ -1372,7 +1337,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "f5150ae3-e38f-408e-9259-5bcf96be2993",
+						"id": "c5eb80bd-855e-4494-bb35-8c5e8378ffb0",
 						"type": "text/javascript",
 						"exec": [
 							""
@@ -1391,7 +1356,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "87b44fb5-3c46-4492-af58-0d5eacf16c60",
+								"id": "fbc08c6a-9c33-44fd-8627-568e816ca58d",
 								"exec": [
 									"var jsonData = pm.response.json();",
 									"",
@@ -1447,7 +1412,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "c16d0cbc-f60a-4a40-a37c-72b209a2780f",
+								"id": "a3041322-aff9-41d5-8474-de0e55e83917",
 								"exec": [
 									"var jsonData = pm.response.json();",
 									"",
@@ -1491,7 +1456,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "3f1a6978-d391-401c-ae38-e62991ad0dd1",
+								"id": "ef56eabb-4926-45b4-929c-8d9be8e28c9d",
 								"exec": [
 									"var jsonData = pm.response.json();",
 									"pm.environment.set(\"userId\", jsonData._id);",
@@ -1546,7 +1511,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "c1e2de35-4972-4b93-8a96-7ca0f1c033bb",
+								"id": "e1d587a8-9b67-4a29-9fca-f7e2803edae8",
 								"exec": [
 									"var jsonData = pm.response.json();\r",
 									"pm.environment.set(\"ingredientId\", jsonData._id);\r",
@@ -1599,7 +1564,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "1ea2f3d7-e9e9-4b8e-b7d9-b7a7e2b2e3a1",
+								"id": "f9c07889-0eaa-4b63-8829-b9cb52b4b4a3",
 								"exec": [
 									"var jsonData = pm.response.json();\r",
 									"var arrayLength = jsonData.length;\r",
@@ -1641,7 +1606,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "f46946fb-848b-4a8a-a197-69fc76f0a70f",
+								"id": "b3b352f5-17be-4e5e-9177-1399f7c6d4d7",
 								"exec": [
 									"var jsonData = pm.response.json();\r",
 									"\r",
@@ -1684,7 +1649,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "7470377b-c312-4d28-b42e-7357a95ea5de",
+								"id": "a822ea96-177c-4887-bb76-68f04a4e8178",
 								"exec": [
 									"var jsonData = pm.response.json();\r",
 									"var arrayLength = jsonData.length;\r",
@@ -1726,7 +1691,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "a7f236f0-ceb6-4b84-a9c7-26f65cfe990b",
+								"id": "ca0d39fc-a1ad-492d-b1bd-706c488a9bd2",
 								"exec": [
 									"var jsonData = pm.response.json();\r",
 									"\r",
@@ -1765,12 +1730,167 @@
 					"response": []
 				},
 				{
+					"name": "add shoppinglist to user 2",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "2312a9e9-e73b-44cf-92b7-387f47169192",
+								"exec": [
+									"var jsonData = pm.response.json();",
+									"postman.setEnvironmentVariable(\"shoppingListId\", jsonData._id);",
+									"",
+									"pm.test(\"response is CREATED\", function() {",
+									"    pm.response.to.have.status(201);",
+									"});",
+									"",
+									"pm.test(\"response should have valid JSON data\", function() {",
+									"    pm.expect(jsonData.user).to.eql(pm.environment.get('userId'));",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"ingredients\": []\n}"
+						},
+						"url": {
+							"raw": "{{host}}/api/users/{{userId}}/shoppinglists",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"{{userId}}",
+								"shoppinglists"
+							]
+						},
+						"description": "posting user shoppinglist"
+					},
+					"response": []
+				},
+				{
+					"name": "Patch shoppinglist with one ingredient",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "5b0b92f9-c37f-499a-a442-bb76325a8f4c",
+								"exec": [
+									"var jsonData = pm.response.json();\r",
+									"\r",
+									"pm.test(\"Response is OK\", function() {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response should indicate correct shoppinglist was updated\", function() {\r",
+									"    pm.expect(jsonData._id).to.eql(pm.environment.get('shoppingListId'));\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"ingredients\":[{\"_id\":\"{{ingredientId}}\"}]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/users/{{userId}}/shoppinglists/{{shoppingListId}}",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"{{userId}}",
+								"shoppinglists",
+								"{{shoppingListId}}"
+							]
+						},
+						"description": "This adds one ingredient to a user's shoppinglist"
+					},
+					"response": []
+				},
+				{
+					"name": "Put shoppinglist with nothing",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "6aef9450-8cac-4760-b063-f905c445637d",
+								"exec": [
+									"var jsonData = pm.response.json();\r",
+									"\r",
+									"pm.test(\"Response is BAD REQUEST\", function() {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response should indicate what the problem is\", function() {\r",
+									"    pm.expect(jsonData).to.eql(\"\\\"ingredients\\\" is required\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/users/{{userId}}/shoppinglists/{{shoppingListId}}",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"{{userId}}",
+								"shoppinglists",
+								"{{shoppingListId}}"
+							]
+						},
+						"description": "This adds one ingredient to a user's shoppinglist"
+					},
+					"response": []
+				},
+				{
 					"name": "PATCH one user ingredient",
 					"event": [
 						{
 							"listen": "test",
 							"script": {
-								"id": "1eb75d34-84b4-4f94-b1b3-5c4760d7d6df",
+								"id": "6bc68149-6d72-4176-ba40-58454c231276",
 								"exec": [
 									"var jsonData = pm.response.json();\r",
 									"\r",
@@ -1820,7 +1940,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "88b3d026-0473-41fe-820d-eb59bfea47f9",
+								"id": "c241eb31-442a-4ca0-802d-249f7c11d95b",
 								"exec": [
 									"var jsonData = pm.response.json();\r",
 									"\r",
@@ -1870,7 +1990,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "f8f0018a-5b17-4f7c-8745-07e06ae0a1ef",
+								"id": "3909de33-0522-4f28-945b-2781506ecc6b",
 								"exec": [
 									"var jsonData = pm.response.json();\r",
 									"\r",
@@ -1911,7 +2031,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "08da2b0b-0dd5-4a68-ae02-86bf5f7c2e69",
+								"id": "713b5eb6-c0b9-4bee-b3ff-59e9076dd446",
 								"exec": [
 									"var jsonData = pm.response.json();\r",
 									"\r",
@@ -1949,7 +2069,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "07c7f035-2896-44a3-be51-2485f82f4a1f",
+								"id": "510a43e2-42b1-4270-b28d-2b0d45522404",
 								"exec": [
 									"var jsonData = pm.response.json();",
 									"",
@@ -1985,13 +2105,61 @@
 				}
 			],
 			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "GET /api/donkey",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "18e7f6f6-684a-4783-9f8c-8da1dba9cac1",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "300fbde1-0e25-4bad-a0b1-4949b518b146",
+						"exec": [
+							"pm.test(\"response is NOT FOUND\", function() {\r",
+							"    pm.response.to.have.status(404);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{host}}/api/donkey",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"donkey"
+					]
+				}
+			},
+			"response": []
 		}
 	],
 	"event": [
 		{
 			"listen": "prerequest",
 			"script": {
-				"id": "a199de00-f05e-4572-97cd-b69080a8155d",
+				"id": "dcb93728-6355-4c65-9f26-6be188d8915f",
 				"type": "text/javascript",
 				"exec": [
 					""
@@ -2001,7 +2169,7 @@
 		{
 			"listen": "test",
 			"script": {
-				"id": "2a19431a-778e-4ff4-a3d7-a7124b375796",
+				"id": "905ee992-68a1-4303-b681-9b855d9148f6",
 				"type": "text/javascript",
 				"exec": [
 					""

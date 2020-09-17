@@ -6,7 +6,12 @@ module.exports = {
     // Get all ingredients
     getAllIngredients: async function (req, res, next) {
         try {
-            const ingredients = await Ingredient.find().populate('user');
+            const ingredients = await Ingredient.find(req.value.filter)
+                .populate('user')
+                .select(req.value.select)
+                .sort(req.value.sort)
+                .skip(req.value.page)
+                .limit(req.value.limit);
             if (ingredients === null) {
                 next();
             } else {
@@ -20,7 +25,8 @@ module.exports = {
     // Get one ingredient
     getIngredient: async function (req, res, next) {
         try {
-            const ingredient = await Ingredient.findById(req.params.ingredientId);
+            const ingredient = await Ingredient.findById(req.params.ingredientId)
+                .select(req.value.select);
             if (ingredient === null) {
                 next();
             } else {
@@ -35,7 +41,11 @@ module.exports = {
     getAllUserIngredients: async function (req, res, next) {
         try {
             const user = await User.findById(req.params.userId)
-                .populate('ingredients');
+                .populate('ingredients')
+                .select(req.value.select)
+                .sort(req.value.sort)
+                .skip(req.value.page)
+                .limit(req.value.limit);
             if(user === null){
                 next();
             } else {
@@ -49,7 +59,8 @@ module.exports = {
     // Get a specific ingredient belonging to a user
     getOneUserIngredient: async function (req, res, next) {
         try {
-            const ingredient = await Ingredient.findById(req.params.ingredientId);
+            const ingredient = await Ingredient.findById(req.params.ingredientId)
+                .select(req.value.select);
             if(ingredient === null){
                 next();
             } else {
@@ -67,7 +78,7 @@ module.exports = {
             if (user === null) {
                 next();
             } else {
-                const ingredient = new Ingredient(req.body);
+                const ingredient = new Ingredient(req.value.body);
                 ingredient.user = user._id;
                 await ingredient.save();
                 await user.ingredients.push(ingredient);
@@ -82,7 +93,7 @@ module.exports = {
     // Updates/Patches an ingredient
     updateIngredient: async function(req, res, next) {
         try{
-            const ingredient = await Ingredient.findByIdAndUpdate(req.params.ingredientId, req.body);
+            const ingredient = await Ingredient.findByIdAndUpdate(req.params.ingredientId, req.value.body);
             res.status(200).json(ingredient);
         }catch(err){
             next(err);
@@ -92,7 +103,7 @@ module.exports = {
     // Replaces an ingredient
     replaceIngredient: async function(req, res, next) {
         try{
-            const ingredient = await Ingredient.findByIdAndUpdate(req.params.ingredientId, req.body);
+            const ingredient = await Ingredient.findByIdAndUpdate(req.params.ingredientId, req.value.body);
             res.status(200).json(ingredient);
         }catch(err){
             next(err);

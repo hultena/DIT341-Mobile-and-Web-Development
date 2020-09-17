@@ -96,5 +96,21 @@ module.exports = {
         name: Joi.string(),
         foodType: Joi.string(),
         description: Joi.string().max(140)
+    }),
+
+    patchShoppingListSchema: Joi.object().keys({
+        ingredients: Joi.array().items(
+            Joi.object().keys({
+                _id: Joi.string().regex(regexPattern)
+            })
+        )
+    }),
+
+    putShoppingListSchema: Joi.object().keys({
+        ingredients: Joi.array().items(
+            Joi.object().keys({
+                _id: Joi.string().regex(regexPattern)
+            })
+        ).required()
     })
 }

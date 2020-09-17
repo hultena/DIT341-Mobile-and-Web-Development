@@ -39,16 +39,18 @@ router.route('/:userId/shoppinglists')
 
 router.route('/:userId/shoppinglists/:shoppingListId')
     .get(queryString.query(), users.getOneUserShoppingList)
+    .patch(validators.bodyValidator(validationSchemas.patchShoppingListSchema), users.updateUserShoppingList)
+    .put(validators.bodyValidator(validationSchemas.putShoppingListSchema), users.updateUserShoppingList)
     .delete(users.deleteOneUserShoppingList);
 
 router.route('/:userId/ingredients')
-    .get(ingredients.getAllUserIngredients)
-    .post(ingredients.postOneUserIngredient);
+    .get(queryString.query(), ingredients.getAllUserIngredients)
+    .post(validators.bodyValidator(validationSchemas.newIngredientSchema), ingredients.postOneUserIngredient);
 
 router.route('/:userId/ingredients/:ingredientId')
-    .get(ingredients.getOneUserIngredient)
+    .get(queryString.query(), ingredients.getOneUserIngredient)
     .delete(ingredients.deleteOneUserIngredient)
-    .patch(ingredients.updateIngredient)
-    .put(ingredients.replaceIngredient);
+    .patch(validators.bodyValidator(validationSchemas.patchIngredientSchema), ingredients.updateIngredient)
+    .put(validators.bodyValidator(validationSchemas.newIngredientSchema), ingredients.replaceIngredient);
 
 module.exports = router;
