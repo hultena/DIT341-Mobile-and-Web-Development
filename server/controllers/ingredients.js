@@ -6,7 +6,6 @@ module.exports = {
     // Get all ingredients
     getAllIngredients: async function (req, res, next) {
         try {
-            console.log(req.value);
             const ingredients = await Ingredient.find(req.value.filter)
                 .populate('user')
                 .select(req.value.select)

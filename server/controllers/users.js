@@ -239,9 +239,6 @@ module.exports = {
     updateUserShoppingList: async function (req, res, next){
         try{
             const shoppingList = await ShoppingList.findByIdAndUpdate(req.params.shoppingListId, req.value.body);
-            console.log(shoppingList);
-            console.log(req.value.body);
-
             res.status(200).json(shoppingList);
         }catch (err){
             next(err);
