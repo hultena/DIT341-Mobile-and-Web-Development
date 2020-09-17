@@ -1,5 +1,6 @@
 const express = require('express');
-const users = require('../controllers/users')
+const users = require('../controllers/users');
+const recipes = require('../controllers/recipes');
 const ingredients = require('../controllers/ingredients');
 const validators = require('../utilities/validators');
 const validationSchemas = require('../utilities/schemas');
@@ -20,16 +21,17 @@ router.route('/:userId')
     .delete(users.deleteUser)
     .patch(validators.bodyValidator(validationSchemas.patchUserSchema), users.updateUser);
 
-// ------------------ Recipe
+// ------------------ User's recipes
+router.route('/:userId/recipes/:recipeId')
+    .patch(validators.bodyValidator(validationSchemas.patchRecipeSchema), recipes.updateRecipe)
+    .put(validators.bodyValidator(validationSchemas.newRecipeSchema), recipes.replaceRecipe)
+    .get(queryString.query(), recipes.getUserRecipe)
+    .delete(recipes.deleteUserRecipe);
 
 router.route('/:userId/recipes')
-    .post(validators.bodyValidator(validationSchemas.newRecipeSchema), users.postUserRecipe)
-    .get(queryString.query(),users.getAllUserRecipes);
+    .post(validators.bodyValidator(validationSchemas.newRecipeSchema), recipes.createRecipe)
+    .get(queryString.query(), recipes.getAllUserRecipes);
 
-router.route('/:userId/recipes/:recipeId')
-    .get(queryString.query(), users.getOneUserRecipe)
-    .patch(validators.bodyValidator(validationSchemas.patchRecipeSchema), users.updateOneUserRecipe)
-    .delete(users.deleteOneUserRecipe);
 
 // ------------------ Shopping list
 
@@ -42,6 +44,8 @@ router.route('/:userId/shoppinglists/:shoppingListId')
     .patch(validators.bodyValidator(validationSchemas.patchShoppingListSchema), users.updateUserShoppingList)
     .put(validators.bodyValidator(validationSchemas.putShoppingListSchema), users.updateUserShoppingList)
     .delete(users.deleteOneUserShoppingList);
+
+// ------------------ User's ingredients
 
 router.route('/:userId/ingredients')
     .get(queryString.query(), ingredients.getAllUserIngredients)
