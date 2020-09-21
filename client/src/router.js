@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import Home from './views/Home.vue'
 import MyProfile from './views/MyProfile.vue'
 import About from './views/About.vue'
+import Faq from './views/Faq.vue'
 
 Vue.use(Router)
 
@@ -24,6 +25,11 @@ export default new Router({
       path: '/about',
       name: 'about',
       component: About
+    },
+    {
+      path: '/faq',
+      name: 'faq',
+      component: Faq
     }
   ]
 })
