@@ -72,34 +72,85 @@ The goals of the end-users of this system are to get inspiration for what to eat
 
 
 ### Pages
+#### Landing page
+| Content | Function |
+| ------ | ------ |
+| Header | App logo, clickable link to landing page (same for all headers). Profile picture avatar, clickable link to own user profile page. |
+| Search form | Text input field for search text, button to expand filter options, button to search. |
+| Search results | Results from search form input, defaults to newest recipes. Displays 6 recipes by default. Button to expand and load more results. |
+| Footer | Same for all footers: (App logo, clickable link to landing page. Link list: 'About', 'Q&A', 'Git project'. 'To top' button). |
 
-* **1 Landing page:**
-This page displays highlights of popular recipes, like a featured items page. The user can sort the displayed recipes through popularity or date published.
-* **2 Profile page:**
-This page displays the users personal profile as it is seen by other users.
-    * **2.1 User settings page:**
-This page displays editable user settings. These include avatar image, email address and name.
-* **3 My recipes page:**
-This page displays a list of all the end users existing recipes, along with an option to click on a recipe to view it individually, or add a new recipe.
-* **4 Add new recipe page:**
-This page lets a user create a new recipe to be published on our platform, which includes features to write instructions on how to prepare said recipe, a general description of what the recipe is and add ingredients to it.
-* **5 Add new ingredient page:**
-This page lets the user add a new ingredient to the database.
-* **6 View recipe page:**
-This page displays the recipe that was selected by the user. Here it is possible to delete or edit the recipe if the user is the owner of the recipe.
-    * **6.1 Change existing recipe page:**
-This page displays the recipe in update mode, where the instructions and description of the recipe can be edited. Ingredients can also be added or removed from the recipe. This is only accessible if the user is the owner of the recipe.
-* **7 Shopping lists page:**
-This page displays a user’s shopping lists and has the option to add new shopping lists or open a specific one.
-    * **7.1 View existing shopping list page:**
-This page displays a previously existing or new shopping list, with an editable name of the shopping list as well as the option to add ingredients and their quantities.
-* **8 Search page:**
-This page lets the user search for recipes based on different criteria
-* **9 About page:**
-This page displays a description of the web app features, the reason why we built this platform, as well as a link to an external git project.
-* **10 Q&A page:**
-This page displays simple and frequently asked questions.
+#### Profile page (own)
+| Content | Function |
+| ------ | ------ |
+| Header | App logo, clickable link to landing page (same for all headers). Link list (changes search results on profile page): 'My recipes' page, 'My ingredients' page, 'My shopping lists' page, 'Favourite recipes' page. |
+| Profile info | Profile photo. Heading: username. Subheading: (not decided yet, ideas?) |
+| Create new button | Button to create new [recipe/ingredient/shopping list]. |
+| Search form | Text input field for search text, button to expand filter options, button to search. |
+| Search results | List of all users [recipes/ingredients/shopping lists]. |
+| Footer | Same for all footers: (App logo, clickable link to landing page. Link list: 'About', 'Q&A', 'Git project'. 'To top' button). |
 
+#### Profile page (others)
+| Content | Function |
+| ------ | ------ |
+| Header | App logo, clickable link to landing page (same for all headers). Profile picture avatar, clickable link to own user profile page. |
+| Profile info | Profile photo. Heading: username. Subheading: (not decided yet, ideas?) |
+| Search form | Text input field for search text, button to expand filter options, button to search. |
+| Search results | List of all users recipes. |
+| Footer | Same for all footers: (App logo, clickable link to landing page. Link list: 'About', 'Q&A', 'Git project'. 'To top' button). |
+
+#### User settings page
+TODO: Idk what we need to put here, need to match user schema.
+
+| Content | Function |
+| ------ | ------ |
+|  |  |
+
+#### Recipes page
+TODO: This page hasn't been wireframed in figma yet, content structure to be filled in.
+
+| Content | Function |
+| ------ | ------ |
+| Header | App logo, clickable link to landing page (same for all headers). Profile picture avatar, clickable link to own user profile page. |
+| Footer | Same for all footers: (App logo, clickable link to landing page. Link list: 'About', 'Q&A', 'Git project'. 'To top' button). |
+
+#### Ingredient page
+TODO: This page hasn't been wireframed in figma yet, content structure to be filled in.
+
+| Content | Function |
+| ------ | ------ |
+| Header | App logo, clickable link to landing page (same for all headers). Profile picture avatar, clickable link to own user profile page. |
+| Footer | Same for all footers: (App logo, clickable link to landing page. Link list: 'About', 'Q&A', 'Git project'. 'To top' button). |
+
+#### Shopping list page
+TODO: This page hasn't been wireframed in figma yet, content structure to be filled in.
+
+| Content | Function |
+| ------ | ------ |
+| Header | App logo, clickable link to landing page (same for all headers). Profile picture avatar, clickable link to own user profile page. |
+| Footer | Same for all footers: (App logo, clickable link to landing page. Link list: 'About', 'Q&A', 'Git project'. 'To top' button). |
+
+#### Create new [recipe, ingredient, shopping list]
+| Content | Function |
+| ------ | ------ |
+| Header | App logo, clickable link to landing page (same for all headers). Profile picture avatar, clickable link to own user profile page. |
+| Form | Form with input fields related to [recipe, ingredient, shoppinglist] creation, as well as 'clear' and 'create' buttons. |
+| Footer | Same for all footers: (App logo, clickable link to landing page. Link list: 'About', 'Q&A', 'Git project'. 'To top' button). |
+
+#### About web app page
+| Content | Function |
+| ------ | ------ |
+| Header | App logo, clickable link to landing page (same for all headers). Profile picture avatar, clickable link to own user profile page. |
+| About web app section | Heading. Paragraphs about what this web app is and what it does. |
+| About the developers section | Heading. Paragraphs about the course and why we're building the app. Cards with the developers, card heading and short card text. |
+| Footer | Same for all footers: (App logo, clickable link to landing page. Link list: 'About', 'Q&A', 'Git project'. 'To top' button). |
+
+#### Web app Q&A page
+| Content | Function |
+| ------ | ------ |
+| Header | App logo, clickable link to landing page (same for all headers). Profile picture avatar, clickable link to own user profile page. |
+| Table of Q&A | List/table items with frequently asked questions, help for how to use the web app. |
+| Footer | Same for all footers: (App logo, clickable link to landing page. Link list: 'About', 'Q&A', 'Git project'. 'To top' button). |
 
 ### Entity-Relationship (ER) Diagram
 
