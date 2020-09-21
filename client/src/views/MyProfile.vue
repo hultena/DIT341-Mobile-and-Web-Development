@@ -1,8 +1,13 @@
 <template>
   <div class='profilePage'>
-    <p>
-      This is a profile page
-    </p>
+    <section>
+      <h1>
+        Profile heading
+      </h1>
+      <h2>
+        Profile subheading
+      </h2>
+    </section>
   </div>
 </template>
 
