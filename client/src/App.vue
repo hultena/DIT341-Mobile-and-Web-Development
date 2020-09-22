@@ -1,10 +1,29 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link>
-    </div>
+    <header>
+      <router-link to='/'>
+        <img src="./assets/YummyLogo.svg">
+      </router-link>
+      <router-link to='/sign-up'>
+        Sign up
+      </router-link>
+      <router-link to='/sign-in'>
+        Sign in
+      </router-link>
+    </header>
     <!-- Render the content of the current page view -->
     <router-view/>
+    <footer>
+      <router-link to='/'>
+        <img src="./assets/YummyLogo.svg">
+      </router-link>
+      <router-link to='/about'>
+        About
+      </router-link>
+      <router-link to='/faq'>
+        FAQ
+      </router-link>
+    </footer>
   </div>
 </template>
 
