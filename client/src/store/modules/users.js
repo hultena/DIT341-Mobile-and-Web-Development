@@ -19,6 +19,12 @@ const mutations = {
   },
   newUser: function (state, user) {
     state.users.push(user)
+  },
+  deletedUser: function (state, id) {
+    const idx = state.users.findIndex(function (user) {
+      return user._id === id
+    })
+    state.users.splice(idx, 1)
   }
 }
 
@@ -35,6 +41,10 @@ const actions = {
   async patchUser({ commit }, user) {
     const res = await Api.patch(`/users/${user._id}`, user)
     commit('updatedUser', res.data)
+  },
+  async deleteUser({ commit }, id) {
+    await Api.delete(`/users/${id}`)
+    commit('deletedUser', id)
   }
 }
 

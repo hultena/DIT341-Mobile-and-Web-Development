@@ -3,7 +3,7 @@
     <AddUser></AddUser>
     <h3>All Users</h3>
     <div class='users'>
-      <div v-for='user in allUsers' :key='user._id' class='user'>{{ user.username }}</div>
+      <div v-for='user in allUsers' :key='user._id' class='user' @click="deleteUser(user._id)">{{ user.username }}</div>
     </div>
     <h3>All Recipes</h3>
     <div class='recipes'>
@@ -23,12 +23,14 @@ export default {
   name: 'Testing',
   components: { AddUser },
   methods: {
-    ...mapActions(['getUsers', 'getRecipes', 'getIngredients'])
+    ...mapActions(['getUsers', 'getRecipes', 'getIngredients', 'deleteUser'])
   },
   computed: {
     ...mapGetters(['allUsers', 'allIngredients', 'allRecipes'])
   },
-  // vue lifecycle method
+  /* vue lifecycle method
+    these things gets called when view is created
+   */
   created() {
     this.getUsers()
     this.getRecipes()
