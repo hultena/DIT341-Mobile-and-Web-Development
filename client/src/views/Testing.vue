@@ -1,5 +1,6 @@
 <template>
   <div>
+    <AddUser></AddUser>
     <h3>All Users</h3>
     <div class='users'>
       <div v-for='user in allUsers' :key='user._id' class='user'>{{ user.username }}</div>
@@ -17,8 +18,10 @@
 
 <script>
 import { mapActions, mapGetters } from 'vuex'
+import AddUser from '@/components/AddUser'
 export default {
   name: 'Testing',
+  components: { AddUser },
   methods: {
     ...mapActions(['getUsers', 'getRecipes', 'getIngredients'])
   },
