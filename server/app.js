@@ -58,10 +58,9 @@ app.use(express.static(client));
 // Error handler for duplicate keys
 app.use(function (err,req,res,next){
     if(err.name === 'MongoError' && err.code === 11000){
-        const err_res = {
-            'message': 'Duplicate key',
-        }
-        err_res['keyValue'] = err.keyValue;
+        const key = Object.keys(err.keyValue)[0];
+        const err_res = {};
+        err_res[key]=`${key} already in use.`;
         res.status(400).json(err_res);
     }else {
         next(err);

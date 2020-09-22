@@ -35,8 +35,12 @@ const actions = {
     commit('setUsers', res.data)
   },
   async postUser({ commit }, user) {
-    const res = await Api.post('/users', user)
-    commit('newUser', res.data)
+    try {
+      const res = await Api.post('/users', user)
+      commit('newUser', res.data)
+    } catch (err) {
+      return err.response.data
+    }
   },
   async patchUser({ commit }, user) {
     const res = await Api.patch(`/users/${user._id}`, user)
