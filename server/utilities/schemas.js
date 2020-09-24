@@ -12,7 +12,7 @@ module.exports = {
         username: Joi.string(),
         email: Joi.string().email(),
         password: Joi.string(),
-        recipes: Joi.array(),
+        recipes: Joi.array().items( Joi.object().keys( { _id: Joi.string().regex(regexPattern) } ) ),
         shoppingLists: Joi.array(),
         ingredients: Joi.array(),
         favourites: Joi.array()
