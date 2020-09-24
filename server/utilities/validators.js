@@ -4,7 +4,11 @@ module.exports = {
         return function(req, res, next){
             const result = schema.validate(req.body);
             if(result.error){
-                res.status(400).json(result.error.message);
+                const key = result.error.message.slice(1,result.error.message.lastIndexOf('"'));
+                const value = result.error.message.slice(result.error.message.lastIndexOf('"')+1);
+                const message = {};
+                message[key]=`${key}${value}.`;
+                res.status(400).json(message);
             }else {
                 if (!req.value) {
                     req.value = {};
