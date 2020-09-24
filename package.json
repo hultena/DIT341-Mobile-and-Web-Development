@@ -9,10 +9,13 @@
     "installClient": "cd client && npm install",
     "fixServer": "cd server && npm audit fix",
     "fixClient": "cd client && npm audit fix",
+    "upgradeServer": "cd server && npm upgrade",
+    "upgradeClient": "cd client && npm upgrade",
     "startServer": "cd server && npm run dev",
     "startClient": "cd client && npm run serve",
     "setup": "concurrently \"npm run installServer\" \"npm run installClient\"",
     "fix": "concurrently \"npm run fixServer\" \"npm run fixClient\"",
+    "upgrade": "concurrently \"npm run upgradeServer\" \"npm run upgradeClient\"",
     "start": "concurrently \"npm run startServer\" \"npm run startClient\""
   },
   "dependencies": {

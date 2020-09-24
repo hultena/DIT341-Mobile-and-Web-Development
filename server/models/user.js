@@ -31,6 +31,10 @@ const userSchema = new Schema({
     recipes: [{
         type: Schema.Types.ObjectId,
         ref: 'recipe'
+    }],
+    favourites: [{
+        type: Schema.Types.ObjectId,
+        ref: 'recipe'
     }]
 });
 
