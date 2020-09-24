@@ -11,7 +11,11 @@ module.exports = {
     patchUserSchema: Joi.object().keys({
         username: Joi.string(),
         email: Joi.string().email(),
-        password: Joi.string()
+        password: Joi.string(),
+        recipes: Joi.array(),
+        shoppingLists: Joi.array(),
+        ingredients: Joi.array(),
+        favourites: Joi.array()
     }),
 
     newRecipeSchema: Joi.object().keys({
