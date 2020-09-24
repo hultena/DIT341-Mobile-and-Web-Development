@@ -13,9 +13,9 @@ module.exports = {
         email: Joi.string().email(),
         password: Joi.string(),
         recipes: Joi.array().items( Joi.object().keys( { _id: Joi.string().regex(regexPattern) } ) ),
-        shoppingLists: Joi.array(),
-        ingredients: Joi.array(),
-        favourites: Joi.array()
+        shoppingLists: Joi.array().items( Joi.object().keys( { _id: Joi.string().regex(regexPattern) } ) ),
+        ingredients: Joi.array().items( Joi.object().keys( { _id: Joi.string().regex(regexPattern) } ) ),
+        favourites: Joi.array().items( Joi.object().keys( { _id: Joi.string().regex(regexPattern) } ) )
     }),
 
     newRecipeSchema: Joi.object().keys({
