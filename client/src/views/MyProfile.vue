@@ -7,17 +7,26 @@
       <h2>
         Profile subheading
       </h2>
+      <h3>
+        {{this.getLoggedIn}}
+      </h3>
     </section>
   </div>
 </template>
 
 <script>
+import { mapGetters, mapActions } from 'vuex'
 export default {
   name: 'myProfile',
   data() {
     return {}
   },
-  methods: {}
+  methods: {
+    ...mapActions([])
+  },
+  computed: {
+    ...mapGetters(['getLoggedIn'])
+  }
 }
 
 </script>

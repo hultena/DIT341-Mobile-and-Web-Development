@@ -59,8 +59,8 @@ const actions = {
   },
   async authUser({ commit }, user) {
     try {
-      await Api.post('/users/auth', user)
-      commit('setLoggedIn', user)
+      const res = await Api.post('/users/auth', user)
+      commit('setLoggedIn', res.data)
     } catch (err) {
       return err.response.data
     }

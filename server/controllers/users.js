@@ -15,7 +15,7 @@ module.exports = {
                 req.session.loggedin = true;
                 req.session.username = req.body.username;
                 // TODO: Don't know if this is right. We try this.
-                res.status(200).json({message:"Valid credentials."});
+                res.status(200).json(user);
             }
         }catch (err) {
             next(err);
