@@ -8,6 +8,12 @@ const queryString = require('../utilities/query-parser');
 
 const router = express.Router();
 
+
+// ------------------ Login
+// TODO: Perhaps change this endpoint if needed
+router.route('/auth')
+    .post(users.authUser);
+
 // ------------------ User
 
 router.route('/')

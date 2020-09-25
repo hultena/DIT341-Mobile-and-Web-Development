@@ -1,8 +1,26 @@
 const User = require('../models/user');
-const Recipe = require('../models/recipe');
 const ShoppingList = require('../models/shoppinglist');
 
 module.exports = {
+
+    // ------------------ Auth User
+    authUser: async function(req, res, next){
+        try {
+            console.log(req.body);
+            const user = await User.findOne(req.body);
+            if(user === null){
+                // TODO: Probably fix this res but who knows.
+                res.status(401).json({message:"Bad username and/or password."});
+            }else {
+                req.session.loggedin = true;
+                req.session.username = req.body.username;
+                // TODO: Don't know if this is right. We try this.
+                res.status(200).json({message:"Valid credentials."});
+            }
+        }catch (err) {
+            next(err);
+        }
+    },
 
     // ------------------ User
 
