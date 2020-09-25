@@ -6,6 +6,7 @@ var path = require('path');
 var cors = require('cors');
 var history = require('connect-history-api-fallback');
 const session = require('express-session');
+const MongoStore = require('connect-mongo')(session);
 const usersRoute = require('./routes/users');
 const ingredientsRoute = require('./routes/ingredients');
 const recipesRoute = require('./routes/recipes');
@@ -28,6 +29,7 @@ var app = express();
 // Add session to app
 app.use(session({
     secret: process.env.SECRET || 'secret',
+    store: new MongoStore({ mongooseConnection: mongoose.connection }),
     resave: true,
     saveUninitialized: true
 }));

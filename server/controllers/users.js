@@ -13,7 +13,7 @@ module.exports = {
                 res.status(401).json({username:"Invalid credentials",password:"Invalid credentials"});
             }else {
                 req.session.loggedin = true;
-                req.session.username = req.body.username;
+                req.session._id = user._id;
                 // TODO: Don't know if this is right. We try this.
                 res.status(200).json(user);
             }
