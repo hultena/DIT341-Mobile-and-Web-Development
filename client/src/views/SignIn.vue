@@ -3,12 +3,15 @@
     <h1>
       This is the user sign in page.
     </h1>
+    <user-log-in-form/>
   </div>
 </template>
 
 <script>
+import UserLogInForm from '@/forms/UserLogInForm'
 export default {
-  name: 'signIn'
+  name: 'signIn',
+  components: { UserLogInForm }
 }
 </script>
 

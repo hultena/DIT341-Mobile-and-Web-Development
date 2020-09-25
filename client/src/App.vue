@@ -1,15 +1,7 @@
 <template>
   <div id="app">
     <header>
-      <router-link to='/'>
-        <img src="./assets/YummyLogo.svg">
-      </router-link>
-      <router-link to='/sign-up'>
-        Sign up
-      </router-link>
-      <router-link to='/sign-in'>
-        Sign in
-      </router-link>
+      <navigation-header/>
     </header>
     <!-- Render the content of the current page view -->
     <router-view/>
@@ -26,6 +18,16 @@
     </footer>
   </div>
 </template>
+
+<script>
+import NavigationHeader from '@/components/NavigationHeader'
+export default {
+  components: {
+    NavigationHeader
+  }
+
+}
+</script>
 
 <style>
 #app {

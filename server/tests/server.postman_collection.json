@@ -63,6 +63,48 @@
 					"response": []
 				},
 				{
+					"name": "log-in user",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "a6feb006-b280-400e-bd47-ccdd6f7153ba",
+								"exec": [
+									"pm.test(\"response is OK\", function() {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\":\"Alexander\",\r\n    \"password\":\"abc123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/users/auth",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"auth"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "get all users",
 					"event": [
 						{
@@ -318,6 +360,48 @@
 							]
 						},
 						"description": "Posting a user."
+					},
+					"response": []
+				},
+				{
+					"name": "log-in user 2",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "36e95882-f835-4390-8f01-68ae2c5eebb0",
+								"exec": [
+									"pm.test(\"response is OK\", function() {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\":\"Alexander\",\r\n    \"password\":\"abc123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/users/auth",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"auth"
+							]
+						}
 					},
 					"response": []
 				},
@@ -881,6 +965,48 @@
 					"response": []
 				},
 				{
+					"name": "log-in admin user 2",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "46fcabb0-2338-4f99-b132-f6b7ef61efff",
+								"exec": [
+									"pm.test(\"response is OK\", function() {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\":\"admin\",\r\n    \"password\":\"4dmin\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/users/auth",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"auth"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "admin creates blueberry pie recipe",
 					"event": [
 						{
@@ -1331,6 +1457,48 @@
 							]
 						},
 						"description": "Posting a user."
+					},
+					"response": []
+				},
+				{
+					"name": "log-in ingredient user",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "281c39c3-a01e-4f13-a9c3-b4ed07f2347a",
+								"exec": [
+									"pm.test(\"response is OK\", function() {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\":\"Chef Ramsay\",\r\n    \"password\":\"RAGE\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/users/auth",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"auth"
+							]
+						}
 					},
 					"response": []
 				},

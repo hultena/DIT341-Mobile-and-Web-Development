@@ -18,21 +18,6 @@
           </b-form-group>
         </validation-provider>
         <validation-provider
-          name="email"
-          :rules="{ required: true}"
-          v-slot="validationContext"
-        >
-          <b-form-group>
-            <b-form-input
-              v-model="form.email"
-              :state="getValidationState(validationContext)"
-              placeholder="E-mail"
-            ></b-form-input>
-
-            <b-form-invalid-feedback>{{ validationContext.errors[0] }}</b-form-invalid-feedback>
-          </b-form-group>
-        </validation-provider>
-        <validation-provider
           name="password"
           :rules="{ required: true}"
           v-slot="validationContext"
@@ -58,7 +43,7 @@
 import { mapActions } from 'vuex'
 import { ValidationProvider, ValidationObserver } from 'vee-validate'
 export default {
-  name: 'AddUserForm',
+  name: 'UserLogInForm',
   components: {
     ValidationProvider,
     ValidationObserver
@@ -67,33 +52,24 @@ export default {
     return {
       form: {
         username: null,
-        email: null,
         password: null
       }
     }
   },
   methods: {
-    ...mapActions(['postUser', 'authUser']),
+    ...mapActions(['authUser']),
     async onSubmit() {
-      const message = await this.postUser(this.form)
+      const message = await this.authUser(this.form)
       if (message) {
+        // TODO: Maybe change this to an alert or something in the future?
         this.$refs.observer.setErrors(message)
       } else {
-        // TODO: maybe remove this annoying alert
-        alert('Sign-up successful')
-        await this.logInUser()
+        // this redirects to the page
+        await this.$router.push('my-profile')
       }
     },
     getValidationState({ dirty, validated, valid = null }) {
       return dirty || validated ? valid : null
-    },
-    async logInUser() {
-      const user = {
-        username: this.form.username,
-        password: this.form.password
-      }
-      await this.authUser(user)
-      await this.$router.push('my-profile')
     }
   }
 }

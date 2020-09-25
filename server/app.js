@@ -5,6 +5,8 @@ var morgan = require('morgan');
 var path = require('path');
 var cors = require('cors');
 var history = require('connect-history-api-fallback');
+const session = require('express-session');
+const MongoStore = require('connect-mongo')(session);
 const usersRoute = require('./routes/users');
 const ingredientsRoute = require('./routes/ingredients');
 const recipesRoute = require('./routes/recipes');
@@ -24,6 +26,14 @@ mongoose.connect(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true }, 
 });
 // Create Express app
 var app = express();
+// Add session to app
+app.use(session({
+    secret: process.env.SECRET || 'secret',
+    store: new MongoStore({ mongooseConnection: mongoose.connection }),
+    resave: true,
+    saveUninitialized: true
+}));
+
 // Parse requests of content-type 'application/json'
 app.use(bodyParser.json());
 // HTTP request logger
