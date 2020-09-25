@@ -64,22 +64,12 @@ export default {
         // TODO: Maybe change this to an alert or something in the future?
         this.$refs.observer.setErrors(message)
       } else {
-        this.resetForm()
-        alert('Sign-in successful')
+        // this redirects to the page
+        await this.$router.push('my-profile')
       }
     },
     getValidationState({ dirty, validated, valid = null }) {
       return dirty || validated ? valid : null
-    },
-    resetForm() {
-      this.form = {
-        username: null,
-        password: null
-      }
-
-      this.$nextTick(() => {
-        this.$refs.observer.reset()
-      })
     }
   }
 }
