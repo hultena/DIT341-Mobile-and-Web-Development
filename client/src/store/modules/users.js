@@ -2,13 +2,17 @@ import { Api } from '@/Api'
 
 const state = {
   // put the state here
-  users: []
+  users: [],
+  loggedIn: ''
 }
 
 const getters = {
   // put state getters here
   allUsers: function (state) {
     return state.users
+  },
+  getLoggedIn: function (state) {
+    return state.loggedIn
   }
 }
 
@@ -25,6 +29,9 @@ const mutations = {
       return user._id === id
     })
     state.users.splice(idx, 1)
+  },
+  setLoggedIn: function (state, user) {
+    state.loggedIn = user
   }
 }
 
@@ -49,6 +56,14 @@ const actions = {
   async deleteUser({ commit }, id) {
     await Api.delete(`/users/${id}`)
     commit('deletedUser', id)
+  },
+  async authUser({ commit }, user) {
+    try {
+      await Api.post('/users/auth', user)
+      commit('setLoggedIn', user)
+    } catch (err) {
+      return err.response.data
+    }
   }
 }
 

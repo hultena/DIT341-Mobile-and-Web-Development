@@ -10,7 +10,7 @@ module.exports = {
             const user = await User.findOne(req.body);
             if(user === null){
                 // TODO: Probably fix this res but who knows.
-                res.status(401).json({message:"Bad username and/or password."});
+                res.status(401).json({username:"Invalid credentials",password:"Invalid credentials"});
             }else {
                 req.session.loggedin = true;
                 req.session.username = req.body.username;
