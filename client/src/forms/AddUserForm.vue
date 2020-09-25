@@ -73,29 +73,27 @@ export default {
     }
   },
   methods: {
-    ...mapActions(['postUser']),
+    ...mapActions(['postUser', 'authUser']),
     async onSubmit() {
       const message = await this.postUser(this.form)
       if (message) {
         this.$refs.observer.setErrors(message)
       } else {
-        this.resetForm()
+        // TODO: maybe remove this annoying alert
         alert('Sign-up successful')
+        await this.logInUser()
       }
     },
     getValidationState({ dirty, validated, valid = null }) {
       return dirty || validated ? valid : null
     },
-    resetForm() {
-      this.form = {
-        username: null,
-        email: null,
-        password: null
+    async logInUser() {
+      const user = {
+        username: this.form.username,
+        password: this.form.password
       }
-
-      this.$nextTick(() => {
-        this.$refs.observer.reset()
-      })
+      await this.authUser(user)
+      await this.$router.push('my-profile')
     }
   }
 }
