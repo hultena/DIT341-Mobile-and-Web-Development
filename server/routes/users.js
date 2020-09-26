@@ -14,6 +14,8 @@ const router = express.Router();
 // TODO: Perhaps change this endpoint if needed
 router.route('/auth')
     .post(users.authUser);
+router.route('/deauth')
+    .post(users.deauthUser)
 
 // ------------------ User
 
@@ -55,7 +57,7 @@ router.route('/:userId/shoppinglists/:shoppingListId')
 // ------------------ User's ingredients
 
 router.route('/:userId/ingredients')
-    .get(queryString.query(), ingredients.getAllUserIngredients)
+    .get(queryString.query(), session.validSess(), ingredients.getAllUserIngredients)
     .post(validators.bodyValidator(validationSchemas.newIngredientSchema), session.validSess(), ingredients.postOneUserIngredient);
 
 router.route('/:userId/ingredients/:ingredientId')

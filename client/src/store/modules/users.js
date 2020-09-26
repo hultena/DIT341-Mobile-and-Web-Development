@@ -64,6 +64,10 @@ const actions = {
     } catch (err) {
       return err.response.data
     }
+  },
+  async deauthUser({ commit }, user) {
+    const res = await Api.post('/users/deauth', user)
+    commit('setLoggedIn', res.data)
   }
 }
 

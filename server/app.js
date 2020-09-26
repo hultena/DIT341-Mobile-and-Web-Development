@@ -30,8 +30,8 @@ var app = express();
 app.use(session({
     secret: process.env.SECRET || 'secret',
     store: new MongoStore({ mongooseConnection: mongoose.connection }),
-    resave: true,
-    saveUninitialized: true
+    resave: false,
+    saveUninitialized: false
 }));
 
 // Parse requests of content-type 'application/json'
@@ -39,8 +39,15 @@ app.use(bodyParser.json());
 // HTTP request logger
 app.use(morgan('dev'));
 // Enable cross-origin resource sharing for frontend must be registered before api
-app.options('*', cors());
-app.use(cors());
+app.use(cors({
+    origin: [
+        'http://localhost:8080',
+        'https://localhost:8080',
+        process.env.VUE_APP
+    ],
+    credentials: true,
+    exposedHeaders: ['set-cookie']
+}));
 
 // Router middleware
 app.use('/api/users', usersRoute);

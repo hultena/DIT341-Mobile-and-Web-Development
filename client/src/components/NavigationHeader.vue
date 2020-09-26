@@ -8,27 +8,30 @@
 
       <b-collapse id="nav-collapse" is-nav>
         <b-navbar-nav>
-
-          <b-nav-item>
-            <router-link to='sign-in'>
-              Sign in
-            </router-link>
-          </b-nav-item>
-
-          <b-nav-item>
-            <router-link to='sign-up'>
-              Sign up
-            </router-link>
-          </b-nav-item>
-
+          <template v-if="!getLoggedIn">
+            <b-nav-item>
+              <router-link to='sign-up'>
+                Sign up
+              </router-link>
+            </b-nav-item>
+          </template>
         </b-navbar-nav>
 
         <!-- Right aligned nav items -->
         <b-navbar-nav class="ml-auto">
           <b-nav-item id="user-profile">
-            <router-link to="my-profile">
-              Picture
-            </router-link>
+            <template v-if="getLoggedIn">
+              <b-button @click="deauthUser(getLoggedIn)">Log Out</b-button>
+              <router-link to="my-profile">
+                <!-- TODO replace with user image -->
+              {{ getLoggedIn.username }}
+              </router-link>
+            </template>
+            <template v-else>
+              <router-link to="sign-in">
+              Sign In
+              </router-link>
+            </template>
           </b-nav-item>
         </b-navbar-nav>
       </b-collapse>
@@ -37,8 +40,15 @@
 </template>
 
 <script>
+import { mapGetters, mapActions } from 'vuex'
 export default {
-  name: 'NavigationHeader'
+  name: 'NavigationHeader',
+  methods: {
+    ...mapActions(['deauthUser'])
+  },
+  computed: {
+    ...mapGetters(['getLoggedIn'])
+  }
 }
 </script>
 
