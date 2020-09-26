@@ -57,7 +57,7 @@ router.route('/:userId/shoppinglists/:shoppingListId')
 // ------------------ User's ingredients
 
 router.route('/:userId/ingredients')
-    .get(queryString.query(), session.validSess(), ingredients.getAllUserIngredients)
+    .get(queryString.query(), ingredients.getAllUserIngredients)
     .post(validators.bodyValidator(validationSchemas.newIngredientSchema), session.validSess(), ingredients.postOneUserIngredient);
 
 router.route('/:userId/ingredients/:ingredientId')
