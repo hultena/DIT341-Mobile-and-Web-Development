@@ -51,7 +51,7 @@ const actions = {
   },
   async patchUser({ commit }, user) {
     const res = await Api.patch(`/users/${user._id}`, user)
-    commit('updatedUser', res.data)
+    commit('setLoggedIn', res.data)
   },
   async deleteUser({ commit }, id) {
     await Api.delete(`/users/${id}`)
