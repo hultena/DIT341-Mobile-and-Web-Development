@@ -23,6 +23,7 @@
 </template>
 
 <script>
+
 export default {
   name: 'RecipeCard',
 
@@ -37,7 +38,8 @@ export default {
 
   methods: {
     handleClick() {
-      // TODO: Take user to related recipe page on click.
+      // TODO: Pending reply in #frontend
+      // router.push()
       console.log('This card has been clicked!')
     }
   }
