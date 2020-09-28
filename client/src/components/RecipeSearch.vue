@@ -35,6 +35,8 @@
         :image-src='cardImage'
         :title='cardTitle'
         :likes='cardLikes'
+        :profile-link='cardProfileLink'
+        :username='cardUsername'
         :description='cardDescription'
       />
     </div>
@@ -56,6 +58,8 @@ export default {
       cardImage: 'https://images.unsplash.com/photo-1566217224819-e093a5a0798e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80',
       cardTitle: 'Recipe name',
       cardLikes: 34,
+      cardProfileLink: '',
+      cardUsername: 'Username',
       cardDescription: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
     }
   },
