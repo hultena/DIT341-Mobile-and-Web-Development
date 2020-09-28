@@ -14,7 +14,7 @@
 
     <b-row>
       <b-col>
-        <!-- TODO: Recipe search form goes here. -->
+        <RecipeSearch />
       </b-col>
     </b-row>
 
@@ -30,14 +30,19 @@
 <script>
 // @ is an alias to /src
 // import { Api } from '@/Api'
+import RecipeSearch from '@/forms/RecipeSearch'
 
 export default {
   name: 'home',
+
+  components: { RecipeSearch },
+
   data() {
     return {
       message: 'none'
     }
   },
+
   methods: {
     /*
     getMessage() {
