@@ -98,7 +98,6 @@ export default {
       return dirty || validated ? valid : null
     },
     setImage(event) {
-      console.log(event)
       this.form.image = event
     }
   }
