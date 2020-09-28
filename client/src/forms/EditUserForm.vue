@@ -48,10 +48,12 @@
             <b-form-invalid-feedback>{{ validationContext.errors[0] }}</b-form-invalid-feedback>
           </b-form-group>
         </validation-provider>
+
         <b-form-group>
           <img :src="form.image">
           <file-uploader @clicked="setImage"/>
         </b-form-group>
+
         <b-button type="submit" variant="primary">Submit</b-button>
       </b-form>
     </validation-observer>
