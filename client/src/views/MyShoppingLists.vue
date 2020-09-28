@@ -1,7 +1,7 @@
 <template>
   <div>
     <b-button @click="addShoppingList">Add Shopping List</b-button>
-    <shopping-list-card v-for="shoppingList in allShoppingLists" :key="shoppingList._id"/>
+    <shopping-list-card v-for="shoppingList in allShoppingLists" :key="shoppingList._id" :shoppingList="shoppingList"/>
   </div>
 </template>
 

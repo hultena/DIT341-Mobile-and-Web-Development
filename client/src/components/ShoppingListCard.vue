@@ -1,6 +1,6 @@
 <template>
   <div>
-  <b-card>
+  <b-card @click="setChosenCard">
     <b-card-body>
       <b-card-title>Card Title</b-card-title>
       <b-card-sub-title class="mb-2">Card Sub Title</b-card-sub-title>
@@ -32,18 +32,17 @@
 import { mapActions, mapGetters } from 'vuex'
 export default {
   name: 'ShoppingListCard',
-  data() {
-    return {
-      data: null
-    }
+  props: {
+    shoppingList: {}
   },
   methods: {
-    ...mapActions(['getShoppingLists', 'postShoppingList', 'getIngredients'])
+    ...mapActions(['selectShoppingList']),
+    setChosenCard() {
+      this.selectShoppingList(this.shoppingList)
+    }
   },
   computed: {
-    ...mapGetters(['allShoppingLists', 'getLoggedIn'])
-  },
-  created() {
+    ...mapGetters([])
   }
 }
 </script>

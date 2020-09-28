@@ -3,13 +3,16 @@ import { Api } from '@/Api'
 const state = {
   // put the state here
   shoppingLists: [],
-  loggedIn: ''
+  selectedShoppingList: {}
 }
 
 const getters = {
   // put state getters here
   allShoppingLists: function (state) {
     return state.shoppingLists
+  },
+  oneShoppingList: function (state) {
+    return state.selectedShoppingList
   }
 }
 
@@ -32,6 +35,9 @@ const mutations = {
       return shoppingList._id === updatedShoppingList._id
     })
     state.shoppingLists.splice(idx, 1, updatedShoppingList)
+  },
+  setSelectedShoppingList: function (state, shoppingList) {
+    state.selectedShoppingList = shoppingList
   }
 }
 
@@ -57,6 +63,9 @@ const actions = {
   async deleteShoppingList({ commit }, shoppingList) {
     await Api.delete(`/users/${shoppingList.user}/shoppinglists/${shoppingList._id}`)
     commit('deletedUser', shoppingList._id)
+  },
+  selectShoppingList: function ({ commit }, shoppingList) {
+    commit('setSelectedShoppingList', shoppingList)
   }
 }
 
