@@ -6,6 +6,7 @@ import SignIn from './views/SignIn'
 import MyProfile from './views/MyProfile.vue'
 import About from './views/About.vue'
 import Faq from './views/Faq.vue'
+import MySettings from '@/views/MySettings'
 
 Vue.use(Router)
 
@@ -42,6 +43,11 @@ export default new Router({
       path: '/faq',
       name: 'faq',
       component: Faq
+    },
+    {
+      path: '/my-settings',
+      name: 'mySettings',
+      component: MySettings
     }
   ]
 })
