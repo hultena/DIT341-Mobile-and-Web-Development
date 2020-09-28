@@ -33,13 +33,17 @@ export default {
     likes: Number,
     profileLink: String,
     username: String,
-    description: String
+    description: String,
+    recipeLink: String
   },
 
   methods: {
     handleClick() {
-      // TODO: Pending reply in #frontend
-      // router.push()
+      // TODO: have 'path' equal recipeLink in props. I get errors. Idk how (?)
+
+      const path = 'recipeLink'
+      this.$router.push(path)
+
       console.log('This card has been clicked!')
     }
   }
