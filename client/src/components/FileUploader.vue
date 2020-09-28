@@ -1,10 +1,14 @@
 
 <template>
       <div>
-        <!-- TODO: remove this style --->
-        <img style="width: 3rem; height: auto" :src="image" alt="">
-        <input @change="handleImage" type="file" accept="image/*" ref="imageInput">
-        <b-button @click="submit">Set</b-button>
+        <!-- TODO: remove this style and make this work nicer --->
+        <b-form-group>
+          <b-img style="width: 3rem; height: auto" :src="image[0]" alt="as"/>
+          <b-form-group>
+            <b-file v-model="image" @change="handleImage" accept="image/*"/>
+            <b-button @click="submit">Set</b-button>
+          </b-form-group>
+        </b-form-group>
       </div>
 </template>
 
@@ -13,7 +17,7 @@ export default {
   name: 'home',
   data() {
     return {
-      image: ''
+      image: []
     }
   },
   methods: {
@@ -22,8 +26,8 @@ export default {
       /* arbitrary size of 50KiB as body-parser won't handle more than 100KiB
         we can probably change this but 50 should be sufficient for basic images
        */
-      if (selectedImage.size > 51200 || selectedImage.type !== 'image/*') {
-        this.$refs.imageInput.value = null
+      if (selectedImage.size > 51200) {
+        // this.$refs.imageInput.value = null
         /* TODO: Maybe have better messages than some garbage alert.
            TODO: and please make this better than these horrible nested if statements
          */
@@ -39,7 +43,7 @@ export default {
     createBase64Image(fileObject) {
       const reader = new FileReader()
       reader.onload = (e) => {
-        this.image = e.target.result
+        this.image[0] = e.target.result
       }
       reader.readAsDataURL(fileObject)
     },
