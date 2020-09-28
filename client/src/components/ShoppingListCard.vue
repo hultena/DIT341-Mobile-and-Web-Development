@@ -11,18 +11,11 @@
     </b-card-body>
 
     <b-list-group flush>
-      <b-list-group-item>Cras justo odio</b-list-group-item>
-      <b-list-group-item>Dapibus ac facilisis in</b-list-group-item>
-      <b-list-group-item>Vestibulum at eros</b-list-group-item>
+      <b-list-group-item v-for="ingredient in allIngredients" :key="ingredient._id">{{ ingredient.name }}</b-list-group-item>
     </b-list-group>
 
-    <b-card-body>
-      <a href="#" class="card-link">Card link</a>
-      <a href="#" class="card-link">Another link</a>
-    </b-card-body>
-
     <b-card-footer>
-      <b-button>Edit</b-button>
+      <b-button @click="deleteCard">Delete</b-button>
     </b-card-footer>
   </b-card>
   </div>
@@ -36,9 +29,15 @@ export default {
     shoppingList: {}
   },
   methods: {
-    ...mapActions(['selectShoppingList']),
+    ...mapActions(['selectShoppingList', 'deleteShoppingList']),
     setChosenCard() {
       this.selectShoppingList(this.shoppingList)
+    },
+    allIngredients() {
+      return this.shoppingList.ingredients
+    },
+    deleteCard() {
+      this.deleteShoppingList(this.shoppingList)
     }
   },
   computed: {

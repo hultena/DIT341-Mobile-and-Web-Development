@@ -62,7 +62,7 @@ const actions = {
   },
   async deleteShoppingList({ commit }, shoppingList) {
     await Api.delete(`/users/${shoppingList.user}/shoppinglists/${shoppingList._id}`)
-    commit('deletedUser', shoppingList._id)
+    commit('deletedShoppingList', shoppingList._id)
   },
   selectShoppingList: function ({ commit }, shoppingList) {
     commit('setSelectedShoppingList', shoppingList)
