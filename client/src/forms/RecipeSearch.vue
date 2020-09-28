@@ -4,14 +4,17 @@
 
       <b-form-input
         type='text'
+        placeholder='Recipe search words go here ...'
       />
 
       <b-input-group-append>
-        <b-button>
-          Filter
+        <b-button
+          variant='outline-secondary'
+        >
+          <b-icon-filter />
         </b-button>
         <b-button
-          variant='primary'
+          variant='outline-primary'
         >
           <b-icon-search />
         </b-button>
