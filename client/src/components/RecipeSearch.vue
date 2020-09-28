@@ -8,19 +8,30 @@
       />
 
       <b-input-group-append>
+
         <b-button
+          v-b-toggle.collapse-1
           variant='outline-secondary'
         >
           <b-icon-filter />
         </b-button>
+
         <b-button
           variant='outline-primary'
         >
           <b-icon-search />
         </b-button>
-      </b-input-group-append>
 
+      </b-input-group-append>
     </b-input-group>
+
+    <b-collapse id="collapse-1">
+      <p>
+        Filter options go here.
+      </p>
+      <!-- TODO: Add filter options -->
+    </b-collapse>
+
   </b-form-group>
 </template>
 
