@@ -1,8 +1,8 @@
 <template>
   <b-container>
 
-    <b-row>
-      <b-col>
+    <b-row class='mt-5 mb-3'>
+      <b-col class='mt-5'>
         <h1>
           Lorem ipsum dolor sit amet
         </h1>
