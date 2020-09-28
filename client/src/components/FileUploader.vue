@@ -12,7 +12,9 @@
                 >
               <b-form-group>
                 <b-form-file v-model="image" @change="handleImage" accept="image/*" :state="getValidationState(validationContext)" />
-                <b-button @click="onSubmit">Set</b-button>
+                <b-button @click="onSubmit"
+                          v-if="getValidationState(validationContext)"
+                >Set</b-button>
                 <b-form-invalid-feedback>{{ validationContext.errors[0] }}</b-form-invalid-feedback>
               </b-form-group>
               </validation-provider>
