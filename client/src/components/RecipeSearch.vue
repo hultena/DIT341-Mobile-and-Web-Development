@@ -1,10 +1,10 @@
 <template>
   <b-form-group>
-    <b-input-group>
+    <b-input-group class='mb-3'>
 
       <b-form-input
         type='text'
-        placeholder='Recipe search words go here ...'
+        placeholder='Type something you want to search for here'
       />
 
       <b-input-group-append>
@@ -16,9 +16,7 @@
           <b-icon-filter />
         </b-button>
 
-        <b-button
-          variant='outline-primary'
-        >
+        <b-button variant='outline-primary'>
           <b-icon-search />
         </b-button>
 
@@ -32,12 +30,27 @@
       <!-- TODO: Add filter options -->
     </b-collapse>
 
+    <div>
+      <RecipeCard />
+    </div>
+
   </b-form-group>
 </template>
 
 <script>
+// import { MapActions } from 'vuex'
+import RecipeCard from './RecipeCard'
+
 export default {
-  name: 'RecipeSearch'
+  name: 'RecipeSearch',
+
+  components: { RecipeCard },
+
+  data() {
+    return {}
+  },
+  methods: {
+  }
 }
 </script>
 
