@@ -6,7 +6,6 @@ module.exports = {
     // ------------------ Auth User
     authUser: async function(req, res, next){
         try {
-            console.log(req.body);
             const user = await User.findOne(req.body);
             if(user === null){
                 // TODO: Probably fix this res but who knows.
@@ -16,6 +15,20 @@ module.exports = {
                 req.session._id = user._id;
                 // TODO: Don't know if this is right. We try this.
                 res.status(200).json(user);
+            }
+        }catch (err) {
+            next(err);
+        }
+    },
+    deauthUser: async function(req, res, next){
+        try {
+            if (req.session.loggedin) {
+                req.session.destroy(function () {
+                    res.clearCookie('connect.sid');
+                    res.status(204).json(null);
+                });
+            }else{
+                res.status(204);
             }
         }catch (err) {
             next(err);
