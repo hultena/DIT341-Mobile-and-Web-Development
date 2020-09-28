@@ -1,16 +1,35 @@
 <template>
-  <div>
-    <b-jumbotron header="DIT341 Frontend" lead="Welcome to your DIT341 Frontend Vue.js App">
-      <b-button class="btn_message" variant="primary" v-on:click="getMessage()" >Get Message from Server</b-button>
-      <p>Message from the server:<br/>
-      {{ message }}</p>
-    </b-jumbotron>
-  </div>
+  <b-container>
+
+    <b-row>
+      <b-col>
+        <h1>
+          Lorem ipsum dolor sit amet
+        </h1>
+        <h2>
+          Lorem ipsum dolor sit amet, consectetur
+        </h2>
+      </b-col>
+    </b-row>
+
+    <b-row>
+      <b-col>
+        <!-- TODO: Recipe search form goes here. -->
+      </b-col>
+    </b-row>
+
+    <b-row>
+      <b-col>
+        <!-- TODO: Recipe search results go here. -->
+      </b-col>
+    </b-row>
+
+  </b-container>
 </template>
 
 <script>
 // @ is an alias to /src
-import { Api } from '@/Api'
+// import { Api } from '@/Api'
 
 export default {
   name: 'home',
@@ -20,6 +39,7 @@ export default {
     }
   },
   methods: {
+    /*
     getMessage() {
       Api.get('/')
         .then(response => {
@@ -29,12 +49,7 @@ export default {
           this.message = error
         })
     }
+    */
   }
 }
 </script>
-
-<style>
-.btn_message {
-  margin-bottom: 1em;
-}
-</style>
