@@ -30,7 +30,7 @@
 <script>
 // @ is an alias to /src
 // import { Api } from '@/Api'
-import RecipeSearch from '@/forms/RecipeSearch'
+import RecipeSearch from '@/components/RecipeSearch'
 
 export default {
   name: 'home',
