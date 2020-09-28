@@ -18,12 +18,6 @@
       </b-col>
     </b-row>
 
-    <b-row>
-      <b-col>
-        <!-- TODO: Recipe search results go here. -->
-      </b-col>
-    </b-row>
-
   </b-container>
 </template>
 
