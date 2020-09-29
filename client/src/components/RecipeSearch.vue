@@ -30,23 +30,40 @@
       <!-- TODO: Add filter options -->
     </b-collapse>
 
-    <div>
-      <RecipeCard
-        :image-src='cardImage'
-        :title='cardTitle'
-        :likes='cardLikes'
-        :profile-link='cardProfileLink'
-        :username='cardUsername'
-        :description='cardDescription'
-      />
+    <div id='show-recipes'>
+      <div class='single-recipe'></div>
     </div>
 
+    <b-row>
+      <b-col
+        v-for='(recipe, index) in recipes'
+        :key='index'
+        class='my-2'
+      >
+        <RecipeCard
+          image-src='https://images.unsplash.com/photo-1588339724477-446bc8fac146?ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80'
+          :title='recipe.name'
+          :likes='recipe.likes'
+          :username='recipe.user'
+          description='Hello world'
+          recipe-link='path'
+        />
+      </b-col>
+    </b-row>
+    <b-button
+      variant='primary'
+      @click='expandResults'
+      block
+      class='mt-2'
+    >
+      Show more results
+    </b-button>
   </b-form-group>
 </template>
 
 <script>
-// import { MapActions } from 'vuex'
-import RecipeCard from './RecipeCard'
+import { Api } from '@/Api'
+import RecipeCard from '@/components/RecipeCard'
 
 export default {
   name: 'RecipeSearch',
@@ -55,16 +72,39 @@ export default {
 
   data() {
     return {
-      cardImage: 'https://images.unsplash.com/photo-1566217224819-e093a5a0798e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80',
-      cardTitle: 'Recipe name',
-      cardLikes: 34,
-      cardProfileLink: '',
-      cardUsername: 'Username',
-      cardDescription: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
+      recipes: [],
+      slice: 4,
+      currentLength: null,
+      previousLength: null
     }
   },
 
   methods: {
+    getRecipes() {
+      Api.get('/recipes')
+        .then(response => {
+          this.recipes = response.data.slice(0, this.slice)
+        })
+        .catch(error => {
+          this.recipes = error
+        })
+    },
+
+    expandResults() {
+      this.slice += 4
+
+      Api.get('/recipes')
+        .then(response => {
+          this.recipes = response.data.slice(0, this.slice)
+        })
+        .catch(error => {
+          this.recipes = error
+        })
+    }
+  },
+
+  created() {
+    this.getRecipes()
   }
 }
 </script>
