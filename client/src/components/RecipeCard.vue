@@ -9,9 +9,7 @@
     <b-card-text>
 
       <b-card-sub-title class='mb-3'>
-        <b-icon-heart /> {{ likes }},
-        created by
-        <b-link :href='profileLink'>{{ username }}</b-link>
+        <b-icon-heart /> {{ likes }}, created by {{ username }}
       </b-card-sub-title>
 
       <p>
@@ -31,7 +29,6 @@ export default {
     imageSrc: String,
     title: String,
     likes: Number,
-    profileLink: String,
     username: String,
     description: String,
     recipeLink: String
@@ -49,3 +46,12 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+img {
+  height: 200px;
+  width: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+</style>
