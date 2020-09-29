@@ -22,16 +22,16 @@ export default {
     ...mapActions(['getShoppingLists', 'postShoppingList', 'getIngredients']),
     addShoppingList() {
       const shoppingList = {
-        user: this.getLoggedIn._id
+        user: this.loggedInUser._id
       }
       this.postShoppingList(shoppingList)
     }
   },
   computed: {
-    ...mapGetters(['allShoppingLists', 'getLoggedIn'])
+    ...mapGetters(['allShoppingLists', 'loggedInUser'])
   },
   created() {
-    const user = this.getLoggedIn._id
+    const user = this.loggedInUser._id
     this.getShoppingLists(user)
   }
 }

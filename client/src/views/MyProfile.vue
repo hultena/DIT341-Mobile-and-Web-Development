@@ -2,33 +2,39 @@
   <div class='profilePage'>
     <section>
       <h1>
-        Profile heading
+        Welcome {{this.loggedInUser.username}}
         <router-link to="my-settings">
         <b-button>Settings</b-button>
         </router-link>
       </h1>
       <h2>
-        Profile subheading
+        {{this.loggedInUser.email}}
       </h2>
-      <h3>
-        {{this.getLoggedIn}}
-      </h3>
+    </section>
+    <section>
+      <p v-if="this.currentView==='recipes'">Placeholder for my recipes</p>
+      <p v-if="this.currentView==='ingredients'">Placeholder for my ingredients</p>
+      <my-shopping-lists v-if="this.currentView==='shopping'"/>
+      <p v-if="this.currentView==='favourites'">Placeholder favourite recipes</p>
     </section>
   </div>
 </template>
 
 <script>
 import { mapGetters, mapActions } from 'vuex'
+import MyShoppingLists from '@/views/MyShoppingLists'
 export default {
   name: 'myProfile',
+  components: { MyShoppingLists },
   data() {
-    return {}
+    return {
+    }
   },
   methods: {
-    ...mapActions([])
+    ...mapActions([''])
   },
   computed: {
-    ...mapGetters(['getLoggedIn'])
+    ...mapGetters(['loggedInUser', 'allShoppingLists', 'currentView'])
   }
 }
 

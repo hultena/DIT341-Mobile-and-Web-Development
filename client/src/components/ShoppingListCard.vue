@@ -16,6 +16,7 @@
 
     <b-card-footer>
       <b-button @click="deleteCard">Delete</b-button>
+      <b-button @click="edit">Edit</b-button>
     </b-card-footer>
   </b-card>
   </div>
@@ -25,6 +26,11 @@
 import { mapActions, mapGetters } from 'vuex'
 export default {
   name: 'ShoppingListCard',
+  data() {
+    return {
+      state: false
+    }
+  },
   props: {
     shoppingList: {}
   },
@@ -38,6 +44,11 @@ export default {
     },
     deleteCard() {
       this.deleteShoppingList(this.shoppingList)
+    },
+    edit() {
+      // TODO: Enable editing of card
+      this.state = !this.state
+      console.log(this.state)
     }
   },
   computed: {

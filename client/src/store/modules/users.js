@@ -3,7 +3,8 @@ import { Api } from '@/Api'
 const state = {
   // put the state here
   users: [],
-  loggedIn: ''
+  view: '',
+  loggedIn: null
 }
 
 const getters = {
@@ -11,8 +12,11 @@ const getters = {
   allUsers: function (state) {
     return state.users
   },
-  getLoggedIn: function (state) {
+  loggedInUser: function (state) {
     return state.loggedIn
+  },
+  currentView: function (state) {
+    return state.view
   }
 }
 
@@ -32,14 +36,21 @@ const mutations = {
   },
   setLoggedIn: function (state, user) {
     state.loggedIn = user
+  },
+  setView: function (state, view) {
+    state.view = view
   }
 }
 
 const actions = {
   // put method callers here
   async getUsers({ commit }) {
-    const res = await Api.get('/users')
-    commit('setUsers', res.data)
+    try {
+      const res = await Api.get('/users')
+      commit('setUsers', res.data)
+    } catch (err) {
+      return err.response.data
+    }
   },
   async postUser({ commit }, user) {
     try {
@@ -50,12 +61,20 @@ const actions = {
     }
   },
   async patchUser({ commit }, user) {
-    const res = await Api.patch(`/users/${user._id}`, user)
-    commit('setLoggedIn', res.data)
+    try {
+      const res = await Api.patch(`/users/${user._id}`, user)
+      commit('setLoggedIn', res.data)
+    } catch (err) {
+      return err.response.data
+    }
   },
   async deleteUser({ commit }, id) {
-    await Api.delete(`/users/${id}`)
-    commit('deletedUser', id)
+    try {
+      await Api.delete(`/users/${id}`)
+      commit('deletedUser', id)
+    } catch (err) {
+      return err.response.data
+    }
   },
   async authUser({ commit }, user) {
     try {
@@ -68,6 +87,9 @@ const actions = {
   async deauthUser({ commit }, user) {
     const res = await Api.post('/users/deauth', user)
     commit('setLoggedIn', res.data)
+  },
+  async changeView({ commit }, view) {
+    commit('setView', view)
   }
 }
 

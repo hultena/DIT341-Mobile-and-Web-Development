@@ -24,17 +24,11 @@ const mutations = {
   newShoppingList: function (state, shoppingLists) {
     state.shoppingLists.push(shoppingLists)
   },
-  deletedShoppingList: function (state, id) {
-    const idx = state.shoppingLists.findIndex(function (shoppingList) {
-      return shoppingList._id === id
-    })
-    state.shoppingLists.splice(idx, 1)
-  },
   updateShoppingList: function (state, updatedShoppingList) {
-    const idx = state.shoppingLists.findIndex(function (shoppingList) {
-      return shoppingList._id === updatedShoppingList._id
-    })
-    state.shoppingLists.splice(idx, 1, updatedShoppingList)
+    state.shoppingLists.splice(indexFinder(updatedShoppingList._id), 1, updatedShoppingList)
+  },
+  deletedShoppingList: function (state, id) {
+    state.shoppingLists.splice(indexFinder(id), 1)
   },
   setSelectedShoppingList: function (state, shoppingList) {
     state.selectedShoppingList = shoppingList
@@ -44,12 +38,15 @@ const mutations = {
 const actions = {
   // put method callers here
   async getShoppingLists({ commit }, id) {
-    const res = await Api.get(`/users/${id}/shoppinglists/`)
-    commit('setShoppingLists', res.data)
+    try {
+      const res = await Api.get(`/users/${id}/shoppinglists/`)
+      commit('setShoppingLists', res.data)
+    } catch (err) {
+      return err.response.data
+    }
   },
   async postShoppingList({ commit }, shoppingList) {
     try {
-      console.log(shoppingList)
       const res = await Api.post(`/users/${shoppingList.user}/shoppinglists/`, shoppingList)
       commit('newShoppingList', res.data)
     } catch (err) {
@@ -57,12 +54,20 @@ const actions = {
     }
   },
   async patchShoppingList({ commit }, shoppingList) {
-    const res = await Api.patch(`/users/${shoppingList.user}/shoppinglists/${shoppingList._id}`, shoppingList)
-    commit('setLoggedIn', res.data)
+    try {
+      const res = await Api.patch(`/users/${shoppingList.user}/shoppinglists/${shoppingList._id}`, shoppingList)
+      commit('updateShoppingList', res.data)
+    } catch (err) {
+      return err.response.data
+    }
   },
   async deleteShoppingList({ commit }, shoppingList) {
-    await Api.delete(`/users/${shoppingList.user}/shoppinglists/${shoppingList._id}`)
-    commit('deletedShoppingList', shoppingList._id)
+    try {
+      await Api.delete(`/users/${shoppingList.user}/shoppinglists/${shoppingList._id}`)
+      commit('deletedShoppingList', shoppingList._id)
+    } catch (err) {
+      return err.response.data
+    }
   },
   selectShoppingList: function ({ commit }, shoppingList) {
     commit('setSelectedShoppingList', shoppingList)
@@ -74,4 +79,9 @@ export default {
   getters,
   mutations,
   actions
+}
+function indexFinder(id) {
+  return state.shoppingLists.findIndex(function (shoppingList) {
+    return shoppingList._id === id
+  })
 }
