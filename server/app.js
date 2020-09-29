@@ -34,8 +34,6 @@ app.use(session({
     saveUninitialized: false
 }));
 
-// Parse requests of content-type 'application/json'
-app.use(bodyParser.json());
 // HTTP request logger
 app.use(morgan('dev'));
 // Enable cross-origin resource sharing for frontend must be registered before api
@@ -48,6 +46,9 @@ app.use(cors({
     credentials: true,
     exposedHeaders: ['set-cookie']
 }));
+
+// Parse requests of content-type 'application/json'
+app.use(bodyParser.json());
 
 // Router middleware
 app.use('/api/users', usersRoute);
@@ -86,8 +87,15 @@ app.use(function (err,req,res,next){
 
 // Error handler (i.e., when exception is thrown) must be registered last
 var env = app.get('env');
-// eslint-disable-next-line no-unused-vars
-
+// error handler for too large payloads
+app.use( function(err, req, res, next){
+    if(err.type === 'entity.too.large'){
+        res.status(413).json({message: "Entity too large"})
+    } else {
+        next(err);
+    }
+})
+// Error handler for other previously unhandled errors.
 app.use(function(err, req, res, next) {
     console.error(err.stack);
     var err_res = {

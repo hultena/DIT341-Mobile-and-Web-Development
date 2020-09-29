@@ -10,6 +10,8 @@ module.exports = {
 
     patchUserSchema: Joi.object().keys({
         username: Joi.string(),
+        _id: Joi.string().regex(regexPattern),
+        image: Joi.string(),
         email: Joi.string().email(),
         password: Joi.string(),
         recipes: Joi.array().items( Joi.object().keys( { _id: Joi.string().regex(regexPattern) } ) ),

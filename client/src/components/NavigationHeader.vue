@@ -24,7 +24,8 @@
               <b-button @click="deauthUser(getLoggedIn)">Log Out</b-button>
               <router-link to="my-profile">
                 <!-- TODO replace with user image -->
-              {{ getLoggedIn.username }}
+                <img v-if="getLoggedIn.image" :src="getLoggedIn.image" class="profile-picture" alt="Profile Picture">
+                <b-icon-person-circle v-else class="profile-picture"/>
               </router-link>
             </template>
             <template v-else>
@@ -58,7 +59,8 @@ export default {
 #navbar{
   background-color: white !important;
 }
-#profile-picture{
+
+.profile-picture{
   height: 3rem;
   width: 3rem;
   border-radius: 50%;

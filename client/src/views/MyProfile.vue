@@ -3,6 +3,9 @@
     <section>
       <h1>
         Profile heading
+        <router-link to="my-settings">
+        <b-button>Settings</b-button>
+        </router-link>
       </h1>
       <h2>
         Profile subheading
