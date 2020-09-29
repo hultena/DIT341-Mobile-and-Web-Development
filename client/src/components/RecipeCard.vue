@@ -43,6 +43,7 @@ export default {
 
       console.log('This card has been clicked!')
     }
+    // TODO: Method to have user id find username and display username instead of user id.
   }
 }
 </script>
