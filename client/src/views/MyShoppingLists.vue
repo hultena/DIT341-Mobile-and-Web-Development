@@ -1,7 +1,7 @@
 <template>
   <div>
     <b-button @click="addShoppingList">Add Shopping List</b-button>
-    <shopping-list-card v-for="shoppingList in allShoppingLists" :key="shoppingList._id" :shoppingList="shoppingList"/>
+    <shopping-list-card v-model="allShoppingLists" v-for="shoppingList in allShoppingLists" :key="shoppingList._id" :shoppingList="shoppingList"/>
   </div>
 </template>
 
@@ -33,6 +33,8 @@ export default {
   created() {
     const user = this.loggedInUser._id
     this.getShoppingLists(user)
+  },
+  watch: {
   }
 }
 </script>

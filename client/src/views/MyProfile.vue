@@ -6,10 +6,21 @@
         <router-link to="my-settings">
         <b-button>Settings</b-button>
         </router-link>
+        <b-button
+          v-if="currentView==='ingredients'&&!addIngredientState"
+          @click="addIngredientState=changeState(addIngredientState)">
+          Add Ingredients</b-button>
+        <b-button
+          v-if="addIngredientState"
+          @click="addIngredientState=changeState(addIngredientState)">
+          Finish</b-button>
       </h1>
       <h2>
         {{this.loggedInUser.email}}
       </h2>
+    </section>
+    <section>
+      <add-ingredient-form v-if="addIngredientState"/>
     </section>
     <section>
       <p v-if="this.currentView==='recipes'">Placeholder for my recipes</p>
@@ -24,15 +35,20 @@
 import { mapGetters, mapActions } from 'vuex'
 import MyIngredients from '@/views/MyIngredients'
 import MyShoppingLists from '@/views/MyShoppingLists'
+import AddIngredientForm from '@/forms/AddIngredientForm'
 export default {
   name: 'myProfile',
-  components: { MyShoppingLists, MyIngredients },
+  components: { AddIngredientForm, MyShoppingLists, MyIngredients },
   data() {
     return {
+      addIngredientState: null
     }
   },
   methods: {
-    ...mapActions([''])
+    ...mapActions(['']),
+    changeState(state) {
+      return !state
+    }
   },
   computed: {
     ...mapGetters(['loggedInUser', 'allShoppingLists', 'allUserIngredients', 'currentView'])
