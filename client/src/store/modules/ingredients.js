@@ -91,6 +91,9 @@ const actions = {
   },
   selectIngredient({ commit }, ingredient) {
     commit('setSelectedIngredient', ingredient)
+  },
+  clearSelectedIngredient({ commit }) {
+    commit('setSelectedIngredient', null)
   }
 }
 
