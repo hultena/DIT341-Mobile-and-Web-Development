@@ -27,7 +27,7 @@ export default {
     ...mapActions(['getIngredients', 'selectIngredient']),
     filterArr(word) {
       return this.allIngredients.filter(function (ingredient) {
-        return ingredient.name.includes(word)
+        return ingredient.name.toLowerCase().includes(word.toLowerCase())
       })
     },
     setIngredient(ingredient) {
