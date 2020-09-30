@@ -13,7 +13,7 @@
     </section>
     <section>
       <p v-if="this.currentView==='recipes'">Placeholder for my recipes</p>
-      <p v-if="this.currentView==='ingredients'">Placeholder for my ingredients</p>
+      <my-ingredients v-if="this.currentView==='ingredients'"/>
       <my-shopping-lists v-if="this.currentView==='shopping'"/>
       <p v-if="this.currentView==='favourites'">Placeholder favourite recipes</p>
     </section>
@@ -22,10 +22,11 @@
 
 <script>
 import { mapGetters, mapActions } from 'vuex'
+import MyIngredients from '@/views/MyIngredients'
 import MyShoppingLists from '@/views/MyShoppingLists'
 export default {
   name: 'myProfile',
-  components: { MyShoppingLists },
+  components: { MyShoppingLists, MyIngredients },
   data() {
     return {
     }
@@ -34,7 +35,7 @@ export default {
     ...mapActions([''])
   },
   computed: {
-    ...mapGetters(['loggedInUser', 'allShoppingLists', 'currentView'])
+    ...mapGetters(['loggedInUser', 'allShoppingLists', 'allUserIngredients', 'currentView'])
   }
 }
 
