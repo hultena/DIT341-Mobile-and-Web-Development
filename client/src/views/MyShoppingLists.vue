@@ -1,7 +1,10 @@
 <template>
   <div>
     <b-button @click="addShoppingList">Add Shopping List</b-button>
-    <shopping-list-card v-model="allShoppingLists" v-for="shoppingList in allShoppingLists" :key="shoppingList._id" :shoppingList="shoppingList"/>
+    <shopping-list-card
+      v-for="shoppingList in allShoppingLists"
+      :key="shoppingList._id"
+      :shoppingList="shoppingList"/>
   </div>
 </template>
 
@@ -15,7 +18,6 @@ export default {
   },
   data() {
     return {
-      data: null
     }
   },
   methods: {
@@ -30,11 +32,9 @@ export default {
   computed: {
     ...mapGetters(['allShoppingLists', 'loggedInUser'])
   },
-  created() {
+  async created() {
     const user = this.loggedInUser._id
-    this.getShoppingLists(user)
-  },
-  watch: {
+    await this.getShoppingLists(user)
   }
 }
 </script>

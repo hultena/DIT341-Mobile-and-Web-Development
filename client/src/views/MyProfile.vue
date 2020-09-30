@@ -11,7 +11,7 @@
           @click="addIngredientState=changeState(addIngredientState)">
           Add Ingredients</b-button>
         <b-button
-          v-if="addIngredientState"
+          v-if="currentView==='ingredients'&&addIngredientState"
           @click="addIngredientState=changeState(addIngredientState)">
           Finish</b-button>
       </h1>
@@ -20,7 +20,7 @@
       </h2>
     </section>
     <section>
-      <add-ingredient-form v-if="addIngredientState"/>
+      <add-ingredient-form v-if="currentView==='ingredients'&&addIngredientState"/>
     </section>
     <section>
       <p v-if="this.currentView==='recipes'">Placeholder for my recipes</p>

@@ -186,7 +186,9 @@ module.exports = {
 
     updateUserShoppingList: async function (req, res, next){
         try{
-            const shoppingList = await ShoppingList.findByIdAndUpdate(req.params.shoppingListId, req.value.body);
+            const shoppingList = await ShoppingList
+                .findByIdAndUpdate(req.params.shoppingListId, req.value.body)
+                .populate('ingredients');
             res.status(200).json(shoppingList);
         }catch (err){
             next(err);
