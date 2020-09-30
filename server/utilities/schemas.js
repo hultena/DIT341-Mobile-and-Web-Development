@@ -107,9 +107,18 @@ module.exports = {
     patchShoppingListSchema: Joi.object().keys({
         ingredients: Joi.array().items(
             Joi.object().keys({
-                _id: Joi.string().regex(regexPattern)
+                _id: Joi.string().regex(regexPattern),
+                user: Joi.string(),
+                name: Joi.string(),
+                foodType: Joi.string(),
+                description: Joi.string(),
+                __v: Joi.number()
+
             })
-        )
+        ),
+        user: Joi.string(),
+        _id: Joi.string().regex(regexPattern),
+        __v: Joi.number()
     }),
 
     putShoppingListSchema: Joi.object().keys({

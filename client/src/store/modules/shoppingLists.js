@@ -55,7 +55,9 @@ const actions = {
   },
   async patchShoppingList({ commit }, shoppingList) {
     try {
-      const res = await Api.patch(`/users/${shoppingList.user}/shoppinglists/${shoppingList._id}`, shoppingList)
+      console.log(shoppingList)
+      // TODO: try to figure out why it doesn't work when I use the passed in object but it works when I use the state
+      const res = await Api.patch(`/users/${shoppingList.user}/shoppinglists/${shoppingList._id}`, state.selectedShoppingList)
       commit('updateShoppingList', res.data)
     } catch (err) {
       return err.response.data
