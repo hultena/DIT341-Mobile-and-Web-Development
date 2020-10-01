@@ -1,6 +1,8 @@
 <template>
-  <div class='profilePage'>
+  <div class='profile-page'>
+
     <section>
+
       <h1>
         Welcome {{this.loggedInUser.username}}
         <router-link to="my-settings">
@@ -15,41 +17,58 @@
           @click="addIngredientState=changeState(addIngredientState)">
           Finish</b-button>
       </h1>
+
       <h2>
         {{this.loggedInUser.email}}
       </h2>
+
     </section>
+
     <section>
       <add-ingredient-form v-if="currentView==='ingredients'&&addIngredientState"/>
     </section>
+
     <section>
-      <p v-if="this.currentView==='recipes'">Placeholder for my recipes</p>
+
+      <my-recipes v-if='this.currentView==="recipes"' />
       <my-ingredients v-if="this.currentView==='ingredients'"/>
       <my-shopping-lists v-if="this.currentView==='shopping'"/>
       <p v-if="this.currentView==='favourites'">Placeholder favourite recipes</p>
+
     </section>
+
   </div>
 </template>
 
 <script>
 import { mapGetters, mapActions } from 'vuex'
+import MyRecipes from '@/views/MyRecipes'
 import MyIngredients from '@/views/MyIngredients'
 import MyShoppingLists from '@/views/MyShoppingLists'
 import AddIngredientForm from '@/forms/AddIngredientForm'
+
 export default {
   name: 'myProfile',
-  components: { AddIngredientForm, MyShoppingLists, MyIngredients },
+  components: {
+    MyRecipes,
+    AddIngredientForm,
+    MyShoppingLists,
+    MyIngredients
+  },
+
   data() {
     return {
       addIngredientState: null
     }
   },
+
   methods: {
     ...mapActions(['']),
     changeState(state) {
       return !state
     }
   },
+
   computed: {
     ...mapGetters(['loggedInUser', 'allShoppingLists', 'allUserIngredients', 'currentView'])
   }
@@ -58,5 +77,5 @@ export default {
 </script>
 
 <style scoped>
-.profilePage {}
+.profile-page {}
 </style>

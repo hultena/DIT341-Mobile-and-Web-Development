@@ -33,8 +33,12 @@ const actions = {
   },
   // TODO: this should probably be fixed to post to the /users/:userId/recipes
   async postRecipe({ commit }, recipe) {
-    const res = await Api.post('/recipes', recipe)
-    commit('newRecipe', res.data)
+    try {
+      const res = await Api.post(`/users/${recipe.user}/recipes`, recipe)
+      commit('newRecipe', res.data)
+    } catch (err) {
+      return err.response.data
+    }
   },
   // TODO: this should probably be fixed to patch to the /users/:userId/recipes
   async patchRecipe({ commit }, recipe) {

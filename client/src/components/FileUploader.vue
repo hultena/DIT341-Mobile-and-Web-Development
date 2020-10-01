@@ -13,10 +13,21 @@
                 v-slot="validationContext"
                 >
               <b-form-group>
-                <b-form-file v-model="image" @change="handleImage" accept="image/*" :state="getValidationState(validationContext)" />
-                <b-button @click="onSubmit"
-                          v-if="getValidationState(validationContext)"
-                >Set</b-button>
+                <b-form-file
+                  v-model="image"
+                  @change="handleImage"
+                  accept="image/*"
+                  :state="getValidationState(validationContext)"
+                  class='my-3'
+                />
+                <b-button
+                  @click="onSubmit"
+                  v-if="getValidationState(validationContext)"
+                  block
+                  variant='outline-primary'
+                >
+                  Set
+                </b-button>
                 <b-form-invalid-feedback>{{ validationContext.errors[0] }}</b-form-invalid-feedback>
               </b-form-group>
               </validation-provider>
