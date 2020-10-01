@@ -125,7 +125,10 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex'
+import {
+  mapGetters,
+  mapActions
+} from 'vuex'
 import {
   ValidationProvider,
   ValidationObserver
@@ -146,6 +149,7 @@ export default {
   data() {
     return {
       form: {
+        user: null,
         name: null,
         category: null,
         description: null,
@@ -181,11 +185,16 @@ export default {
     }
   },
 
+  computed: {
+    ...mapGetters(['loggedInUser'])
+  },
+
   methods: {
     ...mapActions(['postRecipe']),
 
     async onSubmit() {
       const message = await this.postRecipe(this.form)
+
       if (message) this.$refs.observer.setErrors(message)
       else alert('Form submitted! \n\n' + JSON.stringify(this.form, null, 2))
     },
@@ -193,6 +202,10 @@ export default {
     getValidationState({ dirty, validated, valid = null }) {
       return dirty || validated ? valid : null
     }
+  },
+
+  created() {
+    this.form.user = this.loggedInUser._id
   }
 }
 </script>
