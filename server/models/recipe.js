@@ -32,7 +32,7 @@ const recipeSchema = new Schema({
         type: String,
         enum: [
             'Gluten',
-            'Peanut',
+            'Peanuts',
             'Nuts',
             'Lactose',
             'Egg',

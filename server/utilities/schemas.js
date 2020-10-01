@@ -37,7 +37,7 @@ module.exports = {
         allergies: Joi.array().items(
             Joi.string().valid(
             'Gluten',
-            'Peanut',
+            'Peanuts',
             'Nuts',
             'Lactose',
             'Egg',
