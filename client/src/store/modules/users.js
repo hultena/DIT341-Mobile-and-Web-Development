@@ -85,8 +85,20 @@ const actions = {
     }
   },
   async deauthUser({ commit }, user) {
-    const res = await Api.post('/users/deauth', user)
-    commit('setLoggedIn', res.data)
+    try {
+      const res = await Api.post('/users/deauth', user)
+      commit('setLoggedIn', res.data)
+    } catch (err) {
+      return err.response.data
+    }
+  },
+  async deleteAllUsers({ commit }) {
+    try {
+      await Api.delete('/users')
+      commit('setUsers', [])
+    } catch (err) {
+      return err.response.data
+    }
   },
   async changeView({ commit }, view) {
     commit('setView', view)
