@@ -15,8 +15,8 @@ const recipeSchema = new Schema({
     * Below enums are hardcoded so that we can unify its
     * definitions to end-users.
     */
-    cuisine: String,
-    dietaryRestriction: [{
+    description: String,
+    dietaryRestrictions: [{
         type: String,
         enum: [
             'Vegan',

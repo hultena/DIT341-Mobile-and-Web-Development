@@ -3,6 +3,7 @@ module.exports = {
     bodyValidator: function(schema){
         return function(req, res, next){
             const result = schema.validate(req.body, {abortEarly: false});
+            console.log(result.error)
             if(result.error){
                 const key = result.error.message.slice(1,result.error.message.lastIndexOf('"'));
                 const value = result.error.message.slice(result.error.message.lastIndexOf('"')+1);

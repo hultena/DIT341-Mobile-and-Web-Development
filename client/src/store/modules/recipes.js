@@ -33,7 +33,7 @@ const actions = {
   },
   // TODO: this should probably be fixed to post to the /users/:userId/recipes
   async postRecipe({ commit }, recipe) {
-    const res = await Api.post('/recipes', recipe)
+    const res = await Api.post(`/users/${recipe.user}/recipes`, recipe)
     commit('newRecipe', res.data)
   },
   // TODO: this should probably be fixed to patch to the /users/:userId/recipes

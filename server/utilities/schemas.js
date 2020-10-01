@@ -23,8 +23,8 @@ module.exports = {
     newRecipeSchema: Joi.object().keys({
         name: Joi.string().required(),
         category: Joi.string().valid('Baking', 'Cooking').required(),
-        cuisine: Joi.string(),
-        dietaryRestriction: Joi.array().items(
+        description: Joi.string(),
+        dietaryRestrictions: Joi.array().items(
             Joi.string().valid(
             'Vegan',
             'Ovo-Vegetarian',
@@ -58,8 +58,8 @@ module.exports = {
     patchRecipeSchema: Joi.object().keys({
         name: Joi.string(),
         category: Joi.string().valid('Baking', 'Cooking'),
-        cuisine: Joi.string(),
-        dietaryRestriction: Joi.array().items(
+        description: Joi.string(),
+        dietaryRestrictions: Joi.array().items(
             Joi.string().valid(
                 'Vegan',
                 'Ovo-Vegetarian',
