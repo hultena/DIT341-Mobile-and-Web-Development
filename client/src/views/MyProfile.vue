@@ -10,7 +10,6 @@
       <h2>
         {{this.loggedInUser.email}}
       </h2>
-<<<<<<< client/src/views/MyProfile.vue
       <h3>
         <b-button
           v-if="this.currentView==='ingredients'&&!addIngredientState"
@@ -34,9 +33,6 @@
             User Settings
           </b-button>
       </h3>
-=======
-
->>>>>>> client/src/views/MyProfile.vue
     </section>
 
     <section>
@@ -62,23 +58,17 @@ import MyRecipes from '@/views/MyRecipes'
 import MyIngredients from '@/views/MyIngredients'
 import MyShoppingLists from '@/views/MyShoppingLists'
 import AddIngredientForm from '@/forms/AddIngredientForm'
-<<<<<<< client/src/views/MyProfile.vue
 import MySettings from '@/views/MySettings'
-export default {
-  name: 'myProfile',
-  components: { MySettings, MyRecipes, AddIngredientForm, MyShoppingLists, MyIngredients },
-=======
 
 export default {
   name: 'myProfile',
   components: {
     MyRecipes,
+    MySettings,
     AddIngredientForm,
     MyShoppingLists,
     MyIngredients
   },
-
->>>>>>> client/src/views/MyProfile.vue
   data() {
     return {
       addIngredientState: null,
