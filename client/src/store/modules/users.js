@@ -62,8 +62,8 @@ const actions = {
   },
   async patchUser({ commit }, user) {
     try {
-      const res = await Api.patch(`/users/${user._id}`, user)
-      commit('setLoggedIn', res.data)
+      await Api.patch(`/users/${user._id}`, user)
+      commit('setLoggedIn', user)
     } catch (err) {
       return err.response.data
     }
