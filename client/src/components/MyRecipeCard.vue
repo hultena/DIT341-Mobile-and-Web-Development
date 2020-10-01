@@ -1,48 +1,76 @@
 <template>
   <b-card
-    :title='title'
-    :img-src='imageSrc'
+    :title='this.recipe.name'
+    img-src='https://images.unsplash.com/photo-1548848221-0c2e497ed557?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80'
     img-top
-    role='button'
-    @click='handleClick'
   >
     <b-card-text>
 
       <b-card-sub-title class='mb-3'>
-        <b-icon-heart /> {{ likes }}
+        <b-icon-heart /> {{ this.recipe.likes }}
       </b-card-sub-title>
 
       <p>
-        {{ description | snippet }}
+        {{ this.recipe.description | snippet }}
       </p>
+
+      <b-button-group class='w-100'>
+
+        <b-button
+          variant='outline-success'
+          @click='editRecipe()'
+        >
+          <b-icon-pencil />
+          Edit recipe
+        </b-button>
+
+        <b-button
+          variant='outline-danger'
+          @click='deleteRecipe()'
+        >
+          <b-icon-trash />
+          Delete recipe
+        </b-button>
+
+        <b-button
+          variant='outline-primary'
+          @click='visitRecipe()'
+        >
+          <b-icon-book />
+          Go to recipe
+        </b-button>
+
+      </b-button-group>
 
     </b-card-text>
   </b-card>
 </template>
 
 <script>
+import { mapActions } from 'vuex'
 
 export default {
   name: 'MyRecipeCard',
 
   props: {
-    imageSrc: String,
-    title: String,
-    likes: Number,
-    description: String,
-    recipeLink: String
+    // imageSrc: String,
+    recipe: Object
   },
 
   methods: {
-    handleClick() {
-      // TODO: have 'path' equal recipeLink in props. I get errors. Idk how (?)
+    ...mapActions(['']),
 
-      const path = 'recipeLink'
-      this.$router.push(path)
+    deleteRecipe() {
+      // todo, issue #73
+    },
 
-      console.log('This card has been clicked!')
+    editRecipe() {
+      // todo, issue #74
+    },
+
+    visitRecipe() {
+      // todo, issue #75
     }
-    // TODO: Method to have user id find username and display username instead of user id.
   }
 }
 </script>
