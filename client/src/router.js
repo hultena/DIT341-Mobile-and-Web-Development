@@ -6,7 +6,8 @@ import SignIn from './views/SignIn'
 import MyProfile from './views/MyProfile.vue'
 import About from './views/About.vue'
 import Faq from './views/Faq.vue'
-import MySettings from '@/views/MySettings'
+import MySettings from './views/MySettings'
+import MyShoppingLists from './views/MyShoppingLists'
 
 Vue.use(Router)
 
@@ -48,6 +49,11 @@ export default new Router({
       path: '/my-settings',
       name: 'mySettings',
       component: MySettings
+    },
+    {
+      path: '/my-shopping-lists',
+      name: 'myShoppingLists',
+      component: MyShoppingLists
     }
   ]
 })

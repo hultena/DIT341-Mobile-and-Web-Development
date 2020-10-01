@@ -5,9 +5,11 @@
         <b-img style="width: 3rem; height: auto" :src="stringImage" alt=""/>
           <validation-observer ref="observer" v-slot="{ handleSubmit }">
             <b-form @submit.stop.prevent="handleSubmit(onSubmit)">
+              <!-- arbitrary size of 500KiB, if this needs to be changed it must be done in the
+                    backend app.js as it's body-parser that sets the limit. -->
               <validation-provider
                 name="image"
-                :rules="{ size:50, image: true }"
+                :rules="{ size:500, image: true }"
                 v-slot="validationContext"
                 >
               <b-form-group>
@@ -40,9 +42,6 @@ export default {
   methods: {
     handleImage(e) {
       const selectedImage = e.target.files[0]
-      /* arbitrary size of 50KiB as body-parser won't handle more than 100KiB
-        we can probably change this but 50 should be sufficient for basic images
-       */
       this.createBase64Image(selectedImage)
     },
     createBase64Image(fileObject) {

@@ -61,7 +61,7 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex'
+import { mapActions, mapGetters } from 'vuex'
 import { ValidationProvider, ValidationObserver } from 'vee-validate'
 import FileUploader from '@/components/FileUploader'
 export default {
@@ -74,19 +74,18 @@ export default {
   data() {
     return {
       form: {
-        username: this.$store.state.users.loggedIn.username,
-        email: this.$store.state.users.loggedIn.email,
+        username: null,
+        email: null,
         password: null,
-        image: this.$store.state.users.loggedIn.image
+        image: null,
+        _id: null
       }
     }
   },
   methods: {
     ...mapActions(['patchUser']),
     async onSubmit() {
-      const user = this.form
-      user._id = this.$store.state.users.loggedIn._id
-      const message = await this.patchUser(user)
+      const message = await this.patchUser(this.form)
       if (message) {
         this.$refs.observer.setErrors(message)
       } else {
@@ -100,6 +99,16 @@ export default {
     setImage(event) {
       this.form.image = event
     }
+  },
+  computed: {
+    ...mapGetters(['loggedInUser'])
+  },
+  created() {
+    const user = this.loggedInUser
+    this.form.username = user.username
+    this.form.email = user.email
+    this.form.image = user.image
+    this.form._id = user._id
   }
 }
 </script>
