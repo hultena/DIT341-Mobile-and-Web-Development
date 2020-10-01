@@ -5,209 +5,109 @@
   >
     <b-form @submit.stop.prevent='handleSubmit(onSubmit)'>
 
-      <div
-        class='accordion'
-        role='tablist'
+      <validation-provider
+        name='name'
+        :rules='{ required: true, min: 3, alpha_spaces: true }'
+        v-slot='validationContext'
       >
-
-        <b-card
-          no-body
-          class='mb-1'
+        <b-form-group
+          label='Recipe name'
+          label-align='left'
+          label-for='recipeName'
+          class='mb-5'
         >
-          <b-card-header
-            header-tag='header'
-            class='p-1'
-            role='tab'
-          >
-            <b-button
-              block
-              v-b-toggle.accordion-1
-              variant='outline-primary'
-            >
-              Describe your recipe
-            </b-button>
-          </b-card-header>
+          <b-form-input
+            id='recipeName'
+            v-model='form.name'
+            :state='getValidationState(validationContext)'
+            placeholder='Ex. "Delicious blueberry pie"'
+          />
 
-          <b-collapse
-            id='accordion-1'
-            visible
-            accordion='my-accordion'
-            role='tabpanel'
-          >
-            <b-card-body>
-              <b-card-text>
+          <b-form-invalid-feedback>
+            {{ validationContext.errors[0] }}
+          </b-form-invalid-feedback>
 
-                <!-- Name input field -->
-                <validation-provider
-                  name='name'
-                  :rules='{ required: true, min: 3, alpha_spaces: true }'
-                  v-slot='validationContext'
-                >
-                  <b-form-group
-                    label='Recipe name'
-                    label-align='left'
-                    label-for='recipeName'
-                  >
-                    <b-form-input
-                      id='recipeName'
-                      v-model='form.name'
-                      :state='getValidationState(validationContext)'
-                      placeholder='Ex. "Delicious blueberry pie"'
-                    />
+        </b-form-group>
+      </validation-provider>
 
-                    <b-form-invalid-feedback>
-                      {{ validationContext.errors[0] }}
-                    </b-form-invalid-feedback>
-
-                  </b-form-group>
-                </validation-provider>
-
-                <!-- Category radio buttons -->
-                <!-- TODO: Align label and radio buttons on one line, to the left -->
-                <validation-provider
-                  name='category'
-                  :rules='{ required: true }'
-                  v-slot='validationContext'
-                >
-                  <b-form-group
-                    label='Category'
-                    label-for='recipeCategory'
-                  >
-                    <b-form-radio-group
-                      id='recipeCategory'
-                      v-model='form.category'
-                      radio-aling
-                      :state='getValidationState(validationContext)'
-                      :options='category'
-                    />
-                  </b-form-group>
-                </validation-provider>
-
-                <!-- Description text area -->
-                <b-form-group
-                  label='Description'
-                  label-align='left'
-                  label-for='recipeDescription'
-                >
-                  <b-form-textarea
-                    id='recipeDescription'
-                    v-model='form.description'
-                    placeholder='Tell us why your recipe is delicious.'
-                    rows='3'
-                    max-rows='6'
-                  />
-                </b-form-group>
-
-              </b-card-text>
-            </b-card-body>
-          </b-collapse>
-
-        </b-card>
-
-        <b-card
-          no-body
-          class='mb-1'
+      <!-- Category radio buttons -->
+      <validation-provider
+        name='category'
+        :rules='{ required: true }'
+        v-slot='validationContext'
+      >
+        <b-form-group
+          label='Category'
+          label-for='recipeCategory'
+          class='mb-5'
         >
-          <b-card-header
-            header-tag='header'
-            class='p-1'
-            role='tab'
-          >
-            <b-button
-              block
-              v-b-toggle.accordion-2
-              variant='outline-primary'
-            >
-              Give us the recipe ingredients
-            </b-button>
-          </b-card-header>
+          <b-form-radio-group
+            id='recipeCategory'
+            v-model='form.category'
+            radio-aling
+            :state='getValidationState(validationContext)'
+            :options='category'
+          />
+        </b-form-group>
+      </validation-provider>
 
-          <b-collapse
-            id='accordion-2'
-            accordion='my-accordion'
-            role='tabpanel'
-          >
-            <b-card-body>
-              <b-card-text>
+      <!-- Description text area -->
+      <b-form-group
+        label='Description'
+        label-align='left'
+        label-for='recipeDescription'
+        class='mb-5'
+      >
+        <b-form-textarea
+          id='recipeDescription'
+          v-model='form.description'
+          placeholder='Tell us why your recipe is delicious.'
+          rows='3'
+          max-rows='6'
+        />
+      </b-form-group>
 
-                <!-- TODO: Ingredients ??? stuff fields -->
+      <!-- TODO: Ingredients ??? stuff fields -->
 
-                <!-- Allergy checkboxes -->
-                <!-- TODO: Align checkboxes to the left, and on same line as label. -->
-                <b-form-group
-                  label='Allergy warnings'
-                  label-align='left'
-                  label-for='recipeAllergies'
-                  description='Is your recipe safe for everyone to enjoy? Let us know if it contains any of above.'
-                >
-                  <b-form-checkbox-group
-                    id='recipeAllergies'
-                    v-model='form.allergies'
-                    :options='allergies'
-                  />
-                </b-form-group>
+      <!-- Allergy checkboxes -->
+      <!-- TODO: Align checkboxes to the left, and on same line as label. -->
+      <b-form-group
+        label='Allergy warnings'
+        label-align='left'
+        label-for='recipeAllergies'
+        description='Is your recipe safe for everyone to enjoy? Let us know if it contains any of above.'
+        class='mb-5'
+      >
+        <b-form-checkbox-group
+          id='recipeAllergies'
+          v-model='form.allergies'
+          :options='allergies'
+        />
+      </b-form-group>
 
-                <!-- Dietary restrictions checkboxes -->
-                <!-- TODO: Align checkboxes to the left, and on same line as label. -->
-                <b-form-group
-                  label='Dietary restrictions'
-                  label-align='left'
-                  label-for='recipeDietRestrictions'
-                  description='Which diets are your recipe safe for?'
-                >
-                  <b-form-checkbox-group
-                    id='recipeDietRestrictions'
-                    v-model='form.dietaryRestrictions'
-                    :options='dietaryRestrictions'
-                  />
-                </b-form-group>
+      <!-- Dietary restrictions checkboxes -->
+      <!-- TODO: Align checkboxes to the left, and on same line as label. -->
+      <b-form-group
+        label='Dietary restrictions'
+        label-align='left'
+        label-for='recipeDietRestrictions'
+        description='Which diets are your recipe safe for?'
+        class='mb-5'
+      >
+        <b-form-checkbox-group
+          id='recipeDietRestrictions'
+          v-model='form.dietaryRestrictions'
+          :options='dietaryRestrictions'
+        />
+      </b-form-group>
 
-              </b-card-text>
-            </b-card-body>
-          </b-collapse>
-
-        </b-card>
-
-        <b-card
-          no-body
-          class='mb-1'
-        >
-          <b-card-header
-            header-tag='header'
-            class='p-1'
-            role='tab'
-          >
-            <b-button
-              block
-              v-b-toggle.accordion-3
-              variant='outline-primary'
-            >
-              Tell us how to make your recipe
-            </b-button>
-          </b-card-header>
-
-          <b-collapse
-            id='accordion-3'
-            accordion='my-accordion'
-            role='tabpanel'
-          >
-            <b-card-body>
-              <b-card-text>
-
-                <AddInstructions />
-
-              </b-card-text>
-            </b-card-body>
-          </b-collapse>
-
-        </b-card>
-
-      </div>
+      <AddInstructions />
 
       <b-button
         type='submit'
         variant='primary'
         block
+        class='mt-5'
       >
         Create recipe
       </b-button>
