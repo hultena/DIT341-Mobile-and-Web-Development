@@ -60,7 +60,7 @@ export default {
     }
   },
   methods: {
-    ...mapActions(['getShoppingLists', 'getUserIngredients', 'changeView']),
+    ...mapActions(['getShoppingLists', 'getUserIngredients', 'changeView', 'postShoppingList']),
     changeState(state) {
       return !state
     },
