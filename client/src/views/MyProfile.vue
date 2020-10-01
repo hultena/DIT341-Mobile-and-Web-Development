@@ -1,28 +1,30 @@
 <template>
   <div class='profile-page'>
 
-    <section>
+    <b-container>
+      <b-row>
+        <b-col>
+          <h1>
+            Welcome {{this.loggedInUser.username}}
+            <router-link to="my-settings">
+              <b-button>Settings</b-button>
+            </router-link>
+            <b-button
+              v-if="currentView==='ingredients'&&!addIngredientState"
+              @click="addIngredientState=changeState(addIngredientState)">
+              Add Ingredients</b-button>
+            <b-button
+              v-if="currentView==='ingredients'&&addIngredientState"
+              @click="addIngredientState=changeState(addIngredientState)">
+              Finish</b-button>
+          </h1>
 
-      <h1>
-        Welcome {{this.loggedInUser.username}}
-        <router-link to="my-settings">
-        <b-button>Settings</b-button>
-        </router-link>
-        <b-button
-          v-if="currentView==='ingredients'&&!addIngredientState"
-          @click="addIngredientState=changeState(addIngredientState)">
-          Add Ingredients</b-button>
-        <b-button
-          v-if="currentView==='ingredients'&&addIngredientState"
-          @click="addIngredientState=changeState(addIngredientState)">
-          Finish</b-button>
-      </h1>
-
-      <h2>
-        {{this.loggedInUser.email}}
-      </h2>
-
-    </section>
+          <h2>
+            {{this.loggedInUser.email}}
+          </h2>
+        </b-col>
+      </b-row>
+    </b-container>
 
     <section>
       <add-ingredient-form v-if="currentView==='ingredients'&&addIngredientState"/>
