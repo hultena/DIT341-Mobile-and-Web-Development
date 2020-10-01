@@ -118,17 +118,17 @@ module.exports = {
 
     getAllUserShoppingLists: async function(req, res, next){
         try {
-            const user = await User.findById(req.params.userId)
-                .populate('shoppingLists')
+            const shoppingLists = await ShoppingList.find({user: req.params.userId})
+                .populate('ingredients')
                 .select(req.value.select)
                 .sort(req.value.sort)
                 .skip(req.value.page)
                 .limit(req.value.limit);
 
-            if(user === null){
+            if(shoppingLists === null){
                 next();
             }else {
-                res.status(200).json(user.shoppingLists);
+                res.status(200).json(shoppingLists);
             }
         }catch (err) {
             next(err);
@@ -186,7 +186,9 @@ module.exports = {
 
     updateUserShoppingList: async function (req, res, next){
         try{
-            const shoppingList = await ShoppingList.findByIdAndUpdate(req.params.shoppingListId, req.value.body);
+            const shoppingList = await ShoppingList
+                .findByIdAndUpdate(req.params.shoppingListId, req.value.body)
+                .populate('ingredients');
             res.status(200).json(shoppingList);
         }catch (err){
             next(err);

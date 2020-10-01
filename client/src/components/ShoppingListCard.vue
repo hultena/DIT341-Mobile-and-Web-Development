@@ -1,8 +1,12 @@
 <template>
   <div>
-  <b-card @click="setChosenCard">
+  <b-card>
+    <b-card-header v-if="state">
+      <ingredient-search-bar></ingredient-search-bar>
+      {{shoppingList._id}}
+    </b-card-header>
     <b-list-group flush>
-      <b-list-group-item v-for="ingredient in allIngredients" :key="ingredient._id">{{ ingredient.name }}</b-list-group-item>
+      <b-list-group-item v-for="ingredient in this.shoppingList.ingredients" :key="ingredient._id">{{ ingredient.name }}</b-list-group-item>
     </b-list-group>
 
     <b-card-footer>
@@ -15,10 +19,13 @@
 
 <script>
 import { mapActions, mapGetters } from 'vuex'
+import IngredientSearchBar from '@/components/IngredientSearchBar'
 export default {
   name: 'ShoppingListCard',
+  components: { IngredientSearchBar },
   data() {
     return {
+      ingredients: [],
       state: false
     }
   },
@@ -26,7 +33,7 @@ export default {
     shoppingList: {}
   },
   methods: {
-    ...mapActions(['selectShoppingList', 'deleteShoppingList']),
+    ...mapActions(['selectShoppingList', 'deleteShoppingList', 'clearSelectedIngredient', 'patchShoppingList']),
     setChosenCard() {
       this.selectShoppingList(this.shoppingList)
     },
@@ -37,12 +44,26 @@ export default {
       this.deleteShoppingList(this.shoppingList)
     },
     edit() {
-      // TODO: Enable editing of card
+      // TODO: Add saving of card when state ends
+      this.setChosenCard()
+      if (this.state) {
+        this.patchShoppingList(this.shoppingList)
+        console.log(this.shoppingList)
+      }
+      // shift the state
       this.state = !this.state
     }
   },
   computed: {
-    ...mapGetters([])
+    ...mapGetters(['oneIngredient'])
+  },
+  watch: {
+    '$store.state.ingredients.selectedIngredient': function () {
+      if (this.state && this.oneIngredient) {
+        this.shoppingList.ingredients.push(this.oneIngredient)
+        this.clearSelectedIngredient()
+      }
+    }
   }
 }
 </script>
