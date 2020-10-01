@@ -33,7 +33,7 @@ export default {
     shoppingList: {}
   },
   methods: {
-    ...mapActions(['selectShoppingList', 'deleteShoppingList', 'clearSelectedIngredient', 'patchShoppingList']),
+    ...mapActions(['selectShoppingList', 'deleteShoppingList', 'clearSelectedIngredient', 'putShoppingList']),
     setChosenCard() {
       this.selectShoppingList(this.shoppingList)
     },
@@ -44,11 +44,9 @@ export default {
       this.deleteShoppingList(this.shoppingList)
     },
     edit() {
-      // TODO: Add saving of card when state ends
       this.setChosenCard()
       if (this.state) {
-        this.patchShoppingList(this.shoppingList)
-        console.log(this.shoppingList)
+        this.putShoppingList(this.shoppingList)
       }
       // shift the state
       this.state = !this.state

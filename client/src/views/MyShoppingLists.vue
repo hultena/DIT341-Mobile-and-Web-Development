@@ -24,7 +24,8 @@ export default {
     ...mapActions(['getShoppingLists', 'postShoppingList', 'getIngredients']),
     addShoppingList() {
       const shoppingList = {
-        user: this.loggedInUser._id
+        user: this.loggedInUser._id,
+        ingredients: []
       }
       this.postShoppingList(shoppingList)
     }
