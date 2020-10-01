@@ -6,7 +6,12 @@
       {{shoppingList._id}}
     </b-card-header>
     <b-list-group flush>
-      <b-list-group-item v-for="ingredient in this.shoppingList.ingredients" :key="ingredient._id">{{ ingredient.name }}</b-list-group-item>
+      <b-list-group-item v-for="ingredient in this.shoppingList.ingredients" :key="ingredient._id">
+        {{ ingredient.name }}
+          <b-icon-trash
+            v-if="state"
+            @click="catchEvent(ingredient._id)"/>
+      </b-list-group-item>
     </b-list-group>
 
     <b-card-footer>
@@ -33,7 +38,7 @@ export default {
     shoppingList: {}
   },
   methods: {
-    ...mapActions(['selectShoppingList', 'deleteShoppingList', 'clearSelectedIngredient', 'patchShoppingList']),
+    ...mapActions(['selectShoppingList', 'deleteShoppingList', 'clearSelectedIngredient', 'putShoppingList']),
     setChosenCard() {
       this.selectShoppingList(this.shoppingList)
     },
@@ -44,14 +49,18 @@ export default {
       this.deleteShoppingList(this.shoppingList)
     },
     edit() {
-      // TODO: Add saving of card when state ends
       this.setChosenCard()
       if (this.state) {
-        this.patchShoppingList(this.shoppingList)
-        console.log(this.shoppingList)
+        this.putShoppingList(this.shoppingList)
       }
       // shift the state
       this.state = !this.state
+    },
+    catchEvent(event) {
+      const idx = this.shoppingList.ingredients.findIndex(function (shoppingList) {
+        return shoppingList._id === event
+      })
+      this.shoppingList.ingredients.splice(idx, 1)
     }
   },
   computed: {

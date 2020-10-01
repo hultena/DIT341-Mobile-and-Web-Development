@@ -73,10 +73,10 @@ const actions = {
       return err.response.data
     }
   },
-  async patchIngredient({ commit }, ingredient) {
+  async putIngredient({ commit }, ingredient) {
     try {
-      const res = await Api.patch(`/users/${ingredient.user}/ingredients/`, ingredient)
-      commit('updatedIngredient', res.data)
+      await Api.put(`/users/${ingredient.user}/ingredients/${ingredient._id}`, ingredient)
+      commit('updatedIngredient', ingredient)
     } catch (err) {
       return err.response.data
     }
