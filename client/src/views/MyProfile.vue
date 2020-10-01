@@ -1,7 +1,7 @@
 <template>
   <div class='profile-page'>
 
-    <b-container>
+    <b-container class='my-5'>
       <b-row>
         <b-col>
           <h1>
