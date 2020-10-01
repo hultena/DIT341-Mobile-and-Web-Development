@@ -80,6 +80,8 @@ export default {
   },
 
   methods: {
+    // TODO: Get vuex to work and figure out why you get returned undefined.
+
     getRecipes() {
       Api.get('/recipes')
         .then(response => {
