@@ -67,6 +67,14 @@
         />
       </b-form-group>
 
+      <!-- File uploader for recipe image -->
+      <div class='mb-5'>
+        <p>
+          Upload an image of your recipe
+        </p>
+        <FileUploader />
+      </div>
+
       <!-- TODO: Ingredients ??? stuff fields -->
 
       <!-- Allergy checkboxes -->
@@ -107,7 +115,7 @@
         type='submit'
         variant='primary'
         block
-        class='mt-5'
+        class='my-5'
       >
         Create recipe
       </b-button>
@@ -122,6 +130,7 @@ import {
   ValidationProvider,
   ValidationObserver
 } from 'vee-validate'
+import FileUploader from '@/components/FileUploader'
 import AddInstructions from './AddInstructions'
 
 export default {
@@ -130,7 +139,8 @@ export default {
   components: {
     ValidationProvider,
     ValidationObserver,
-    AddInstructions
+    AddInstructions,
+    FileUploader
   },
 
   data() {
