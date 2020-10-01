@@ -22,10 +22,6 @@ export default {
   },
   computed: {
     ...mapGetters(['allUserIngredients', 'loggedInUser'])
-  },
-  created() {
-    const userId = this.loggedInUser._id
-    this.getUserIngredients(userId)
   }
 }
 </script>

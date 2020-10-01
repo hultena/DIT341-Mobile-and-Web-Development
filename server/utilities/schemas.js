@@ -94,7 +94,9 @@ module.exports = {
         user: Joi.string().regex(regexPattern).required(),
         name: Joi.string().required(),
         foodType: Joi.string(),
-        description: Joi.string().max(140)
+        description: Joi.string().max(140),
+        __v: Joi.number(),
+        _id: Joi.string().regex(regexPattern)
     }),
 
     patchIngredientSchema: Joi.object().keys({
@@ -113,7 +115,6 @@ module.exports = {
                 foodType: Joi.string(),
                 description: Joi.string(),
                 __v: Joi.number()
-
             })
         ),
         user: Joi.string(),
@@ -124,8 +125,16 @@ module.exports = {
     putShoppingListSchema: Joi.object().keys({
         ingredients: Joi.array().items(
             Joi.object().keys({
-                _id: Joi.string().regex(regexPattern)
+                _id: Joi.string().regex(regexPattern),
+                user: Joi.string(),
+                name: Joi.string(),
+                foodType: Joi.string(),
+                description: Joi.string(),
+                __v: Joi.number()
             })
-        ).required()
+        ).required(),
+        user: Joi.string(),
+        _id: Joi.string().regex(regexPattern),
+        __v: Joi.number()
     })
 }
