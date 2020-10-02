@@ -98,10 +98,10 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(['oneRecipe'])
+    ...mapGetters(['selectedRecipe'])
   },
   created() {
-    this.recipe = this.oneRecipe
+    this.recipe = this.selectedRecipe
   }
 }
 </script>
