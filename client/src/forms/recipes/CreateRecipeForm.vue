@@ -137,7 +137,7 @@ import FileUploader from '@/components/FileUploader'
 import AddInstructions from './AddInstructions'
 
 export default {
-  name: 'CreateRecipe',
+  name: 'CreateRecipeForm',
 
   components: {
     ValidationProvider,
