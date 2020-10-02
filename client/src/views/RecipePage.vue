@@ -18,7 +18,7 @@
 
             <b-list-group-item>
               <!-- todo: Have author link lead to profile page of recipe author. -->
-              Author: <b-link href="#">{{ recipe.user }}</b-link>
+              Author: <b-link href="#">{{ recipe.user.username }}</b-link>
             </b-list-group-item>
 
             <b-list-group-item>
@@ -27,7 +27,7 @@
 
             <b-list-group-item>
               <!-- todo: add likes function -->
-              <b-icon-heart /> {{ recipe.likes }}
+              <b-icon-heart @click="like" /> {{ recipe.likes }}
             </b-list-group-item>
 
           </b-list-group>
@@ -79,7 +79,7 @@
 <script>
 import ListIngredients from '@/components/ListIngredients'
 import ListInstructions from '@/components/ListInstructions'
-import { mapGetters } from 'vuex'
+import { mapGetters, mapActions } from 'vuex'
 export default {
   name: 'RecipePage',
   components: {
@@ -89,6 +89,13 @@ export default {
   data() {
     return {
       recipe: null
+    }
+  },
+  methods: {
+    ...mapActions(['likeRecipe']),
+    like() {
+      // TODO: add publicly available patch request to increase likes.
+      console.log('this recipe was liked')
     }
   },
   computed: {

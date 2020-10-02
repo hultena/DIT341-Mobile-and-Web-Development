@@ -110,11 +110,12 @@ module.exports = {
 
     getAllDatabaseRecipes: async function (req, res, next) {
         try {
-            const recipes = await Recipe.find(req.value.filter)
+            const recipes = await Recipe.find(req.value.filter).populate('ingredients user')
                 .select(req.value.select)
                 .sort(req.value.sort)
                 .skip(req.value.page)
                 .limit(req.value.limit);
+            console.log(recipes)
             res.status(200).json(recipes);
 
         } catch (error) {

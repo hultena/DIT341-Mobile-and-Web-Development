@@ -89,6 +89,9 @@ module.exports = {
             Joi.string()
         )
     }),
+    addLikeSchema: Joi.Object().keys({
+        // todo: fix this to enable liking of recipes
+    }),
 
     newIngredientSchema: Joi.object().keys({
         user: Joi.string().regex(regexPattern).required(),

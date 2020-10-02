@@ -70,10 +70,22 @@ const actions = {
       return err.response.data
     }
   },
+  async likeRecipe({ commit }, recipe) {
+    try {
+      await Api.patch(`/recipes/${recipe._id}`, recipe)
+      commit('updatedRecipe', recipe)
+    } catch (err) {
+      return err.response.data
+    }
+  },
 
   async patchRecipe({ commit }, recipe) {
-    const res = await Api.patch(`/users/${recipe.user}/recipes/${recipe._id}`, recipe)
-    commit('updatedRecipe', res.data)
+    try {
+      await Api.patch(`/users/${recipe.user}/recipes/${recipe._id}`, recipe)
+      commit('updatedRecipe', recipe)
+    } catch (err) {
+      return err.response.data
+    }
   },
   selectRecipe({ commit }, recipe) {
     commit('setOneRecipe', recipe)

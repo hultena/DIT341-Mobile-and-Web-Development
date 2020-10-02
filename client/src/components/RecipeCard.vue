@@ -9,7 +9,7 @@
     <b-card-text>
 
       <b-card-sub-title class='mb-3'>
-        <b-icon-heart /> {{ recipe.likes }}, created by {{ recipe.username }}
+        <b-icon-heart /> {{ recipe.likes }}, created by {{ recipe.user.username }}
       </b-card-sub-title>
 
       <p>
