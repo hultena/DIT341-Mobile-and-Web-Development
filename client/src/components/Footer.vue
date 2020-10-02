@@ -1,5 +1,5 @@
 <template>
-    <footer class='footer'>
+    <footer>
         <b-nav align="center">
             <b-nav-item to="/">
                 <img src="../assets/YummyLogo.svg" class="logo"/>
@@ -23,7 +23,5 @@ export default {
 </script>
 
 <style scoped>
-.footer {
-}
 .logo {}
 </style>
