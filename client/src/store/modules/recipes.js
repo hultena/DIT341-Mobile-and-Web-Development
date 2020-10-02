@@ -51,7 +51,7 @@ const actions = {
 
   async getRecipes({ commit }) {
     try {
-      const res = await Api.get('/recipes')
+      const res = await Api.get('/recipes', { params: { page: click, limit: 5 } })
       commit('setRecipes', res.data)
     } catch (error) { return error.response.data }
   },
