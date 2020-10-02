@@ -89,6 +89,9 @@ module.exports = {
             Joi.string()
         )
     }),
+    addLikeSchema: Joi.object().keys({
+        likes: Joi.number()
+    }),
 
     newIngredientSchema: Joi.object().keys({
         user: Joi.string().regex(regexPattern).required(),

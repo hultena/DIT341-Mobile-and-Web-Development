@@ -18,7 +18,7 @@
 
             <b-list-group-item>
               <!-- todo: Have author link lead to profile page of recipe author. -->
-              Author: <b-link href="#">{{ recipe.user }}</b-link>
+              Author: <b-link href="#">{{ recipe.user.username }}</b-link>
             </b-list-group-item>
 
             <b-list-group-item>
@@ -27,7 +27,7 @@
 
             <b-list-group-item>
               <!-- todo: add likes function -->
-              <b-icon-heart /> {{ recipe.likes }}
+              <b-icon-heart @click="like" /> {{ recipe.likes }}
             </b-list-group-item>
 
           </b-list-group>
@@ -51,7 +51,7 @@
             Ingredients
           </h2>
 
-          <ListIngredients />
+          <ListIngredients :ingredients="recipe.ingredients" />
 
         </b-col>
         <b-col>
@@ -68,7 +68,7 @@
             Instructions
           </h2>
 
-          <ListInstructions />
+          <ListInstructions :instructions="recipe.instructions" />
 
         </b-col>
       </b-row>
@@ -79,7 +79,7 @@
 <script>
 import ListIngredients from '@/components/ListIngredients'
 import ListInstructions from '@/components/ListInstructions'
-
+import { mapGetters, mapActions } from 'vuex'
 export default {
   name: 'RecipePage',
   components: {
@@ -88,16 +88,20 @@ export default {
   },
   data() {
     return {
-      recipe: {
-        name: 'Chocolate cupcakes',
-        likes: 38,
-        createdOn: '2020-08-11',
-        user: 'Username',
-        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Id venenatis a condimentum vitae sapien pellentesque habitant morbi tristique. Eu sem integer vitae justo eget magna fermentum. Rhoncus dolor purus non enim. Mattis molestie a iaculis at erat. In vitae turpis massa sed elementum tempus egestas. Tristique nulla aliquet enim tortor at auctor urna nunc id.'
-      },
-      ingredients: [{}],
-      instructions: [{}]
+      recipe: null
     }
+  },
+  methods: {
+    ...mapActions(['likeRecipe']),
+    like() {
+      this.likeRecipe(this.recipe)
+    }
+  },
+  computed: {
+    ...mapGetters(['oneRecipe'])
+  },
+  created() {
+    this.recipe = this.oneRecipe
   }
 }
 </script>

@@ -1,8 +1,8 @@
 <template>
   <b-list-group>
     <b-list-group-item
-      v-for='(ingredient, index) in props.ingredients'
-      :key='index'
+      v-for='ingredient in ingredients'
+      :key='ingredient._id'
     >
 
       <!-- todo: Populate list with ingredients, with qty, measurment and name -->

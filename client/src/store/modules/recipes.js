@@ -3,7 +3,8 @@ import { Api } from '@/Api'
 const state = {
   // put the state here
   recipes: [],
-  userRecipes: []
+  userRecipes: [],
+  oneRecipe: null
 }
 
 const getters = {
@@ -14,6 +15,10 @@ const getters = {
 
   allUserRecipes: function (state) {
     return state.userRecipes
+  },
+
+  oneRecipe: function (state) {
+    return state.oneRecipe
   }
 }
 
@@ -26,6 +31,10 @@ const mutations = {
 
   setRecipes: function (state, recipes) {
     state.recipes = recipes
+  },
+
+  setOneRecipe: function (state, recipe) {
+    state.oneRecipe = recipe
   },
 
   newRecipe: function (state, recipe) {
@@ -61,10 +70,27 @@ const actions = {
       return err.response.data
     }
   },
+  async likeRecipe({ commit }, recipe) {
+    try {
+      const likes = { likes: recipe.likes + 1 }
+      recipe.likes += 1
+      await Api.patch(`/recipes/${recipe._id}`, likes)
+      commit('updatedRecipe', recipe)
+    } catch (err) {
+      return err.response.data
+    }
+  },
 
   async patchRecipe({ commit }, recipe) {
-    const res = await Api.patch(`/users/${recipe.user}/recipes/${recipe._id}`, recipe)
-    commit('updatedRecipe', res.data)
+    try {
+      await Api.patch(`/users/${recipe.user}/recipes/${recipe._id}`, recipe)
+      commit('updatedRecipe', recipe)
+    } catch (err) {
+      return err.response.data
+    }
+  },
+  selectRecipe({ commit }, recipe) {
+    commit('setOneRecipe', recipe)
   }
 }
 

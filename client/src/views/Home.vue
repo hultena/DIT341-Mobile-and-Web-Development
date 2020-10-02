@@ -1,40 +1,68 @@
 <template>
-  <div>
-    <b-jumbotron header="DIT341 Frontend" lead="Welcome to your DIT341 Frontend Vue.js App">
-      <b-button class="btn_message" variant="primary" v-on:click="getMessage()" >Get Message from Server</b-button>
-      <p>Message from the server:<br/>
-      {{ message }}</p>
-    </b-jumbotron>
-  </div>
+  <b-container class='mb-5'>
+
+    <b-row class='mt-5 mb-3'>
+      <b-col class='mt-5'>
+        <h1>
+          Lorem ipsum dolor sit amet
+        </h1>
+        <h2>
+          Lorem ipsum dolor sit amet, consectetur
+        </h2>
+      </b-col>
+    </b-row>
+
+    <b-row>
+      <b-col>
+        <RecipeSearch />
+      </b-col>
+    </b-row>
+    <b-row>
+      <b-col v-for='recipe in allRecipes' :key='recipe._id'>
+        <recipe-card :recipe='recipe' />
+      </b-col>
+    </b-row>
+
+    <b-row>
+      <b-col>
+        <b-button
+          variant='primary'
+          @click='expandResults'
+          block
+          class='mt-4 mb-5'
+        >
+          Show more results
+        </b-button>
+      </b-col>
+    </b-row>
+
+  </b-container>
 </template>
 
 <script>
-// @ is an alias to /src
-import { Api } from '@/Api'
-
+import RecipeSearch from '@/components/RecipeSearch'
+import { mapGetters, mapActions } from 'vuex'
+import RecipeCard from '@/components/RecipeCard'
 export default {
   name: 'home',
+  components: { RecipeCard, RecipeSearch },
   data() {
     return {
       message: 'none'
     }
   },
   methods: {
-    getMessage() {
-      Api.get('/')
-        .then(response => {
-          this.message = response.data.message
-        })
-        .catch(error => {
-          this.message = error
-        })
+    ...mapActions(['getRecipes']),
+
+    expandResults() {
+      // todo: add # number of recipes to the end of the array of displayed recipes. Or pagniation, which ever works best.
     }
+  },
+  computed: {
+    ...mapGetters(['allRecipes'])
+  },
+  created() {
+    this.getRecipes()
   }
 }
 </script>
-
-<style>
-.btn_message {
-  margin-bottom: 1em;
-}
-</style>
