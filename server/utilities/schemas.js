@@ -90,7 +90,7 @@ module.exports = {
         )
     }),
     addLikeSchema: Joi.object().keys({
-        // todo: fix this to enable liking of recipes
+        likes: Joi.number()
     }),
 
     newIngredientSchema: Joi.object().keys({
