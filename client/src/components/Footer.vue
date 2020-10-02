@@ -2,7 +2,7 @@
     <footer>
       <b-container>
 
-        <b-row>
+        <b-row class='mb-2'>
           <b-col>
             <router-link to='/'>
               <img
