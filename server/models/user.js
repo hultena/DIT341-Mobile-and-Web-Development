@@ -20,6 +20,9 @@ const userSchema = new Schema({
         required: true,
         select: false
     },
+    image: {
+        type: String
+    },
     shoppingLists: [{
         type: Schema.Types.ObjectId,
         ref: 'shoppinglist'

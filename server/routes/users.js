@@ -14,6 +14,8 @@ const router = express.Router();
 // TODO: Perhaps change this endpoint if needed
 router.route('/auth')
     .post(users.authUser);
+router.route('/deauth')
+    .post(users.deauthUser)
 
 // ------------------ User
 

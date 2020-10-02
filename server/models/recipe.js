@@ -15,8 +15,8 @@ const recipeSchema = new Schema({
     * Below enums are hardcoded so that we can unify its
     * definitions to end-users.
     */
-    cuisine: String,
-    dietaryRestriction: [{
+    description: String,
+    dietaryRestrictions: [{
         type: String,
         enum: [
             'Vegan',
@@ -32,7 +32,7 @@ const recipeSchema = new Schema({
         type: String,
         enum: [
             'Gluten',
-            'Peanut',
+            'Peanuts',
             'Nuts',
             'Lactose',
             'Egg',
@@ -56,8 +56,7 @@ const recipeSchema = new Schema({
     * TODO: Figure out the best way to store an image in a recipe.
     */
     image: {
-        type: String,
-        data: Buffer
+        type: String
     },
     /*
     * Instructions are stored as an array in order

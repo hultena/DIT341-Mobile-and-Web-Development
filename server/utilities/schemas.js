@@ -10,6 +10,8 @@ module.exports = {
 
     patchUserSchema: Joi.object().keys({
         username: Joi.string(),
+        _id: Joi.string().regex(regexPattern),
+        image: Joi.string(),
         email: Joi.string().email(),
         password: Joi.string(),
         recipes: Joi.array().items( Joi.object().keys( { _id: Joi.string().regex(regexPattern) } ) ),
@@ -21,8 +23,8 @@ module.exports = {
     newRecipeSchema: Joi.object().keys({
         name: Joi.string().required(),
         category: Joi.string().valid('Baking', 'Cooking').required(),
-        cuisine: Joi.string(),
-        dietaryRestriction: Joi.array().items(
+        description: Joi.string(),
+        dietaryRestrictions: Joi.array().items(
             Joi.string().valid(
             'Vegan',
             'Ovo-Vegetarian',
@@ -35,7 +37,7 @@ module.exports = {
         allergies: Joi.array().items(
             Joi.string().valid(
             'Gluten',
-            'Peanut',
+            'Peanuts',
             'Nuts',
             'Lactose',
             'Egg',
@@ -56,8 +58,8 @@ module.exports = {
     patchRecipeSchema: Joi.object().keys({
         name: Joi.string(),
         category: Joi.string().valid('Baking', 'Cooking'),
-        cuisine: Joi.string(),
-        dietaryRestriction: Joi.array().items(
+        description: Joi.string(),
+        dietaryRestrictions: Joi.array().items(
             Joi.string().valid(
                 'Vegan',
                 'Ovo-Vegetarian',
@@ -92,7 +94,9 @@ module.exports = {
         user: Joi.string().regex(regexPattern).required(),
         name: Joi.string().required(),
         foodType: Joi.string(),
-        description: Joi.string().max(140)
+        description: Joi.string().max(140),
+        __v: Joi.number(),
+        _id: Joi.string().regex(regexPattern)
     }),
 
     patchIngredientSchema: Joi.object().keys({
@@ -105,16 +109,32 @@ module.exports = {
     patchShoppingListSchema: Joi.object().keys({
         ingredients: Joi.array().items(
             Joi.object().keys({
-                _id: Joi.string().regex(regexPattern)
+                _id: Joi.string().regex(regexPattern),
+                user: Joi.string(),
+                name: Joi.string(),
+                foodType: Joi.string(),
+                description: Joi.string(),
+                __v: Joi.number()
             })
-        )
+        ),
+        user: Joi.string(),
+        _id: Joi.string().regex(regexPattern),
+        __v: Joi.number()
     }),
 
     putShoppingListSchema: Joi.object().keys({
         ingredients: Joi.array().items(
             Joi.object().keys({
-                _id: Joi.string().regex(regexPattern)
+                _id: Joi.string().regex(regexPattern),
+                user: Joi.string(),
+                name: Joi.string(),
+                foodType: Joi.string(),
+                description: Joi.string(),
+                __v: Joi.number()
             })
-        ).required()
+        ).required(),
+        user: Joi.string(),
+        _id: Joi.string().regex(regexPattern),
+        __v: Joi.number()
     })
 }
