@@ -17,38 +17,33 @@
         <RecipeSearch />
       </b-col>
     </b-row>
+    <b-row>
+      <recipe-card v-for="recipe in allRecipes" :key="recipe._id" :recipe="recipe"/>
+    </b-row>
 
   </b-container>
 </template>
 
 <script>
-// @ is an alias to /src
-// import { Api } from '@/Api'
 import RecipeSearch from '@/components/RecipeSearch'
-
+import { mapGetters, mapActions } from 'vuex'
+import RecipeCard from '@/components/RecipeCard'
 export default {
   name: 'home',
-
-  components: { RecipeSearch },
-
+  components: { RecipeCard, RecipeSearch },
   data() {
     return {
       message: 'none'
     }
   },
-
   methods: {
-    /*
-    getMessage() {
-      Api.get('/')
-        .then(response => {
-          this.message = response.data.message
-        })
-        .catch(error => {
-          this.message = error
-        })
-    }
-    */
+    ...mapActions(['getRecipes'])
+  },
+  computed: {
+    ...mapGetters(['allRecipes'])
+  },
+  created() {
+    this.getRecipes()
   }
 }
 </script>
