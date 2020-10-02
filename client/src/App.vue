@@ -5,25 +5,17 @@
     </header>
     <!-- Render the content of the current page view -->
     <router-view/>
-    <footer>
-      <router-link to='/'>
-        <img src="./assets/YummyLogo.svg">
-      </router-link>
-      <router-link to='/about'>
-        About
-      </router-link>
-      <router-link to='/faq'>
-        FAQ
-      </router-link>
-    </footer>
+    <Footer />
   </div>
 </template>
 
 <script>
 import NavigationHeader from '@/components/NavigationHeader'
+import Footer from '@/components/Footer'
 export default {
   components: {
-    NavigationHeader
+    NavigationHeader,
+    Footer
   }
 
 }
