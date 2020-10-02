@@ -1,8 +1,39 @@
 const User = require('../models/user');
-const Recipe = require('../models/recipe');
 const ShoppingList = require('../models/shoppinglist');
 
 module.exports = {
+
+    // ------------------ Auth User
+    authUser: async function(req, res, next){
+        try {
+            const user = await User.findOne(req.body);
+            if(user === null){
+                // TODO: Probably fix this res but who knows.
+                res.status(401).json({username:"Invalid credentials",password:"Invalid credentials"});
+            }else {
+                req.session.loggedin = true;
+                req.session._id = user._id;
+                // TODO: Don't know if this is right. We try this.
+                res.status(200).json(user);
+            }
+        }catch (err) {
+            next(err);
+        }
+    },
+    deauthUser: async function(req, res, next){
+        try {
+            if (req.session.loggedin) {
+                req.session.destroy(function () {
+                    res.clearCookie('connect.sid');
+                    res.status(204).json(null);
+                });
+            }else{
+                res.status(204);
+            }
+        }catch (err) {
+            next(err);
+        }
+    },
 
     // ------------------ User
 
@@ -87,17 +118,17 @@ module.exports = {
 
     getAllUserShoppingLists: async function(req, res, next){
         try {
-            const user = await User.findById(req.params.userId)
-                .populate('shoppingLists')
+            const shoppingLists = await ShoppingList.find({user: req.params.userId})
+                .populate('ingredients')
                 .select(req.value.select)
                 .sort(req.value.sort)
                 .skip(req.value.page)
                 .limit(req.value.limit);
 
-            if(user === null){
+            if(shoppingLists === null){
                 next();
             }else {
-                res.status(200).json(user.shoppingLists);
+                res.status(200).json(shoppingLists);
             }
         }catch (err) {
             next(err);
@@ -155,7 +186,9 @@ module.exports = {
 
     updateUserShoppingList: async function (req, res, next){
         try{
-            const shoppingList = await ShoppingList.findByIdAndUpdate(req.params.shoppingListId, req.value.body);
+            const shoppingList = await ShoppingList
+                .findByIdAndUpdate(req.params.shoppingListId, req.value.body)
+                .populate('ingredients');
             res.status(200).json(shoppingList);
         }catch (err){
             next(err);

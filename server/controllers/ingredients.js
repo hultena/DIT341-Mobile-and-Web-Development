@@ -1,5 +1,4 @@
 const Ingredient = require('../models/ingredient');
-const shoppinglist = require('../models/shoppinglist');
 const User = require('../models/user');
 
 module.exports = {
@@ -7,7 +6,6 @@ module.exports = {
     getAllIngredients: async function (req, res, next) {
         try {
             const ingredients = await Ingredient.find(req.value.filter)
-                .populate('user')
                 .select(req.value.select)
                 .sort(req.value.sort)
                 .skip(req.value.page)

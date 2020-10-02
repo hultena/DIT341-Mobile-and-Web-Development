@@ -1,0 +1,60 @@
+<template>
+  <b-container>
+
+    <b-row>
+      <b-col>
+        <b-button
+          @click='createRecipe'
+          block
+          variant='outline-primary'
+        >
+          <b-icon-plus-circle />
+          Create new recipe
+        </b-button>
+      </b-col>
+    </b-row>
+
+    <b-row class='mt-3 mb-5'>
+      <b-col v-for='(recipe, index) in allUserRecipes' :key='index'>
+        <MyRecipeCard
+          :recipe='recipe'
+          class='my-3'
+        />
+      </b-col>
+    </b-row>
+
+  </b-container>
+</template>
+
+<script>
+import { mapGetters, mapActions } from 'vuex'
+
+import MyRecipeCard from '@/components/MyRecipeCard'
+export default {
+  name: 'MyRecipes',
+
+  components: { MyRecipeCard },
+
+  computed: {
+    ...mapGetters(['allUserRecipes', 'loggedInUser'])
+  },
+
+  created() {
+    const userId = this.loggedInUser._id
+    this.getUserRecipes(userId)
+    console.log(this.allUserRecipes)
+  },
+
+  methods: {
+    ...mapActions(['getUserRecipes']),
+
+    createRecipe() {
+      this.$router.push('/create-recipe')
+    }
+  }
+}
+</script>
+
+<style scoped>
+
+</style>

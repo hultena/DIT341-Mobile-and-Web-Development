@@ -1,2018 +1,2186 @@
 {
-  "info": {
-    "_postman_id": "17519af6-09bf-49a8-8e8c-e04ae001f9d5",
-    "name": "server",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
-  },
-  "item": [
-    {
-      "name": "user",
-      "item": [
-        {
-          "name": "add user 1",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "id": "ab5832aa-ab15-4535-9dbb-12e1a8ae738a",
-                "exec": [
-                  "var jsonData = pm.response.json();",
-                  "postman.setEnvironmentVariable(\"userId\", jsonData._id);",
-                  "",
-                  "pm.test(\"response is CREATED\", function() {",
-                  "    pm.response.to.have.status(201);",
-                  "});",
-                  "",
-                  "pm.test(\"response should have valid JSON data\", function() {",
-                  "    pm.expect(jsonData.username).to.eql('Alexander');",
-                  "    pm.expect(jsonData.email).to.eql('asd@asd.com');",
-                  "    pm.expect(jsonData.password).to.eql('abc123')",
-                  "});"
-                ],
-                "type": "text/javascript"
-              }
-            }
-          ],
-          "request": {
-            "method": "POST",
-            "header": [
-              {
-                "key": "Content-Type",
-                "username": "Content-Type",
-                "value": "application/json",
-                "type": "text"
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": "{\r\n\t\"username\":\"Alexander\",\r\n\t\"email\":\"asd@asd.com\",\r\n\t\"password\":\"abc123\"\r\n}"
-            },
-            "url": {
-              "raw": "{{host}}/api/users/",
-              "host": [
-                "{{host}}"
-              ],
-              "path": [
-                "api",
-                "users",
-                ""
-              ]
-            },
-            "description": "Posting a user."
-          },
-          "response": []
-        },
-        {
-          "name": "get all users",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "id": "61fa734b-2cb6-4cb1-87eb-8b528b0e4910",
-                "exec": [
-                  "var jsonData = pm.response.json();",
-                  "var arrayLength = jsonData.length;",
-                  "",
-                  "pm.test(\"response is OK\", function() {",
-                  "    pm.response.to.have.status(200);",
-                  "})",
-                  "",
-                  "pm.test(\"last entry in the array should be the posted user\", function() {",
-                  "    pm.expect(jsonData[arrayLength-1].username).to.eql(\"Alexander\");",
-                  "    pm.expect(jsonData[arrayLength-1].email).to.eql('asd@asd.com');    ",
-                  "});"
-                ],
-                "type": "text/javascript"
-              }
-            }
-          ],
-          "request": {
-            "method": "GET",
-            "header": [],
-            "url": {
-              "raw": "{{host}}/api/users/",
-              "host": [
-                "{{host}}"
-              ],
-              "path": [
-                "api",
-                "users",
-                ""
-              ]
-            },
-            "description": "Testing to get all users"
-          },
-          "response": []
-        },
-        {
-          "name": "get specific user",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "id": "cfe22b96-bce5-4c77-8aa8-6f31c2e732eb",
-                "exec": [
-                  "var jsonData = pm.response.json();",
-                  "",
-                  "pm.test(\"response is OK\", function() {",
-                  "    pm.response.to.have.status(200);",
-                  "});",
-                  "",
-                  "pm.test(\"response should have valid JSON data\", function() {",
-                  "    pm.expect(jsonData.username).to.eql('Alexander');",
-                  "    pm.expect(jsonData.email).to.eql('asd@asd.com');",
-                  "});"
-                ],
-                "type": "text/javascript"
-              }
-            }
-          ],
-          "request": {
-            "method": "GET",
-            "header": [],
-            "url": {
-              "raw": "{{host}}/api/users/{{userId}}",
-              "host": [
-                "{{host}}"
-              ],
-              "path": [
-                "api",
-                "users",
-                "{{userId}}"
-              ]
-            },
-            "description": "Testing to get specific user."
-          },
-          "response": []
-        },
-        {
-          "name": "delete all users",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "id": "69fa09db-89ba-41c4-8532-549421d796cc",
-                "exec": [
-                  "var jsonData = pm.response.json();",
-                  "",
-                  "pm.test(\"response is OK\", function() {",
-                  "    pm.response.to.have.status(200);",
-                  "});",
-                  "",
-                  "pm.test(\"response should indicate deletion was successful\", function() {",
-                  "    pm.expect(jsonData.ok).to.eql(1);    ",
-                  "    pm.expect(jsonData.deletedCount).to.eql(1);",
-                  "});"
-                ],
-                "type": "text/javascript"
-              }
-            }
-          ],
-          "request": {
-            "method": "DELETE",
-            "header": [],
-            "url": {
-              "raw": "{{host}}/api/users",
-              "host": [
-                "{{host}}"
-              ],
-              "path": [
-                "api",
-                "users"
-              ]
-            },
-            "description": "delete all users"
-          },
-          "response": []
-        },
-        {
-          "name": "get all users 2",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "id": "906f5fdd-2cb9-4868-b777-2c988ef24ce0",
-                "exec": [
-                  "var jsonData = pm.response.json();",
-                  "var arrayLength = jsonData.length;",
-                  "",
-                  "pm.test(\"response is OK\", function() {",
-                  "    pm.response.to.have.status(200);",
-                  "})",
-                  "",
-                  "pm.test(\"there should be no users\", function() {",
-                  "    pm.expect(arrayLength).to.eql(0);",
-                  "    ",
-                  "});"
-                ],
-                "type": "text/javascript"
-              }
-            }
-          ],
-          "request": {
-            "method": "GET",
-            "header": [],
-            "url": {
-              "raw": "{{host}}/api/users/",
-              "host": [
-                "{{host}}"
-              ],
-              "path": [
-                "api",
-                "users",
-                ""
-              ]
-            },
-            "description": "Testing to get all users"
-          },
-          "response": []
-        },
-        {
-          "name": "delete all users 2",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "id": "13801c86-d18f-424e-a56c-421abccb8e4a",
-                "exec": [
-                  "var jsonData = pm.response.json();",
-                  "",
-                  "pm.test(\"response is OK\", function() {",
-                  "    pm.response.to.have.status(200);",
-                  "});",
-                  "",
-                  "pm.test(\"response should indicate deletion was successful\", function() {",
-                  "    pm.expect(jsonData.ok).to.eql(1);",
-                  "    pm.expect(jsonData.deletedCount).to.eql(0);",
-                  "});"
-                ],
-                "type": "text/javascript"
-              }
-            }
-          ],
-          "request": {
-            "method": "DELETE",
-            "header": [],
-            "url": {
-              "raw": "{{host}}/api/users",
-              "host": [
-                "{{host}}"
-              ],
-              "path": [
-                "api",
-                "users"
-              ]
-            },
-            "description": "delete all users"
-          },
-          "response": []
-        },
-        {
-          "name": "add user 2",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "id": "009cfaf2-05d1-4bbe-bf84-2433521a7a74",
-                "exec": [
-                  "var jsonData = pm.response.json();",
-                  "postman.setEnvironmentVariable(\"userId\", jsonData._id);",
-                  "",
-                  "pm.test(\"response is CREATED\", function() {",
-                  "    pm.response.to.have.status(201);",
-                  "});",
-                  "",
-                  "pm.test(\"response should have valid JSON data\", function() {",
-                  "    pm.expect(jsonData.username).to.eql('Alexander');",
-                  "    pm.expect(jsonData.email).to.eql('asd@asd.com');",
-                  "    pm.expect(jsonData.password).to.eql('abc123')",
-                  "});"
-                ],
-                "type": "text/javascript"
-              }
-            }
-          ],
-          "request": {
-            "method": "POST",
-            "header": [
-              {
-                "key": "Content-Type",
-                "name": "Content-Type",
-                "value": "application/json",
-                "type": "text"
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": "{\r\n\t\"username\":\"Alexander\",\r\n\t\"email\":\"asd@asd.com\",\r\n\t\"password\":\"abc123\"\r\n}"
-            },
-            "url": {
-              "raw": "{{host}}/api/users/",
-              "host": [
-                "{{host}}"
-              ],
-              "path": [
-                "api",
-                "users",
-                ""
-              ]
-            },
-            "description": "Posting a user."
-          },
-          "response": []
-        },
-        {
-          "name": "get specific user 2",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "id": "fd3e767d-a800-4cd4-af27-b00de3da5712",
-                "exec": [
-                  "var jsonData = pm.response.json();",
-                  "",
-                  "pm.test(\"response is OK\", function() {",
-                  "    pm.response.to.have.status(200);",
-                  "});",
-                  "",
-                  "pm.test(\"response should have valid JSON data\", function() {",
-                  "    pm.expect(jsonData.username).to.eql('Alexander');",
-                  "    pm.expect(jsonData.email).to.eql('asd@asd.com');",
-                  "    pm.expect(jsonData._id).to.eql(pm.environment.get('userId'));",
-                  "});"
-                ],
-                "type": "text/javascript"
-              }
-            }
-          ],
-          "request": {
-            "method": "GET",
-            "header": [],
-            "url": {
-              "raw": "{{host}}/api/users/{{userId}}",
-              "host": [
-                "{{host}}"
-              ],
-              "path": [
-                "api",
-                "users",
-                "{{userId}}"
-              ]
-            },
-            "description": "Testing to get specific user."
-          },
-          "response": []
-        },
-        {
-          "name": "patch user",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "id": "5672bf68-b514-4b0d-9c45-09b248731e51",
-                "exec": [
-                  "var jsonData = pm.response.json();",
-                  "",
-                  "pm.test(\"response is OK\", function() {",
-                  "    pm.response.to.have.status(200);",
-                  "});",
-                  "",
-                  "pm.test(\"response should indicate correct user was updated\", function() {",
-                  "    pm.expect(jsonData._id).to.eql(pm.environment.get('userId'));",
-                  "});"
-                ],
-                "type": "text/javascript"
-              }
-            }
-          ],
-          "request": {
-            "method": "PATCH",
-            "header": [
-              {
-                "key": "Content-Type",
-                "name": "Content-Type",
-                "value": "application/json",
-                "type": "text"
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": "{\n    \"username\": \"Alexander2\",\n    \"email\": \"asd@asd.com\",\n    \"password\": \"abc123\"\n}"
-            },
-            "url": {
-              "raw": "{{host}}/api/users/{{userId}}",
-              "host": [
-                "{{host}}"
-              ],
-              "path": [
-                "api",
-                "users",
-                "{{userId}}"
-              ]
-            },
-            "description": "patching user"
-          },
-          "response": []
-        },
-        {
-          "name": "patch user 2",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "id": "e3928943-443c-49bb-9ed1-2d1ee101469b",
-                "exec": [
-                  "var jsonData = pm.response.json();",
-                  "",
-                  "pm.test(\"response is OK\", function() {",
-                  "    pm.response.to.have.status(200);",
-                  "});",
-                  "",
-                  "pm.test(\"response should indicate correct user was updated\", function() {",
-                  "    pm.expect(jsonData._id).to.eql(pm.environment.get('userId'));",
-                  "});"
-                ],
-                "type": "text/javascript"
-              }
-            }
-          ],
-          "request": {
-            "method": "PATCH",
-            "header": [
-              {
-                "key": "Content-Type",
-                "name": "Content-Type",
-                "type": "text",
-                "value": "application/json"
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": "{\n    \"username\": \"Alexander3\",\n    \"email\": \"asd@asd.com\",\n    \"password\": \"abc123\"\n}"
-            },
-            "url": {
-              "raw": "{{host}}/api/users/{{userId}}",
-              "host": [
-                "{{host}}"
-              ],
-              "path": [
-                "api",
-                "users",
-                "{{userId}}"
-              ]
-            },
-            "description": "patching user"
-          },
-          "response": []
-        },
-        {
-          "name": "replace user",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "id": "fe9f5353-022a-48aa-a65e-8d9bb295a949",
-                "exec": [
-                  "var jsonData = pm.response.json();",
-                  "",
-                  "pm.test(\"response is OK\", function() {",
-                  "    pm.response.to.have.status(200);",
-                  "});",
-                  "",
-                  "pm.test(\"response should indicate correct user was updated\", function() {",
-                  "    pm.expect(jsonData._id).to.eql(pm.environment.get('userId'));",
-                  "});"
-                ],
-                "type": "text/javascript"
-              }
-            }
-          ],
-          "request": {
-            "method": "PUT",
-            "header": [
-              {
-                "key": "Content-Type",
-                "name": "Content-Type",
-                "value": "application/json",
-                "type": "text"
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": "{\n    \"username\": \"Alexander4\",\n    \"email\": \"abc@abc.com\",\n    \"password\": \"abc1234\"\n}"
-            },
-            "url": {
-              "raw": "{{host}}/api/users/{{userId}}",
-              "host": [
-                "{{host}}"
-              ],
-              "path": [
-                "api",
-                "users",
-                "{{userId}}"
-              ]
-            },
-            "description": "putting user"
-          },
-          "response": []
-        },
-        {
-          "name": "replace user 2",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "id": "33094f14-f0fe-4ff7-9c99-9904c29707cb",
-                "exec": [
-                  "var jsonData = pm.response.json();",
-                  "",
-                  "pm.test(\"response is OK\", function() {",
-                  "    pm.response.to.have.status(200);",
-                  "});",
-                  "",
-                  "pm.test(\"response should indicate correct user was updated\", function() {",
-                  "    pm.expect(jsonData._id).to.eql(pm.environment.get('userId'));",
-                  "});"
-                ],
-                "type": "text/javascript"
-              }
-            }
-          ],
-          "request": {
-            "method": "PUT",
-            "header": [
-              {
-                "key": "Content-Type",
-                "name": "Content-Type",
-                "value": "application/json",
-                "type": "text"
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": "{\n    \"username\": \"Alexander5\",\n    \"email\": \"def@def.com\",\n    \"password\": \"abc12345\"\n}"
-            },
-            "url": {
-              "raw": "{{host}}/api/users/{{userId}}",
-              "host": [
-                "{{host}}"
-              ],
-              "path": [
-                "api",
-                "users",
-                "{{userId}}"
-              ]
-            },
-            "description": "putting user"
-          },
-          "response": []
-        },
-        {
-          "name": "add shoppinglist to user",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "id": "2dfc0bf3-d2d1-46f7-ad1c-211ec32609c8",
-                "exec": [
-                  "var jsonData = pm.response.json();",
-                  "postman.setEnvironmentVariable(\"shoppingListId\", jsonData._id);",
-                  "",
-                  "pm.test(\"response is CREATED\", function() {",
-                  "    pm.response.to.have.status(201);",
-                  "});",
-                  "",
-                  "pm.test(\"response should have valid JSON data\", function() {",
-                  "    pm.expect(jsonData.user).to.eql(pm.environment.get('userId'));",
-                  "});"
-                ],
-                "type": "text/javascript"
-              }
-            }
-          ],
-          "request": {
-            "method": "POST",
-            "header": [
-              {
-                "key": "Content-Type",
-                "name": "Content-Type",
-                "type": "text",
-                "value": "application/json"
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": "{\n\t\"ingredients\": []\n}"
-            },
-            "url": {
-              "raw": "{{host}}/api/users/{{userId}}/shoppinglists",
-              "host": [
-                "{{host}}"
-              ],
-              "path": [
-                "api",
-                "users",
-                "{{userId}}",
-                "shoppinglists"
-              ]
-            },
-            "description": "posting user shoppinglist"
-          },
-          "response": []
-        },
-        {
-          "name": "get specific user shoppinglist",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "id": "d4a66592-b40d-4b80-bc28-41f613559cd3",
-                "exec": [
-                  "var jsonData = pm.response.json();",
-                  "",
-                  "pm.test(\"response is OK\", function() {",
-                  "    pm.response.to.have.status(200);",
-                  "});",
-                  "",
-                  "pm.test(\"response should have valid JSON data\", function() {",
-                  "    pm.expect(jsonData.user).to.eql(pm.environment.get('userId'));",
-                  "    pm.expect(jsonData._id).to.eql(pm.environment.get('shoppingListId'));",
-                  "});"
-                ],
-                "type": "text/javascript"
-              }
-            }
-          ],
-          "request": {
-            "method": "GET",
-            "header": [],
-            "url": {
-              "raw": "{{host}}/api/users/{{userId}}/shoppinglists/{{shoppingListId}}",
-              "host": [
-                "{{host}}"
-              ],
-              "path": [
-                "api",
-                "users",
-                "{{userId}}",
-                "shoppinglists",
-                "{{shoppingListId}}"
-              ]
-            },
-            "description": "getting specific user list"
-          },
-          "response": []
-        },
-        {
-          "name": "delete specific shoppinglist from user",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "id": "dfafedd7-a83b-4160-ae86-5a8300ea76c8",
-                "exec": [
-                  "var jsonData = pm.response.json();",
-                  "",
-                  "pm.test(\"response is OK\", function() {",
-                  "    pm.response.to.have.status(200);",
-                  "});",
-                  "",
-                  "pm.test(\"response should indicate correct list was deleted\", function() {",
-                  "    pm.expect(jsonData._id).to.eql(pm.environment.get('shoppingListId'));",
-                  "    pm.expect(jsonData.user).to.eql(pm.environment.get('userId'));",
-                  "});",
-                  "pm.globals.get(\"variable_key\");"
-                ],
-                "type": "text/javascript"
-              }
-            }
-          ],
-          "request": {
-            "method": "DELETE",
-            "header": [],
-            "url": {
-              "raw": "{{host}}/api/users/{{userId}}/shoppinglists/{{shoppingListId}}",
-              "host": [
-                "{{host}}"
-              ],
-              "path": [
-                "api",
-                "users",
-                "{{userId}}",
-                "shoppinglists",
-                "{{shoppingListId}}"
-              ]
-            },
-            "description": "Deleting shoppinglist from user"
-          },
-          "response": []
-        },
-        {
-          "name": "get all shopping lists",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "id": "6d4ad542-dd63-4f72-8318-c251a275166a",
-                "exec": [
-                  "var jsonData = pm.response.json();\r",
-                  "\r",
-                  "pm.test(\"response is OK\", function() {\r",
-                  "    pm.response.to.have.status(200);\r",
-                  "});\r",
-                  "\r",
-                  "pm.test(\"response should have valid JSON data\", function() {\r",
-                  "    pm.expect(jsonData.length).to.eql(0);\r",
-                  "});"
-                ],
-                "type": "text/javascript"
-              }
-            }
-          ],
-          "request": {
-            "method": "GET",
-            "header": [],
-            "url": {
-              "raw": "{{host}}/api/users/{{userId}}/shoppinglists",
-              "host": [
-                "{{host}}"
-              ],
-              "path": [
-                "api",
-                "users",
-                "{{userId}}",
-                "shoppinglists"
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "delete specific user",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "id": "c596d76d-6764-40f2-b574-f5a8b9b18e25",
-                "exec": [
-                  "var jsonData = pm.response.json();\r",
-                  "\r",
-                  "pm.test(\"response is OK\", function() {\r",
-                  "    pm.response.to.have.status(200);\r",
-                  "});\r",
-                  "\r",
-                  "pm.test(\"response should indicate correct user was deleted\", function() {\r",
-                  "    pm.expect(jsonData._id).to.eql(pm.environment.get('userId'));\r",
-                  "});\r",
-                  "pm.globals.get(\"variable_key\");"
-                ],
-                "type": "text/javascript"
-              }
-            }
-          ],
-          "request": {
-            "method": "DELETE",
-            "header": [],
-            "url": {
-              "raw": "{{host}}/api/users/{{userId}}",
-              "host": [
-                "{{host}}"
-              ],
-              "path": [
-                "api",
-                "users",
-                "{{userId}}"
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "delete specific user 2",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "id": "583e3337-02ec-4ff3-a952-5f6d35c90299",
-                "exec": [
-                  "var jsonData = pm.response.json();\r",
-                  "\r",
-                  "pm.test(\"response is NOT FOUND\", function() {\r",
-                  "    pm.response.to.have.status(404);\r",
-                  "});\r",
-                  "pm.globals.get(\"variable_key\");"
-                ],
-                "type": "text/javascript"
-              }
-            }
-          ],
-          "request": {
-            "method": "DELETE",
-            "header": [],
-            "url": {
-              "raw": "{{host}}/api/users/{{userId}}",
-              "host": [
-                "{{host}}"
-              ],
-              "path": [
-                "api",
-                "users",
-                "{{userId}}"
-              ]
-            }
-          },
-          "response": []
-        }
-      ],
-      "protocolProfileBehavior": {}
-    },
-    {
-      "name": "recipes",
-      "item": [
-        {
-          "name": "create admin user",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "id": "d69e2bf4-4123-4f71-b822-396c79c28f7d",
-                "exec": [
-                  "var jsonData = pm.response.json();",
-                  "postman.setEnvironmentVariable(\"userId\", jsonData._id);",
-                  "",
-                  "pm.test(\"response should indicate that admin was created as a user\", function() {",
-                  "    pm.response.to.have.status(201);",
-                  "});",
-                  "",
-                  "pm.test(\"response should have valid JSON data\", function() {",
-                  "    pm.expect(jsonData.username).to.eql('admin');",
-                  "    pm.expect(jsonData.email).to.eql('admin@yummy.io');",
-                  "    pm.expect(jsonData.password).to.eql('4dmin');",
-                  "});"
-                ],
-                "type": "text/javascript"
-              }
-            }
-          ],
-          "request": {
-            "method": "POST",
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json",
-                "type": "text"
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": "{\n\t\"username\":\"admin\",\n\t\"email\":\"admin@yummy.io\",\n\t\"password\":\"4dmin\"\n}"
-            },
-            "url": {
-              "raw": "{{host}}/api/users",
-              "host": [
-                "{{host}}"
-              ],
-              "path": [
-                "api",
-                "users"
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "admin creates blueberry pie recipe",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "id": "24eb6cff-aa91-4951-aa46-f74fd23c3973",
-                "exec": [
-                  "var jsonData = pm.response.json();",
-                  "pm.environment.set(\"recipeId\", jsonData._id);",
-                  "",
-                  "pm.test(\"response should indicate that a blueberry recipe was created by admin\", function() {",
-                  "    pm.response.to.have.status(201);",
-                  "});",
-                  "",
-                  "pm.test(\"Response contains correct JSON data\", function() {",
-                  "    pm.expect(jsonData.user).to.eql(pm.environment.get(\"userId\"));",
-                  "    pm.expect(jsonData.name).to.eql('Blueberry pie');",
-                  "});"
-                ],
-                "type": "text/javascript"
-              }
-            }
-          ],
-          "request": {
-            "method": "POST",
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json",
-                "type": "text"
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": "{\n    \"name\": \"Blueberry pie\",\n    \"category\": \"Baking\",\n    \"ingredients\": []\n}"
-            },
-            "url": {
-              "raw": "{{host}}/api/users/{{userId}}/recipes",
-              "host": [
-                "{{host}}"
-              ],
-              "path": [
-                "api",
-                "users",
-                "{{userId}}",
-                "recipes"
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "rename blueberry pie to apple pie",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "id": "cd91d61d-dcea-4862-afa9-47a49f893bac",
-                "exec": [
-                  "var jsonData = pm.response.json();",
-                  "",
-                  "pm.test(\"response should indicate that request change is OK\", function() {",
-                  "    pm.response.to.have.status(200);",
-                  "});",
-                  "",
-                  "pm.test(\"response should indicate correct recipe was updated\", function() {",
-                  "    pm.expect(jsonData._id).to.eql(pm.environment.get('recipeId'));",
-                  "});"
-                ],
-                "type": "text/javascript"
-              }
-            }
-          ],
-          "request": {
-            "method": "PATCH",
-            "header": [
-              {
-                "key": "Content-Type",
-                "type": "text",
-                "value": "application/json"
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": "{\n    \"name\": \"Apple pie\",\n    \"category\": \"Baking\",\n    \"ingredients\": []\n}"
-            },
-            "url": {
-              "raw": "{{host}}/api/users/{{userId}}/recipes/{{recipeId}}",
-              "host": [
-                "{{host}}"
-              ],
-              "path": [
-                "api",
-                "users",
-                "{{userId}}",
-                "recipes",
-                "{{recipeId}}"
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "return admin's apple pie",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "id": "49212bae-f74a-4641-b985-667803886b8f",
-                "exec": [
-                  "var jsonData = pm.response.json();",
-                  "",
-                  "pm.test(\"response is OK\", function() {",
-                  "    pm.response.to.have.status(200);",
-                  "});",
-                  "",
-                  "pm.test(\"response should have valid JSON data\", function() {",
-                  "    pm.expect(jsonData.user._id).to.eql(pm.environment.get('userId'));",
-                  "    pm.expect(jsonData._id).to.eql(pm.environment.get('recipeId'));",
-                  "});"
-                ],
-                "type": "text/javascript"
-              }
-            }
-          ],
-          "request": {
-            "method": "GET",
-            "header": [],
-            "url": {
-              "raw": "{{host}}/api/users/{{userId}}/recipes/{{recipeId}}",
-              "host": [
-                "{{host}}"
-              ],
-              "path": [
-                "api",
-                "users",
-                "{{userId}}",
-                "recipes",
-                "{{recipeId}}"
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "admin creates lasagna recipe",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "id": "ca716056-9648-48c3-bcda-facf0c458976",
-                "exec": [
-                  "var jsonData = pm.response.json();",
-                  "pm.environment.set(\"recipeId\", jsonData._id);",
-                  "",
-                  "pm.test(\"response should indicate that admin created a lasagna recipe\", function() {",
-                  "    pm.response.to.have.status(201);",
-                  "});",
-                  "",
-                  "pm.test(\"Response contains correct JSON data\", function() {",
-                  "    pm.expect(jsonData.user).to.eql(pm.environment.get(\"userId\"));",
-                  "    pm.expect(jsonData.name).to.eql('Lasagna');",
-                  "});"
-                ],
-                "type": "text/javascript"
-              }
-            }
-          ],
-          "request": {
-            "method": "POST",
-            "header": [
-              {
-                "key": "Content-Type",
-                "type": "text",
-                "value": "application/json"
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": "{\n    \"name\": \"Lasagna\",\n    \"category\": \"Cooking\",\n    \"ingredients\": []\n}"
-            },
-            "url": {
-              "raw": "{{host}}/api/users/{{userId}}/recipes",
-              "host": [
-                "{{host}}"
-              ],
-              "path": [
-                "api",
-                "users",
-                "{{userId}}",
-                "recipes"
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "replace lasagna recipe with pasta recipe",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "id": "38bff24e-01d4-4303-b609-9a1333d8dea3",
-                "exec": [
-                  "var jsonData = pm.response.json();",
-                  "",
-                  "pm.test(\"Response is OK\", function() {",
-                  "    pm.response.to.have.status(200);",
-                  "});",
-                  "",
-                  "pm.test(\"response should indicate correct recipe was replaced\", function() {",
-                  "    pm.expect(jsonData._id).to.eql(pm.environment.get('recipeId'));",
-                  "});"
-                ],
-                "type": "text/javascript"
-              }
-            }
-          ],
-          "request": {
-            "method": "PUT",
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json",
-                "type": "text"
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": "{\n    \"name\": \"Pasta\",\n    \"category\": \"Cooking\",\n    \"ingredients\": []\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            },
-            "url": {
-              "raw": "{{host}}/api/users/{{userId}}/recipes/{{recipeId}}",
-              "host": [
-                "{{host}}"
-              ],
-              "path": [
-                "api",
-                "users",
-                "{{userId}}",
-                "recipes",
-                "{{recipeId}}"
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "return all admin's recipes",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "id": "ac585c2e-500a-4959-bbce-105ecde193e0",
-                "exec": [
-                  "var jsonData = pm.response.json();",
-                  "",
-                  "pm.test(\"response is OK\", function() {",
-                  "    pm.response.to.have.status(200);",
-                  "});",
-                  "",
-                  "pm.test(\"response should have valid JSON data\", function() {",
-                  "    pm.expect(jsonData.length).to.eql(2);",
-                  "});"
-                ],
-                "type": "text/javascript"
-              }
-            }
-          ],
-          "request": {
-            "method": "GET",
-            "header": [],
-            "url": {
-              "raw": "{{host}}/api/users/{{userId}}/recipes",
-              "host": [
-                "{{host}}"
-              ],
-              "path": [
-                "api",
-                "users",
-                "{{userId}}",
-                "recipes"
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "return all database recipes",
-          "request": {
-            "method": "GET",
-            "header": [],
-            "url": {
-              "raw": "{{host}}/api/recipes/",
-              "host": [
-                "{{host}}"
-              ],
-              "path": [
-                "api",
-                "recipes",
-                ""
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "return specific database recipe",
-          "request": {
-            "method": "GET",
-            "header": [],
-            "url": {
-              "raw": "{{host}}/api/recipes/{{recipeId}}",
-              "host": [
-                "{{host}}"
-              ],
-              "path": [
-                "api",
-                "recipes",
-                "{{recipeId}}"
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "delete admin's pasta recipe",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "id": "081e1dcf-821d-44a0-b30c-d04fa2711f2f",
-                "exec": [
-                  "var jsonData = pm.response.json();",
-                  "",
-                  "pm.test(\"response is OK\", function() {",
-                  "    pm.response.to.have.status(200);",
-                  "});",
-                  "",
-                  "pm.test(\"response should indicate correct recipe was deleted\", function() {",
-                  "    pm.expect(jsonData._id).to.eql(pm.environment.get('recipeId'));",
-                  "    pm.expect(jsonData.user).to.eql(pm.environment.get('userId'));",
-                  "});",
-                  "pm.globals.get(\"variable_key\");"
-                ],
-                "type": "text/javascript"
-              }
-            }
-          ],
-          "request": {
-            "method": "DELETE",
-            "header": [],
-            "url": {
-              "raw": "{{host}}/api/users/{{userId}}/recipes/{{recipeId}}",
-              "host": [
-                "{{host}}"
-              ],
-              "path": [
-                "api",
-                "users",
-                "{{userId}}",
-                "recipes",
-                "{{recipeId}}"
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "delete admin user",
-          "request": {
-            "method": "DELETE",
-            "header": [],
-            "url": {
-              "raw": "{{host}}/api/users/{{userId}}",
-              "host": [
-                "{{host}}"
-              ],
-              "path": [
-                "api",
-                "users",
-                "{{userId}}"
-              ]
-            }
-          },
-          "response": []
-        }
-      ],
-      "protocolProfileBehavior": {}
-    },
-    {
-      "name": "ingredients",
-      "item": [
-        {
-          "name": "POST user for ingredient testing",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "id": "ef56eabb-4926-45b4-929c-8d9be8e28c9d",
-                "exec": [
-                  "var jsonData = pm.response.json();",
-                  "pm.environment.set(\"userId\", jsonData._id);",
-                  "console.log(pm.environment.get(\"userId\"));",
-                  "",
-                  "",
-                  "pm.test(\"Response is CREATED\", function() {",
-                  "    pm.response.to.have.status(201);",
-                  "});",
-                  "",
-                  "pm.test(\"Response contains correct JSON data\", function() {",
-                  "    pm.expect(jsonData.username).to.eql('Chef Ramsay');",
-                  "    pm.expect(jsonData.email).to.eql('angry@always.com');",
-                  "    pm.expect(jsonData.password).to.eql('RAGE');",
-                  "});"
-                ],
-                "type": "text/javascript"
-              }
-            }
-          ],
-          "request": {
-            "method": "POST",
-            "header": [
-              {
-                "key": "Content-Type",
-                "type": "text",
-                "username": "Content-Type",
-                "value": "application/json"
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": "{\r\n\t\"username\":\"Chef Ramsay\",\r\n\t\"email\":\"angry@always.com\",\r\n\t\"password\":\"RAGE\"\r\n}"
-            },
-            "url": {
-              "raw": "{{host}}/api/users",
-              "host": [
-                "{{host}}"
-              ],
-              "path": [
-                "api",
-                "users"
-              ]
-            },
-            "description": "Posting a user."
-          },
-          "response": []
-        },
-        {
-          "name": "POST ingredient 1",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "id": "e1d587a8-9b67-4a29-9fca-f7e2803edae8",
-                "exec": [
-                  "var jsonData = pm.response.json();\r",
-                  "pm.environment.set(\"ingredientId\", jsonData._id);\r",
-                  "\r",
-                  "pm.test(\"Response is CREATED\", function() {\r",
-                  "    pm.response.to.have.status(201);\r",
-                  "});\r",
-                  "\r",
-                  "pm.test(\"Response contains correct JSON data\", function() {\r",
-                  "    pm.expect(jsonData.user).to.eql(pm.environment.get(\"userId\"));\r",
-                  "    pm.expect(jsonData.name).to.eql('Tomatoes');\r",
-                  "    pm.expect(jsonData.foodType).to.eql('Vegetable');\r",
-                  "    pm.expect(jsonData.description).to.eql('The tomato is the edible, often red berry of the plant Solanum lycopersicum.');\r",
-                  "});"
-                ],
-                "type": "text/javascript"
-              }
-            }
-          ],
-          "request": {
-            "method": "POST",
-            "header": [],
-            "body": {
-              "mode": "raw",
-              "raw": "{\r\n    \"user\": \"{{userId}}\",\r\n    \"name\": \"Tomatoes\",\r\n    \"foodType\": \"Vegetable\",\r\n    \"description\": \"The tomato is the edible, often red berry of the plant Solanum lycopersicum.\"\r\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            },
-            "url": {
-              "raw": "{{host}}/api/users/{{userId}}/ingredients",
-              "host": [
-                "{{host}}"
-              ],
-              "path": [
-                "api",
-                "users",
-                "{{userId}}",
-                "ingredients"
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "GET all ingredients",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "id": "f9c07889-0eaa-4b63-8829-b9cb52b4b4a3",
-                "exec": [
-                  "var jsonData = pm.response.json();\r",
-                  "var arrayLength = jsonData.length;\r",
-                  "\r",
-                  "pm.test(\"Response is OK\", function() {\r",
-                  "    pm.response.to.have.status(200);\r",
-                  "});\r",
-                  "\r",
-                  "pm.test(\"Last entry in the array should be the posted ingredient\", function() {\r",
-                  "    pm.expect(jsonData[arrayLength-1].name).to.eql(\"Tomatoes\");    \r",
-                  "});\r",
-                  "\r",
-                  "\r",
-                  ""
-                ],
-                "type": "text/javascript"
-              }
-            }
-          ],
-          "request": {
-            "method": "GET",
-            "header": [],
-            "url": {
-              "raw": "{{host}}/api/ingredients",
-              "host": [
-                "{{host}}"
-              ],
-              "path": [
-                "api",
-                "ingredients"
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "GET specific ingredient",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "id": "b3b352f5-17be-4e5e-9177-1399f7c6d4d7",
-                "exec": [
-                  "var jsonData = pm.response.json();\r",
-                  "\r",
-                  "pm.test(\"Response is OK\", function() {\r",
-                  "    pm.response.to.have.status(200);\r",
-                  "});\r",
-                  "\r",
-                  "pm.test(\"Response contains correct JSON data\", function() {\r",
-                  "    pm.expect(jsonData.user).to.eql(pm.environment.get(\"userId\"));\r",
-                  "    pm.expect(jsonData.name).to.eql('Tomatoes');\r",
-                  "    pm.expect(jsonData.foodType).to.eql('Vegetable');\r",
-                  "    pm.expect(jsonData.description).to.eql('The tomato is the edible, often red berry of the plant Solanum lycopersicum.');\r",
-                  "});"
-                ],
-                "type": "text/javascript"
-              }
-            }
-          ],
-          "request": {
-            "method": "GET",
-            "header": [],
-            "url": {
-              "raw": "{{host}}/api/ingredients/{{ingredientId}}/",
-              "host": [
-                "{{host}}"
-              ],
-              "path": [
-                "api",
-                "ingredients",
-                "{{ingredientId}}",
-                ""
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "GET all user ingredients",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "id": "a822ea96-177c-4887-bb76-68f04a4e8178",
-                "exec": [
-                  "var jsonData = pm.response.json();\r",
-                  "var arrayLength = jsonData.length;\r",
-                  "\r",
-                  "pm.test(\"Response is OK\", function() {\r",
-                  "    pm.response.to.have.status(200);\r",
-                  "});\r",
-                  "\r",
-                  "pm.test(\"Last entry in the array should be the users posted ingredient\", function() {\r",
-                  "    pm.expect(jsonData[arrayLength-1].name).to.eql(\"Tomatoes\");    \r",
-                  "});"
-                ],
-                "type": "text/javascript"
-              }
-            }
-          ],
-          "request": {
-            "method": "GET",
-            "header": [],
-            "url": {
-              "raw": "{{host}}/api/users/{{userId}}/ingredients/",
-              "host": [
-                "{{host}}"
-              ],
-              "path": [
-                "api",
-                "users",
-                "{{userId}}",
-                "ingredients",
-                ""
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "GET one user ingredient",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "id": "ca0d39fc-a1ad-492d-b1bd-706c488a9bd2",
-                "exec": [
-                  "var jsonData = pm.response.json();\r",
-                  "\r",
-                  "pm.test(\"Response is OK\", function() {\r",
-                  "    pm.response.to.have.status(200);\r",
-                  "});\r",
-                  "\r",
-                  "pm.test(\"Response contains correct JSON data\", function() {\r",
-                  "    pm.expect(jsonData.user).to.eql(pm.environment.get(\"userId\"));\r",
-                  "    pm.expect(jsonData.name).to.eql('Tomatoes');\r",
-                  "    pm.expect(jsonData.foodType).to.eql('Vegetable');\r",
-                  "    pm.expect(jsonData.description).to.eql('The tomato is the edible, often red berry of the plant Solanum lycopersicum.');\r",
-                  "});"
-                ],
-                "type": "text/javascript"
-              }
-            }
-          ],
-          "request": {
-            "method": "GET",
-            "header": [],
-            "url": {
-              "raw": "{{host}}/api/users/{{userId}}/ingredients/{{ingredientId}}",
-              "host": [
-                "{{host}}"
-              ],
-              "path": [
-                "api",
-                "users",
-                "{{userId}}",
-                "ingredients",
-                "{{ingredientId}}"
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "add shoppinglist to user 2",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "id": "2312a9e9-e73b-44cf-92b7-387f47169192",
-                "exec": [
-                  "var jsonData = pm.response.json();",
-                  "postman.setEnvironmentVariable(\"shoppingListId\", jsonData._id);",
-                  "",
-                  "pm.test(\"response is CREATED\", function() {",
-                  "    pm.response.to.have.status(201);",
-                  "});",
-                  "",
-                  "pm.test(\"response should have valid JSON data\", function() {",
-                  "    pm.expect(jsonData.user).to.eql(pm.environment.get('userId'));",
-                  "});"
-                ],
-                "type": "text/javascript"
-              }
-            }
-          ],
-          "request": {
-            "method": "POST",
-            "header": [
-              {
-                "key": "Content-Type",
-                "name": "Content-Type",
-                "type": "text",
-                "value": "application/json"
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": "{\n\t\"ingredients\": []\n}"
-            },
-            "url": {
-              "raw": "{{host}}/api/users/{{userId}}/shoppinglists",
-              "host": [
-                "{{host}}"
-              ],
-              "path": [
-                "api",
-                "users",
-                "{{userId}}",
-                "shoppinglists"
-              ]
-            },
-            "description": "posting user shoppinglist"
-          },
-          "response": []
-        },
-        {
-          "name": "Patch shoppinglist with one ingredient",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "id": "5b0b92f9-c37f-499a-a442-bb76325a8f4c",
-                "exec": [
-                  "var jsonData = pm.response.json();\r",
-                  "\r",
-                  "pm.test(\"Response is OK\", function() {\r",
-                  "    pm.response.to.have.status(200);\r",
-                  "});\r",
-                  "\r",
-                  "pm.test(\"Response should indicate correct shoppinglist was updated\", function() {\r",
-                  "    pm.expect(jsonData._id).to.eql(pm.environment.get('shoppingListId'));\r",
-                  "});"
-                ],
-                "type": "text/javascript"
-              }
-            }
-          ],
-          "request": {
-            "method": "PATCH",
-            "header": [],
-            "body": {
-              "mode": "raw",
-              "raw": "{\r\n    \"ingredients\":[{\"_id\":\"{{ingredientId}}\"}]\r\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            },
-            "url": {
-              "raw": "{{host}}/api/users/{{userId}}/shoppinglists/{{shoppingListId}}",
-              "host": [
-                "{{host}}"
-              ],
-              "path": [
-                "api",
-                "users",
-                "{{userId}}",
-                "shoppinglists",
-                "{{shoppingListId}}"
-              ]
-            },
-            "description": "This adds one ingredient to a user's shoppinglist"
-          },
-          "response": []
-        },
-        {
-          "name": "Put shoppinglist with nothing",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "id": "6aef9450-8cac-4760-b063-f905c445637d",
-                "exec": [
-                  "var jsonData = pm.response.json();\r",
-                  "\r",
-                  "pm.test(\"Response is BAD REQUEST\", function() {\r",
-                  "    pm.response.to.have.status(400);\r",
-                  "});\r",
-                  "\r",
-                  "pm.test(\"Response should indicate what the problem is\", function() {\r",
-                  "    pm.expect(jsonData).to.eql(\"\\\"ingredients\\\" is required\");\r",
-                  "});"
-                ],
-                "type": "text/javascript"
-              }
-            }
-          ],
-          "request": {
-            "method": "PUT",
-            "header": [],
-            "body": {
-              "mode": "raw",
-              "raw": "{\r\n    \r\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            },
-            "url": {
-              "raw": "{{host}}/api/users/{{userId}}/shoppinglists/{{shoppingListId}}",
-              "host": [
-                "{{host}}"
-              ],
-              "path": [
-                "api",
-                "users",
-                "{{userId}}",
-                "shoppinglists",
-                "{{shoppingListId}}"
-              ]
-            },
-            "description": "This adds one ingredient to a user's shoppinglist"
-          },
-          "response": []
-        },
-        {
-          "name": "PATCH one user ingredient",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "id": "6bc68149-6d72-4176-ba40-58454c231276",
-                "exec": [
-                  "var jsonData = pm.response.json();\r",
-                  "\r",
-                  "pm.test(\"Response is OK\", function() {\r",
-                  "    pm.response.to.have.status(200);\r",
-                  "});\r",
-                  "\r",
-                  "pm.test(\"Response should indicate correct ingredient was updated\", function() {\r",
-                  "    pm.expect(jsonData._id).to.eql(pm.environment.get('ingredientId'));\r",
-                  "});"
-                ],
-                "type": "text/javascript"
-              }
-            }
-          ],
-          "request": {
-            "method": "PATCH",
-            "header": [],
-            "body": {
-              "mode": "raw",
-              "raw": "{\r\n    \"foodType\": \"Tomatoes are actually fruit\"\r\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            },
-            "url": {
-              "raw": "{{host}}/api/users/{{userId}}/ingredients/{{ingredientId}}",
-              "host": [
-                "{{host}}"
-              ],
-              "path": [
-                "api",
-                "users",
-                "{{userId}}",
-                "ingredients",
-                "{{ingredientId}}"
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "PUT one user ingredient",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "id": "c241eb31-442a-4ca0-802d-249f7c11d95b",
-                "exec": [
-                  "var jsonData = pm.response.json();\r",
-                  "\r",
-                  "pm.test(\"Response is OK\", function() {\r",
-                  "    pm.response.to.have.status(200);\r",
-                  "});\r",
-                  "\r",
-                  "pm.test(\"Response should indicate correct ingredient was replaced\", function() {\r",
-                  "    pm.expect(jsonData._id).to.eql(pm.environment.get('ingredientId'));\r",
-                  "});"
-                ],
-                "type": "text/javascript"
-              }
-            }
-          ],
-          "request": {
-            "method": "PUT",
-            "header": [],
-            "body": {
-              "mode": "raw",
-              "raw": "{\r\n    \"user\": \"{{userId}}\",\r\n    \"name\": \"Green Tomatoes\",\r\n    \"foodType\": \"Vegetable\",\r\n    \"description\": \"You are both wrong, tomatoes are green vegetables.\"\r\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            },
-            "url": {
-              "raw": "{{host}}/api/users/{{userId}}/ingredients/{{ingredientId}}",
-              "host": [
-                "{{host}}"
-              ],
-              "path": [
-                "api",
-                "users",
-                "{{userId}}",
-                "ingredients",
-                "{{ingredientId}}"
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "DELETE specific user ingredient",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "id": "3909de33-0522-4f28-945b-2781506ecc6b",
-                "exec": [
-                  "var jsonData = pm.response.json();\r",
-                  "\r",
-                  "pm.test(\"Response is OK\", function() {\r",
-                  "    pm.response.to.have.status(200);\r",
-                  "});\r",
-                  "\r",
-                  "pm.test(\"Response should indicate correct list was deleted\", function() {\r",
-                  "    pm.expect(jsonData._id).to.eql(pm.environment.get('ingredientId'));\r",
-                  "});"
-                ],
-                "type": "text/javascript"
-              }
-            }
-          ],
-          "request": {
-            "method": "DELETE",
-            "header": [],
-            "url": {
-              "raw": "{{host}}/api/users/{{userId}}/ingredients/{{ingredientId}}",
-              "host": [
-                "{{host}}"
-              ],
-              "path": [
-                "api",
-                "users",
-                "{{userId}}",
-                "ingredients",
-                "{{ingredientId}}"
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "DELETE all ingredients",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "id": "713b5eb6-c0b9-4bee-b3ff-59e9076dd446",
-                "exec": [
-                  "var jsonData = pm.response.json();\r",
-                  "\r",
-                  "pm.test(\"Response is OK\", function() {\r",
-                  "    pm.response.to.have.status(200);\r",
-                  "});\r",
-                  "\r",
-                  "pm.test(\"Response should indicate deletion was successful\", function() {\r",
-                  "    pm.expect(jsonData.ok).to.eql(1);    \r",
-                  "});"
-                ],
-                "type": "text/javascript"
-              }
-            }
-          ],
-          "request": {
-            "method": "DELETE",
-            "header": [],
-            "url": {
-              "raw": "{{host}}/api/ingredients",
-              "host": [
-                "{{host}}"
-              ],
-              "path": [
-                "api",
-                "ingredients"
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "DELETE all users",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "id": "510a43e2-42b1-4270-b28d-2b0d45522404",
-                "exec": [
-                  "var jsonData = pm.response.json();",
-                  "",
-                  "pm.test(\"response is OK\", function() {",
-                  "    pm.response.to.have.status(200);",
-                  "});",
-                  "",
-                  "pm.test(\"response should indicate deletion was successful\", function() {",
-                  "    pm.expect(jsonData.ok).to.eql(1);    ",
-                  "    pm.expect(jsonData.deletedCount).to.eql(1);",
-                  "});"
-                ],
-                "type": "text/javascript"
-              }
-            }
-          ],
-          "request": {
-            "method": "DELETE",
-            "header": [],
-            "url": {
-              "raw": "{{host}}/api/users",
-              "host": [
-                "{{host}}"
-              ],
-              "path": [
-                "api",
-                "users"
-              ]
-            },
-            "description": "delete all users"
-          },
-          "response": []
-        }
-      ],
-      "protocolProfileBehavior": {}
-    },
-    {
-      "name": "GET /api/donkey",
-      "event": [
-        {
-          "listen": "prerequest",
-          "script": {
-            "id": "18e7f6f6-684a-4783-9f8c-8da1dba9cac1",
-            "exec": [
-              ""
-            ],
-            "type": "text/javascript"
-          }
-        },
-        {
-          "listen": "test",
-          "script": {
-            "id": "300fbde1-0e25-4bad-a0b1-4949b518b146",
-            "exec": [
-              "pm.test(\"response is NOT FOUND\", function() {\r",
-              "    pm.response.to.have.status(404);\r",
-              "});"
-            ],
-            "type": "text/javascript"
-          }
-        }
-      ],
-      "request": {
-        "method": "GET",
-        "header": [
-          {
-            "key": "Accept",
-            "value": "application/json",
-            "type": "text"
-          }
-        ],
-        "url": {
-          "raw": "{{host}}/api/donkey",
-          "host": [
-            "{{host}}"
-          ],
-          "path": [
-            "api",
-            "donkey"
-          ]
-        }
-      },
-      "response": []
-    }
-  ],
-  "event": [
-    {
-      "listen": "prerequest",
-      "script": {
-        "id": "dcb93728-6355-4c65-9f26-6be188d8915f",
-        "type": "text/javascript",
-        "exec": [
-          ""
-        ]
-      }
-    },
-    {
-      "listen": "test",
-      "script": {
-        "id": "905ee992-68a1-4303-b681-9b855d9148f6",
-        "type": "text/javascript",
-        "exec": [
-          ""
-        ]
-      }
-    }
-  ],
-  "variable": [
-    {
-      "id": "cd185905-a834-4211-8030-583d17702534",
-      "key": "host",
-      "value": "http://localhost:3000",
-      "type": "string"
-    }
-  ],
-  "protocolProfileBehavior": {}
+	"info": {
+		"_postman_id": "6e16f29f-42fb-488f-9f34-758c8241112f",
+		"name": "server",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "user",
+			"item": [
+				{
+					"name": "add user 1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "0a09751f-aa6e-4c0c-8f48-3eeb92af2894",
+								"exec": [
+									"var jsonData = pm.response.json();",
+									"postman.setEnvironmentVariable(\"userId\", jsonData._id);",
+									"",
+									"pm.test(\"response is CREATED\", function() {",
+									"    pm.response.to.have.status(201);",
+									"});",
+									"",
+									"pm.test(\"response should have valid JSON data\", function() {",
+									"    pm.expect(jsonData.username).to.eql('Alexander');",
+									"    pm.expect(jsonData.email).to.eql('asd@asd.com');",
+									"    pm.expect(jsonData.password).to.eql('abc123')",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"username": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"username\":\"Alexander\",\r\n\t\"email\":\"asd@asd.com\",\r\n\t\"password\":\"abc123\"\r\n}"
+						},
+						"url": {
+							"raw": "{{host}}/api/users/",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"users",
+								""
+							]
+						},
+						"description": "Posting a user."
+					},
+					"response": []
+				},
+				{
+					"name": "log-in user",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "a6feb006-b280-400e-bd47-ccdd6f7153ba",
+								"exec": [
+									"pm.test(\"response is OK\", function() {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\":\"Alexander\",\r\n    \"password\":\"abc123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/users/auth",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"auth"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get all users",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "f6e4d7b5-ab14-4a6f-96ca-c69566ce77d2",
+								"exec": [
+									"var jsonData = pm.response.json();",
+									"var arrayLength = jsonData.length;",
+									"",
+									"pm.test(\"response is OK\", function() {",
+									"    pm.response.to.have.status(200);",
+									"})",
+									"",
+									"pm.test(\"last entry in the array should be the posted user\", function() {",
+									"    pm.expect(jsonData[arrayLength-1].username).to.eql(\"Alexander\");",
+									"    pm.expect(jsonData[arrayLength-1].email).to.eql('asd@asd.com');    ",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/users/",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"users",
+								""
+							]
+						},
+						"description": "Testing to get all users"
+					},
+					"response": []
+				},
+				{
+					"name": "get specific user",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "c373ce3e-b5e7-4cc0-9897-9363e42f8952",
+								"exec": [
+									"var jsonData = pm.response.json();",
+									"",
+									"pm.test(\"response is OK\", function() {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"response should have valid JSON data\", function() {",
+									"    pm.expect(jsonData.username).to.eql('Alexander');",
+									"    pm.expect(jsonData.email).to.eql('asd@asd.com');",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/users/{{userId}}",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"{{userId}}"
+							]
+						},
+						"description": "Testing to get specific user."
+					},
+					"response": []
+				},
+				{
+					"name": "delete all users",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "0a71629a-73fb-4c1d-9596-8963eae675e1",
+								"exec": [
+									"var jsonData = pm.response.json();",
+									"",
+									"pm.test(\"response is OK\", function() {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"response should indicate deletion was successful\", function() {",
+									"    pm.expect(jsonData.ok).to.eql(1);    ",
+									"    pm.expect(jsonData.deletedCount).to.eql(1);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/users",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"users"
+							]
+						},
+						"description": "delete all users"
+					},
+					"response": []
+				},
+				{
+					"name": "get all users 2",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "b80cbf6d-1f03-4c34-b34a-1e151e865f88",
+								"exec": [
+									"var jsonData = pm.response.json();",
+									"var arrayLength = jsonData.length;",
+									"",
+									"pm.test(\"response is OK\", function() {",
+									"    pm.response.to.have.status(200);",
+									"})",
+									"",
+									"pm.test(\"there should be no users\", function() {",
+									"    pm.expect(arrayLength).to.eql(0);",
+									"    ",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/users/",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"users",
+								""
+							]
+						},
+						"description": "Testing to get all users"
+					},
+					"response": []
+				},
+				{
+					"name": "delete all users 2",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "f417694a-c185-4363-add0-8cec6262a07e",
+								"exec": [
+									"var jsonData = pm.response.json();",
+									"",
+									"pm.test(\"response is OK\", function() {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"response should indicate deletion was successful\", function() {",
+									"    pm.expect(jsonData.ok).to.eql(1);",
+									"    pm.expect(jsonData.deletedCount).to.eql(0);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/users",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"users"
+							]
+						},
+						"description": "delete all users"
+					},
+					"response": []
+				},
+				{
+					"name": "add user 2",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "2b1862cb-1963-4ea8-8c31-45c23ab5c290",
+								"exec": [
+									"var jsonData = pm.response.json();",
+									"postman.setEnvironmentVariable(\"userId\", jsonData._id);",
+									"",
+									"pm.test(\"response is CREATED\", function() {",
+									"    pm.response.to.have.status(201);",
+									"});",
+									"",
+									"pm.test(\"response should have valid JSON data\", function() {",
+									"    pm.expect(jsonData.username).to.eql('Alexander');",
+									"    pm.expect(jsonData.email).to.eql('asd@asd.com');",
+									"    pm.expect(jsonData.password).to.eql('abc123')",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"username\":\"Alexander\",\r\n\t\"email\":\"asd@asd.com\",\r\n\t\"password\":\"abc123\"\r\n}"
+						},
+						"url": {
+							"raw": "{{host}}/api/users/",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"users",
+								""
+							]
+						},
+						"description": "Posting a user."
+					},
+					"response": []
+				},
+				{
+					"name": "log-in user 2",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "36e95882-f835-4390-8f01-68ae2c5eebb0",
+								"exec": [
+									"pm.test(\"response is OK\", function() {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\":\"Alexander\",\r\n    \"password\":\"abc123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/users/auth",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"auth"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get specific user 2",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "b57ea762-fa2d-4b1e-92fd-0064c8fb24ca",
+								"exec": [
+									"var jsonData = pm.response.json();",
+									"",
+									"pm.test(\"response is OK\", function() {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"response should have valid JSON data\", function() {",
+									"    pm.expect(jsonData.username).to.eql('Alexander');",
+									"    pm.expect(jsonData.email).to.eql('asd@asd.com');",
+									"    pm.expect(jsonData._id).to.eql(pm.environment.get('userId'));",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/users/{{userId}}",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"{{userId}}"
+							]
+						},
+						"description": "Testing to get specific user."
+					},
+					"response": []
+				},
+				{
+					"name": "patch user",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "ade3e11c-1b46-4df9-9a4d-ca3707d2b1d6",
+								"exec": [
+									"var jsonData = pm.response.json();",
+									"",
+									"pm.test(\"response is OK\", function() {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"response should indicate correct user was updated\", function() {",
+									"    pm.expect(jsonData._id).to.eql(pm.environment.get('userId'));",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\": \"Alexander2\",\n    \"email\": \"asd@asd.com\",\n    \"password\": \"abc123\"\n}"
+						},
+						"url": {
+							"raw": "{{host}}/api/users/{{userId}}",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"{{userId}}"
+							]
+						},
+						"description": "patching user"
+					},
+					"response": []
+				},
+				{
+					"name": "patch user 2",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "b6ffea98-ac0f-4e86-bf86-b437e7da862c",
+								"exec": [
+									"var jsonData = pm.response.json();",
+									"",
+									"pm.test(\"response is OK\", function() {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"response should indicate correct user was updated\", function() {",
+									"    pm.expect(jsonData._id).to.eql(pm.environment.get('userId'));",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\": \"Alexander3\",\n    \"email\": \"asd@asd.com\",\n    \"password\": \"abc123\"\n}"
+						},
+						"url": {
+							"raw": "{{host}}/api/users/{{userId}}",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"{{userId}}"
+							]
+						},
+						"description": "patching user"
+					},
+					"response": []
+				},
+				{
+					"name": "replace user",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "74eb3399-afae-41f0-bdce-57c966f0dbed",
+								"exec": [
+									"var jsonData = pm.response.json();",
+									"",
+									"pm.test(\"response is OK\", function() {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"response should indicate correct user was updated\", function() {",
+									"    pm.expect(jsonData._id).to.eql(pm.environment.get('userId'));",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\": \"Alexander4\",\n    \"email\": \"abc@abc.com\",\n    \"password\": \"abc1234\"\n}"
+						},
+						"url": {
+							"raw": "{{host}}/api/users/{{userId}}",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"{{userId}}"
+							]
+						},
+						"description": "putting user"
+					},
+					"response": []
+				},
+				{
+					"name": "replace user 2",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "56b1dd71-fa01-422f-9cae-eed56034075c",
+								"exec": [
+									"var jsonData = pm.response.json();",
+									"",
+									"pm.test(\"response is OK\", function() {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"response should indicate correct user was updated\", function() {",
+									"    pm.expect(jsonData._id).to.eql(pm.environment.get('userId'));",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\": \"Alexander5\",\n    \"email\": \"def@def.com\",\n    \"password\": \"abc12345\"\n}"
+						},
+						"url": {
+							"raw": "{{host}}/api/users/{{userId}}",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"{{userId}}"
+							]
+						},
+						"description": "putting user"
+					},
+					"response": []
+				},
+				{
+					"name": "add shoppinglist to user",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "975bb59d-e931-4858-89f0-dc63458cf0a1",
+								"exec": [
+									"var jsonData = pm.response.json();",
+									"postman.setEnvironmentVariable(\"shoppingListId\", jsonData._id);",
+									"",
+									"pm.test(\"response is CREATED\", function() {",
+									"    pm.response.to.have.status(201);",
+									"});",
+									"",
+									"pm.test(\"response should have valid JSON data\", function() {",
+									"    pm.expect(jsonData.user).to.eql(pm.environment.get('userId'));",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"ingredients\": []\n}"
+						},
+						"url": {
+							"raw": "{{host}}/api/users/{{userId}}/shoppinglists",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"{{userId}}",
+								"shoppinglists"
+							]
+						},
+						"description": "posting user shoppinglist"
+					},
+					"response": []
+				},
+				{
+					"name": "get specific user shoppinglist",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "b908cfbf-f779-49c3-9ef7-828a9224d2f7",
+								"exec": [
+									"var jsonData = pm.response.json();",
+									"",
+									"pm.test(\"response is OK\", function() {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"response should have valid JSON data\", function() {",
+									"    pm.expect(jsonData.user).to.eql(pm.environment.get('userId'));",
+									"    pm.expect(jsonData._id).to.eql(pm.environment.get('shoppingListId'));",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/users/{{userId}}/shoppinglists/{{shoppingListId}}",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"{{userId}}",
+								"shoppinglists",
+								"{{shoppingListId}}"
+							]
+						},
+						"description": "getting specific user list"
+					},
+					"response": []
+				},
+				{
+					"name": "delete specific shoppinglist from user",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "beb985b7-4f32-4988-b456-3c825fc23fd3",
+								"exec": [
+									"var jsonData = pm.response.json();",
+									"",
+									"pm.test(\"response is OK\", function() {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"response should indicate correct list was deleted\", function() {",
+									"    pm.expect(jsonData._id).to.eql(pm.environment.get('shoppingListId'));",
+									"    pm.expect(jsonData.user).to.eql(pm.environment.get('userId'));",
+									"});",
+									"pm.globals.get(\"variable_key\");"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/users/{{userId}}/shoppinglists/{{shoppingListId}}",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"{{userId}}",
+								"shoppinglists",
+								"{{shoppingListId}}"
+							]
+						},
+						"description": "Deleting shoppinglist from user"
+					},
+					"response": []
+				},
+				{
+					"name": "get all shopping lists",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "ba728dd5-46e9-46b9-a090-a26e3b445759",
+								"exec": [
+									"var jsonData = pm.response.json();\r",
+									"\r",
+									"pm.test(\"response is OK\", function() {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"response should have valid JSON data\", function() {\r",
+									"    pm.expect(jsonData.length).to.eql(0);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/users/{{userId}}/shoppinglists",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"{{userId}}",
+								"shoppinglists"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete specific user",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "a149701a-fe58-4052-a5e9-296af334be97",
+								"exec": [
+									"var jsonData = pm.response.json();\r",
+									"\r",
+									"pm.test(\"response is OK\", function() {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"response should indicate correct user was deleted\", function() {\r",
+									"    pm.expect(jsonData._id).to.eql(pm.environment.get('userId'));\r",
+									"});\r",
+									"pm.globals.get(\"variable_key\");"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/users/{{userId}}",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"{{userId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete specific user 2",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "8f93a87d-36c8-45e9-bf91-0d696e7a0a72",
+								"exec": [
+									"var jsonData = pm.response.json();\r",
+									"\r",
+									"pm.test(\"response is NOT FOUND\", function() {\r",
+									"    pm.response.to.have.status(404);\r",
+									"});\r",
+									"pm.globals.get(\"variable_key\");"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/users/{{userId}}",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"{{userId}}"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "recipes",
+			"item": [
+				{
+					"name": "create admin user",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "0e8bc455-38fe-4aee-8a9a-67e2842facea",
+								"exec": [
+									"var jsonData = pm.response.json();",
+									"postman.setEnvironmentVariable(\"userId\", jsonData._id);",
+									"",
+									"pm.test(\"response should indicate that admin was created as a user\", function() {",
+									"    pm.response.to.have.status(201);",
+									"});",
+									"",
+									"pm.test(\"response should have valid JSON data\", function() {",
+									"    pm.expect(jsonData.username).to.eql('admin');",
+									"    pm.expect(jsonData.email).to.eql('admin@yummy.io');",
+									"    pm.expect(jsonData.password).to.eql('4dmin');",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"username\":\"admin\",\n\t\"email\":\"admin@yummy.io\",\n\t\"password\":\"4dmin\"\n}"
+						},
+						"url": {
+							"raw": "{{host}}/api/users",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "log-in admin user 2",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "46fcabb0-2338-4f99-b132-f6b7ef61efff",
+								"exec": [
+									"pm.test(\"response is OK\", function() {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\":\"admin\",\r\n    \"password\":\"4dmin\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/users/auth",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"auth"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "admin creates blueberry pie recipe",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "a238bd38-32e8-41c2-a0cd-f61a66dec95d",
+								"exec": [
+									"var jsonData = pm.response.json();",
+									"pm.environment.set(\"recipeId\", jsonData._id);",
+									"",
+									"pm.test(\"response should indicate that a blueberry recipe was created by admin\", function() {",
+									"    pm.response.to.have.status(201);",
+									"});",
+									"",
+									"pm.test(\"Response contains correct JSON data\", function() {",
+									"    pm.expect(jsonData.user).to.eql(pm.environment.get(\"userId\"));",
+									"    pm.expect(jsonData.name).to.eql('Blueberry pie');",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Blueberry pie\",\n    \"category\": \"Baking\",\n    \"ingredients\": []\n}"
+						},
+						"url": {
+							"raw": "{{host}}/api/users/{{userId}}/recipes",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"{{userId}}",
+								"recipes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "rename blueberry pie to apple pie",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "d2423b4d-c4f0-4f82-bbf5-68d8934d78be",
+								"exec": [
+									"var jsonData = pm.response.json();",
+									"",
+									"pm.test(\"response should indicate that request change is OK\", function() {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"response should indicate correct recipe was updated\", function() {",
+									"    pm.expect(jsonData._id).to.eql(pm.environment.get('recipeId'));",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Apple pie\",\n    \"category\": \"Baking\",\n    \"ingredients\": []\n}"
+						},
+						"url": {
+							"raw": "{{host}}/api/users/{{userId}}/recipes/{{recipeId}}",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"{{userId}}",
+								"recipes",
+								"{{recipeId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "return admin's apple pie",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "e83742c0-459f-4296-901b-6a4c268c240c",
+								"exec": [
+									"var jsonData = pm.response.json();",
+									"",
+									"pm.test(\"response is OK\", function() {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"response should have valid JSON data\", function() {",
+									"    pm.expect(jsonData.user._id).to.eql(pm.environment.get('userId'));",
+									"    pm.expect(jsonData._id).to.eql(pm.environment.get('recipeId'));",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/users/{{userId}}/recipes/{{recipeId}}",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"{{userId}}",
+								"recipes",
+								"{{recipeId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "admin creates lasagna recipe",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "bbc9d676-6b97-45af-8b60-17466da2169a",
+								"exec": [
+									"var jsonData = pm.response.json();",
+									"pm.environment.set(\"recipeId\", jsonData._id);",
+									"",
+									"pm.test(\"response should indicate that admin created a lasagna recipe\", function() {",
+									"    pm.response.to.have.status(201);",
+									"});",
+									"",
+									"pm.test(\"Response contains correct JSON data\", function() {",
+									"    pm.expect(jsonData.user).to.eql(pm.environment.get(\"userId\"));",
+									"    pm.expect(jsonData.name).to.eql('Lasagna');",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Lasagna\",\n    \"category\": \"Cooking\",\n    \"ingredients\": []\n}"
+						},
+						"url": {
+							"raw": "{{host}}/api/users/{{userId}}/recipes",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"{{userId}}",
+								"recipes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "replace lasagna recipe with pasta recipe",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "70009d97-04bb-450e-bf3e-bd774b0d3da4",
+								"exec": [
+									"var jsonData = pm.response.json();",
+									"",
+									"pm.test(\"Response is OK\", function() {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"response should indicate correct recipe was replaced\", function() {",
+									"    pm.expect(jsonData._id).to.eql(pm.environment.get('recipeId'));",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Pasta\",\n    \"category\": \"Cooking\",\n    \"ingredients\": []\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/users/{{userId}}/recipes/{{recipeId}}",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"{{userId}}",
+								"recipes",
+								"{{recipeId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "return all admin's recipes",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "d5b600a6-90cc-458f-b5ba-5699e8069191",
+								"exec": [
+									"var jsonData = pm.response.json();",
+									"",
+									"pm.test(\"response is OK\", function() {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"response should have valid JSON data\", function() {",
+									"    pm.expect(jsonData.length).to.eql(2);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/users/{{userId}}/recipes",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"{{userId}}",
+								"recipes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "return all database recipes",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/recipes/",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"recipes",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "return specific database recipe",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/recipes/{{recipeId}}",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"recipes",
+								"{{recipeId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete admin's pasta recipe",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "d6d64b4b-b3c9-4b6f-a77f-23f3e3a1ac10",
+								"exec": [
+									"var jsonData = pm.response.json();",
+									"",
+									"pm.test(\"response is OK\", function() {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"response should indicate correct recipe was deleted\", function() {",
+									"    pm.expect(jsonData._id).to.eql(pm.environment.get('recipeId'));",
+									"    pm.expect(jsonData.user).to.eql(pm.environment.get('userId'));",
+									"});",
+									"pm.globals.get(\"variable_key\");"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/users/{{userId}}/recipes/{{recipeId}}",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"{{userId}}",
+								"recipes",
+								"{{recipeId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete admin user",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/users/{{userId}}",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"{{userId}}"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "ingredients",
+			"item": [
+				{
+					"name": "POST user for ingredient testing",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "3e500395-8221-40d6-bbf1-f1166257ab72",
+								"exec": [
+									"var jsonData = pm.response.json();",
+									"pm.environment.set(\"userId\", jsonData._id);",
+									"console.log(pm.environment.get(\"userId\"));",
+									"",
+									"",
+									"pm.test(\"Response is CREATED\", function() {",
+									"    pm.response.to.have.status(201);",
+									"});",
+									"",
+									"pm.test(\"Response contains correct JSON data\", function() {",
+									"    pm.expect(jsonData.username).to.eql('Chef Ramsay');",
+									"    pm.expect(jsonData.email).to.eql('angry@always.com');",
+									"    pm.expect(jsonData.password).to.eql('RAGE');",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"username": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"username\":\"Chef Ramsay\",\r\n\t\"email\":\"angry@always.com\",\r\n\t\"password\":\"RAGE\"\r\n}"
+						},
+						"url": {
+							"raw": "{{host}}/api/users",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"users"
+							]
+						},
+						"description": "Posting a user."
+					},
+					"response": []
+				},
+				{
+					"name": "log-in ingredient user",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "281c39c3-a01e-4f13-a9c3-b4ed07f2347a",
+								"exec": [
+									"pm.test(\"response is OK\", function() {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\":\"Chef Ramsay\",\r\n    \"password\":\"RAGE\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/users/auth",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"auth"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST ingredient 1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "47ab708b-5354-4e38-8d56-75d40d7dfc77",
+								"exec": [
+									"var jsonData = pm.response.json();\r",
+									"pm.environment.set(\"ingredientId\", jsonData._id);\r",
+									"\r",
+									"pm.test(\"Response is CREATED\", function() {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response contains correct JSON data\", function() {\r",
+									"    pm.expect(jsonData.user).to.eql(pm.environment.get(\"userId\"));\r",
+									"    pm.expect(jsonData.name).to.eql('Tomatoes');\r",
+									"    pm.expect(jsonData.foodType).to.eql('Vegetable');\r",
+									"    pm.expect(jsonData.description).to.eql('The tomato is the edible, often red berry of the plant Solanum lycopersicum.');\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"user\": \"{{userId}}\",\r\n    \"name\": \"Tomatoes\",\r\n    \"foodType\": \"Vegetable\",\r\n    \"description\": \"The tomato is the edible, often red berry of the plant Solanum lycopersicum.\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/users/{{userId}}/ingredients",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"{{userId}}",
+								"ingredients"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET all ingredients",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "be32c00c-74f2-4ffe-ae5e-a9b7b996e7c2",
+								"exec": [
+									"var jsonData = pm.response.json();\r",
+									"var arrayLength = jsonData.length;\r",
+									"\r",
+									"pm.test(\"Response is OK\", function() {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Last entry in the array should be the posted ingredient\", function() {\r",
+									"    pm.expect(jsonData[arrayLength-1].name).to.eql(\"Tomatoes\");    \r",
+									"});\r",
+									"\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/ingredients",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"ingredients"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET specific ingredient",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "25745329-2474-4a2d-9914-03c6ad68ab12",
+								"exec": [
+									"var jsonData = pm.response.json();\r",
+									"\r",
+									"pm.test(\"Response is OK\", function() {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response contains correct JSON data\", function() {\r",
+									"    pm.expect(jsonData.user).to.eql(pm.environment.get(\"userId\"));\r",
+									"    pm.expect(jsonData.name).to.eql('Tomatoes');\r",
+									"    pm.expect(jsonData.foodType).to.eql('Vegetable');\r",
+									"    pm.expect(jsonData.description).to.eql('The tomato is the edible, often red berry of the plant Solanum lycopersicum.');\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/ingredients/{{ingredientId}}/",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"ingredients",
+								"{{ingredientId}}",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET all user ingredients",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "28d1db7b-3a41-4c87-9b9a-ee8513a29814",
+								"exec": [
+									"var jsonData = pm.response.json();\r",
+									"var arrayLength = jsonData.length;\r",
+									"\r",
+									"pm.test(\"Response is OK\", function() {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Last entry in the array should be the users posted ingredient\", function() {\r",
+									"    pm.expect(jsonData[arrayLength-1].name).to.eql(\"Tomatoes\");    \r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/users/{{userId}}/ingredients/",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"{{userId}}",
+								"ingredients",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET one user ingredient",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "571b321b-e9f4-4439-93f6-92d86106b2ef",
+								"exec": [
+									"var jsonData = pm.response.json();\r",
+									"\r",
+									"pm.test(\"Response is OK\", function() {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response contains correct JSON data\", function() {\r",
+									"    pm.expect(jsonData.user).to.eql(pm.environment.get(\"userId\"));\r",
+									"    pm.expect(jsonData.name).to.eql('Tomatoes');\r",
+									"    pm.expect(jsonData.foodType).to.eql('Vegetable');\r",
+									"    pm.expect(jsonData.description).to.eql('The tomato is the edible, often red berry of the plant Solanum lycopersicum.');\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/users/{{userId}}/ingredients/{{ingredientId}}",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"{{userId}}",
+								"ingredients",
+								"{{ingredientId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "add shoppinglist to user 2",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "828628f5-2e9d-4e42-b866-af5d6e353b03",
+								"exec": [
+									"var jsonData = pm.response.json();",
+									"postman.setEnvironmentVariable(\"shoppingListId\", jsonData._id);",
+									"",
+									"pm.test(\"response is CREATED\", function() {",
+									"    pm.response.to.have.status(201);",
+									"});",
+									"",
+									"pm.test(\"response should have valid JSON data\", function() {",
+									"    pm.expect(jsonData.user).to.eql(pm.environment.get('userId'));",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"ingredients\": []\n}"
+						},
+						"url": {
+							"raw": "{{host}}/api/users/{{userId}}/shoppinglists",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"{{userId}}",
+								"shoppinglists"
+							]
+						},
+						"description": "posting user shoppinglist"
+					},
+					"response": []
+				},
+				{
+					"name": "Patch shoppinglist with one ingredient",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "cbed21fa-e63a-46cd-bfb2-c112972ea106",
+								"exec": [
+									"var jsonData = pm.response.json();\r",
+									"\r",
+									"pm.test(\"Response is OK\", function() {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response should indicate correct shoppinglist was updated\", function() {\r",
+									"    pm.expect(jsonData._id).to.eql(pm.environment.get('shoppingListId'));\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"ingredients\":[{\"_id\":\"{{ingredientId}}\"}]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/users/{{userId}}/shoppinglists/{{shoppingListId}}",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"{{userId}}",
+								"shoppinglists",
+								"{{shoppingListId}}"
+							]
+						},
+						"description": "This adds one ingredient to a user's shoppinglist"
+					},
+					"response": []
+				},
+				{
+					"name": "Put shoppinglist with nothing",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "34fd23c9-054a-47cd-9bae-d633d88695f0",
+								"exec": [
+									"var jsonData = pm.response.json();\r",
+									"\r",
+									"pm.test(\"Response is BAD REQUEST\", function() {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response should indicate what the problem is\", function() {\r",
+									"    pm.expect(jsonData.ingredients).to.eql(\"ingredients is required.\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/users/{{userId}}/shoppinglists/{{shoppingListId}}",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"{{userId}}",
+								"shoppinglists",
+								"{{shoppingListId}}"
+							]
+						},
+						"description": "This adds one ingredient to a user's shoppinglist"
+					},
+					"response": []
+				},
+				{
+					"name": "PATCH one user ingredient",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "f0417c76-df4a-4441-ae2e-ccd4ed168c5f",
+								"exec": [
+									"var jsonData = pm.response.json();\r",
+									"\r",
+									"pm.test(\"Response is OK\", function() {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response should indicate correct ingredient was updated\", function() {\r",
+									"    pm.expect(jsonData._id).to.eql(pm.environment.get('ingredientId'));\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"foodType\": \"Tomatoes are actually fruit\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/users/{{userId}}/ingredients/{{ingredientId}}",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"{{userId}}",
+								"ingredients",
+								"{{ingredientId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PUT one user ingredient",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "f2b19b95-69d1-4e34-b249-6d172e84c41d",
+								"exec": [
+									"var jsonData = pm.response.json();\r",
+									"\r",
+									"pm.test(\"Response is OK\", function() {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response should indicate correct ingredient was replaced\", function() {\r",
+									"    pm.expect(jsonData._id).to.eql(pm.environment.get('ingredientId'));\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"user\": \"{{userId}}\",\r\n    \"name\": \"Green Tomatoes\",\r\n    \"foodType\": \"Vegetable\",\r\n    \"description\": \"You are both wrong, tomatoes are green vegetables.\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/users/{{userId}}/ingredients/{{ingredientId}}",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"{{userId}}",
+								"ingredients",
+								"{{ingredientId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE specific user ingredient",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "b9eb57f5-6ba0-45b8-a135-76567ba41ebf",
+								"exec": [
+									"var jsonData = pm.response.json();\r",
+									"\r",
+									"pm.test(\"Response is OK\", function() {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response should indicate correct list was deleted\", function() {\r",
+									"    pm.expect(jsonData._id).to.eql(pm.environment.get('ingredientId'));\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/users/{{userId}}/ingredients/{{ingredientId}}",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"{{userId}}",
+								"ingredients",
+								"{{ingredientId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE all ingredients",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "ac92fe53-551c-4914-a422-f87b2fad2048",
+								"exec": [
+									"var jsonData = pm.response.json();\r",
+									"\r",
+									"pm.test(\"Response is OK\", function() {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response should indicate deletion was successful\", function() {\r",
+									"    pm.expect(jsonData.ok).to.eql(1);    \r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/ingredients",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"ingredients"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE all users",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "c4ac33bc-a54e-4200-b765-bb21dfeb5cb3",
+								"exec": [
+									"var jsonData = pm.response.json();",
+									"",
+									"pm.test(\"response is OK\", function() {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"response should indicate deletion was successful\", function() {",
+									"    pm.expect(jsonData.ok).to.eql(1);    ",
+									"    pm.expect(jsonData.deletedCount).to.eql(1);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/users",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"users"
+							]
+						},
+						"description": "delete all users"
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "GET /api/donkey",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "7d06c957-ab8a-44fc-90ac-3dd3d5fa45f5",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "c47c2bf6-d2fe-4a66-a568-76c6132b013d",
+						"exec": [
+							"pm.test(\"response is NOT FOUND\", function() {\r",
+							"    pm.response.to.have.status(404);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{host}}/api/donkey",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"donkey"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "028ca17d-6eee-43e9-b77d-5da5e5e16b5e",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "8d0793f6-e1f0-44da-8734-818021869357",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"id": "cd185905-a834-4211-8030-583d17702534",
+			"key": "host",
+			"value": "http://localhost:3000",
+			"type": "string"
+		}
+	],
+	"protocolProfileBehavior": {}
 }

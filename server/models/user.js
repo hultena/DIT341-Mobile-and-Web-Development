@@ -20,6 +20,9 @@ const userSchema = new Schema({
         required: true,
         select: false
     },
+    image: {
+        type: String
+    },
     shoppingLists: [{
         type: Schema.Types.ObjectId,
         ref: 'shoppinglist'
@@ -29,6 +32,10 @@ const userSchema = new Schema({
         ref: 'ingredient'
     }],
     recipes: [{
+        type: Schema.Types.ObjectId,
+        ref: 'recipe'
+    }],
+    favourites: [{
         type: Schema.Types.ObjectId,
         ref: 'recipe'
     }]
