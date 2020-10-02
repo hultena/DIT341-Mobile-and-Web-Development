@@ -115,7 +115,6 @@ module.exports = {
                 .sort(req.value.sort)
                 .skip(req.value.page)
                 .limit(req.value.limit);
-            console.log(recipes)
             res.status(200).json(recipes);
 
         } catch (error) {

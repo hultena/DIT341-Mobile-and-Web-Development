@@ -72,7 +72,9 @@ const actions = {
   },
   async likeRecipe({ commit }, recipe) {
     try {
-      await Api.patch(`/recipes/${recipe._id}`, recipe)
+      const likes = { likes: recipe.likes + 1 }
+      recipe.likes += 1
+      await Api.patch(`/recipes/${recipe._id}`, likes)
       commit('updatedRecipe', recipe)
     } catch (err) {
       return err.response.data

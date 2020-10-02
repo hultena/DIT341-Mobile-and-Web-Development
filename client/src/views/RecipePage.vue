@@ -94,8 +94,7 @@ export default {
   methods: {
     ...mapActions(['likeRecipe']),
     like() {
-      // TODO: add publicly available patch request to increase likes.
-      console.log('this recipe was liked')
+      this.likeRecipe(this.recipe)
     }
   },
   computed: {
