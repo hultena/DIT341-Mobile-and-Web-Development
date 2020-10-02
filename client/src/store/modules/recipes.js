@@ -30,7 +30,7 @@ const mutations = {
   },
 
   setRecipes: function (state, recipes) {
-    state.recipes = recipes
+    state.recipes = state.recipes.concat(recipes)
   },
 
   setOneRecipe: function (state, recipe) {
@@ -48,8 +48,8 @@ const mutations = {
 
 const actions = {
   // put method callers here
-  async getRecipes({ commit }) {
-    const res = await Api.get('/recipes')
+  async getRecipes({ commit }, click) {
+    const res = await Api.get('/recipes', { params: { page: click, limit: 5 } })
     commit('setRecipes', res.data)
   },
 
