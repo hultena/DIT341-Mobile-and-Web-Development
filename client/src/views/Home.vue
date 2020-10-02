@@ -1,5 +1,5 @@
 <template>
-  <b-container>
+  <b-container class='mb-5'>
 
     <b-row class='mt-5 mb-3'>
       <b-col class='mt-5'>
@@ -18,7 +18,22 @@
       </b-col>
     </b-row>
     <b-row>
-      <recipe-card v-for="recipe in allRecipes" :key="recipe._id" :recipe="recipe"/>
+      <b-col v-for='recipe in allRecipes' :key='recipe._id'>
+        <recipe-card :recipe='recipe' />
+      </b-col>
+    </b-row>
+
+    <b-row>
+      <b-col>
+        <b-button
+          variant='primary'
+          @click='expandResults'
+          block
+          class='mt-4 mb-5'
+        >
+          Show more results
+        </b-button>
+      </b-col>
     </b-row>
 
   </b-container>
@@ -37,7 +52,11 @@ export default {
     }
   },
   methods: {
-    ...mapActions(['getRecipes'])
+    ...mapActions(['getRecipes']),
+
+    expandResults() {
+      // todo: add # number of recipes to the end of the array of displayed recipes. Or pagniation, which ever works best.
+    }
   },
   computed: {
     ...mapGetters(['allRecipes'])
