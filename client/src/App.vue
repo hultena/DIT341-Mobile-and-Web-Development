@@ -5,15 +5,17 @@
     </header>
     <!-- Render the content of the current page view -->
     <router-view/>
-    <Footer/>
+    <Footer />
   </div>
 </template>
 
 <script>
 import NavigationHeader from '@/components/NavigationHeader'
+import Footer from '@/components/Footer'
 export default {
   components: {
-    NavigationHeader
+    NavigationHeader,
+    Footer
   }
 
 }
