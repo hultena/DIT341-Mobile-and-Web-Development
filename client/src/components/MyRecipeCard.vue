@@ -53,19 +53,19 @@ export default {
   name: 'MyRecipeCard',
 
   props: {
-    // imageSrc: String,
     recipe: Object
   },
 
   methods: {
-    ...mapActions(['']),
+    ...mapActions(['selectRecipe']),
 
     deleteRecipe() {
       // todo, issue #73
     },
 
     editRecipe() {
-      // todo, issue #74
+      this.selectRecipe(this.recipe)
+      this.$router.push('/edit-recipe')
     },
 
     visitRecipe() {
