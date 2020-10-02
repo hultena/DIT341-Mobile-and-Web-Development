@@ -30,7 +30,7 @@ const mutations = {
   },
 
   setRecipes: function (state, recipes) {
-    state.recipes = recipes
+    state.recipes = state.recipes.concat(recipes)
   },
 
   setSelectedRecipe: function (state, recipe) {
