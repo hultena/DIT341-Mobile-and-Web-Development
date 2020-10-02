@@ -89,7 +89,7 @@ module.exports = {
             Joi.string()
         )
     }),
-    addLikeSchema: Joi.Object().keys({
+    addLikeSchema: Joi.object().keys({
         // todo: fix this to enable liking of recipes
     }),
 
