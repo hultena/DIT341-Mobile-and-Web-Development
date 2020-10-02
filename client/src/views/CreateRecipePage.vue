@@ -21,7 +21,7 @@
 </template>
 
 <script>
-import CreateRecipeForm from '@/forms/CreateRecipeForm/CreateRecipeForm'
+import CreateRecipeForm from '@/forms/recipes/CreateRecipeForm'
 
 export default {
   name: 'CreateRecipePage',
