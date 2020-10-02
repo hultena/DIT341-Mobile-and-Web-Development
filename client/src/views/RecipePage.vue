@@ -79,7 +79,7 @@
 <script>
 import ListIngredients from '@/components/ListIngredients'
 import ListInstructions from '@/components/ListInstructions'
-
+import { mapGetters } from 'vuex'
 export default {
   name: 'RecipePage',
   components: {
@@ -88,16 +88,14 @@ export default {
   },
   data() {
     return {
-      recipe: {
-        name: 'Chocolate cupcakes',
-        likes: 38,
-        createdOn: '2020-08-11',
-        user: 'Username',
-        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Id venenatis a condimentum vitae sapien pellentesque habitant morbi tristique. Eu sem integer vitae justo eget magna fermentum. Rhoncus dolor purus non enim. Mattis molestie a iaculis at erat. In vitae turpis massa sed elementum tempus egestas. Tristique nulla aliquet enim tortor at auctor urna nunc id.'
-      },
-      ingredients: [{}],
-      instructions: [{}]
+      recipe: null
     }
+  },
+  computed: {
+    ...mapGetters(['oneRecipe'])
+  },
+  created() {
+    this.recipe = this.oneRecipe
   }
 }
 </script>

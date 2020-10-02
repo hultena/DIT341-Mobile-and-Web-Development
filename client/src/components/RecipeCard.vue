@@ -21,24 +21,19 @@
 </template>
 
 <script>
-
+import { mapActions } from 'vuex'
 export default {
   name: 'RecipeCard',
-
   props: {
     recipe: null
   },
 
   methods: {
+    ...mapActions(['selectRecipe']),
     handleClick() {
-      // TODO: have 'path' equal recipeLink in props. I get errors. Idk how (?)
-
-      // const path = 'recipeLink'
-      // this.$router.push(path)
-
-      console.log('This card has been clicked!')
+      this.selectRecipe(this.recipe)
+      this.$router.push('recipe')
     }
-    // TODO: Method to have user id find username and display username instead of user id.
   }
 }
 </script>
