@@ -48,7 +48,7 @@ export default {
   components: { RecipeCard, RecipeSearch },
   data() {
     return {
-      page: 0
+      page: 1
     }
   },
   methods: {
@@ -56,7 +56,7 @@ export default {
 
     expandResults() {
       // todo: add # number of recipes to the end of the array of displayed recipes. Or pagniation, which ever works best.
-      this.page += 5
+      this.page += 1
       this.getRecipes(this.page)
     }
   },
@@ -64,7 +64,7 @@ export default {
     ...mapGetters(['allRecipes'])
   },
   created() {
-    this.getRecipes()
+    this.getRecipes(this.page)
   }
 }
 </script>

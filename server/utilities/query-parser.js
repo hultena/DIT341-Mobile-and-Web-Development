@@ -52,15 +52,14 @@ module.exports = {
                 req.value.select = selection;
             }
 
-            if(req.query.page){
-                req.value.page=parseInt(req.query.page);
+            if(req.query.page && req.query.limit){
+                const page = parseInt(req.query.page)
+                const limit = parseInt(req.query.limit)
+                // page-1 because index starts at 0 but page starts at 1
+                req.value.page = (page-1)*limit
+                req.value.limit = limit
             }else{
                 req.value.page=0;
-            }
-
-            if(req.query.limit){
-                req.value.limit=parseInt(req.query.limit);
-            }else{
                 req.value.limit=0;
             }
 
