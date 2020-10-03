@@ -4,7 +4,7 @@ const state = {
   // put the state here
   recipes: [],
   userRecipes: [],
-  oneRecipe: null
+  selectedRecipe: null
 }
 
 const getters = {
@@ -13,12 +13,12 @@ const getters = {
     return state.recipes
   },
 
-  allUserRecipes: function (state) {
-    return state.userRecipes
+  selectedRecipe: function (state) {
+    return state.selectedRecipe
   },
 
-  oneRecipe: function (state) {
-    return state.oneRecipe
+  allUserRecipes: function (state) {
+    return state.userRecipes
   }
 }
 
@@ -33,64 +33,74 @@ const mutations = {
     state.recipes = state.recipes.concat(recipes)
   },
 
-  setOneRecipe: function (state, recipe) {
-    state.oneRecipe = recipe
+  setSelectedRecipe: function (state, recipe) {
+    state.selectedRecipe = recipe
   },
 
   newRecipe: function (state, recipe) {
     state.recipes.push(recipe)
   },
 
-  updatedRecipe: function (state, recipe) {
-    // TODO: add things that make this work
+  updatedRecipe: function (state, updatedRecipe) {
+    state.recipes.splice(indexFinder(this.updatedRecipe._id), 1, updatedRecipe)
   }
 }
 
 const actions = {
-  // put method callers here
-  async getRecipes({ commit }, click) {
-    const res = await Api.get('/recipes', { params: { page: click, limit: 5 } })
-    commit('setRecipes', res.data)
+  // GETTERS
+
+  async getRecipes({ commit }) {
+    try {
+      const res = await Api.get('/recipes', { params: { page: click, limit: 5 } })
+      commit('setRecipes', res.data)
+    } catch (error) { return error.response.data }
   },
 
   async getUserRecipes({ commit }, id) {
     try {
       const res = await Api.get(`/users/${id}/recipes/`)
       commit('setUserRecipes', res.data)
-    } catch (error) {
-      return error.response.data
-    }
+    } catch (error) { return error.response.data }
   },
+
+  // CREATIONS
 
   async postRecipe({ commit }, recipe) {
     try {
       const res = await Api.post(`/users/${recipe.user}/recipes`, recipe)
       commit('newRecipe', res.data)
-    } catch (err) {
-      return err.response.data
-    }
+    } catch (error) { return error.response.data }
   },
+
+  // CHANGES
+
   async likeRecipe({ commit }, recipe) {
     try {
       const likes = { likes: recipe.likes + 1 }
       recipe.likes += 1
       await Api.patch(`/recipes/${recipe._id}`, likes)
       commit('updatedRecipe', recipe)
-    } catch (err) {
-      return err.response.data
-    }
+    } catch (error) { return error.response.data }
   },
 
   async patchRecipe({ commit }, recipe) {
     try {
       await Api.patch(`/users/${recipe.user}/recipes/${recipe._id}`, recipe)
       commit('updatedRecipe', recipe)
-    } catch (err) {
-      return err.response.data
-    }
+    } catch (error) { return error.response.data }
   },
+
+  async putRecipe({ commit }, recipe) {
+    try {
+      await Api.put(`/users/${recipe.user}/recipes/${recipe._id}`, state.selectedRecipe)
+      commit('updatedRecipe', recipe)
+    } catch (error) { return error.response.data }
+  },
+
+  // SELECTIONS
+
   selectRecipe({ commit }, recipe) {
-    commit('setOneRecipe', recipe)
+    commit('setSelectedRecipe', recipe)
   }
 }
 
@@ -99,4 +109,10 @@ export default {
   getters,
   mutations,
   actions
+}
+
+function indexFinder(id) {
+  return state.recipes.findIndex(function (recipe) {
+    return recipe._id === id
+  })
 }
