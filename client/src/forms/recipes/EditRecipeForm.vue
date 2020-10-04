@@ -72,7 +72,7 @@
         <p>
           Upload an image of your recipe
         </p>
-        <FileUploader />
+        <file-uploader @clicked='setImage' />
       </div>
 
       <!-- TODO: Ingredients ??? stuff fields -->
@@ -153,6 +153,7 @@ export default {
         name: null,
         category: null,
         description: null,
+        image: null,
         ingredients: [],
         allergies: [],
         dietaryRestrictions: [],
@@ -201,6 +202,10 @@ export default {
 
     getValidationState({ dirty, validated, valid = null }) {
       return dirty || validated ? valid : null
+    },
+
+    setImage(event) {
+      this.form.image = event
     }
   },
 
