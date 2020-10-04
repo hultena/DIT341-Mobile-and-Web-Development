@@ -3,7 +3,7 @@ import { Api } from '@/Api'
 const state = {
   // put the state here
   users: [],
-  view: '',
+  view: 'recipes',
   loggedIn: null
 }
 
