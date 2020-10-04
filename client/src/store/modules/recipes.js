@@ -3,7 +3,6 @@ import { Api } from '@/Api'
 const state = {
   // put the state here
   recipes: [],
-  foundRecipes: [],
   userRecipes: [],
   query: {},
   selectedRecipe: null
@@ -22,8 +21,8 @@ const getters = {
   allUserRecipes: function (state) {
     return state.userRecipes
   },
-  allFoundRecipes: function (state) {
-    return state.foundRecipes
+  selectedQuery: function (state) {
+    return state.query
   }
 }
 
@@ -41,9 +40,6 @@ const mutations = {
   setSelectedRecipe: function (state, recipe) {
     state.selectedRecipe = recipe
   },
-  setFoundRecipes: function (state, recipes) {
-    state.foundRecipes = state.foundRecipes.concat(recipes)
-  },
   setQuery: function (state, query) {
     state.query = query
   },
@@ -60,20 +56,11 @@ const mutations = {
 const actions = {
   // GETTERS
 
-  async getRecipes({ commit }, click) {
+  async getRecipes({ commit }) {
     try {
       // TODO: maybe change this fixed limit of 5
-      const res = await Api.get('/recipes', { params: { page: click, limit: 5 } })
+      const res = await Api.get('/recipes', { params: state.query })
       commit('setRecipes', res.data)
-    } catch (error) { return error.response.data }
-  },
-  async getSearchRecipes({ commit }) {
-    try {
-      // TODO: maybe change this fixed limit of 5
-      const res = await Api.get('/recipes', {
-        params: state.query
-      })
-      commit('setFoundRecipes', res.data)
     } catch (error) { return error.response.data }
   },
 

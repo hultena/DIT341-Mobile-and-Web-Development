@@ -43,35 +43,13 @@
       </b-input-group-append>
     </b-input-group>
   </b-form-group>
-  <b-row>
-    <b-col v-for='recipe in allFoundRecipes' :key='recipe._id'>
-      <recipe-card :recipe='recipe' />
-    </b-col>
-  </b-row>
-
-  <b-row>
-    <b-col>
-      <b-button
-        variant='primary'
-        @click='loadMore'
-        block
-        class='mt-4 mb-5'
-      >
-        Show more results
-      </b-button>
-    </b-col>
-  </b-row>
   </div>
 </template>
 
 <script>
-import { mapActions, mapGetters } from 'vuex'
-import RecipeCard from '@/components/RecipeCard'
+import { mapActions } from 'vuex'
 export default {
   name: 'RecipeSearch',
-  components: {
-    RecipeCard
-  },
   data() {
     return {
       form: {
@@ -84,25 +62,13 @@ export default {
     }
   },
   methods: {
-    ...mapActions(['getSearchRecipes']),
+    ...mapActions(['getRecipes']),
     search() {
       this.form.page = 1
       this.$store.commit('setQuery', this.form)
-      this.$store.state.recipes.foundRecipes = []
-      if (this.form.value) {
-        this.getSearchRecipes()
-      }
-    },
-    loadMore() {
-      if (this.$store.state.recipes.query) {
-        this.form.page += 1
-        this.$store.commit('setQuery', this.form)
-        this.getSearchRecipes()
-      }
+      this.$store.state.recipes.recipes = []
+      this.getRecipes()
     }
-  },
-  computed: {
-    ...mapGetters(['allFoundRecipes'])
   }
 }
 </script>
