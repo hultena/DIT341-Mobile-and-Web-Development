@@ -15,8 +15,8 @@
 
     <b-row class='mt-3 mb-5'>
       <b-col
-        v-for='(recipe, index) in allUserRecipes'
-        :key='index'
+        v-for='recipe in allUserRecipes'
+        :key='recipe._id'
       >
         <MyRecipeCard
           :recipe='recipe'
