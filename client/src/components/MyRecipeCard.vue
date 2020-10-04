@@ -1,7 +1,7 @@
 <template>
   <b-card
     :title='this.recipe.name'
-    img-src='https://images.unsplash.com/photo-1548848221-0c2e497ed557?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80'
+    :img-src='this.recipe.image'
     img-top
   >
     <b-card-text>
