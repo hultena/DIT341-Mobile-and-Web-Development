@@ -64,6 +64,7 @@ export default {
     ...mapGetters(['allRecipes'])
   },
   created() {
+    this.$store.state.recipes.recipes = []
     this.getRecipes(this.page)
   }
 }

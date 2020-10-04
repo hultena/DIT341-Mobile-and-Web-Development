@@ -34,7 +34,8 @@ module.exports = {
                 const attribute = req.query.filter;
                 //no else statement to ensure that no filtering occurs if a value isn't supplied with the query string.
                 if(req.query.value){
-                    req.value.filter[attribute] = req.query.value;
+                    // Using regex pattern to find all documents that contains the string
+                    req.value.filter[attribute] = { $regex: req.query.value, $options: "i" };
                 }
             }
 
