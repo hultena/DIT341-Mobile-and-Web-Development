@@ -3,14 +3,7 @@
   <b-form-group>
     <b-input-group class='mb-3'>
 
-      <b-form-input
-        v-model="form.value"
-        type='text'
-        placeholder='Type something you want to search for here'
-        @keyup.enter="search"
-      />
-
-      <b-input-group-append>
+      <b-input-group-prepend>
         <b-dropdown
           split
           split-variant="outline-secondary"
@@ -33,13 +26,21 @@
             Allergy
           </b-dropdown-item>
         </b-dropdown>
+      </b-input-group-prepend>
 
+      <b-form-input
+        v-model="form.value"
+        type='text'
+        placeholder='Type something you want to search for here'
+        @keyup.enter="search"
+      />
+
+      <b-input-group-append>
         <b-button
           variant='outline-primary'
           @click="search">
           <b-icon-search />
         </b-button>
-
       </b-input-group-append>
     </b-input-group>
   </b-form-group>
@@ -58,7 +59,7 @@ export default {
         page: 1,
         limit: 5
       },
-      filterText: 'Filter'
+      filterText: 'Search by'
     }
   },
   methods: {
