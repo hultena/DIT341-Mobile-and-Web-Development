@@ -1,6 +1,5 @@
 <template>
-  <b-container>
-
+  <section>
     <b-row>
       <b-col>
         <b-button
@@ -15,15 +14,17 @@
     </b-row>
 
     <b-row class='mt-3 mb-5'>
-      <b-col v-for='recipe in allUserRecipes' :key='recipe._id'>
+      <b-col
+        v-for='recipe in allUserRecipes'
+        :key='recipe._id'
+      >
         <MyRecipeCard
           :recipe='recipe'
           class='my-3'
         />
       </b-col>
     </b-row>
-
-  </b-container>
+  </section>
 </template>
 
 <script>
