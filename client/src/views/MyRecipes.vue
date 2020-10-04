@@ -1,6 +1,5 @@
 <template>
-  <b-container>
-
+  <section>
     <b-row>
       <b-col>
         <b-button
@@ -22,8 +21,7 @@
         />
       </b-col>
     </b-row>
-
-  </b-container>
+  </section>
 </template>
 
 <script>
