@@ -1,7 +1,14 @@
 <template>
-  <b-container class='profile-page'>
+  <b-container class='profile-page mt-5'>
 
-    <b-row>
+    <b-row class='mt-5'>
+      <b-col class='avatar mr-5'>
+        <b-img
+          :src='this.loggedInUser.image'
+          alt='User avatar'
+          rounded='circle'
+        />
+      </b-col>
       <b-col>
         <h1>
           Welcome {{this.loggedInUser.username}}
@@ -14,32 +21,38 @@
     </b-row>
     <b-row>
       <b-col>
-        <h3>
-          <b-button
-            v-if="this.currentView==='ingredients'&&!addIngredientState"
-            @click="addIngredientState=changeState(addIngredientState)">
-            Add Ingredients
-          </b-button>
-          <b-button
-            v-if="this.currentView==='ingredients'&&addIngredientState"
-            @click="addIngredientState=changeState(addIngredientState)">
-            Finish
-          </b-button>
-          <b-button
-            v-if="this.currentView==='shopping'"
-            @click="addShoppingList">
-            Add Shopping List
-          </b-button>
-          <!-- Perhaps move this button to the navbar in the future? Putting it here for now -->
-          <b-button
-            v-if="this.currentView!=='settings'"
-            @click="changeView('settings')"
-            variant='outline-secondary'
-            block
-          >
-            <b-icon-pencil /> User settings
-          </b-button>
-        </h3>
+        <!-- Perhaps move this button to the navbar in the future? Putting it here for now -->
+        <b-button
+          v-if="this.currentView!=='settings'"
+          @click="changeView('settings')"
+          variant='outline-secondary'
+          block
+          class='my-3'
+        >
+          <b-icon-pencil /> User settings
+        </b-button>
+
+        <b-button
+          v-if="this.currentView==='ingredients'&&!addIngredientState"
+          @click="addIngredientState=changeState(addIngredientState)"
+          block
+        >
+          Add Ingredients
+        </b-button>
+        <b-button
+          v-if="this.currentView==='ingredients'&&addIngredientState"
+          @click="addIngredientState=changeState(addIngredientState)"
+          block
+        >
+          Finish
+        </b-button>
+        <b-button
+          v-if="this.currentView==='shopping'"
+          @click="addShoppingList"
+          block
+        >
+          Add Shopping List
+        </b-button>
       </b-col>
     </b-row>
 
@@ -112,4 +125,13 @@ export default {
 
 <style scoped>
 .profile-page {}
+.avatar {
+  max-width: 200px !important;
+}
+.avatar > img {
+  height: 200px;
+  width: 200px;
+  object-fit: cover;
+  object-position: center;
+}
 </style>
