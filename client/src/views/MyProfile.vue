@@ -114,10 +114,15 @@ export default {
   computed: {
     ...mapGetters(['loggedInUser', 'allShoppingLists', 'allUserIngredients', 'currentView'])
   },
+
   async created() {
     this.user = this.loggedInUser._id
     await this.getShoppingLists(this.user)
     await this.getUserIngredients(this.user)
+  },
+
+  destroyed() {
+    this.changeView('recipes')
   }
 }
 
