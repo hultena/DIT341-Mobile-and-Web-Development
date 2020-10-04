@@ -1,52 +1,75 @@
 <template>
+  <div>
   <b-form-group>
     <b-input-group class='mb-3'>
 
+      <b-input-group-prepend>
+        <b-dropdown
+          split
+          split-variant="outline-secondary"
+          variant="outline-secondary"
+          :text="filterText"
+        >
+          <b-dropdown-item
+            @click="form.filter='name';
+            filterText='Name'">
+            Name
+          </b-dropdown-item>
+          <b-dropdown-item
+            @click="form.filter='dietaryRestriction';
+            filterText='Diet'">
+            Diet
+          </b-dropdown-item>
+          <b-dropdown-item
+            @click="form.filter='allergies';
+            filterText='Allergy'">
+            Allergy
+          </b-dropdown-item>
+        </b-dropdown>
+      </b-input-group-prepend>
+
       <b-form-input
+        v-model="form.value"
         type='text'
         placeholder='Type something you want to search for here'
+        @keyup.enter="search"
       />
 
       <b-input-group-append>
-
         <b-button
-          v-b-toggle.collapse-1
-          variant='outline-secondary'
-        >
-          <b-icon-filter />
-        </b-button>
-
-        <b-button variant='outline-primary'>
+          variant='outline-primary'
+          @click="search">
           <b-icon-search />
         </b-button>
-
       </b-input-group-append>
     </b-input-group>
-
-    <b-collapse id="collapse-1">
-      <p>
-        Filter options go here.
-      </p>
-      <!-- TODO: Add filter options -->
-    </b-collapse>
-
-    <div id='show-recipes'>
-      <div class='single-recipe'></div>
-    </div>
-
   </b-form-group>
+  </div>
 </template>
 
 <script>
-
+import { mapActions } from 'vuex'
 export default {
   name: 'RecipeSearch',
-
-  methods: {
-    // TODO: Get vuex to work and figure out why you get returned undefined.
+  data() {
+    return {
+      form: {
+        value: null,
+        filter: 'name',
+        page: 1,
+        limit: 5
+      },
+      filterText: 'Search by'
+    }
   },
-
-  created() {
+  methods: {
+    ...mapActions(['getRecipes']),
+    search() {
+      this.form.page = 1
+      this.$store.commit('setQuery', this.form)
+      this.$store.state.recipes.recipes = []
+      this.getRecipes()
+    }
   }
 }
 </script>

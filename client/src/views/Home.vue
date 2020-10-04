@@ -48,7 +48,12 @@ export default {
   components: { RecipeCard, RecipeSearch },
   data() {
     return {
-      page: 1
+      form: {
+        page: 1,
+        limit: 5,
+        value: null,
+        filter: null
+      }
     }
   },
   methods: {
@@ -56,15 +61,19 @@ export default {
 
     expandResults() {
       // todo: add # number of recipes to the end of the array of displayed recipes. Or pagniation, which ever works best.
-      this.page += 1
-      this.getRecipes(this.page)
+      this.form = this.selectedQuery
+      this.form.page += 1
+      this.$store.commit('setQuery', this.form)
+      this.getRecipes()
     }
   },
   computed: {
-    ...mapGetters(['allRecipes'])
+    ...mapGetters(['allRecipes', 'selectedQuery'])
   },
   created() {
-    this.getRecipes(this.page)
+    this.$store.state.recipes.recipes = []
+    this.$store.commit('setQuery', this.form)
+    this.getRecipes()
   }
 }
 </script>

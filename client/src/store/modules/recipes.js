@@ -4,6 +4,7 @@ const state = {
   // put the state here
   recipes: [],
   userRecipes: [],
+  query: {},
   selectedRecipe: null
 }
 
@@ -19,6 +20,9 @@ const getters = {
 
   allUserRecipes: function (state) {
     return state.userRecipes
+  },
+  selectedQuery: function (state) {
+    return state.query
   }
 }
 
@@ -36,6 +40,9 @@ const mutations = {
   setSelectedRecipe: function (state, recipe) {
     state.selectedRecipe = recipe
   },
+  setQuery: function (state, query) {
+    state.query = query
+  },
 
   newRecipe: function (state, recipe) {
     state.recipes.push(recipe)
@@ -49,10 +56,10 @@ const mutations = {
 const actions = {
   // GETTERS
 
-  async getRecipes({ commit }, click) {
+  async getRecipes({ commit }) {
     try {
       // TODO: maybe change this fixed limit of 5
-      const res = await Api.get('/recipes', { params: { page: click, limit: 5 } })
+      const res = await Api.get('/recipes', { params: state.query })
       commit('setRecipes', res.data)
     } catch (error) { return error.response.data }
   },
