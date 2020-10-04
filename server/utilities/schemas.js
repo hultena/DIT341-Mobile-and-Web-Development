@@ -24,6 +24,7 @@ module.exports = {
         name: Joi.string().required(),
         category: Joi.string().valid('Baking', 'Cooking').required(),
         description: Joi.string(),
+        image: Joi.string(),
         dietaryRestrictions: Joi.array().items(
             Joi.string().valid(
             'Vegan',
@@ -59,6 +60,7 @@ module.exports = {
         name: Joi.string(),
         category: Joi.string().valid('Baking', 'Cooking'),
         description: Joi.string(),
+        image: Joi.string(),
         dietaryRestrictions: Joi.array().items(
             Joi.string().valid(
                 'Vegan',
