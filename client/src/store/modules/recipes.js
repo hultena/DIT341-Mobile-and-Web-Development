@@ -49,8 +49,9 @@ const mutations = {
 const actions = {
   // GETTERS
 
-  async getRecipes({ commit }) {
+  async getRecipes({ commit }, click) {
     try {
+      // TODO: maybe change this fixed limit of 5
       const res = await Api.get('/recipes', { params: { page: click, limit: 5 } })
       commit('setRecipes', res.data)
     } catch (error) { return error.response.data }
