@@ -2,7 +2,7 @@
   <div class='recipe-page'>
     <div class='hero'>
       <b-img
-        src='https://images.unsplash.com/photo-1426869884541-df7117556757?ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80'
+        :src='this.recipe.image'
         alt='Responsive image'
       />
     </div>
