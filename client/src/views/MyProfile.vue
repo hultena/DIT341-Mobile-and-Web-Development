@@ -1,39 +1,60 @@
 <template>
-  <div class='profile-page'>
+  <b-container class='profile-page mt-5'>
 
-    <section>
+    <b-row class='mt-5'>
+      <b-col class='avatar mr-5'>
+        <b-img
+          :src='this.loggedInUser.image'
+          alt='User avatar'
+          rounded='circle'
+        />
+      </b-col>
+      <b-col>
+        <h1>
+          Welcome {{this.loggedInUser.username}}
+        </h1>
 
-      <h1>
-        Welcome {{this.loggedInUser.username}}
-      </h1>
+        <h2>
+          {{this.loggedInUser.email}}
+        </h2>
+      </b-col>
+    </b-row>
+    <b-row>
+      <b-col>
+        <!-- Perhaps move this button to the navbar in the future? Putting it here for now -->
+        <b-button
+          v-if="this.currentView!=='settings'"
+          @click="changeView('settings')"
+          variant='outline-secondary'
+          block
+          class='my-3'
+        >
+          <b-icon-pencil /> User settings
+        </b-button>
 
-      <h2>
-        {{this.loggedInUser.email}}
-      </h2>
-      <h3>
         <b-button
           v-if="this.currentView==='ingredients'&&!addIngredientState"
-          @click="addIngredientState=changeState(addIngredientState)">
+          @click="addIngredientState=changeState(addIngredientState)"
+          block
+        >
           Add Ingredients
         </b-button>
         <b-button
           v-if="this.currentView==='ingredients'&&addIngredientState"
-          @click="addIngredientState=changeState(addIngredientState)">
+          @click="addIngredientState=changeState(addIngredientState)"
+          block
+        >
           Finish
         </b-button>
         <b-button
           v-if="this.currentView==='shopping'"
-          @click="addShoppingList">
+          @click="addShoppingList"
+          block
+        >
           Add Shopping List
         </b-button>
-        <!-- Perhaps move this button to the navbar in the future? Putting it here for now -->
-          <b-button
-            v-if="this.currentView!=='settings'"
-            @click="changeView('settings')">
-            User Settings
-          </b-button>
-      </h3>
-    </section>
+      </b-col>
+    </b-row>
 
     <section>
       <add-ingredient-form v-if="this.currentView==='ingredients'&&addIngredientState"/>
@@ -49,7 +70,7 @@
 
     </section>
 
-  </div>
+  </b-container>
 </template>
 
 <script>
@@ -93,10 +114,15 @@ export default {
   computed: {
     ...mapGetters(['loggedInUser', 'allShoppingLists', 'allUserIngredients', 'currentView'])
   },
+
   async created() {
     this.user = this.loggedInUser._id
     await this.getShoppingLists(this.user)
     await this.getUserIngredients(this.user)
+  },
+
+  destroyed() {
+    this.changeView('recipes')
   }
 }
 
@@ -104,4 +130,13 @@ export default {
 
 <style scoped>
 .profile-page {}
+.avatar {
+  max-width: 200px !important;
+}
+.avatar > img {
+  height: 200px;
+  width: 200px;
+  object-fit: cover;
+  object-position: center;
+}
 </style>
