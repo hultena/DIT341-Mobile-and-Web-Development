@@ -12,6 +12,7 @@ import MyRecipes from '@/views/MyRecipes'
 import CreateRecipePage from '@/views/CreateRecipePage'
 import EditRecipePage from '@/views/EditRecipePage'
 import RecipePage from '@/views/RecipePage'
+import MyRecipePage from '@/views/MyRecipePage'
 
 Vue.use(Router)
 
@@ -63,6 +64,11 @@ export default new Router({
       path: '/my-recipes',
       name: 'MyRecipes',
       component: MyRecipes
+    },
+    {
+      path: '/my-recipe',
+      name: 'MyRecipePage',
+      component: MyRecipePage
     },
     {
       path: '/create-recipe',
