@@ -14,7 +14,7 @@ const getters = {
     return state.recipes
   },
 
-  selectedRecipe: function (state) {
+  oneRecipe: function (state) {
     return state.selectedRecipe
   },
 
