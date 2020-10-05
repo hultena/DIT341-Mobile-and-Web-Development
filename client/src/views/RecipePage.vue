@@ -55,11 +55,7 @@
 
         </b-col>
         <b-col>
-          <b-jumbotron
-            header='Adspace'
-            text-variant='light'
-            class='ad-space'
-          ></b-jumbotron>
+          <ad-space />
         </b-col>
       </b-row>
       <b-row class='my-5'>
@@ -80,9 +76,10 @@
 import ListIngredients from '@/components/ListIngredients'
 import ListInstructions from '@/components/ListInstructions'
 import { mapGetters, mapActions } from 'vuex'
+import AdSpace from '@/components/AdSpace'
 export default {
   name: 'RecipePage',
-  components: { ListIngredients, ListInstructions },
+  components: { AdSpace, ListIngredients, ListInstructions },
 
   methods: {
     ...mapActions(['likeRecipe']),
@@ -103,10 +100,5 @@ export default {
   width: 100vw;
   object-fit: cover;
   object-position: center;
-}
-.recipe-page .ad-space {
-  text-align: center;
-  background-image: linear-gradient(0deg, rgba(0, 0, 0, .5) 0%, rgba(0, 0, 0, .5) 100%), url('https://images.unsplash.com/photo-1504754524776-8f4f37790ca0?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80');
-  background-position: center;
 }
 </style>
