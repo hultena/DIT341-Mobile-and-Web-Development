@@ -4,17 +4,17 @@
     <b-container>
       <b-row>
         <b-col>
-          <edit-recipe-name-form :recipe='this.recipe' />
+          <edit-recipe-name :recipe='this.recipe' />
         </b-col>
       </b-row>
       <b-row>
         <b-col>
-          <edit-recipe-category-form :recipe='this.recipe' />
+          <edit-recipe-category :recipe='this.recipe' />
         </b-col>
       </b-row>
       <b-row>
         <b-col>
-          <edit-recipe-description-form :recipe='this.recipe' />
+          <edit-recipe-description :recipe='this.recipe' />
         </b-col>
       </b-row>
       <b-row>
@@ -24,10 +24,10 @@
       </b-row>
       <b-row>
         <b-col>
-          <edit-recipe-dietary-restrictions-form :recipe='this.recipe' />
+          <edit-recipe-dietary-restrictions :recipe='this.recipe' />
         </b-col>
         <b-col>
-          <edit-recipe-allergies-form :recipe='this.recipe' />
+          <edit-recipe-allergies :recipe='this.recipe' />
         </b-col>
       </b-row>
       <b-row>
@@ -56,12 +56,12 @@
 
 <script>
 import { mapActions, mapGetters } from 'vuex'
-import EditRecipeNameForm from '@/forms/recipes/EditRecipeNameForm'
-import EditRecipeDescriptionForm from '@/forms/recipes/EditRecipeDescriptionForm'
+import EditRecipeName from '@/forms/recipes/EditRecipeName'
+import EditRecipeDescription from '@/forms/recipes/EditRecipeDescription'
 import AdSpace from '@/components/AdSpace'
-import EditRecipeCategoryForm from '@/forms/recipes/EditRecipeCategory'
-import EditRecipeDietaryRestrictionsForm from '@/forms/recipes/EditRecipeDietaryRestrictionsForm'
-import EditRecipeAllergiesForm from '@/forms/recipes/EditRecipeAllergiesForm'
+import EditRecipeCategory from '@/forms/recipes/EditRecipeCategory'
+import EditRecipeDietaryRestrictions from '@/forms/recipes/EditRecipeDietaryRestrictions'
+import EditRecipeAllergies from '@/forms/recipes/EditRecipeAllergies'
 import EditRecipeInstructions from '@/forms/recipes/EditRecipeInstructions'
 import EditRecipeImage from '@/forms/recipes/EditRecipeImage'
 
@@ -69,14 +69,14 @@ export default {
   name: 'MyRecipePage',
 
   components: {
-    EditRecipeImage,
-    EditRecipeInstructions,
-    EditRecipeAllergiesForm,
-    EditRecipeDietaryRestrictionsForm,
-    EditRecipeCategoryForm,
+    EditRecipeName,
+    EditRecipeAllergies,
     AdSpace,
-    EditRecipeDescriptionForm,
-    EditRecipeNameForm
+    EditRecipeDescription,
+    EditRecipeCategory,
+    EditRecipeDietaryRestrictions,
+    EditRecipeInstructions,
+    EditRecipeImage
   },
 
   computed: { ...mapGetters(['oneRecipe']) },
