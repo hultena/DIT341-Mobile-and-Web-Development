@@ -3,6 +3,7 @@
     :title='this.recipe.name'
     :img-src='this.recipe.image'
     img-top
+    class='w-100'
   >
     <b-card-text>
 
@@ -14,25 +15,14 @@
         {{ this.recipe.description | snippet }}
       </p>
 
-      <b-button-group class='w-100'>
-
-        <b-button
-          variant='outline-danger'
-          @click='deleteRecipe()'
-        >
-          <b-icon-trash />
-          Delete recipe
-        </b-button>
-
-        <b-button
-          variant='outline-primary'
-          @click='visitRecipe()'
-        >
-          <b-icon-book />
-          Go to recipe
-        </b-button>
-
-      </b-button-group>
+      <b-button
+        variant='outline-primary'
+        @click='visitRecipe()'
+        block
+      >
+        <b-icon-book />
+        Go to recipe
+      </b-button>
 
     </b-card-text>
   </b-card>

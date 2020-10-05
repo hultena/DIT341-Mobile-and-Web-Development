@@ -36,11 +36,26 @@
         <edit-recipe-instructions :recipe='this.recipe' />
       </b-col>
     </b-row>
+    <b-row>
+      <b-col>
+        <b-card
+          title='Danger zone'
+        >
+          <b-button
+            variant='danger'
+            block
+            @click='deleteThisRecipe'
+          >
+            Delete recipe
+          </b-button>
+        </b-card>
+      </b-col>
+    </b-row>
   </b-container>
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapActions, mapGetters } from 'vuex'
 import EditRecipeNameForm from '@/forms/recipes/EditRecipeNameForm'
 import EditRecipeDescriptionForm from '@/forms/recipes/EditRecipeDescriptionForm'
 import AdSpace from '@/components/AdSpace'
@@ -63,6 +78,15 @@ export default {
   },
 
   computed: { ...mapGetters(['oneRecipe']) },
+
+  methods: {
+    ...mapActions(['deleteRecipe']),
+
+    deleteThisRecipe() {
+      this.deleteRecipe(this.recipe)
+      this.$router.push('/my-profile')
+    }
+  },
 
   data() { return { recipe: {} } },
 

@@ -50,6 +50,12 @@ const mutations = {
 
   updatedRecipe: function (state, updatedRecipe) {
     state.recipes.splice(indexFinder(this.updatedRecipe._id), 1, updatedRecipe)
+  },
+
+  deletedRecipe: function (state, id) {
+    const idx = indexFinder(id)
+    state.recipes.splice(idx[0], 1)
+    state.userRecipes.splice(idx[1], 1)
   }
 }
 
@@ -102,6 +108,15 @@ const actions = {
     try {
       await Api.put(`/users/${recipe.user}/recipes/${recipe._id}`, state.selectedRecipe)
       commit('updatedRecipe', recipe)
+    } catch (error) { return error.response.data }
+  },
+
+  // DELETIONS
+
+  async deleteRecipe({ commit }, recipe) {
+    try {
+      await Api.delete(`/users/${recipe.user}/recipes/${recipe._id}`)
+      commit('deletedIngredient', recipe._id)
     } catch (error) { return error.response.data }
   },
 
