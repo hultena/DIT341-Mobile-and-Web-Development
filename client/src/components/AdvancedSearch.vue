@@ -10,6 +10,12 @@
         />
         <b-input-group-append>
           <b-button
+            v-b-toggle.collapse-1
+            variant='outline-secondary'
+          >
+            <b-icon-filter />
+          </b-button>
+          <b-button
             variant='outline-primary'
             @click="search">
             <b-icon-search />
@@ -17,20 +23,37 @@
         </b-input-group-append>
       </b-input-group>
     </b-form-group>
-    <b-form-group label="Allergies">
-      <b-form-checkbox-group
-        id="checkbox-group-1"
-        v-model="form.filters.allergies"
-        :options="allergyOptions"
-      ></b-form-checkbox-group>
-    </b-form-group>
-    <b-form-group label="Dietary Restrictions">
-      <b-form-checkbox-group
-        id="checkbox-group-2"
-        v-model="form.filters.dietaryRestrictions"
-        :options="dietOptions"
-      ></b-form-checkbox-group>
-    </b-form-group>
+
+    <b-collapse id="collapse-1">
+      <b-container>
+        <b-row>
+
+          <b-col>
+            <b-form-group label="Allergies">
+              <b-form-checkbox-group
+                id="checkbox-group-1"
+                v-model="form.filters.allergies"
+                :options="allergyOptions"
+                stacked
+              ></b-form-checkbox-group>
+            </b-form-group>
+          </b-col>
+
+          <b-col>
+            <b-form-group label="Dietary Restrictions">
+              <b-form-checkbox-group
+                id="checkbox-group-2"
+                v-model="form.filters.dietaryRestrictions"
+                :options="dietOptions"
+                stacked
+              ></b-form-checkbox-group>
+            </b-form-group>
+          </b-col>
+
+        </b-row>
+      </b-container>
+    </b-collapse>
+
   </div>
 </template>
 
