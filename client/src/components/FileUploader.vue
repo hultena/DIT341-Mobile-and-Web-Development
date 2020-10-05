@@ -24,9 +24,9 @@
                   @click="onSubmit"
                   v-if="getValidationState(validationContext)"
                   block
-                  variant='outline-primary'
+                  variant='outline-success'
                 >
-                  Set
+                  Save image
                 </b-button>
                 <b-form-invalid-feedback>{{ validationContext.errors[0] }}</b-form-invalid-feedback>
               </b-form-group>
