@@ -25,9 +25,9 @@ module.exports = {
         __v: Joi.number(),
         user: Joi.string().regex(regexPattern),
         name: Joi.string().required(),
-        category: Joi.string().valid('Cooking', 'Baking'),
-        description: Joi.string(),
-        image: Joi.string(),
+        category: Joi.string().allow(''),
+        description: Joi.string().allow(''),
+        image: Joi.string().allow(''),
         ingredients: Joi.array().items(Joi.string().regex(regexPattern)),
         dietaryRestrictions: Joi.array().items(Joi.string().valid(
                 'Vegan',
