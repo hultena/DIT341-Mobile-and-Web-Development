@@ -2,7 +2,7 @@
   <section>
     <b-row>
       <b-col>
-        <CreateRecipeForm />
+        <create-recipe />
       </b-col>
     </b-row>
 
@@ -24,11 +24,11 @@
 import { mapGetters, mapActions } from 'vuex'
 
 import MyRecipeCard from '@/components/MyRecipeCard'
-import CreateRecipeForm from '@/forms/recipes/CreateRecipeForm'
+import CreateRecipe from '@/forms/recipes/CreateRecipe'
 export default {
   name: 'MyRecipes',
 
-  components: { CreateRecipeForm, MyRecipeCard },
+  components: { CreateRecipe, MyRecipeCard },
 
   computed: {
     ...mapGetters(['allUserRecipes', 'loggedInUser'])
