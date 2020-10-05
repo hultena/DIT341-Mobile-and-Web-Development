@@ -1,14 +1,22 @@
 <template>
   <b-container>
     <h1>
-      My recipe page
+      {{ recipe.name }}
     </h1>
   </b-container>
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+
 export default {
-  name: 'MyRecipePage'
+  name: 'MyRecipePage',
+
+  computed: { ...mapGetters(['oneRecipe']) },
+
+  data() { return { recipe: {} } },
+
+  mounted() { this.recipe = this.oneRecipe }
 }
 </script>
 
