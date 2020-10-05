@@ -14,7 +14,6 @@
     <b-row>
       <b-col>
         <advanced-search/>
-        <RecipeSearch />
       </b-col>
     </b-row>
     <b-row>
@@ -40,13 +39,12 @@
 </template>
 
 <script>
-import RecipeSearch from '@/components/RecipeSearch'
 import { mapGetters, mapActions } from 'vuex'
 import RecipeCard from '@/components/RecipeCard'
 import AdvancedSearch from '@/components/AdvancedSearch'
 export default {
   name: 'home',
-  components: { AdvancedSearch, RecipeCard, RecipeSearch },
+  components: { AdvancedSearch, RecipeCard },
   data() {
     return {
       form: {
@@ -61,7 +59,6 @@ export default {
     ...mapActions(['getRecipes']),
 
     expandResults() {
-      // todo: add # number of recipes to the end of the array of displayed recipes. Or pagniation, which ever works best.
       this.form = this.selectedQuery
       this.form.page += 1
       this.$store.commit('setQuery', this.form)
