@@ -30,13 +30,32 @@ module.exports = {
                 }
             }
 
-            if(req.query.filter){
-                const attribute = req.query.filter;
-                //no else statement to ensure that no filtering occurs if a value isn't supplied with the query string.
-                if(req.query.value){
-                    // Using regex pattern to find all documents that contains the string
-                    req.value.filter[attribute] = { $regex: req.query.value, $options: "i" };
+            if(req.query.filters){
+                const filters = {}
+                // If multiple filters are passed in.
+                if (Array.isArray(req.query.filters)) {
+                    for (const filter of req.query.filters) {
+                        let [key, value] = filter.split('=')
+                        // If it's name then we enable partial matches
+                        if(key==='name'){
+                            filters[key] = {$regex: value, $options: "i"}
+                        } else {
+                            // if it's not name then all must match as they are important
+                            value = value.split(',')
+                            filters[key] = {$all: value}
+                        }
+                    }
+                    // same as above but for the case where it's only 1 filter
+                } else {
+                    let [key, value] = req.query.filters.split('=')
+                    if(key==='name'){
+                        filters[key] = {$regex: value, $options: "i"}
+                    }else {
+                        value = value.split(',')
+                        filters[key] = {$all: value}
+                    }
                 }
+                req.value.filter = filters
             }
 
             if(req.query.select){
@@ -63,7 +82,6 @@ module.exports = {
                 req.value.page=0;
                 req.value.limit=0;
             }
-
             next();
         }
     }

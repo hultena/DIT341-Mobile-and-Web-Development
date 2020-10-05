@@ -3,31 +3,6 @@
   <b-form-group>
     <b-input-group class='mb-3'>
 
-      <b-input-group-prepend>
-        <b-dropdown
-          split
-          split-variant="outline-secondary"
-          variant="outline-secondary"
-          :text="filterText"
-        >
-          <b-dropdown-item
-            @click="form.filter='name';
-            filterText='Name'">
-            Name
-          </b-dropdown-item>
-          <b-dropdown-item
-            @click="form.filter='dietaryRestriction';
-            filterText='Diet'">
-            Diet
-          </b-dropdown-item>
-          <b-dropdown-item
-            @click="form.filter='allergies';
-            filterText='Allergy'">
-            Allergy
-          </b-dropdown-item>
-        </b-dropdown>
-      </b-input-group-prepend>
-
       <b-form-input
         v-model="form.value"
         type='text'
@@ -65,7 +40,6 @@ export default {
   methods: {
     ...mapActions(['getRecipes']),
     search() {
-      this.form.page = 1
       this.$store.commit('setQuery', this.form)
       this.$store.state.recipes.recipes = []
       this.getRecipes()

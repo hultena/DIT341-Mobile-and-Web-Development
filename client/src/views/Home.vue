@@ -11,9 +11,9 @@
         </h2>
       </b-col>
     </b-row>
-
     <b-row>
       <b-col>
+        <advanced-search/>
         <RecipeSearch />
       </b-col>
     </b-row>
@@ -43,9 +43,10 @@
 import RecipeSearch from '@/components/RecipeSearch'
 import { mapGetters, mapActions } from 'vuex'
 import RecipeCard from '@/components/RecipeCard'
+import AdvancedSearch from '@/components/AdvancedSearch'
 export default {
   name: 'home',
-  components: { RecipeCard, RecipeSearch },
+  components: { AdvancedSearch, RecipeCard, RecipeSearch },
   data() {
     return {
       form: {
