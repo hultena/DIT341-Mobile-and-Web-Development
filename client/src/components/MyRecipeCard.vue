@@ -65,7 +65,6 @@ export default {
 
     editRecipe() {
       this.selectRecipe(this.recipe)
-      this.$router.push('/edit-recipe')
     },
 
     visitRecipe() {
