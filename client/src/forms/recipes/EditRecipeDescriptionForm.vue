@@ -59,10 +59,6 @@ export default {
         this.$refs.observer.setErrors(message)
         console.log(message)
       }
-    },
-
-    getValidationState({ dirty, validated, valid = null }) {
-      return dirty || validated ? valid : null
     }
   },
 
