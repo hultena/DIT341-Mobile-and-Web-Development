@@ -82,27 +82,18 @@ import ListInstructions from '@/components/ListInstructions'
 import { mapGetters, mapActions } from 'vuex'
 export default {
   name: 'RecipePage',
-  components: {
-    ListIngredients,
-    ListInstructions
-  },
-  data() {
-    return {
-      recipe: null
-    }
-  },
+  components: { ListIngredients, ListInstructions },
+
   methods: {
     ...mapActions(['likeRecipe']),
-    like() {
-      this.likeRecipe(this.recipe)
-    }
+    like() { this.likeRecipe(this.recipe) }
   },
-  computed: {
-    ...mapGetters(['selectedRecipe'])
-  },
-  created() {
-    this.recipe = this.selectedRecipe
-  }
+
+  computed: { ...mapGetters(['oneRecipe']) },
+
+  data() { return { recipe: null } },
+
+  created() { this.recipe = this.oneRecipe }
 }
 </script>
 
