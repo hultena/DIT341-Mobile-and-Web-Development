@@ -64,7 +64,6 @@ export default {
 
   mounted() {
     this.recipe.user = this.loggedInUser._id
-    console.log(this.recipe)
   }
 }
 </script>
