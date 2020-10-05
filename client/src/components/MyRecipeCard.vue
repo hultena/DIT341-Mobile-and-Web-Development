@@ -17,14 +17,6 @@
       <b-button-group class='w-100'>
 
         <b-button
-          variant='outline-success'
-          @click='editRecipe()'
-        >
-          <b-icon-pencil />
-          Edit recipe
-        </b-button>
-
-        <b-button
           variant='outline-danger'
           @click='deleteRecipe()'
         >
@@ -63,12 +55,9 @@ export default {
       // todo, issue #73
     },
 
-    editRecipe() {
-      this.selectRecipe(this.recipe)
-    },
-
     visitRecipe() {
-      // todo, issue #75
+      this.selectRecipe(this.recipe)
+      this.$router.push('/my-recipe')
     }
   }
 }
