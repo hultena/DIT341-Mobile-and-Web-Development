@@ -113,11 +113,11 @@ export default {
   },
 
   computed: {
-    ...mapGetters(['loggedInUser'])
+    ...mapGetters(['loggedInUser', 'oneRecipe'])
   },
 
   methods: {
-    ...mapActions(['postRecipe']),
+    ...mapActions(['postRecipe', 'selectRecipe']),
 
     resetModal() {
       this.form.name = ''
@@ -135,7 +135,11 @@ export default {
       if (message) {
         this.$refs.observer.setErrors(message)
         console.log(message)
-      } else alert('Form submitted! \n\n' + JSON.stringify(this.form, null, 2))
+      } else {
+        this.selectRecipe(this.form)
+        console.log(this.oneRecipe)
+        await this.$router.push('/my-recipe')
+      }
     },
 
     getValidationState({ dirty, validated, valid = null }) {
