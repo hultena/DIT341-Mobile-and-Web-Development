@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import AddUserForm from '@/forms/AddUserForm'
+import AddUserForm from '@/forms/user/AddUserForm'
 export default {
   name: 'signUp',
   components: { AddUserForm }

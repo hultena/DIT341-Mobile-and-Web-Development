@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import UserLogInForm from '@/forms/UserLogInForm'
+import UserLogInForm from '@/forms/user/UserLogInForm'
 export default {
   name: 'signIn',
   components: { UserLogInForm }
