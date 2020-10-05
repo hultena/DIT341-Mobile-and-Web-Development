@@ -12,7 +12,11 @@
       <b-col>
         <edit-recipe-description-form :recipe='this.recipe' />
       </b-col>
-      <b-col></b-col>
+    </b-row>
+    <b-row>
+      <b-col>
+        <ad-space />
+      </b-col>
     </b-row>
   </b-container>
 </template>
@@ -21,11 +25,12 @@
 import { mapGetters } from 'vuex'
 import EditRecipeNameForm from '@/forms/recipes/EditRecipeNameForm'
 import EditRecipeDescriptionForm from '@/forms/recipes/EditRecipeDescriptionForm'
+import AdSpace from '@/components/AdSpace'
 
 export default {
   name: 'MyRecipePage',
 
-  components: { EditRecipeDescriptionForm, EditRecipeNameForm },
+  components: { AdSpace, EditRecipeDescriptionForm, EditRecipeNameForm },
 
   computed: { ...mapGetters(['oneRecipe']) },
 
