@@ -92,7 +92,7 @@ import { mapGetters, mapActions } from 'vuex'
 import { ValidationProvider, ValidationObserver } from 'vee-validate'
 
 export default {
-  name: 'CreateRecipeForm',
+  name: 'CreateRecipe',
 
   components: { ValidationProvider, ValidationObserver },
 
