@@ -10,6 +10,11 @@
     </b-row>
     <b-row>
       <b-col>
+        <edit-recipe-category-form :recipe='this.recipe' />
+      </b-col>
+    </b-row>
+    <b-row>
+      <b-col>
         <edit-recipe-description-form :recipe='this.recipe' />
       </b-col>
     </b-row>
@@ -26,11 +31,12 @@ import { mapGetters } from 'vuex'
 import EditRecipeNameForm from '@/forms/recipes/EditRecipeNameForm'
 import EditRecipeDescriptionForm from '@/forms/recipes/EditRecipeDescriptionForm'
 import AdSpace from '@/components/AdSpace'
+import EditRecipeCategoryForm from '@/forms/recipes/EditRecipeCategory'
 
 export default {
   name: 'MyRecipePage',
 
-  components: { AdSpace, EditRecipeDescriptionForm, EditRecipeNameForm },
+  components: { EditRecipeCategoryForm, AdSpace, EditRecipeDescriptionForm, EditRecipeNameForm },
 
   computed: { ...mapGetters(['oneRecipe']) },
 
