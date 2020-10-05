@@ -23,6 +23,12 @@
         <ad-space />
       </b-col>
     </b-row>
+    <b-row>
+      <b-col>
+        <edit-recipe-dietary-restrictions-form :recipe='this.recipe' />
+      </b-col>
+      <b-col></b-col>
+    </b-row>
   </b-container>
 </template>
 
@@ -32,11 +38,18 @@ import EditRecipeNameForm from '@/forms/recipes/EditRecipeNameForm'
 import EditRecipeDescriptionForm from '@/forms/recipes/EditRecipeDescriptionForm'
 import AdSpace from '@/components/AdSpace'
 import EditRecipeCategoryForm from '@/forms/recipes/EditRecipeCategory'
+import EditRecipeDietaryRestrictionsForm from '@/forms/recipes/EditRecipeDietaryRestrictionsForm'
 
 export default {
   name: 'MyRecipePage',
 
-  components: { EditRecipeCategoryForm, AdSpace, EditRecipeDescriptionForm, EditRecipeNameForm },
+  components: {
+    EditRecipeDietaryRestrictionsForm,
+    EditRecipeCategoryForm,
+    AdSpace,
+    EditRecipeDescriptionForm,
+    EditRecipeNameForm
+  },
 
   computed: { ...mapGetters(['oneRecipe']) },
 
