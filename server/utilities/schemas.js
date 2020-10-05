@@ -50,7 +50,8 @@ module.exports = {
                 'Shellfish'
         )),
         instructions: Joi.array().items(Joi.string()),
-        likes: Joi.number()
+        likes: Joi.number(),
+        createdOn: Joi.date()
     }),
 
     addLikeSchema: Joi.object().keys({ likes: Joi.number() }),
