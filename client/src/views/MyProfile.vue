@@ -29,7 +29,7 @@
           block
           class='my-3'
         >
-          <b-icon-pencil /> User settings
+          <b-icon-tools /> User settings
         </b-button>
 
         <b-button
