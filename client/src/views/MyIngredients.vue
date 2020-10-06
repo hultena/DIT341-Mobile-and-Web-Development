@@ -1,5 +1,5 @@
 <template>
-  <div class='my-5'>
+  <div>
     <b-row>
       <b-col
         v-for='ingredient in allUserIngredients'
