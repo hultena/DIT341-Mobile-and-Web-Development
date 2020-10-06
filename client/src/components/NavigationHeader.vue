@@ -1,109 +1,178 @@
 <template>
-  <div>
-    <b-navbar id="navbar" toggleable="md" type="light" variant="light">
+  <b-navbar
+    toggleable='lg'
+    type='light'
+    variant='light'
+    class='m-0'
+  >
+
+    <!-- If user not signed in -->
+    <b-container
+      v-if='!loggedInUser && currentView !== "/sign-in" && currentView !== "/sign-up"'
+    >
+
       <b-navbar-brand to='/'>
-        <img src="@/assets/YummyLogo.svg">
+        <img
+          src='@/assets/YummyLogo.svg'
+          class='logo'
+        >
       </b-navbar-brand>
-      <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
 
-      <b-collapse id="nav-collapse" is-nav>
-        <b-navbar-nav>
-          <template v-if="!loggedInUser">
-            <b-nav-item>
-              <router-link to='sign-up'>
-                Sign up
-              </router-link>
-            </b-nav-item>
-          </template>
-        </b-navbar-nav>
+      <b-navbar-nav class='ml-auto'>
+        <b-nav-item>
+          <b-button-group>
 
-        <!-- Right aligned nav items -->
-        <b-navbar-nav class="ml-auto">
-          <template v-if="currentView==='/my-profile'">
-            <b-nav-item @click="click='recipes'" id="my-recipes">
-              <b-link>
-                My Recipes
-              </b-link>
-            </b-nav-item>
-            <b-nav-item @click="click='shopping'">
-              <b-link>
-                My Shopping Lists
-              </b-link>
-            </b-nav-item>
-            <b-nav-item @click="click='ingredients'">
-              <b-link>
-                My Ingredients
-              </b-link>
-            </b-nav-item>
-            <b-nav-item @click="click='favourites'">
-              <b-link>
-                Favourite Recipes
-              </b-link>
-            </b-nav-item>
-          </template>
-          <b-nav-item id="user-profile">
-            <template v-if="loggedInUser">
-              <router-link to="/">
-              <b-button @click="deauthUser(loggedInUser)">Log Out</b-button>
-              </router-link>
-            </template>
-          </b-nav-item>
-        </b-navbar-nav>
-      </b-collapse>
-      <b-navbar-nav>
-        <b-nav-item v-if="loggedInUser">
-          <router-link to="my-profile">
-            <img v-if="loggedInUser.image" :src="loggedInUser.image" class="profile-picture" alt="Profile Picture">
-            <b-icon-person-circle v-else class="profile-picture"/>
+            <b-button
+              @click='signUp'
+              variant='primary'
+            >
+              Sign up
+            </b-button>
+
+            <b-button
+              @click='signIn'
+              variant='outline-primary'
+            >
+              Sign in
+            </b-button>
+
+          </b-button-group>
+        </b-nav-item>
+      </b-navbar-nav>
+
+    </b-container>
+
+    <!-- If on sign up / sign -->
+    <b-container
+      v-if='currentView === "/sign-in" || currentView === "/sign-up"'
+    >
+      <b-navbar-brand to='/'>
+        <img
+          src='@/assets/YummyLogo.svg'
+          class='logo'
+        >
+      </b-navbar-brand>
+    </b-container>
+
+    <!-- If user is signed in and not on profile -->
+    <b-container
+      v-if='loggedInUser && currentView !== "/my-profile" && currentView !== "/my-recipes" && currentView !== "/my-shopping-lists" && currentView !== "/my-favourites"'
+    >
+      <b-navbar-brand to='/'>
+        <img
+          src='@/assets/YummyLogo.svg'
+          class='logo'
+        >
+      </b-navbar-brand>
+
+      <b-navbar-nav class='ml-auto'>
+        <b-nav-item class='avatar'>
+          <router-link to='/my-profile'>
+            <b-img
+              v-if='loggedInUser.image'
+              :src='loggedInUser.image'
+              alt='User avatar'
+              rounded='circle'
+            />
+            <b-icon-person v-else />
           </router-link>
         </b-nav-item>
-        <template v-else>
-          <router-link to="sign-in">
-            Sign In
-          </router-link>
-        </template>
       </b-navbar-nav>
-    </b-navbar>
-  </div>
+
+    </b-container>
+
+    <!-- If on user profile -->
+    <b-container
+      v-if='currentView === "/my-profile" || currentView === "/my-recipes" || currentView === "/my-shopping-lists" || currentView === "/my-favourites"'
+    >
+
+      <b-navbar-brand to='/'>
+        <img
+          src='@/assets/YummyLogo.svg'
+          class='logo'
+        >
+      </b-navbar-brand>
+
+      <b-navbar-toggle target='nav-collapse'></b-navbar-toggle>
+
+      <b-collapse id="nav-collapse" is-nav>
+        <b-navbar-nav class='ml-auto'>
+
+          <b-nav-item
+            @click='click="recipes"'
+          >
+            My recipes
+          </b-nav-item>
+
+          <b-nav-item
+            @click='click="shopping"'
+          >
+            My shopping lists
+          </b-nav-item>
+
+          <b-nav-item
+            @click='click="ingredients"'
+          >
+            My ingredients
+          </b-nav-item>
+
+          <b-nav-item
+            @click='click="favourites"'
+          >
+            Favourite recipes
+          </b-nav-item>
+
+        </b-navbar-nav>
+      </b-collapse>
+
+    </b-container>
+
+  </b-navbar>
 </template>
 
 <script>
 import { mapGetters, mapActions } from 'vuex'
+
 export default {
   name: 'NavigationHeader',
+
   data() {
     return {
       click: null
     }
   },
+
   methods: {
-    ...mapActions(['deauthUser', 'changeView'])
+    ...mapActions(['deauthUser', 'changeView']),
+
+    signUp() { this.$router.push('/sign-up') },
+
+    signIn() { this.$router.push('/sign-in') }
   },
+
   computed: {
     ...mapGetters(['loggedInUser']),
-    currentView() {
-      return this.$route.path
-    }
+
+    currentView() { return this.$route.path }
   },
-  watch: {
-    click: function () {
-      this.changeView(this.click)
-    }
-  }
+
+  watch: { click: function () { this.changeView(this.click) } }
 }
 </script>
 
 <!-- TODO remove this placeholder CSS that is used to make this not look horrible -->
 <style scoped>
-
 #navbar{
-  background-color: white !important;
+  background-color: #fcfcfc !important;
 }
 
-.profile-picture{
-  height: 3rem;
-  width: 3rem;
-  border-radius: 50%;
+img.logo {
+  width: 130px;
 }
 
+.avatar img,
+.avatar svg {
+  height: 40px;
+  width: 40px;
+}
 </style>
