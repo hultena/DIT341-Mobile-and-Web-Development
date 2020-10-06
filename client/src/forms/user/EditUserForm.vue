@@ -99,9 +99,6 @@ export default {
 
     async setImage(event) {
       this.form.image = event
-
-      const message = await this.patchUser(this.form)
-      if (message) this.$refs.observer.setErrors(message)
     }
   },
   computed: {
