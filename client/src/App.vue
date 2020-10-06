@@ -3,7 +3,6 @@
     <header>
       <navigation-header/>
     </header>
-    <!-- Render the content of the current page view -->
     <router-view/>
     <navigation-footer />
   </div>
@@ -12,12 +11,12 @@
 <script>
 import NavigationHeader from '@/components/NavigationHeader'
 import NavigationFooter from '@/components/NavigationFooter'
+
 export default {
   components: {
     NavigationHeader,
     NavigationFooter
   }
-
 }
 </script>
 
