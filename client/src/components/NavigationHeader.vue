@@ -15,6 +15,7 @@
         <img
           src='@/assets/YummyLogo.svg'
           class='logo'
+          alt='App logo'
         >
       </b-navbar-brand>
 
@@ -50,6 +51,7 @@
         <img
           src='@/assets/YummyLogo.svg'
           class='logo'
+          alt='User avatar'
         >
       </b-navbar-brand>
     </b-container>
@@ -62,6 +64,7 @@
         <img
           src='@/assets/YummyLogo.svg'
           class='logo'
+          alt='App logo'
         >
       </b-navbar-brand>
 
@@ -90,6 +93,7 @@
         <img
           src='@/assets/YummyLogo.svg'
           class='logo'
+          alt='App logo'
         >
       </b-navbar-brand>
 
@@ -160,12 +164,7 @@ export default {
 }
 </script>
 
-<!-- TODO remove this placeholder CSS that is used to make this not look horrible -->
 <style scoped>
-#navbar{
-  background-color: #fcfcfc !important;
-}
-
 img.logo {
   width: 130px;
 }
