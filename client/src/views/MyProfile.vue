@@ -36,8 +36,10 @@
           v-if="this.currentView==='ingredients'&&!addIngredientState"
           @click="addIngredientState=changeState(addIngredientState)"
           block
+          variant='primary'
         >
-          Add Ingredients
+          <b-icon-plus-circle />
+          Add Ingredient
         </b-button>
         <b-button
           v-if="this.currentView==='ingredients'&&addIngredientState"
