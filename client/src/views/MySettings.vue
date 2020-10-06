@@ -1,12 +1,16 @@
 <template>
-  <div class="settingsPage">
-    <h1>
-      This is the user settings page.
-    </h1>
-    <edit-user-form/>
+  <div class='settingsPage mt-5'>
+    <h3>
+      Edit your user settings
+    </h3>
+    <b-card>
+      <b-card-body>
+        <edit-user-form/>
+      </b-card-body>
+    </b-card>
     <b-button
-      @click="destroyAll"
-      variant="danger">
+      @click='destroyAll'
+      variant='danger'>
       DANGER!
     </b-button>
   </div>
