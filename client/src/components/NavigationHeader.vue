@@ -3,7 +3,7 @@
     toggleable='lg'
     type='light'
     variant='light'
-    class='m-0'
+    class='m-0 pt-3 app-header'
   >
 
     <!-- If user not signed in -->
@@ -13,7 +13,7 @@
 
       <b-navbar-brand to='/'>
         <img
-          src='@/assets/YummyLogo.svg'
+          src='@/assets/MainYummyLogo.svg'
           class='logo'
           alt='App logo'
         >
@@ -26,6 +26,7 @@
             <b-button
               @click='signUp'
               variant='primary'
+              class='header-button-primary'
             >
               Sign up
             </b-button>
@@ -33,6 +34,7 @@
             <b-button
               @click='signIn'
               variant='outline-primary'
+              class='header-button-secondary'
             >
               Sign in
             </b-button>
@@ -49,7 +51,7 @@
     >
       <b-navbar-brand to='/'>
         <img
-          src='@/assets/YummyLogo.svg'
+          src='@/assets/MainYummyLogo.svg'
           class='logo'
           alt='User avatar'
         >
@@ -62,7 +64,7 @@
     >
       <b-navbar-brand to='/'>
         <img
-          src='@/assets/YummyLogo.svg'
+          src='@/assets/MainYummyLogo.svg'
           class='logo'
           alt='App logo'
         >
@@ -91,37 +93,41 @@
 
       <b-navbar-brand to='/'>
         <img
-          src='@/assets/YummyLogo.svg'
+          src='@/assets/MainYummyLogo.svg'
           class='logo'
           alt='App logo'
         >
       </b-navbar-brand>
 
-      <b-navbar-toggle target='nav-collapse'></b-navbar-toggle>
+      <b-navbar-toggle target='nav-collapse' class='hamburger'></b-navbar-toggle>
 
       <b-collapse id="nav-collapse" is-nav>
         <b-navbar-nav class='ml-auto'>
 
           <b-nav-item
             @click='click="recipes"'
+            class='profile-link'
           >
             My recipes
           </b-nav-item>
 
           <b-nav-item
             @click='click="shopping"'
+            class='profile-link'
           >
             My shopping lists
           </b-nav-item>
 
           <b-nav-item
             @click='click="ingredients"'
+            class='profile-link'
           >
             My ingredients
           </b-nav-item>
 
           <b-nav-item
             @click='click="favourites"'
+            class='profile-link'
           >
             Favourite recipes
           </b-nav-item>
@@ -165,13 +171,38 @@ export default {
 </script>
 
 <style scoped>
-img.logo {
-  width: 130px;
+.app-header { background-color: #fbab7e !important }
+
+.header-button-primary, .header-button-secondary {
+  border-color: #fff !important;
 }
 
-.avatar img,
-.avatar svg {
-  height: 40px;
-  width: 40px;
+.header-button-primary {
+  color: #fbab7e !important;
+  background: #fff !important;
+  border-color: #fff !important;
 }
+
+.header-button-secondary { color: #fff !important }
+
+.header-button-secondary:hover, .header-button-secondary:focus {
+  background: rgba(255, 255, 255, .5) !important
+}
+
+img.logo { width: 100px }
+
+.avatar img, .avatar svg {
+  height: 55px;
+  width: 55px;
+  color: #fff;
+  border: solid 3px #fff;
+}
+
+.profile-link a {
+  font-weight: bold;
+  color: #fff !important;
+  transition: .1s;
+}
+
+.profile-link a:hover { opacity: .5 }
 </style>
