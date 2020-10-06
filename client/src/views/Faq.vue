@@ -28,25 +28,19 @@
           <h2>
             Search for a topic
           </h2>
-          <b-input-group>
+          <b-form-group>
             <b-form-input
+              v-model='search'
               placeholder='Type your topic here ...'
             />
-            <b-input-group-append>
-              <b-button
-                variant='outline-primary'
-              >
-                <b-icon-search />
-              </b-button>
-            </b-input-group-append>
-          </b-input-group>
+          </b-form-group>
         </b-col>
       </b-row>
     </section>
 
     <section class='my-b'>
       <div
-        v-for='(question, index) in questions'
+        v-for='(question, index) in filteredQuestions'
         :key='index'
         class='my-5'
       >
@@ -71,16 +65,26 @@
 <script>
 export default {
   name: 'faq',
+
+  computed: {
+    filteredQuestions: function () {
+      return this.questions.filter((question) => {
+        return question.q.toLowerCase().match(this.search)
+      })
+    }
+  },
+
   data() {
     return {
+      search: '',
       questions: [
         {
           q: 'How to delete a recipe',
           a: 'In order to delete your recipe, you have to go to the \'edit page\' for that specific recipe. You will find the recipe delete button in the bottom of the page, in the \'Danger zone\'. Remember that a recipe can\'t be restored once it\'s gone.'
         },
         {
-          q: 'Lorem ipsum dolor sit amet',
-          a: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.'
+          q: 'What does the heart mean?',
+          a: 'When you click or tap a recipe heart, it adds that recipe to your favourites so that you can find it later. Go to your profile and click \'My favourite recipes\' up in the header to see all your saved recipes.'
         },
         {
           q: 'Lorem ipsum dolor sit amet',
@@ -116,8 +120,7 @@ export default {
         }
       ]
     }
-  },
-  methods: {}
+  }
 }
 
 </script>
