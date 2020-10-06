@@ -1,7 +1,7 @@
 <template>
   <b-container>
 
-    <b-row class='mb-2'>
+    <b-row class='mt-4 mb-2'>
       <b-col>
         <router-link to='/'>
           <img
