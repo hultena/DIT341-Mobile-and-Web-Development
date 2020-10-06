@@ -14,9 +14,9 @@
           <h1>
             Frequently asked questions
           </h1>
-          <h2>
+          <h4>
             Have a read to find the answers to your questions
-          </h2>
+          </h4>
         </b-col>
       </b-row>
 
@@ -123,7 +123,7 @@ export default {
 </script>
 
 <style scoped>
-h1, h2 { text-align: center }
+h1, h4 { text-align: center }
 .faq-page {}
 .icon-container {
   min-width: 500px;
