@@ -109,7 +109,7 @@ const actions = {
 
   async putRecipe({ commit }, recipe) {
     try {
-      await Api.put(`/users/${recipe.user}/recipes/${recipe._id}`, state.selectedRecipe)
+      await Api.put(`/users/${recipe.user}/recipes/${recipe._id}`, recipe)
       commit('updatedRecipe', recipe)
     } catch (error) { return error.response.data }
   },

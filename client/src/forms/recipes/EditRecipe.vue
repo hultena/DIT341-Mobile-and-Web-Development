@@ -196,10 +196,10 @@ export default {
   computed: { ...mapGetters(['oneRecipe', 'loggedInUser']) },
 
   methods: {
-    ...mapActions(['patchRecipe', 'deleteRecipe']),
+    ...mapActions(['putRecipe', 'deleteRecipe']),
 
     async onSubmit() {
-      const message = await this.patchRecipe(this.recipe)
+      const message = await this.putRecipe(this.recipe)
 
       if (message !== undefined) {
         this.$refs.observer.setErrors(message)
@@ -207,10 +207,6 @@ export default {
     },
     async updateImage(event) {
       this.recipe.image = event
-
-      const message = await this.patchRecipe(this.recipe)
-
-      if (message) this.$refs.observer.setErrors(message)
     },
     addInstruction() {
       this.recipe.instructions.push({ step: '' })
