@@ -61,8 +61,14 @@
           </b-form-group>
         </validation-provider>
 
-        <b-form-group>
-          <file-uploader @clicked='setImage'/>
+        <b-form-group
+          label='Profile photo'
+          label-for='image-input'
+        >
+          <file-uploader
+            id='image-input'
+            @clicked='setImage'
+          />
         </b-form-group>
 
         <b-button
