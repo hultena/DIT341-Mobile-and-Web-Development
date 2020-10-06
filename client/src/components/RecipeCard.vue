@@ -5,6 +5,7 @@
     img-top
     role='button'
     @click='handleClick'
+    class='recipe-card'
   >
     <b-card-text>
 
@@ -39,6 +40,13 @@ export default {
 </script>
 
 <style scoped>
+.recipe-card {
+  min-width: 250px;
+  transition: .5s;
+}
+
+.recipe-card:hover { opacity: .7 }
+
 img {
   height: 200px;
   width: 100%;
