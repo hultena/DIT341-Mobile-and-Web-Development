@@ -149,12 +149,14 @@
 
           <b-row>
             <b-col>
-              <b-card title='All done?'>
+              <b-card class='mt-3 mb-1'>
+                <b-card-title>
+                  All done with editing your {{recipe.name}} recipe?
+                </b-card-title>
                 <b-button
                   type='submit'
                   block
                   variant='primary'
-                  class='my-4'
                 >
                   <b-icon-check2-all />
                   Save your changes
@@ -179,7 +181,7 @@
               @click='deleteThisRecipe'
             >
               <b-icon-trash />
-              Delete permanently your {{ recipe.name }} recipe
+              Permanently delete your {{ recipe.name }} recipe
             </b-button>
           </b-card>
         </b-col>
