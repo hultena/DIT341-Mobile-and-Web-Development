@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import EditUserForm from '@/forms/EditUserForm'
+import EditUserForm from '@/forms/user/EditUserForm'
 import { mapActions } from 'vuex'
 export default {
   name: 'mySettings',

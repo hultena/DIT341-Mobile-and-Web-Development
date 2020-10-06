@@ -2,14 +2,7 @@
   <section>
     <b-row>
       <b-col>
-        <b-button
-          @click='createRecipe'
-          block
-          variant='outline-primary'
-        >
-          <b-icon-plus-circle />
-          Create new recipe
-        </b-button>
+        <create-recipe />
       </b-col>
     </b-row>
 
@@ -31,10 +24,11 @@
 import { mapGetters, mapActions } from 'vuex'
 
 import MyRecipeCard from '@/components/MyRecipeCard'
+import CreateRecipe from '@/forms/recipes/CreateRecipe'
 export default {
   name: 'MyRecipes',
 
-  components: { MyRecipeCard },
+  components: { CreateRecipe, MyRecipeCard },
 
   computed: {
     ...mapGetters(['allUserRecipes', 'loggedInUser'])
@@ -43,7 +37,6 @@ export default {
   created() {
     const userId = this.loggedInUser._id
     this.getUserRecipes(userId)
-    console.log(this.allUserRecipes)
   },
 
   methods: {

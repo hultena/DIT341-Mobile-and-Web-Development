@@ -32,13 +32,13 @@ router.route('/:userId')
 
 // ------------------ User's recipes
 router.route('/:userId/recipes/:recipeId')
-    .patch(validators.bodyValidator(validationSchemas.patchRecipeSchema), session.validSess(), recipes.updateRecipe)
-    .put(validators.bodyValidator(validationSchemas.newRecipeSchema), session.validSess(), recipes.replaceRecipe)
+    .patch(validators.bodyValidator(validationSchemas.recipeSchema), session.validSess(), recipes.updateRecipe)
+    .put(validators.bodyValidator(validationSchemas.recipeSchema), session.validSess(), recipes.replaceRecipe)
     .get(queryString.query(), recipes.getUserRecipe)
     .delete(session.validSess(), recipes.deleteUserRecipe);
 
 router.route('/:userId/recipes')
-    .post(validators.bodyValidator(validationSchemas.newRecipeSchema), session.validSess(), recipes.createRecipe)
+    .post(validators.bodyValidator(validationSchemas.recipeSchema), session.validSess(), recipes.createRecipe)
     .get(queryString.query(), recipes.getAllUserRecipes);
 
 

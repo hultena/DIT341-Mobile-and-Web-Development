@@ -96,7 +96,8 @@ export default {
     getValidationState({ dirty, validated, valid = null }) {
       return dirty || validated ? valid : null
     },
-    setImage(event) {
+
+    async setImage(event) {
       this.form.image = event
     }
   },

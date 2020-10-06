@@ -9,9 +9,8 @@ import Faq from './views/Faq.vue'
 import MySettings from './views/MySettings'
 import MyShoppingLists from './views/MyShoppingLists'
 import MyRecipes from '@/views/MyRecipes'
-import CreateRecipePage from '@/views/CreateRecipePage'
-import EditRecipePage from '@/views/EditRecipePage'
 import RecipePage from '@/views/RecipePage'
+import MyRecipePage from '@/views/EditRecipeView'
 
 Vue.use(Router)
 
@@ -65,14 +64,9 @@ export default new Router({
       component: MyRecipes
     },
     {
-      path: '/create-recipe',
-      name: 'CreateRecipePage',
-      component: CreateRecipePage
-    },
-    {
-      path: '/edit-recipe',
-      name: 'EditRecipePage',
-      component: EditRecipePage
+      path: '/my-recipe',
+      name: 'MyRecipePage',
+      component: MyRecipePage
     },
     {
       path: '/recipe',

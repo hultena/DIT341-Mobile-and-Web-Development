@@ -3,6 +3,7 @@
     :title='this.recipe.name'
     :img-src='this.recipe.image'
     img-top
+    class='w-100'
   >
     <b-card-text>
 
@@ -10,37 +11,21 @@
         <b-icon-heart /> {{ this.recipe.likes }}
       </b-card-sub-title>
 
-      <p>
+      <p v-if="this.recipe.description">
         {{ this.recipe.description | snippet }}
       </p>
+      <p v-else>
+        ...
+      </p>
 
-      <b-button-group class='w-100'>
-
-        <b-button
-          variant='outline-success'
-          @click='editRecipe()'
-        >
-          <b-icon-pencil />
-          Edit recipe
-        </b-button>
-
-        <b-button
-          variant='outline-danger'
-          @click='deleteRecipe()'
-        >
-          <b-icon-trash />
-          Delete recipe
-        </b-button>
-
-        <b-button
-          variant='outline-primary'
-          @click='visitRecipe()'
-        >
-          <b-icon-book />
-          Go to recipe
-        </b-button>
-
-      </b-button-group>
+      <b-button
+        variant='outline-primary'
+        @click='visitRecipe()'
+        block
+      >
+        <b-icon-book />
+        Go to recipe
+      </b-button>
 
     </b-card-text>
   </b-card>
@@ -63,13 +48,9 @@ export default {
       // todo, issue #73
     },
 
-    editRecipe() {
-      this.selectRecipe(this.recipe)
-      this.$router.push('/edit-recipe')
-    },
-
     visitRecipe() {
-      // todo, issue #75
+      this.selectRecipe(this.recipe)
+      this.$router.push('/my-recipe')
     }
   }
 }

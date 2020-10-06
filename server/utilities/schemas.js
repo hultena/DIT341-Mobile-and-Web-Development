@@ -20,80 +20,41 @@ module.exports = {
         favourites: Joi.array().items( Joi.object().keys( { _id: Joi.string().regex(regexPattern) } ) )
     }),
 
-    newRecipeSchema: Joi.object().keys({
-        name: Joi.string().required(),
-        category: Joi.string().valid('Baking', 'Cooking').required(),
-        description: Joi.string(),
-        image: Joi.string(),
-        dietaryRestrictions: Joi.array().items(
-            Joi.string().valid(
-            'Vegan',
-            'Ovo-Vegetarian',
-            'Lacto-Vegetarian',
-            'Lacto-Ovo Vegetarian',
-            'Halaal',
-            'Kosher',
-            'Pescetarian')
-        ),
-        allergies: Joi.array().items(
-            Joi.string().valid(
-            'Gluten',
-            'Peanuts',
-            'Nuts',
-            'Lactose',
-            'Egg',
-            'Wheat',
-            'Soy',
-            'Fish',
-            'Shellfish')
-        ),
+    recipeSchema: Joi.object().keys({
+        _id: Joi.string().regex(regexPattern),
+        __v: Joi.number(),
         user: Joi.string().regex(regexPattern),
-        ingredients: Joi.array().items(
-            Joi.string().regex(regexPattern)
-        ).required(),
-        instructions: Joi.array().items(
-            Joi.string()
-        )
-    }),
-
-    patchRecipeSchema: Joi.object().keys({
-        name: Joi.string(),
-        category: Joi.string().valid('Baking', 'Cooking'),
-        description: Joi.string(),
-        image: Joi.string(),
-        dietaryRestrictions: Joi.array().items(
-            Joi.string().valid(
+        name: Joi.string().required(),
+        category: Joi.string().allow(''),
+        description: Joi.string().allow(''),
+        image: Joi.string().allow(''),
+        ingredients: Joi.array().items(Joi.string().regex(regexPattern)),
+        dietaryRestrictions: Joi.array().items(Joi.string().valid(
                 'Vegan',
                 'Ovo-Vegetarian',
                 'Lacto-Vegetarian',
                 'Lacto-Ovo Vegetarian',
                 'Halaal',
                 'Kosher',
-                'Pescetarian')
-        ),
-        allergies: Joi.array().items(
-            Joi.string().valid(
+                'Pescetarian'
+        )),
+        allergies: Joi.array().items(Joi.string().valid(
                 'Gluten',
-                'Peanut',
+                'Peanuts',
                 'Nuts',
                 'Lactose',
                 'Egg',
                 'Wheat',
                 'Soy',
                 'Fish',
-                'Shellfish')
-        ),
-        user: Joi.string().regex(regexPattern),
-        ingredients: Joi.array().items(
-            Joi.string().regex(regexPattern)
-        ),
-        instructions: Joi.array().items(
-            Joi.string()
-        )
+                'Shellfish'
+        )),
+        instructions: Joi.array().items(Joi.object()),
+        likes: Joi.number(),
+        createdOn: Joi.date()
     }),
-    addLikeSchema: Joi.object().keys({
-        likes: Joi.number()
-    }),
+
+    addLikeSchema: Joi.object().keys({ likes: Joi.number() }),
 
     newIngredientSchema: Joi.object().keys({
         user: Joi.string().regex(regexPattern).required(),

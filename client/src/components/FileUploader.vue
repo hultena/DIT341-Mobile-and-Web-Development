@@ -26,7 +26,7 @@
                   block
                   variant='outline-primary'
                 >
-                  Set
+                  Set image
                 </b-button>
                 <b-form-invalid-feedback>{{ validationContext.errors[0] }}</b-form-invalid-feedback>
               </b-form-group>
@@ -65,7 +65,7 @@ export default {
     getValidationState({ dirty, validated, valid = null }) {
       return dirty || validated ? valid : null
     },
-    async onSubmit(event) {
+    async onSubmit() {
       // TODO: need to pass the image to whatever user/recipe that's supposed to have it.
       this.$emit('clicked', this.stringImage)
     }

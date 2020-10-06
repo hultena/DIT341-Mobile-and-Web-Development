@@ -14,7 +14,7 @@ const getters = {
     return state.recipes
   },
 
-  selectedRecipe: function (state) {
+  oneRecipe: function (state) {
     return state.selectedRecipe
   },
 
@@ -49,7 +49,13 @@ const mutations = {
   },
 
   updatedRecipe: function (state, updatedRecipe) {
-    state.recipes.splice(indexFinder(this.updatedRecipe._id), 1, updatedRecipe)
+    state.recipes.splice(indexFinder(updatedRecipe._id), 1, updatedRecipe)
+  },
+
+  deletedRecipe: function (state, id) {
+    const idx = indexFinder(id)
+    state.recipes.splice(idx[0], 1)
+    state.userRecipes.splice(idx[1], 1)
   }
 }
 
@@ -78,6 +84,7 @@ const actions = {
   async postRecipe({ commit }, recipe) {
     try {
       const res = await Api.post(`/users/${recipe.user}/recipes`, recipe)
+      commit('setSelectedRecipe', res.data)
       commit('newRecipe', res.data)
     } catch (error) { return error.response.data }
   },
@@ -102,8 +109,17 @@ const actions = {
 
   async putRecipe({ commit }, recipe) {
     try {
-      await Api.put(`/users/${recipe.user}/recipes/${recipe._id}`, state.selectedRecipe)
+      await Api.put(`/users/${recipe.user}/recipes/${recipe._id}`, recipe)
       commit('updatedRecipe', recipe)
+    } catch (error) { return error.response.data }
+  },
+
+  // DELETIONS
+
+  async deleteRecipe({ commit }, recipe) {
+    try {
+      await Api.delete(`/users/${recipe.user}/recipes/${recipe._id}`)
+      commit('deletedIngredient', recipe._id)
     } catch (error) { return error.response.data }
   },
 
