@@ -25,9 +25,9 @@
     <section class='my-5'>
       <b-row>
         <b-col>
-          <h3>
+          <h2>
             Search for a topic
-          </h3>
+          </h2>
           <b-input-group>
             <b-form-input
               placeholder='Type your topic here ...'
@@ -53,9 +53,9 @@
         <b-row>
           <b-col>
             <b-card>
-              <h4>
+              <h3>
                 <b-icon-question-circle-fill class='mr-3'/> {{ question.q }}
-              </h4>
+              </h3>
               <p>
                 {{ question.a }}
               </p>
