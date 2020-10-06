@@ -1,14 +1,14 @@
 <template>
   <div>
-    <edit-recipe/>
+    <edit-recipe-form/>
   </div>
 </template>
 
 <script>
-import EditRecipe from '@/forms/recipes/EditRecipe'
+import EditRecipeForm from '@/forms/recipes/EditRecipeForm'
 export default {
   name: 'EditRecipeView',
-  components: { EditRecipe }
+  components: { EditRecipeForm }
 }
 </script>
 
