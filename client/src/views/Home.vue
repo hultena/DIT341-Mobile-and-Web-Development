@@ -1,5 +1,5 @@
 <template>
-  <b-container class='mb-5 ml-1'>
+  <b-container class='mb-5'>
 
     <b-row class='mt-5 mb-3'>
       <b-col class='mt-5'>
@@ -16,7 +16,7 @@
         <advanced-search/>
       </b-col>
     </b-row>
-    <b-row class="ml-0">
+    <b-row>
       <b-col
         v-for='recipe in allRecipes'
         :key='recipe._id'
