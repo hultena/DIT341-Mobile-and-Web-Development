@@ -49,7 +49,7 @@ module.exports = {
                 'Fish',
                 'Shellfish'
         )),
-        instructions: Joi.array().items(Joi.string()),
+        instructions: Joi.array().items(Joi.object()),
         likes: Joi.number(),
         createdOn: Joi.date()
     }),

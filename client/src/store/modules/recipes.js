@@ -49,7 +49,7 @@ const mutations = {
   },
 
   updatedRecipe: function (state, updatedRecipe) {
-    state.recipes.splice(indexFinder(this.updatedRecipe._id), 1, updatedRecipe)
+    state.recipes.splice(indexFinder(updatedRecipe._id), 1, updatedRecipe)
   },
 
   deletedRecipe: function (state, id) {
@@ -84,6 +84,7 @@ const actions = {
   async postRecipe({ commit }, recipe) {
     try {
       const res = await Api.post(`/users/${recipe.user}/recipes`, recipe)
+      commit('setSelectedRecipe', res.data)
       commit('newRecipe', res.data)
     } catch (error) { return error.response.data }
   },

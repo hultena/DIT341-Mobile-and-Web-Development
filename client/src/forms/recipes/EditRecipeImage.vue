@@ -1,7 +1,7 @@
 <template>
   <div class='image-container'>
-    <b-img
-      :src='recipe.image'
+    <b-img v-if="oneRecipe.image"
+      :src='oneRecipe.image'
       alt='This is an image of what the recipe could look like cooked.'
     />
     <file-uploader
@@ -12,26 +12,20 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex'
+import { mapActions, mapGetters } from 'vuex'
 import FileUploader from '@/components/FileUploader'
 
 export default {
   name: 'EditRecipeImage',
 
   components: { FileUploader },
-
-  props: {
-    recipe: {
-      user: null,
-      name: '',
-      category: '',
-      description: '',
-      image: '',
-      ingredients: [],
-      allergies: [],
-      dietaryRestrictions: [],
-      instructions: []
+  data() {
+    return {
+      recipe: null
     }
+  },
+  computed: {
+    ...mapGetters(['oneRecipe'])
   },
 
   methods: {
@@ -40,16 +34,13 @@ export default {
     async updateImage(event) {
       this.recipe.image = event
 
-      console.log('Image status after upload: ' + this.recipe.image)
-
       const message = await this.patchRecipe(this.recipe)
 
       if (message) this.$refs.observer.setErrors(message)
     }
   },
-
   created() {
-    console.log('Image status: ' + this.recipe.image)
+    this.recipe = this.oneRecipe
   }
 }
 </script>

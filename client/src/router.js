@@ -10,7 +10,7 @@ import MySettings from './views/MySettings'
 import MyShoppingLists from './views/MyShoppingLists'
 import MyRecipes from '@/views/MyRecipes'
 import RecipePage from '@/views/RecipePage'
-import MyRecipePage from '@/views/MyRecipePage'
+import MyRecipePage from '@/views/EditRecipeView'
 
 Vue.use(Router)
 

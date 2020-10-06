@@ -37,7 +37,6 @@ export default {
   created() {
     const userId = this.loggedInUser._id
     this.getUserRecipes(userId)
-    console.log(this.allUserRecipes)
   },
 
   methods: {

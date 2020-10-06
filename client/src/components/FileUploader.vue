@@ -65,7 +65,7 @@ export default {
     getValidationState({ dirty, validated, valid = null }) {
       return dirty || validated ? valid : null
     },
-    async onSubmit(event) {
+    async onSubmit() {
       // TODO: need to pass the image to whatever user/recipe that's supposed to have it.
       this.$emit('clicked', this.stringImage)
     }

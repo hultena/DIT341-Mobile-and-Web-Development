@@ -100,14 +100,7 @@ export default {
     return {
       form: {
         user: null,
-        name: '',
-        category: '',
-        description: '',
-        image: '',
-        ingredients: [],
-        allergies: [],
-        dietaryRestrictions: [],
-        instructions: []
+        name: ''
       }
     }
   },
@@ -134,10 +127,7 @@ export default {
 
       if (message) {
         this.$refs.observer.setErrors(message)
-        console.log(message)
       } else {
-        this.selectRecipe(this.form)
-        console.log(this.oneRecipe)
         await this.$router.push('/my-recipe')
       }
     },

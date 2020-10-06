@@ -11,8 +11,11 @@
         <b-icon-heart /> {{ this.recipe.likes }}
       </b-card-sub-title>
 
-      <p>
+      <p v-if="this.recipe.description">
         {{ this.recipe.description | snippet }}
+      </p>
+      <p v-else>
+        ...
       </p>
 
       <b-button

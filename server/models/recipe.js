@@ -21,7 +21,7 @@ const recipeSchema = new Schema({
     }],
     dietaryRestrictions: [{ type: String }],
     allergies: [{ type: String }],
-    instructions: [{ type: String }],
+    instructions: [{ type: Object }],
     likes: {
         type: Number,
         default: 0
