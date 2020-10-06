@@ -64,10 +64,12 @@ const actions = {
 
   async getRecipes({ commit }) {
     try {
-      // TODO: maybe change this fixed limit of 5
-      const res = await Api.get('/recipes', { params: state.query })
+      const query = queryStringBuilder()
+      const res = await Api.get('/recipes', { params: query })
       commit('setRecipes', res.data)
-    } catch (error) { return error.response.data }
+    } catch (error) {
+      return error.response.data
+    }
   },
 
   async getUserRecipes({ commit }, id) {
@@ -138,4 +140,24 @@ function indexFinder(id) {
   return state.recipes.findIndex(function (recipe) {
     return recipe._id === id
   })
+}
+// function to create query string parameters
+function queryStringBuilder() {
+  const params = new URLSearchParams()
+  for (const [key, value] of Object.entries(state.query)) {
+    if (value) {
+      if (typeof value === 'object') {
+        for (const [key2, value2] of Object.entries(value)) {
+          if (Array.isArray(value2) && value2.length > 0) {
+            params.append(`${key}`, `${key2}=${value2}`)
+          } else if (!Array.isArray(value2) && value2) {
+            params.append(`${key}`, `${key2}=${value2}`)
+          }
+        }
+      } else {
+        params.append(key, value)
+      }
+    }
+  }
+  return params
 }
