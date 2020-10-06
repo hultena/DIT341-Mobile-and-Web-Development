@@ -2,14 +2,18 @@
   <div class='sign-in-page'>
     <b-card class='sign-in-form-container'>
       <b-card-body class='mx-2'>
-        <h1 class='mb-5'>
+
+        <h1 class='mt-2 mb-5'>
           Sign in
         </h1>
+
         <user-log-in-form />
+
         <p class='mt-2'>
           Not a member yet?
           <router-link to='/sign-up'>Sign up instead</router-link>
         </p>
+
       </b-card-body>
     </b-card>
   </div>
