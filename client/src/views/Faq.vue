@@ -1,5 +1,5 @@
 <template>
-  <b-container class='mt-5 faq-page'>
+  <b-container class='my-5 faq-page'>
 
     <section>
 
@@ -22,8 +22,8 @@
 
     </section>
 
-    <section>
-      <b-row class='my-5'>
+    <section class='my-5'>
+      <b-row>
         <b-col>
           <h3>
             Search for a topic
@@ -44,7 +44,26 @@
       </b-row>
     </section>
 
-    <section></section>
+    <section class='my-b'>
+      <div
+        v-for='(question, index) in questions'
+        :key='index'
+        class='my-5'
+      >
+        <b-row>
+          <b-col>
+            <b-card>
+              <h4>
+                <b-icon-question-circle-fill class='mr-3'/> {{ question.q }}
+              </h4>
+              <p>
+                {{ question.a }}
+              </p>
+            </b-card>
+          </b-col>
+        </b-row>
+      </div>
+    </section>
 
   </b-container>
 </template>
@@ -53,7 +72,50 @@
 export default {
   name: 'faq',
   data() {
-    return {}
+    return {
+      questions: [
+        {
+          q: 'How to delete a recipe',
+          a: 'In order to delete your recipe, you have to go to the \'edit page\' for that specific recipe. You will find the recipe delete button in the bottom of the page, in the \'Danger zone\'. Remember that a recipe can\'t be restored once it\'s gone.'
+        },
+        {
+          q: 'Lorem ipsum dolor sit amet',
+          a: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.'
+        },
+        {
+          q: 'Lorem ipsum dolor sit amet',
+          a: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.'
+        },
+        {
+          q: 'Lorem ipsum dolor sit amet',
+          a: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.'
+        },
+        {
+          q: 'Lorem ipsum dolor sit amet',
+          a: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.'
+        },
+        {
+          q: 'Lorem ipsum dolor sit amet',
+          a: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.'
+        },
+        {
+          q: 'Lorem ipsum dolor sit amet',
+          a: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.'
+        },
+        {
+          q: 'Lorem ipsum dolor sit amet',
+          a: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.'
+        },
+        {
+          q: 'Lorem ipsum dolor sit amet',
+          a: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.'
+        },
+        {
+          q: 'Lorem ipsum dolor sit amet',
+          a: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.'
+        }
+      ]
+    }
   },
   methods: {}
 }
