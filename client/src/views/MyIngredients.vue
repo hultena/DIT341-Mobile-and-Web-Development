@@ -1,6 +1,16 @@
 <template>
-  <div>
-    <ingredient-card v-for="ingredient in allUserIngredients" :key="ingredient._id" :ingredient="ingredient"/>
+  <div class='my-5'>
+    <b-row>
+      <b-col
+        v-for='ingredient in allUserIngredients'
+        :key='ingredient._id'
+      >
+        <ingredient-card
+          :ingredient='ingredient'
+          class='my-3'
+        />
+      </b-col>
+    </b-row>
   </div>
 </template>
 
