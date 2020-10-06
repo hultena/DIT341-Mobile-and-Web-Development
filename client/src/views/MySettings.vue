@@ -11,7 +11,7 @@
     </b-card>
 
     <b-card class='my-5'>
-      <b-body>
+      <b-card-body>
         <h3 class='mb-4'>
           Time to leave?
         </h3>
@@ -23,7 +23,7 @@
           <b-icon-door-open />
           Log out
         </b-button>
-      </b-body>
+      </b-card-body>
     </b-card>
 
   </div>
