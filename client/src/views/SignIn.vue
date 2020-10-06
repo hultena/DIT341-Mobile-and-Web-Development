@@ -32,9 +32,7 @@ export default {
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 80vh;
-  background: linear-gradient(0deg, rgba(255, 255, 255, .5) 0%, rgba(255, 255, 255, .5) 100%),url('../assets/happy-people-cooking.jpeg') center;
-  background-size: cover;
+  min-height: 75vh;
 }
 .sign-in-form-container {
   max-width: 800px;
