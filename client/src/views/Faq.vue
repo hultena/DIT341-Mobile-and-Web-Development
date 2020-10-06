@@ -12,10 +12,10 @@
       <b-row>
         <b-col>
           <h1>
-            Need help?
+            Frequently asked questions
           </h1>
           <h2>
-            Have a read through our frequently asked questions
+            Have a read to find the answers to your questions
           </h2>
         </b-col>
       </b-row>
@@ -123,6 +123,7 @@ export default {
 </script>
 
 <style scoped>
+h1, h2 { text-align: center }
 .faq-page {}
 .icon-container {
   min-width: 500px;
