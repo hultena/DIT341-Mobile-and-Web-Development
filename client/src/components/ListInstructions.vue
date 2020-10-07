@@ -1,16 +1,14 @@
 <template>
   <div>
-    <b-checkbox-group v-model='selected'>
-      <b-checkbox
-        v-for='instruction in this.instructions'
-        :key='instruction.step'
-        class='mt-3'
-        stacked
-        size='lg'
-      >
-        {{ instruction.step }}
-      </b-checkbox>
-    </b-checkbox-group>
+    <b-checkbox
+      v-for='instruction in this.instructions'
+      :key='instruction.step'
+      class='mt-3'
+      stacked
+      size='lg'
+    >
+      {{ instruction.step }}
+    </b-checkbox>
   </div>
 </template>
 
