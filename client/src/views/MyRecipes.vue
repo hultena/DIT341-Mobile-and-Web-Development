@@ -6,7 +6,7 @@
       </b-col>
     </b-row>
 
-    <b-row class='mt-3 mb-5'>
+    <b-row>
       <b-col
         v-for='recipe in allUserRecipes'
         :key='recipe._id'

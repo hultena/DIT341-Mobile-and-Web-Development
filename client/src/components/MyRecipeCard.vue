@@ -3,7 +3,7 @@
     :title='this.recipe.name'
     :img-src='this.recipe.image'
     img-top
-    class='w-100'
+    class='recipe-card'
   >
     <b-card-text>
 
@@ -57,6 +57,9 @@ export default {
 </script>
 
 <style scoped>
+.recipe-card {
+  min-width: 300px;
+}
 img {
   height: 200px;
   width: 100%;

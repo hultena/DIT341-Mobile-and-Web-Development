@@ -1,7 +1,7 @@
 <template>
-  <b-container class='mb-5 ml-1'>
+  <b-container class='home-page'>
 
-    <b-row class='mt-5 mb-3'>
+    <b-row class='mb-3'>
       <b-col class='mt-5'>
         <h1>
           Lorem ipsum dolor sit amet
@@ -16,7 +16,7 @@
         <advanced-search/>
       </b-col>
     </b-row>
-    <b-row class="ml-0">
+    <b-row>
       <b-col
         v-for='recipe in allRecipes'
         :key='recipe._id'
@@ -31,7 +31,7 @@
           variant='primary'
           @click='expandResults'
           block
-          class='mt-4 mb-5'
+          class='mt-4'
         >
           Show more results
         </b-button>
@@ -78,3 +78,10 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.home-page {
+  padding-top: 120px;
+  padding-bottom: 150px;
+}
+</style>
