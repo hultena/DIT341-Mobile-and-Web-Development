@@ -64,15 +64,15 @@ module.exports = {
 
     getAllUserRecipes: async function (req, res, next) {
         try {
-            const user = await User.findById(req.params.userId)
-                .populate('recipes')
+            const recipes = await Recipe.find({user: req.params.userId})
+                .populate('ingredients')
                 .select(req.value.select)
                 .sort(req.value.sort)
                 .skip(req.value.page)
                 .limit(req.value.limit);
 
-            if (user === null) next();
-            else res.status(200).json(user.recipes);
+            if (recipes === null) next();
+            else res.status(200).json(recipes);
 
         } catch (error) {
             next(error);

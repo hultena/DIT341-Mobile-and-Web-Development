@@ -28,7 +28,8 @@ module.exports = {
         category: Joi.string().allow(''),
         description: Joi.string().allow(''),
         image: Joi.string().allow(''),
-        ingredients: Joi.array().items(Joi.string().regex(regexPattern)),
+        ingredients: Joi.array().items(Joi.object()),
+        ingredientQuantities: Joi.object(),
         dietaryRestrictions: Joi.array().items(Joi.string().valid(
                 'Vegan',
                 'Ovo-Vegetarian',

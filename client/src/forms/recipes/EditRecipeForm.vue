@@ -114,6 +114,34 @@
             </b-col>
           </b-row>
 
+          <b-container>
+            <b-button
+              @click='addIngredients'
+              variant='outline-primary'
+              block
+            >
+              <p v-if="ingredientState"> Finish </p>
+              <p v-else>Edit Ingredients</p>
+            </b-button>
+            <ingredient-search-bar v-if="ingredientState" />
+            <b-list-group flush>
+              <b-list-group-item
+                v-for="ingredient in recipe.ingredients"
+                :key="ingredient._id">
+                <b-form-input
+                  v-if="ingredientState"
+                  type="text"
+                  v-model="recipe.ingredientQuantities[ingredient._id]"/>
+                <p v-else>{{recipe.ingredientQuantities[ingredient._id]}}</p>
+                {{ ingredient.name }}
+                <b-icon-trash
+                  v-if="ingredientState"
+                  @click="deleteIngredient(ingredient._id)"/>
+              </b-list-group-item>
+            </b-list-group>
+            <b-button @click="test">test</b-button>
+          </b-container>
+
           <b-row>
             <b-col>
               <b-form-group
@@ -195,15 +223,17 @@
 import { ValidationObserver, ValidationProvider } from 'vee-validate'
 import { mapGetters, mapActions } from 'vuex'
 import FileUploader from '@/components/FileUploader'
+import IngredientSearchBar from '@/components/IngredientSearchBar'
 
 export default {
   name: 'EditRecipe',
 
-  components: { ValidationObserver, ValidationProvider, FileUploader },
+  components: { ValidationObserver, ValidationProvider, FileUploader, IngredientSearchBar },
 
   data() {
     return {
       recipe: {},
+      ingredientState: false,
       category: [
         { text: 'Cooking', value: 'Cooking' },
         { text: 'Baking', value: 'Baking' }
@@ -231,10 +261,10 @@ export default {
     }
   },
 
-  computed: { ...mapGetters(['oneRecipe', 'loggedInUser']) },
+  computed: { ...mapGetters(['oneRecipe', 'loggedInUser', 'oneIngredient']) },
 
   methods: {
-    ...mapActions(['putRecipe', 'deleteRecipe']),
+    ...mapActions(['putRecipe', 'deleteRecipe', 'clearSelectedIngredient']),
 
     async onSubmit() {
       const message = await this.putRecipe(this.recipe)
@@ -253,6 +283,21 @@ export default {
       this.deleteRecipe(this.recipe)
       this.$router.push('/my-profile')
     },
+    addIngredients() {
+      this.ingredientState = !this.ingredientState
+    },
+    deleteIngredient(id) {
+      const idx = this.recipe.ingredients.findIndex(function (ingredient) {
+        return ingredient._id === id
+      })
+      this.recipe.ingredients.splice(idx, 1)
+      delete this.recipe.ingredientQuantities[id]
+    },
+    test() {
+      // console.log(this.ingredientQuantities)
+      // this.recipe.ingredientQuantities = this.ingredientQuantities
+      console.log(this.recipe)
+    },
 
     getValidationState({ dirty, validated, valid = null }) {
       return dirty || validated ? valid : null
@@ -261,6 +306,17 @@ export default {
 
   created() {
     this.recipe = this.oneRecipe
+    if (!this.recipe.ingredientQuantities) {
+      this.recipe.ingredientQuantities = {}
+    }
+  },
+  watch: {
+    '$store.state.ingredients.selectedIngredient': function () {
+      if (this.ingredientState && this.oneIngredient) {
+        this.recipe.ingredients.push(this.oneIngredient)
+        this.clearSelectedIngredient()
+      }
+    }
   }
 }
 </script>
