@@ -1,7 +1,7 @@
 <template>
-  <b-container class='profile-page mt-5'>
+  <b-container class='profile-page'>
 
-    <b-row class='mt-5'>
+    <b-row>
       <b-col class='avatar mr-5'>
         <b-img
           :src='this.loggedInUser.image'
@@ -29,15 +29,17 @@
           block
           class='my-3'
         >
-          <b-icon-pencil /> User settings
+          <b-icon-tools /> User settings
         </b-button>
 
         <b-button
           v-if="this.currentView==='ingredients'&&!addIngredientState"
           @click="addIngredientState=changeState(addIngredientState)"
           block
+          variant='primary'
         >
-          Add Ingredients
+          <b-icon-plus-circle />
+          Add Ingredient
         </b-button>
         <b-button
           v-if="this.currentView==='ingredients'&&addIngredientState"
@@ -129,7 +131,10 @@ export default {
 </script>
 
 <style scoped>
-.profile-page {}
+.profile-page {
+  padding-top: 150px;
+  padding-bottom: 100px;
+}
 .avatar {
   max-width: 200px !important;
 }

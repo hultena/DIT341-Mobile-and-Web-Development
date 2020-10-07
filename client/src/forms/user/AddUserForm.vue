@@ -1,54 +1,95 @@
 <template>
   <div>
-    <validation-observer ref="observer" v-slot="{ handleSubmit }">
-      <b-form @submit.stop.prevent="handleSubmit(onSubmit)">
+    <validation-observer ref='observer' v-slot='{ handleSubmit }'>
+      <b-form @submit.stop.prevent='handleSubmit(onSubmit)'>
         <validation-provider
-          name="username"
-          :rules="{ required: true}"
-          v-slot="validationContext"
+          name='username'
+          :rules='{ required: true}'
+          v-slot='validationContext'
         >
-          <b-form-group>
-            <b-form-input
-              v-model="form.username"
-              :state="getValidationState(validationContext)"
-              placeholder="Username"
-            ></b-form-input>
-
+          <b-form-group
+            label='Username'
+            label-for='username-input'
+          >
+            <b-input-group>
+              <b-input-group-prepend is-text>
+                <b-icon-person />
+              </b-input-group-prepend>
+              <b-form-input
+                v-model='form.username'
+                :state='getValidationState(validationContext)'
+                placeholder='Username'
+                id='username-input'
+              />
+            </b-input-group>
             <b-form-invalid-feedback>{{ validationContext.errors[0] }}</b-form-invalid-feedback>
           </b-form-group>
         </validation-provider>
-        <validation-provider
-          name="email"
-          :rules="{ required: true}"
-          v-slot="validationContext"
-        >
-          <b-form-group>
-            <b-form-input
-              v-model="form.email"
-              :state="getValidationState(validationContext)"
-              placeholder="E-mail"
-            ></b-form-input>
 
-            <b-form-invalid-feedback>{{ validationContext.errors[0] }}</b-form-invalid-feedback>
-          </b-form-group>
-        </validation-provider>
-        <validation-provider
-          name="password"
-          :rules="{ required: true}"
-          v-slot="validationContext"
-        >
-          <b-form-group>
-            <b-form-input
-              v-model="form.password"
-              :state="getValidationState(validationContext)"
-              type="password"
-              placeholder="Password"
-            ></b-form-input>
+        <b-row>
+          <b-col>
+            <validation-provider
+              name='email'
+              :rules='{ required: true}'
+              v-slot='validationContext'
+            >
+              <b-form-group
+                label='E-mail'
+                label-for='email-input'
+              >
+                <b-input-group class='min-width-check'>
+                  <b-input-group-prepend is-text>
+                    <b-icon-envelope />
+                  </b-input-group-prepend>
+                  <b-form-input
+                    v-model='form.email'
+                    :state='getValidationState(validationContext)'
+                    placeholder='E-mail'
+                    id='email-input'
+                  />
+                </b-input-group>
+                <b-form-invalid-feedback>{{ validationContext.errors[0] }}</b-form-invalid-feedback>
+              </b-form-group>
+            </validation-provider>
+          </b-col>
+          <b-col>
+            <validation-provider
+              name='password'
+              :rules='{ required: true}'
+              v-slot='validationContext'
+            >
+              <b-form-group
+                label='Password'
+                label-for='password-input'
+                class='mb-5'
+              >
+                <b-input-group class='min-width-check'>
+                  <b-input-group-prepend is-text>
+                    <b-icon-shield-lock />
+                  </b-input-group-prepend>
+                  <b-form-input
+                    v-model='form.password'
+                    :state='getValidationState(validationContext)'
+                    type='password'
+                    placeholder='Password'
+                    id='password-input'
+                  />
+                </b-input-group>
+                <b-form-invalid-feedback>{{ validationContext.errors[0] }}</b-form-invalid-feedback>
+              </b-form-group>
+            </validation-provider>
+          </b-col>
+        </b-row>
 
-            <b-form-invalid-feedback>{{ validationContext.errors[0] }}</b-form-invalid-feedback>
-          </b-form-group>
-        </validation-provider>
-        <b-button type="submit" variant="primary">Submit</b-button>
+        <b-button
+          type='submit'
+          variant='primary'
+          block
+        >
+          <b-icon-person-plus />
+          Sign me up
+        </b-button>
+
       </b-form>
     </validation-observer>
   </div>
@@ -100,5 +141,5 @@ export default {
 </script>
 
 <style scoped>
-
+.min-width-check { min-width: 200px; }
 </style>
