@@ -64,7 +64,7 @@
             Instructions
           </h2>
 
-          <ListInstructions :instructions="recipe.instructions" />
+          <list-instructions />
 
         </b-col>
       </b-row>
