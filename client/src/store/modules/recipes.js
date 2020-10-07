@@ -4,6 +4,7 @@ const state = {
   // put the state here
   recipes: [],
   userRecipes: [],
+  userFavourites: [],
   query: {},
   selectedRecipe: null
 }
@@ -48,14 +49,25 @@ const mutations = {
     state.recipes.push(recipe)
   },
 
+  newFavouriteRecipe: function (state, recipe) {
+    state.userFavourites.push(recipe)
+  },
+
   updatedRecipe: function (state, updatedRecipe) {
-    state.recipes.splice(indexFinder(updatedRecipe._id), 1, updatedRecipe)
+    state.recipes.splice(indexFinder(updatedRecipe._id, state.recipes), 1, updatedRecipe)
+    state.userRecipes.splice(indexFinder(updatedRecipe._id, state.userRecipes), 1, updatedRecipe)
+  },
+
+  deleteFavouriteRecipe: function (state, recipe) {
+    const idx = indexFinder(recipe._id, state.userFavourites)
+    state.userFavourites.splice(idx, 1)
   },
 
   deletedRecipe: function (state, id) {
-    const idx = indexFinder(id)
-    state.recipes.splice(idx[0], 1)
-    state.userRecipes.splice(idx[1], 1)
+    const idx = indexFinder(id, state.recipes)
+    const idx2 = indexFinder(id, state.userRecipes)
+    state.recipes.splice(idx, 1)
+    state.userRecipes.splice(idx2, 1)
   }
 }
 
@@ -91,10 +103,18 @@ const actions = {
 
   // CHANGES
 
-  async likeRecipe({ commit }, recipe) {
+  async likeRecipe({ commit, rootState }, recipe) {
     try {
-      const likes = { likes: recipe.likes + 1 }
-      recipe.likes += 1
+      if (indexFinder(recipe._id, state.userFavourites) >= 0) {
+        recipe.likes -= 1
+        commit('deleteFavouriteRecipe', recipe)
+      } else {
+        recipe.likes += 1
+        commit('newFavouriteRecipe', recipe)
+      }
+      const likes = { likes: recipe.likes }
+      const favourites = favouritesCreator()
+      await Api.patch(`/users/${rootState.users.loggedIn._id}`, favourites)
       await Api.patch(`/recipes/${recipe._id}`, likes)
       commit('updatedRecipe', recipe)
     } catch (error) { return error.response.data }
@@ -119,7 +139,7 @@ const actions = {
   async deleteRecipe({ commit }, recipe) {
     try {
       await Api.delete(`/users/${recipe.user}/recipes/${recipe._id}`)
-      commit('deletedIngredient', recipe._id)
+      commit('deletedRecipe', recipe._id)
     } catch (error) { return error.response.data }
   },
 
@@ -137,8 +157,8 @@ export default {
   actions
 }
 
-function indexFinder(id) {
-  return state.recipes.findIndex(function (recipe) {
+function indexFinder(id, array) {
+  return array.findIndex(function (recipe) {
     return recipe._id === id
   })
 }
@@ -161,4 +181,12 @@ function queryStringBuilder() {
     }
   }
   return params
+}
+
+function favouritesCreator() {
+  const value = []
+  for (const favourite of state.userFavourites) {
+    value.push({ _id: favourite._id })
+  }
+  return { favourites: value }
 }

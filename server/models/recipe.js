@@ -19,6 +19,7 @@ const recipeSchema = new Schema({
         ref: 'ingredient',
         required: true
     }],
+    ingredientQuantities: {type: Schema.Types.Mixed},
     dietaryRestrictions: [{ type: String }],
     allergies: [{ type: String }],
     instructions: [{ type: Object }],
