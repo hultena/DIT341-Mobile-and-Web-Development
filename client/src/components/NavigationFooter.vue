@@ -26,22 +26,29 @@
       <b-col>
         <router-link
           to='/about'
-          class='mr-5'
+          class='mr-4'
         >
           About
         </router-link>
         <router-link
           to='/faq'
-          class='mh-5'
+          class='mr-4'
         >
           FAQ
         </router-link>
         <b-link
           href='https://git.chalmers.se/courses/dit341/2020/group-01-web'
           target='_blank'
-          class='ml-5'
+          class='mr-4'
         >
           Git project
+        </b-link>
+        <b-link
+          v-if='loggedInUser'
+          role='button'
+          @click='signOut'
+        >
+          Sign out of yummy
         </b-link>
       </b-col>
     </b-row>
@@ -50,10 +57,21 @@
 </template>
 
 <script>
+import { mapActions, mapGetters } from 'vuex'
+
 export default {
   name: 'NavigationFooter',
 
+  computed: { ...mapGetters(['loggedInUser']) },
+
   methods: {
+    ...mapActions(['deauthUser']),
+
+    signOut() {
+      this.deauthUser(this.loggedInUser)
+      this.$router.push('/')
+    },
+
     toTop() {
       window.scrollTo({ top: 0, left: 0, behavior: 'smooth' })
     }
