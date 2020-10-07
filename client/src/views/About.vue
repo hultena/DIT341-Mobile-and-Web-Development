@@ -88,10 +88,10 @@
 <script>
 export default {
   name: 'about',
-  data() {
-    return {}
-  },
-  methods: {}
+
+  methods: { toTop() { window.scrollTo(0, 0) } },
+
+  mounted() { this.toTop() }
 }
 </script>
 
