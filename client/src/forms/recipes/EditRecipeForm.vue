@@ -139,7 +139,6 @@
                   @click="deleteIngredient(ingredient._id)"/>
               </b-list-group-item>
             </b-list-group>
-            <b-button @click="test">test</b-button>
           </b-container>
 
           <b-row>
@@ -292,11 +291,6 @@ export default {
       })
       this.recipe.ingredients.splice(idx, 1)
       delete this.recipe.ingredientQuantities[id]
-    },
-    test() {
-      // console.log(this.ingredientQuantities)
-      // this.recipe.ingredientQuantities = this.ingredientQuantities
-      console.log(this.recipe)
     },
 
     getValidationState({ dirty, validated, valid = null }) {

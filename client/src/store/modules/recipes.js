@@ -117,10 +117,7 @@ const actions = {
       await Api.patch(`/users/${rootState.users.loggedIn._id}`, favourites)
       await Api.patch(`/recipes/${recipe._id}`, likes)
       commit('updatedRecipe', recipe)
-    } catch (error) {
-      console.log(error)
-      return error.response.data
-    }
+    } catch (error) { return error.response.data }
   },
 
   async patchRecipe({ commit }, recipe) {
@@ -132,7 +129,6 @@ const actions = {
 
   async putRecipe({ commit }, recipe) {
     try {
-      console.log(recipe)
       await Api.put(`/users/${recipe.user}/recipes/${recipe._id}`, recipe)
       commit('updatedRecipe', recipe)
     } catch (error) { return error.response.data }
