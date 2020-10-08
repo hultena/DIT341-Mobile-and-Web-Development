@@ -6,26 +6,33 @@
     class='m-0 pt-3 app-header'
   >
 
-    <!-- If user not signed in -->
-    <b-container
-      v-if='!loggedInUser && currentView !== "/sign-in" && currentView !== "/sign-up"'
-    >
-
+    <b-container>
       <b-navbar-brand to='/'>
         <img
+          v-if='currentView === "/"'
           src='@/assets/MainYummyLogo.svg'
+          class='logo'
+          alt='App logo'
+        >
+        <img
+          v-if='currentView !== "/"'
+          src='@/assets/YummyLogo.svg'
           class='logo'
           alt='App logo'
         >
       </b-navbar-brand>
 
-      <b-navbar-nav class='ml-auto'>
+      <b-navbar-nav
+        v-if='!loggedInUser && currentView !== "/sign-up" && currentView !== "/sign-in"'
+        class='ml-auto'
+      >
         <b-nav-item>
+
           <b-button-group>
 
             <b-button
               @click='signUp'
-              variant='primary'
+              variant='light'
               class='header-button-primary'
             >
               Sign up
@@ -33,44 +40,21 @@
 
             <b-button
               @click='signIn'
-              variant='outline-primary'
+              variant='outline-light'
               class='header-button-secondary'
             >
               Sign in
             </b-button>
 
           </b-button-group>
+
         </b-nav-item>
       </b-navbar-nav>
 
-    </b-container>
-
-    <!-- If on sign up / sign -->
-    <b-container
-      v-if='currentView === "/sign-in" || currentView === "/sign-up"'
-    >
-      <b-navbar-brand to='/'>
-        <img
-          src='@/assets/MainYummyLogo.svg'
-          class='logo'
-          alt='User avatar'
-        >
-      </b-navbar-brand>
-    </b-container>
-
-    <!-- If user is signed in and not on profile -->
-    <b-container
-      v-if='loggedInUser && currentView !== "/my-profile" && currentView !== "/my-recipes" && currentView !== "/my-shopping-lists" && currentView !== "/my-favourites"'
-    >
-      <b-navbar-brand to='/'>
-        <img
-          src='@/assets/MainYummyLogo.svg'
-          class='logo'
-          alt='App logo'
-        >
-      </b-navbar-brand>
-
-      <b-navbar-nav class='ml-auto'>
+      <b-navbar-nav
+        v-if='loggedInUser && currentView !== "/my-profile"'
+        class='ml-auto'
+      >
         <b-nav-item class='avatar'>
           <router-link to='/my-profile'>
             <b-img
@@ -84,24 +68,17 @@
         </b-nav-item>
       </b-navbar-nav>
 
-    </b-container>
+      <b-navbar-toggle
+        v-if='loggedInUser && currentView === "/my-profile"'
+        target='nav-collapse'
+        class='hamburger'
+      />
 
-    <!-- If on user profile -->
-    <b-container
-      v-if='currentView === "/my-profile" || currentView === "/my-recipes" || currentView === "/my-shopping-lists" || currentView === "/my-favourites"'
-    >
-
-      <b-navbar-brand to='/'>
-        <img
-          src='@/assets/MainYummyLogo.svg'
-          class='logo'
-          alt='App logo'
-        >
-      </b-navbar-brand>
-
-      <b-navbar-toggle target='nav-collapse' class='hamburger'></b-navbar-toggle>
-
-      <b-collapse id="nav-collapse" is-nav>
+      <b-collapse
+        v-if='loggedInUser && currentView === "/my-profile"'
+        id="nav-collapse"
+        is-nav
+      >
         <b-navbar-nav class='ml-auto'>
 
           <b-nav-item
@@ -146,11 +123,7 @@ import { mapGetters, mapActions } from 'vuex'
 export default {
   name: 'NavigationHeader',
 
-  data() {
-    return {
-      click: null
-    }
-  },
+  data() { return { click: null } },
 
   methods: {
     ...mapActions(['deauthUser', 'changeView']),
@@ -171,23 +144,7 @@ export default {
 </script>
 
 <style scoped>
-.app-header { background-color: #fbab7e !important }
-
-.header-button-primary, .header-button-secondary {
-  border-color: #fff !important;
-}
-
-.header-button-primary {
-  color: #fbab7e !important;
-  background: #fff !important;
-  border-color: #fff !important;
-}
-
-.header-button-secondary { color: #fff !important }
-
-.header-button-secondary:hover, .header-button-secondary:focus {
-  background: rgba(255, 255, 255, .5) !important
-}
+.app-header { background: transparent !important }
 
 img.logo { width: 100px }
 
@@ -197,12 +154,4 @@ img.logo { width: 100px }
   color: #fff;
   border: solid 3px #fff;
 }
-
-.profile-link a {
-  font-weight: bold;
-  color: #fff !important;
-  transition: .1s;
-}
-
-.profile-link a:hover { opacity: .5 }
 </style>
