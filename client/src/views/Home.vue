@@ -1,44 +1,54 @@
 <template>
-  <b-container class='home-page'>
+  <div class='home-page'>
 
-    <b-row class='mb-3'>
-      <b-col class='mt-5'>
-        <h1>
-          Lorem ipsum dolor sit amet
-        </h1>
-        <h2>
-          Lorem ipsum dolor sit amet, consectetur
-        </h2>
-      </b-col>
-    </b-row>
-    <b-row>
-      <b-col>
-        <advanced-search/>
-      </b-col>
-    </b-row>
-    <b-row>
-      <b-col
-        v-for='recipe in allRecipes'
-        :key='recipe._id'
-        >
-        <recipe-card :recipe='recipe' class="my-3" />
-      </b-col>
-    </b-row>
+    <div class='hero'>
+      <b-container>
+        <b-row class='mb-3'>
+          <b-col class='mt-5'>
+            <h1>
+              Lorem ipsum dolor sit amet
+            </h1>
+            <h2>
+              Lorem ipsum dolor sit amet, consectetur
+            </h2>
+          </b-col>
+        </b-row>
+        <b-row>
+          <b-col>
+            <advanced-search/>
+          </b-col>
+        </b-row>
+      </b-container>
+    </div>
 
-    <b-row>
-      <b-col>
-        <b-button
-          variant='primary'
-          @click='expandResults'
-          block
-          class='mt-4'
-        >
-          Show more results
-        </b-button>
-      </b-col>
-    </b-row>
+    <div class='main'>
+      <b-container class='home-page'>
 
-  </b-container>
+        <b-row>
+          <b-col
+            v-for='recipe in allRecipes'
+            :key='recipe._id'
+          >
+            <recipe-card :recipe='recipe' class="my-3" />
+          </b-col>
+        </b-row>
+
+        <b-row>
+          <b-col>
+            <b-button
+              variant='primary'
+              @click='expandResults'
+              block
+              class='mt-4'
+            >
+              Show more results
+            </b-button>
+          </b-col>
+        </b-row>
+
+      </b-container>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -80,8 +90,16 @@ export default {
 </script>
 
 <style scoped>
-.home-page {
-  padding-top: 120px;
-  padding-bottom: 150px;
+h1, h2 { color: #fff !important }
+.hero {
+  height: 70vh !important;
+  width: 100vw;
+  padding-top: 30vh;
+  background:
+    linear-gradient(0deg, rgba(0, 0, 0, .6) 0%, rgba(0, 0, 0, .6) 100%),
+    url('../assets/hero-background.gif')
+    no-repeat
+    center;
+  background-size: cover;
 }
 </style>
