@@ -70,6 +70,7 @@ export default {
     signOut() {
       this.deauthUser(this.loggedInUser)
       this.$router.push('/')
+      window.scrollTo(0, 0)
     },
 
     toTop() {
