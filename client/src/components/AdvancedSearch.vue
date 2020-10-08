@@ -25,33 +25,35 @@
     </b-form-group>
 
     <b-collapse id="collapse-1">
-      <b-container>
-        <b-row>
+      <b-card>
+        <b-container>
+          <b-row>
 
-          <b-col>
-            <b-form-group label="Allergies">
-              <b-form-checkbox-group
-                id="checkbox-group-1"
-                v-model="form.filters.allergies"
-                :options="allergyOptions"
-                stacked
-              ></b-form-checkbox-group>
-            </b-form-group>
-          </b-col>
+            <b-col>
+              <b-form-group label="Allergies">
+                <b-form-checkbox-group
+                  id="checkbox-group-1"
+                  v-model="form.filters.allergies"
+                  :options="allergyOptions"
+                  stacked
+                ></b-form-checkbox-group>
+              </b-form-group>
+            </b-col>
 
-          <b-col>
-            <b-form-group label="Dietary Restrictions">
-              <b-form-checkbox-group
-                id="checkbox-group-2"
-                v-model="form.filters.dietaryRestrictions"
-                :options="dietOptions"
-                stacked
-              ></b-form-checkbox-group>
-            </b-form-group>
-          </b-col>
+            <b-col>
+              <b-form-group label="Dietary Restrictions">
+                <b-form-checkbox-group
+                  id="checkbox-group-2"
+                  v-model="form.filters.dietaryRestrictions"
+                  :options="dietOptions"
+                  stacked
+                ></b-form-checkbox-group>
+              </b-form-group>
+            </b-col>
 
-        </b-row>
-      </b-container>
+          </b-row>
+        </b-container>
+      </b-card>
     </b-collapse>
 
   </div>
