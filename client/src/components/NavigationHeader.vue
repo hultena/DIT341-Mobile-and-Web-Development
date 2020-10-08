@@ -9,7 +9,7 @@
     <b-container>
       <b-navbar-brand to='/'>
         <img
-          v-if='currentView === "/"'
+          v-if='currentView === "/" || currentView ==="/recipe" || currentView === "/about" || currentView === "/my-recipe"'
           src='@/assets/MainYummyLogo.svg'
           class='logo'
           alt='App logo'
