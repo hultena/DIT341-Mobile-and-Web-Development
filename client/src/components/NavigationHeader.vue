@@ -144,7 +144,13 @@ export default {
 </script>
 
 <style scoped>
-.app-header { background: transparent !important }
+.app-header {
+  z-index: 100;
+  position: absolute;
+  top: 0;
+  width: 100vw;
+  background: transparent !important
+}
 
 img.logo { width: 100px }
 
