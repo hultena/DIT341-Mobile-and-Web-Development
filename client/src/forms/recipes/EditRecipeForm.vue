@@ -114,7 +114,7 @@
             </b-col>
           </b-row>
 
-          <b-container>
+          <b-container class="mb-5">
             <b-button
               @click='addIngredients'
               variant='outline-primary'
@@ -123,20 +123,42 @@
               <p v-if="ingredientState"> Finish </p>
               <p v-else>Edit Ingredients</p>
             </b-button>
-            <ingredient-search-bar v-if="ingredientState" />
+            <ingredient-search-bar v-if="ingredientState"/>
             <b-list-group flush>
               <b-list-group-item
                 v-for="ingredient in recipe.ingredients"
                 :key="ingredient._id">
-                <b-form-input
-                  v-if="ingredientState"
-                  type="text"
-                  v-model="recipe.ingredientQuantities[ingredient._id]"/>
-                <p v-else>{{recipe.ingredientQuantities[ingredient._id]}}</p>
-                {{ ingredient.name }}
-                <b-icon-trash
-                  v-if="ingredientState"
-                  @click="deleteIngredient(ingredient._id)"/>
+                <b-container>
+                  <b-row>
+                    <b-col
+                      v-if="ingredientState">
+                      <b-input-group>
+                        <b-form-input
+                          type="text"
+                          v-model="recipe.ingredientQuantities[ingredient._id]['quantity']"
+                        />
+                        <b-input-group-append>
+                          <b-form-select
+                            v-model="recipe.ingredientQuantities[ingredient._id]['unit']"
+                            :options="unit"
+                            value-field="item"
+                            text-field="name"
+                          />
+                        </b-input-group-append>
+                      </b-input-group>
+                    </b-col>
+                    <b-col cols="4">
+                        <span v-if="!ingredientState">
+                          {{recipe.ingredientQuantities[ingredient._id]['quantity']}}
+                          {{recipe.ingredientQuantities[ingredient._id]['unit']}}
+                        </span>
+                        {{ ingredient.name }}
+                        <b-icon-trash
+                          v-if="ingredientState"
+                          @click="deleteIngredient(ingredient._id)"/>
+                    </b-col>
+                  </b-row>
+                </b-container>
               </b-list-group-item>
             </b-list-group>
           </b-container>
@@ -256,6 +278,13 @@ export default {
         { text: 'Soy', value: 'Soy' },
         { text: 'Fish', value: 'Fish' },
         { text: 'Shellfish', value: 'Shellfish' }
+      ],
+      unit: [
+        { item: 'g', name: 'g' },
+        { item: 'kg', name: 'kg' },
+        { item: 'ml', name: 'ml' },
+        { item: 'l', name: 'l' },
+        { item: '', name: 'count' }
       ]
     }
   },
@@ -308,6 +337,7 @@ export default {
     '$store.state.ingredients.selectedIngredient': function () {
       if (this.ingredientState && this.oneIngredient) {
         this.recipe.ingredients.push(this.oneIngredient)
+        this.recipe.ingredientQuantities[this.oneIngredient._id] = { unit: '', quantity: '' }
         this.clearSelectedIngredient()
       }
     }

@@ -1,23 +1,24 @@
 <template>
   <b-list-group>
     <b-list-group-item
-      v-for='ingredient in ingredients'
+      v-for='ingredient in oneRecipe.ingredients'
       :key='ingredient._id'
     >
-
-      <!-- todo: Populate list with ingredients, with qty, measurment and name -->
-      <!-- todo: Add button with functionality to add ingredient to shopping list -->
+      {{oneRecipe.ingredientQuantities[ingredient._id]['quantity']}}
+      {{oneRecipe.ingredientQuantities[ingredient._id]['unit']}}
+      {{ingredient.name}}
 
     </b-list-group-item>
   </b-list-group>
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 export default {
   name: 'ListIngredients',
-
-  props: {
-    ingredients: Array
+  computed: {
+    ...mapGetters(['oneRecipe'])
   }
+
 }
 </script>
