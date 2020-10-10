@@ -19,19 +19,8 @@
         </h2>
       </b-col>
     </b-row>
-    <b-row>
+    <b-row class="mt-4">
       <b-col>
-        <!-- Perhaps move this button to the navbar in the future? Putting it here for now -->
-        <b-button
-          v-if="this.currentView!=='settings'"
-          @click="changeView('settings')"
-          variant='outline-secondary'
-          block
-          class='my-3'
-        >
-          <b-icon-tools /> User settings
-        </b-button>
-
         <b-button
           v-if="this.currentView==='ingredients'&&!addIngredientState"
           @click="addIngredientState=changeState(addIngredientState)"
@@ -68,7 +57,7 @@
       <my-ingredients v-if="this.currentView==='ingredients'"/>
       <my-shopping-lists v-if="this.currentView==='shopping'"/>
       <my-settings v-if="this.currentView==='settings'"/>
-      <p v-if="this.currentView==='favourites'">Placeholder favourite recipes</p>
+      <my-favourites v-if="this.currentView==='favourites'"/>
 
     </section>
 
@@ -82,10 +71,12 @@ import MyIngredients from '@/views/MyIngredients'
 import MyShoppingLists from '@/views/MyShoppingLists'
 import AddIngredientForm from '@/forms/AddIngredientForm'
 import MySettings from '@/views/MySettings'
+import MyFavourites from '@/views/MyFavourites'
 
 export default {
   name: 'myProfile',
   components: {
+    MyFavourites,
     MyRecipes,
     MySettings,
     AddIngredientForm,
@@ -121,10 +112,6 @@ export default {
     this.user = this.loggedInUser._id
     await this.getShoppingLists(this.user)
     await this.getUserIngredients(this.user)
-  },
-
-  destroyed() {
-    this.changeView('recipes')
   }
 }
 
