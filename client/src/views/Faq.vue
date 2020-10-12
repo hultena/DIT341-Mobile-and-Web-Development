@@ -130,11 +130,12 @@ export default {
 </script>
 
 <style scoped>
-h1, h4 { text-align: center }
-.faq-page {}
+.faq-page { padding: 100px 0 50px 0 }
+.faq-page > section:first-child { padding-bottom: 50px }
 .icon-container {
   min-width: 500px;
   font-size: 8rem;
   text-align: center;
 }
+h1, h4 { text-align: center }
 </style>
