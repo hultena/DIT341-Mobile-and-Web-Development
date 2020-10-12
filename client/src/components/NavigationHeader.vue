@@ -9,13 +9,13 @@
     <b-container>
       <b-navbar-brand to='/'>
         <img
-          v-if='currentView === "/" || currentView ==="/recipe" || currentView === "/about" || currentView === "/my-recipe"'
+          v-if='currentView === "/" || currentView === "/recipe" || currentView === "/about" || currentView === "/my-recipe"'
           src='@/assets/MainYummyLogo.svg'
           class='logo'
           alt='App logo'
         >
         <img
-          v-if='currentView !== "/"'
+          v-if='currentView !== "/" && currentView !== "/recipe" && currentView !== "/about" && currentView !== "/my-recipe"'
           src='@/assets/YummyLogo.svg'
           class='logo'
           alt='App logo'
@@ -28,7 +28,7 @@
       >
         <b-nav-item>
 
-          <b-button-group>
+          <b-button-group v-if='!loggedInUser && currentView !== "/faq"'>
 
             <b-button
               @click='signUp'
@@ -41,6 +41,26 @@
             <b-button
               @click='signIn'
               variant='outline-light'
+              class='header-button-secondary'
+            >
+              Sign in
+            </b-button>
+
+          </b-button-group>
+
+          <b-button-group v-if='!loggedInUser && currentView === "/faq"'>
+
+            <b-button
+              @click='signUp'
+              variant='dark'
+              class='header-button-primary'
+            >
+              Sign up
+            </b-button>
+
+            <b-button
+              @click='signIn'
+              variant='outline-dark'
               class='header-button-secondary'
             >
               Sign in
