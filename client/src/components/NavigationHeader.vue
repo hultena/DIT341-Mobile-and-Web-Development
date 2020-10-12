@@ -19,7 +19,7 @@
           src='@/assets/YummyLogo.svg'
           class='logo'
           alt='App logo'
-        >
+        />
       </b-navbar-brand>
 
       <b-navbar-nav
