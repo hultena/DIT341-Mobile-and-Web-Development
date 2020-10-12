@@ -11,12 +11,12 @@
         <b-input-group-append>
           <b-button
             v-b-toggle.collapse-1
-            variant='outline-secondary'
+            variant='outline-light'
           >
             <b-icon-filter />
           </b-button>
           <b-button
-            variant='outline-primary'
+            variant='outline-light'
             @click="search">
             <b-icon-search />
           </b-button>
@@ -107,7 +107,3 @@ export default {
   }
 }
 </script>
-
-<style scoped>
-
-</style>
