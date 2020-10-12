@@ -2,26 +2,25 @@
   <div class='home-page'>
 
     <div class='hero'>
-      <b-container>
-        <b-row class='mb-3'>
-          <b-col class='mt-5'>
-            <h1>
-              Lorem ipsum dolor sit amet
-            </h1>
-            <h2>
-              Lorem ipsum dolor sit amet, consectetur
-            </h2>
-          </b-col>
-        </b-row>
-        <b-row>
-          <b-col>
-            <advanced-search/>
-          </b-col>
-        </b-row>
-      </b-container>
+      <div class='content'>
+        <b-container>
+          <b-row class='mb-3'>
+            <b-col class='mt-5'>
+              <h1>
+                What are you cooking today?
+              </h1>
+            </b-col>
+          </b-row>
+          <b-row>
+            <b-col>
+              <advanced-search />
+            </b-col>
+          </b-row>
+        </b-container>
+      </div>
     </div>
 
-    <div class='main'>
+    <div class='content'>
       <b-container class='home-page'>
 
         <b-row>
@@ -90,11 +89,10 @@ export default {
 </script>
 
 <style scoped>
-h1, h2 { color: #fff !important }
 .hero {
+  position: relative;
   height: 70vh !important;
   width: 100vw;
-  padding-top: 30vh;
   background:
     linear-gradient(0deg, rgba(0, 0, 0, .6) 0%, rgba(0, 0, 0, .6) 100%),
     url('../assets/hero-background.gif')
@@ -102,4 +100,17 @@ h1, h2 { color: #fff !important }
     center;
   background-size: cover;
 }
+.hero > .content {
+  width: 100vw;
+  position: absolute;
+  bottom: 0;
+  padding-bottom: 50px;
+}
+
+.hero > .content h1 {
+  color: #fff !important;
+  padding-bottom: 20px;
+}
+
+.home-page > .content { padding: 50px 0 100px 0 }
 </style>
