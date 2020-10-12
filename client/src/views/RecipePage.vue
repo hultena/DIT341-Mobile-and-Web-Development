@@ -51,7 +51,7 @@
             Ingredients
           </h2>
 
-          <ListIngredients :ingredients="recipe.ingredients" />
+          <list-ingredients/>
 
         </b-col>
         <b-col>

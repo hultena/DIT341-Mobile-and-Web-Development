@@ -1,6 +1,6 @@
 <template>
   <b-navbar
-    toggleable='lg'
+    toggleable='md'
     type='light'
     variant='light'
     class='m-0 pt-3 app-header'
@@ -16,7 +16,7 @@
           src='@/assets/MainYummyLogo.svg'
           class='logo'
           alt='App logo'
-        >
+        />
       </b-navbar-brand>
 
       <b-navbar-nav class='ml-auto'>
@@ -171,37 +171,47 @@ export default {
 </script>
 
 <style scoped>
-.app-header { background-color: #fbab7e !important }
+.app-header { background-color: #C8DBA9 !important }
 
 .header-button-primary, .header-button-secondary {
-  border-color: #fff !important;
+  border-color: #4A4A4A !important;
 }
 
 .header-button-primary {
-  color: #fbab7e !important;
-  background: #fff !important;
-  border-color: #fff !important;
+  color: #C8DBA9 !important;
+  background: #4A4A4A !important;
+  border-color: #4A4A4A !important;
 }
 
-.header-button-secondary { color: #fff !important }
+.header-button-secondary { color: #4A4A4A !important }
 
 .header-button-secondary:hover, .header-button-secondary:focus {
   background: rgba(255, 255, 255, .5) !important
 }
+.header-button-primary:hover, .header-button-primary:focus {
+  background: rgba(74, 74, 74, .5) !important
+}
 
-img.logo { width: 100px }
+img.logo {
+  width: 100px;
+  color: #4A4A4A;
+}
 
 .avatar img, .avatar svg {
   height: 55px;
   width: 55px;
-  color: #fff;
-  border: solid 3px #fff;
+  color: #4A4A4A;
+  border: solid 3px #4A4A4A;
 }
 
 .profile-link a {
   font-weight: bold;
-  color: #fff !important;
+  color: #4A4A4A !important;
   transition: .1s;
+}
+
+#nav-collapse{
+  text-align: right;
 }
 
 .profile-link a:hover { opacity: .5 }
