@@ -60,31 +60,32 @@
             @click='click="recipes"'
             class='profile-link'
           >
-            My recipes
+            My Recipes
           </b-nav-item>
           <b-nav-item
             @click='click="shopping"'
             class='profile-link'
           >
-            My shopping lists
+            My Shopping Lists
           </b-nav-item>
           <b-nav-item
             @click='click="ingredients"'
             class='profile-link'
           >
-            My ingredients
+            My Ingredients
           </b-nav-item>
           <b-nav-item
             @click='click="favourites"'
             class='profile-link'
           >
-            Favourite recipes
+            Favourite Recipes
           </b-nav-item>
       </b-navbar-nav>
       <b-navbar-nav class="mr-0">
         <b-nav-dropdown
           id="dropdown-menu"
           right
+          no-caret
           no-flip>
           <template slot="button-content">
             <b-img
@@ -95,8 +96,8 @@
             />
             <b-icon-person v-else />
           </template>
-          <b-dd-item v-if="size<=TOGGLE_LIMIT" @click="click='recipes'">My recipes</b-dd-item>
-          <b-dd-item v-if="size<=TOGGLE_LIMIT" @click="click='shopping'">My shopping lists</b-dd-item>
+          <b-dd-item v-if="size<=TOGGLE_LIMIT" @click="click='recipes'">My Recipes</b-dd-item>
+          <b-dd-item v-if="size<=TOGGLE_LIMIT" @click="click='shopping'">My Shopping Lists</b-dd-item>
           <b-dd-item v-if="size<=TOGGLE_LIMIT" @click="click='ingredients'">My Ingredients</b-dd-item>
           <b-dd-item v-if="size<=TOGGLE_LIMIT" @click="click='favourites'">Favourite Recipes</b-dd-item>
           <b-dd-divider v-if="size<=TOGGLE_LIMIT"/>
@@ -183,20 +184,18 @@ export default {
   background: rgba(74, 74, 74, .5) !important
 }
 
-/deep/ #dropdown-menu > a:hover {
+/deep/ .dropdown-menu > a:hover {
   border-radius: .5em;
 }
 #dropdown-menu:hover {
   background: rgba(255,255,255,.2);
+  border-radius: .5em;
 }
 #dropdown-menu {
-  border-color: #4A4A4A;
-  border-style: solid;
-  border-radius: .5em;
 }
 
 /deep/ .dropdown-menu a:hover {
-  background: fuchsia !important;
+  background: rgba(74,74,74,.2) !important;
 }
 
 img.logo {
@@ -221,10 +220,6 @@ img.logo {
   font-weight: bold;
   color: #4A4A4A !important;
   transition: .1s;
-}
-
-#nav-collapse{
-  text-align: right;
 }
 
 .profile-link a:hover { opacity: .5 }

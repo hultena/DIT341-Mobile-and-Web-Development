@@ -41,7 +41,9 @@
           v-if="this.currentView==='shopping'"
           @click="addShoppingList"
           block
+          variant="primary"
         >
+          <b-icon-plus-circle />
           Add Shopping List
         </b-button>
       </b-col>
