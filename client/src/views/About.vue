@@ -97,11 +97,12 @@ export default {
 
 <style scoped>
 .about-page > img:first-child {
-  height: 30vh;
+  height: 40vh;
   width: 100vw;
   object-fit: cover;
   object-position: center;
 }
+section.developers { padding: 50px 0 }
 section.developers img {
   height: 200px;
   width: 200px;

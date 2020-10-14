@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id='app' class='app'>
     <header>
       <navigation-header/>
     </header>
@@ -21,10 +21,5 @@ export default {
 </script>
 
 <style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-label { font-weight: bold }
+@import './AppFonts.css';
 </style>

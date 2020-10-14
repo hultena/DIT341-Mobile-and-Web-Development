@@ -11,12 +11,12 @@
         <b-input-group-append>
           <b-button
             v-b-toggle.collapse-1
-            variant='outline-secondary'
+            variant='outline-light'
           >
             <b-icon-filter />
           </b-button>
           <b-button
-            variant='outline-primary'
+            variant='outline-light'
             @click="search">
             <b-icon-search />
           </b-button>
@@ -25,33 +25,35 @@
     </b-form-group>
 
     <b-collapse id="collapse-1">
-      <b-container>
-        <b-row>
+      <b-card>
+        <b-container>
+          <b-row>
 
-          <b-col>
-            <b-form-group label="Allergies">
-              <b-form-checkbox-group
-                id="checkbox-group-1"
-                v-model="form.filters.allergies"
-                :options="allergyOptions"
-                stacked
-              ></b-form-checkbox-group>
-            </b-form-group>
-          </b-col>
+            <b-col>
+              <b-form-group label="Allergies">
+                <b-form-checkbox-group
+                  id="checkbox-group-1"
+                  v-model="form.filters.allergies"
+                  :options="allergyOptions"
+                  stacked
+                ></b-form-checkbox-group>
+              </b-form-group>
+            </b-col>
 
-          <b-col>
-            <b-form-group label="Dietary Restrictions">
-              <b-form-checkbox-group
-                id="checkbox-group-2"
-                v-model="form.filters.dietaryRestrictions"
-                :options="dietOptions"
-                stacked
-              ></b-form-checkbox-group>
-            </b-form-group>
-          </b-col>
+            <b-col>
+              <b-form-group label="Dietary Restrictions">
+                <b-form-checkbox-group
+                  id="checkbox-group-2"
+                  v-model="form.filters.dietaryRestrictions"
+                  :options="dietOptions"
+                  stacked
+                ></b-form-checkbox-group>
+              </b-form-group>
+            </b-col>
 
-        </b-row>
-      </b-container>
+          </b-row>
+        </b-container>
+      </b-card>
     </b-collapse>
 
   </div>
@@ -105,7 +107,3 @@ export default {
   }
 }
 </script>
-
-<style scoped>
-
-</style>
