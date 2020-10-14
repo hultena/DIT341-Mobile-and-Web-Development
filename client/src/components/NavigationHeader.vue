@@ -1,39 +1,38 @@
 <template>
   <b-navbar
-    toggleable='lg'
     type='light'
     variant='light'
     class='m-0 pt-3 app-header'
   >
 
-    <b-container>
+    <!-- If user not signed in -->
+    <b-container
+      v-if='!loggedInUser'
+    >
+
       <b-navbar-brand to='/'>
         <img
-          v-if='currentView === "/" || currentView === "/recipe" || currentView === "/about" || currentView === "/my-recipe"'
+          v-if='this.$route.path === "/" || this.$route.path === "/recipe" || this.$route.path === "/about" || this.$route.path === "/my-recipe"'
           src='@/assets/MainYummyLogo.svg'
           class='logo'
           alt='App logo'
         >
         <img
-          v-if='currentView !== "/" && currentView !== "/recipe" && currentView !== "/about" && currentView !== "/my-recipe"'
+          v-else
           src='@/assets/YummyLogo.svg'
           class='logo'
           alt='App logo'
         />
       </b-navbar-brand>
-
       <b-navbar-nav
-        v-if='!loggedInUser && currentView !== "/sign-up" && currentView !== "/sign-in"'
         class='ml-auto'
-      >
+        v-if="this.$route.path !== '/sign-in' && this.$route.path !== '/sign-up'">
         <b-nav-item>
-
-          <b-button-group v-if='!loggedInUser && currentView !== "/faq"'>
+          <b-button-group v-if='this.$route.path !== "/faq"'>
 
             <b-button
               @click='signUp'
               variant='light'
-              class='header-button-primary'
             >
               Sign up
             </b-button>
@@ -41,19 +40,16 @@
             <b-button
               @click='signIn'
               variant='outline-light'
-              class='header-button-secondary'
             >
               Sign in
             </b-button>
 
           </b-button-group>
-
-          <b-button-group v-if='!loggedInUser && currentView === "/faq"'>
+          <b-button-group v-else>
 
             <b-button
               @click='signUp'
               variant='dark'
-              class='header-button-primary'
             >
               Sign up
             </b-button>
@@ -61,76 +57,119 @@
             <b-button
               @click='signIn'
               variant='outline-dark'
-              class='header-button-secondary'
             >
               Sign in
             </b-button>
 
           </b-button-group>
-
         </b-nav-item>
       </b-navbar-nav>
 
-      <b-navbar-nav
-        v-if='loggedInUser && currentView !== "/my-profile"'
-        class='ml-auto'
-      >
-        <b-nav-item class='avatar'>
-          <router-link to='/my-profile'>
+    </b-container>
+
+    <!-- If user is signed in -->
+    <b-container
+      v-if="loggedInUser">
+
+      <b-navbar-brand to='/'>
+        <img
+          v-if='this.$route.path === "/" || this.$route.path === "/recipe" || this.$route.path === "/about" || this.$route.path === "/my-recipe"'
+          src='@/assets/MainYummyLogo.svg'
+          class='logo'
+          alt='App logo'
+        >
+        <img
+          v-else
+          src='@/assets/YummyLogo.svg'
+          class='logo'
+          alt='App logo'
+        />
+      </b-navbar-brand>
+
+      <b-navbar-nav class="ml-auto" v-if="size > TOGGLE_LIMIT && this.$route.path === '/my-profile'">
+        <b-nav-item
+          @click='click="recipes"'
+          class='profile-link'
+        >
+          My recipes
+        </b-nav-item>
+        <b-nav-item
+          @click='click="shopping"'
+          class='profile-link'
+        >
+          Shopping lists
+        </b-nav-item>
+        <b-nav-item
+          @click='click="ingredients"'
+          class='profile-link'
+        >
+          Ingredients
+        </b-nav-item>
+        <b-nav-item
+          @click='click="favourites"'
+          class='profile-link'
+        >
+          Favourite recipes
+        </b-nav-item>
+      </b-navbar-nav>
+
+      <b-navbar-nav class="mr-0">
+        <b-nav-dropdown
+          id="dropdown-menu"
+          right
+          no-caret
+          no-flip>
+          <template slot="button-content">
             <b-img
               v-if='loggedInUser.image'
               :src='loggedInUser.image'
               alt='User avatar'
-              rounded='circle'
+              class='dot'
             />
             <b-icon-person v-else />
-          </router-link>
-        </b-nav-item>
-      </b-navbar-nav>
-
-      <b-navbar-toggle
-        v-if='loggedInUser && currentView === "/my-profile"'
-        target='nav-collapse'
-        class='hamburger'
-      />
-
-      <b-collapse
-        v-if='loggedInUser && currentView === "/my-profile"'
-        id="nav-collapse"
-        is-nav
-      >
-        <b-navbar-nav class='ml-auto'>
-
-          <b-nav-item
-            @click='click="recipes"'
-            class='profile-link'
+          </template>
+          <b-dd-item
+            v-if='size <= TOGGLE_LIMIT && this.$route.path === "/my-profile"'
+            @click="click='recipes'"
           >
             My recipes
-          </b-nav-item>
-
-          <b-nav-item
-            @click='click="shopping"'
-            class='profile-link'
+          </b-dd-item>
+          <b-dd-item
+            v-if='size <= TOGGLE_LIMIT && this.$route.path === "/my-profile"'
+            @click="click='shopping'"
           >
-            My shopping lists
-          </b-nav-item>
-
-          <b-nav-item
-            @click='click="ingredients"'
-            class='profile-link'
+            Shopping lists
+          </b-dd-item>
+          <b-dd-item
+            v-if='size <= TOGGLE_LIMIT && this.$route.path === "/my-profile"'
+            @click="click='ingredients'"
           >
-            My ingredients
-          </b-nav-item>
-
-          <b-nav-item
+            Ingredients
+          </b-dd-item>
+          <b-dd-item
+            v-if='size <= TOGGLE_LIMIT && this.$route.path === "/my-profile"'
             @click='click="favourites"'
-            class='profile-link'
           >
             Favourite recipes
-          </b-nav-item>
-
-        </b-navbar-nav>
-      </b-collapse>
+          </b-dd-item>
+          <b-dd-divider
+            v-if='size <= TOGGLE_LIMIT && this.$route.path === "/my-profile"'
+          />
+          <b-dd-item
+            v-if='this.$route.path !== "/my-profile"'
+            to="/my-profile"
+            @click='click="recipes"'
+          >
+            My profile
+          </b-dd-item>
+          <b-dd-item @click='click="settings"'>
+            My settings
+          </b-dd-item>
+          <b-dd-item @click='signOut'>
+            Sign out
+          </b-dd-item>
+        </b-nav-dropdown>
+      </b-navbar-nav>
 
     </b-container>
 
@@ -139,27 +178,51 @@
 
 <script>
 import { mapGetters, mapActions } from 'vuex'
-
 export default {
   name: 'NavigationHeader',
 
-  data() { return { click: null } },
+  data() {
+    return {
+      click: null,
+      size: null,
+      TOGGLE_LIMIT: 991
+    }
+  },
 
   methods: {
     ...mapActions(['deauthUser', 'changeView']),
 
     signUp() { this.$router.push('/sign-up') },
 
-    signIn() { this.$router.push('/sign-in') }
+    signIn() { this.$router.push('/sign-in') },
+
+    signOut() {
+      this.deauthUser(this.loggedInUser)
+      if (this.$route.path !== '/') {
+        this.$router.push('/')
+      }
+    },
+    sizeEventHandler() {
+      this.size = window.innerWidth
+    }
   },
 
   computed: {
-    ...mapGetters(['loggedInUser']),
-
-    currentView() { return this.$route.path }
+    ...mapGetters(['loggedInUser'])
   },
 
-  watch: { click: function () { this.changeView(this.click) } }
+  watch: {
+    click: function () {
+      this.changeView(this.click)
+    }
+  },
+  created() {
+    this.size = window.innerWidth
+    window.addEventListener('resize', this.sizeEventHandler)
+  },
+  destroyed() {
+    window.removeEventListener('resize', this.sizeEventHandler)
+  }
 }
 </script>
 
@@ -172,12 +235,37 @@ export default {
   background: transparent !important
 }
 
-img.logo { width: 100px }
+/deep/ .dropdown-menu > a:hover {
+  border-radius: .50%;
+}
+#dropdown-menu:hover {
+  background: rgba(255,255,255,.2);
+  border-radius: .5em;
+}
 
-.avatar img, .avatar svg {
+/deep/ .dropdown-menu a:hover {
+  background: rgba(74,74,74,.2) !important;
+}
+
+img.logo {
+  width: 100px;
+  color: #4A4A4A;
+}
+
+.dot {
   height: 55px;
   width: 55px;
-  color: #fff;
-  border: solid 3px #fff;
+  border-radius: 50%;
+  border: solid 2px white;
 }
+
+.profile-link a {
+  margin-right: 20px;
+  font-weight: 500;
+  font-size: .9rem;
+  color: rgb(33, 37, 41) !important;
+  transition: .1s;
+}
+
+.profile-link a:hover { opacity: .5 }
 </style>
