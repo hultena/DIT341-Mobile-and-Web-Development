@@ -43,13 +43,6 @@
         >
           Git project
         </b-link>
-        <b-link
-          v-if='loggedInUser'
-          role='button'
-          @click='signOut'
-        >
-          Sign out of yummy
-        </b-link>
       </b-col>
     </b-row>
 
@@ -57,21 +50,10 @@
 </template>
 
 <script>
-import { mapActions, mapGetters } from 'vuex'
 
 export default {
   name: 'NavigationFooter',
-
-  computed: { ...mapGetters(['loggedInUser']) },
-
   methods: {
-    ...mapActions(['deauthUser']),
-
-    signOut() {
-      this.deauthUser(this.loggedInUser)
-      this.$router.push('/')
-    },
-
     toTop() {
       window.scrollTo({ top: 0, left: 0, behavior: 'smooth' })
     }

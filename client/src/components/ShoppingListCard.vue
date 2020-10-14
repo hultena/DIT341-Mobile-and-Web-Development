@@ -1,9 +1,8 @@
 <template>
   <div>
-  <b-card>
+  <b-card class="my-2">
     <b-card-header v-if="state">
       <ingredient-search-bar></ingredient-search-bar>
-      {{shoppingList._id}}
     </b-card-header>
     <b-list-group flush>
       <b-list-group-item v-for="ingredient in this.shoppingList.ingredients" :key="ingredient._id">
@@ -13,11 +12,31 @@
             @click="catchEvent(ingredient._id)"/>
       </b-list-group-item>
     </b-list-group>
-
-    <b-card-footer>
-      <b-button @click="deleteCard">Delete</b-button>
-      <b-button @click="edit">Edit</b-button>
-    </b-card-footer>
+    <b-button-group class='mt-3 w-100'>
+    <b-button
+      @click='deleteCard'
+      variant='outline-danger'
+    >
+      <b-icon-trash />
+      Delete
+    </b-button>
+    <b-button
+      v-if='!state'
+      @click='edit'
+      variant='outline-primary'
+    >
+      <b-icon-pencil />
+      Edit
+    </b-button>
+    <b-button
+      v-else
+      @click='edit'
+      variant='outline-success'
+    >
+      <b-icon-check2-all />
+      Save
+    </b-button>
+  </b-button-group>
   </b-card>
   </div>
 </template>
