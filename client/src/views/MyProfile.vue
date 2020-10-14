@@ -19,6 +19,7 @@
         </h2>
       </b-col>
     </b-row>
+
     <b-row class="mt-4">
       <b-col>
         <b-button
@@ -121,7 +122,7 @@ export default {
 
 <style scoped>
 .profile-page {
-  padding-top: 150px;
+  padding-top: 100px;
   padding-bottom: 100px;
 }
 
