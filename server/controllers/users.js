@@ -6,14 +6,19 @@ module.exports = {
     // ------------------ Auth User
     authUser: async function(req, res, next){
         try {
-            const user = await User.findOne(req.body);
+            const user = await User.findOne(req.body).populate({
+                path: 'favourites',
+                populate: {
+                    path: 'ingredients',
+                    model: 'ingredient'
+                }
+            });
             if(user === null){
                 // TODO: Probably fix this res but who knows.
                 res.status(401).json({username:"Invalid credentials",password:"Invalid credentials"});
             }else {
                 req.session.loggedin = true;
                 req.session._id = user._id;
-                // TODO: Don't know if this is right. We try this.
                 res.status(200).json(user);
             }
         }catch (err) {

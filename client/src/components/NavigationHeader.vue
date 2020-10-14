@@ -246,6 +246,9 @@ export default {
 /deep/ .dropdown-menu a:hover {
   background: rgba(74,74,74,.2) !important;
 }
+.header-button-primary:hover, .header-button-primary:focus {
+  background: rgba(74, 74, 74, .5) !important
+}
 
 img.logo {
   width: 100px;
