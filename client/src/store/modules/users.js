@@ -4,7 +4,8 @@ const state = {
   // put the state here
   users: [],
   view: 'recipes',
-  loggedIn: null
+  loggedIn: null,
+  selected: null
 }
 
 const getters = {
@@ -14,6 +15,9 @@ const getters = {
   },
   loggedInUser: function (state) {
     return state.loggedIn
+  },
+  selectedUser: function (state) {
+    return state.selected
   },
   currentView: function (state) {
     return state.view
@@ -25,18 +29,26 @@ const mutations = {
   setUsers: function (state, users) {
     state.users = users
   },
+
   newUser: function (state, user) {
     state.users.push(user)
   },
+
   deletedUser: function (state, id) {
     const idx = state.users.findIndex(function (user) {
       return user._id === id
     })
     state.users.splice(idx, 1)
   },
+
   setLoggedIn: function (state, user) {
     state.loggedIn = user
   },
+
+  setSelectedUser: function (state, user) {
+    state.selected = user
+  },
+
   setView: function (state, view) {
     state.view = view
   }
@@ -52,6 +64,16 @@ const actions = {
       return err.response.data
     }
   },
+
+  async getUser({ commit }, id) {
+    try {
+      const res = await Api.get(`/users/${id}`)
+      commit('setSelectedUser', res.data)
+    } catch (error) {
+      return error.response.data
+    }
+  },
+
   async postUser({ commit }, user) {
     try {
       const res = await Api.post('/users', user)
@@ -60,6 +82,7 @@ const actions = {
       return err.response.data
     }
   },
+
   async patchUser({ commit }, user) {
     try {
       await Api.patch(`/users/${user._id}`, user)
@@ -68,6 +91,7 @@ const actions = {
       return err.response.data
     }
   },
+
   async deleteUser({ commit }, id) {
     try {
       await Api.delete(`/users/${id}`)
@@ -76,6 +100,7 @@ const actions = {
       return err.response.data
     }
   },
+
   async authUser({ commit }, user) {
     try {
       const res = await Api.post('/users/auth', user)
@@ -84,6 +109,7 @@ const actions = {
       return err.response.data
     }
   },
+
   async deauthUser({ commit }, user) {
     try {
       const res = await Api.post('/users/deauth', user)
@@ -92,6 +118,7 @@ const actions = {
       return err.response.data
     }
   },
+
   async deleteAllUsers({ commit }) {
     try {
       await Api.delete('/users')
@@ -100,8 +127,13 @@ const actions = {
       return err.response.data
     }
   },
+
   async changeView({ commit }, view) {
     commit('setView', view)
+  },
+
+  selectUser({ commit }, user) {
+    commit('setSelectedUser', user)
   }
 }
 

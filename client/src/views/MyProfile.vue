@@ -1,8 +1,8 @@
 <template>
   <b-container class='profile-page'>
 
-    <b-row>
-      <b-col class='avatar mr-5'>
+    <b-row class='profile-header'>
+      <b-col class='avatar'>
         <b-img
           :src='this.loggedInUser.image'
           alt='User avatar'
@@ -19,6 +19,7 @@
         </h2>
       </b-col>
     </b-row>
+
     <b-row class="mt-4">
       <b-col>
         <b-button
@@ -121,16 +122,26 @@ export default {
 
 <style scoped>
 .profile-page {
-  padding-top: 150px;
+  padding-top: 100px;
   padding-bottom: 100px;
 }
+
 .avatar {
-  max-width: 200px !important;
+  max-width: 240px !important;
 }
+
 .avatar > img {
   height: 200px;
   width: 200px;
   object-fit: cover;
   object-position: center;
+}
+
+@media only screen and (max-width: 417px) {
+  .profile-header {
+    text-align: center;
+    justify-content: center;
+  }
+  div.avatar { padding-bottom: 30px }
 }
 </style>

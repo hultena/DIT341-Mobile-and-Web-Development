@@ -11,10 +11,12 @@ import MyShoppingLists from './views/MyShoppingLists'
 import MyRecipes from '@/views/MyRecipes'
 import RecipePage from '@/views/RecipePage'
 import MyRecipePage from '@/views/EditRecipeView'
+import Profile from '@/views/Profile'
 
 Vue.use(Router)
 
 export default new Router({
+  computed: {},
   mode: 'history',
   base: process.env.BASE_URL,
   routes: [
@@ -72,6 +74,11 @@ export default new Router({
       path: '/recipe',
       name: 'recipe-page',
       component: RecipePage
+    },
+    {
+      path: '/profile',
+      name: 'profile',
+      component: Profile
     }
   ]
 })
