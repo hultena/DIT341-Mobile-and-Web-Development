@@ -92,7 +92,7 @@ module.exports = {
         ingredients: Joi.array().items(
             Joi.string().regex(regexPattern)
         ),
-        user: Joi.string().regex(regexPattern).required(),
+        user: Joi.string().regex(regexPattern),
         ingredientQuantities: Joi.object()
     }),
 

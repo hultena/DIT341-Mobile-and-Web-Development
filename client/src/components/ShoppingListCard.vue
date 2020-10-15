@@ -7,7 +7,8 @@
     <b-list-group flush>
       <b-list-group-item
         v-for="ingredient in shoppingList.ingredients"
-        :key="ingredient._id">
+        :key="ingredient._id"
+        class="ingredient">
         <b-container>
           <b-row>
             <b-col
@@ -27,7 +28,7 @@
                 </b-input-group-append>
               </b-input-group>
             </b-col>
-            <b-col cols="4">
+            <b-col cols="4" >
               <span v-if="!ingredientState">
                 {{shoppingList.ingredientQuantities[ingredient._id]['quantity']}}
                 {{shoppingList.ingredientQuantities[ingredient._id]['unit']}}
@@ -35,6 +36,7 @@
               {{ ingredient.name }}
               <b-icon-trash
                 v-if="ingredientState"
+                class="delete"
                 @click="deleteIngredient(ingredient._id)"/>
             </b-col>
           </b-row>
@@ -139,5 +141,8 @@ export default {
 </script>
 
 <style scoped>
+.delete:hover {
+  color: red;
+}
 
 </style>
