@@ -19,8 +19,8 @@
         >
         <img
           v-else
-          src='@/assets/YummyLogo.svg'
-          class='logo'
+          src='@/assets/MainYummyLogo.svg'
+          class='logo logo-black'
           alt='App logo'
         />
       </b-navbar-brand>
@@ -80,8 +80,8 @@
         >
         <img
           v-else
-          src='@/assets/YummyLogo.svg'
-          class='logo'
+          src='@/assets/MainYummyLogo.svg'
+          class='logo logo-black'
           alt='App logo'
         />
       </b-navbar-brand>
@@ -271,4 +271,8 @@ img.logo {
 }
 
 .profile-link a:hover { opacity: .5 }
+
+.logo-black{
+  filter: brightness(0%);
+}
 </style>
