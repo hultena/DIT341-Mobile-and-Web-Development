@@ -69,7 +69,16 @@
             </b-list-group-item>
 
             <b-list-group-item>
-              <b-icon-heart @click="like" /> {{ recipe.likes }}
+              <b-icon-heart-fill
+                variant="danger"
+                @click="like"
+                v-if="loggedInUser && liked()"
+              />
+              <b-icon-heart
+                v-else
+                @click="like"
+              />
+              {{ recipe.likes }}
             </b-list-group-item>
 
           </b-list-group>
@@ -151,6 +160,14 @@ export default {
         shoppingList.ingredients.push(ingredient._id)
       }
       this.postShoppingList(shoppingList)
+    },
+    liked() {
+      for (const recipe of this.loggedInUser.favourites) {
+        if (this.recipe._id === recipe._id) {
+          return true
+        }
+      }
+      return false
     }
   },
 
