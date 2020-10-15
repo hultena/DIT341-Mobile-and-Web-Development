@@ -88,6 +88,13 @@ module.exports = {
         _id: Joi.string().regex(regexPattern),
         __v: Joi.number()
     }),
+    postShoppingListSchema: Joi.object().keys({
+        ingredients: Joi.array().items(
+            Joi.string().regex(regexPattern)
+        ),
+        user: Joi.string().regex(regexPattern).required(),
+        ingredientQuantities: Joi.object()
+    }),
 
     putShoppingListSchema: Joi.object().keys({
         ingredients: Joi.array().items(
@@ -100,6 +107,7 @@ module.exports = {
                 __v: Joi.number()
             })
         ).required(),
+        ingredientQuantities: Joi.object(),
         user: Joi.string(),
         _id: Joi.string().regex(regexPattern),
         __v: Joi.number()

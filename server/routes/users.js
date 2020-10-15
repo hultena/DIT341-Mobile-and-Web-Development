@@ -46,7 +46,7 @@ router.route('/:userId/recipes')
 
 router.route('/:userId/shoppinglists')
     .get(queryString.query(), users.getAllUserShoppingLists)
-    .post(session.validSess(), users.postUserShoppingList);
+    .post(validators.bodyValidator(validationSchemas.postShoppingListSchema), session.validSess(), users.postUserShoppingList);
 
 router.route('/:userId/shoppinglists/:shoppingListId')
     .get(queryString.query(), users.getOneUserShoppingList)

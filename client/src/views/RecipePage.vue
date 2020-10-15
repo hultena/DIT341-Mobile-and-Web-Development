@@ -92,9 +92,14 @@
           <h2>
             Ingredients
           </h2>
-
           <list-ingredients/>
-
+          <b-button
+            v-if="loggedInUser"
+            @click="addToShoppingList()"
+            variant="outline-primary">
+            <b-icon-cart4/>
+            Add To Shopping List
+          </b-button>
         </b-col>
         <b-col>
           <ad-space />
@@ -125,7 +130,7 @@ export default {
   components: { AdSpace, ListIngredients, ListInstructions },
 
   methods: {
-    ...mapActions(['likeRecipe', 'selectUser']),
+    ...mapActions(['likeRecipe', 'selectUser', 'postShoppingList']),
 
     like() { this.likeRecipe(this.recipe) },
 
@@ -135,6 +140,17 @@ export default {
 
     editRecipe() {
       this.$router.push('/my-recipe')
+    },
+    addToShoppingList() {
+      const shoppingList = {
+        user: this.loggedInUser._id,
+        ingredients: [],
+        ingredientQuantities: this.recipe.ingredientQuantities
+      }
+      for (const ingredient of this.recipe.ingredients) {
+        shoppingList.ingredients.push(ingredient._id)
+      }
+      this.postShoppingList(shoppingList)
     }
   },
 
