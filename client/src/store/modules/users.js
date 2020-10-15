@@ -101,10 +101,12 @@ const actions = {
     }
   },
 
-  async authUser({ commit }, user) {
+  async authUser({ commit, rootState }, user) {
     try {
       const res = await Api.post('/users/auth', user)
       commit('setLoggedIn', res.data)
+      // this is ugly but no idea how to do it better
+      rootState.recipes.userFavourites = res.data.favourites
     } catch (err) {
       return err.response.data
     }
