@@ -10,7 +10,8 @@
     <b-card-text>
 
       <b-card-sub-title class='mb-3'>
-        <b-icon-heart /> {{ recipe.likes }}, created by {{ recipe.user.username }}
+        <b-icon-heart-fill v-if="loggedInUser && liked()" variant="danger" />
+        <b-icon-heart v-else/> {{ recipe.likes }}, created by {{ recipe.user.username }}
       </b-card-sub-title>
 
       <p>
@@ -22,7 +23,7 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex'
+import { mapActions, mapGetters } from 'vuex'
 export default {
   name: 'RecipeCard',
   props: {
@@ -34,7 +35,18 @@ export default {
     handleClick() {
       this.selectRecipe(this.recipe)
       this.$router.push('recipe')
+    },
+    liked() {
+      for (const recipe of this.loggedInUser.favourites) {
+        if (this.recipe._id === recipe._id) {
+          return true
+        }
+      }
+      return false
     }
+  },
+  computed: {
+    ...mapGetters(['loggedInUser'])
   }
 }
 </script>

@@ -1,15 +1,46 @@
 <template>
   <div>
   <b-card class="my-2">
-    <b-card-header v-if="state">
+    <b-card-header v-if="ingredientState">
       <ingredient-search-bar></ingredient-search-bar>
     </b-card-header>
     <b-list-group flush>
-      <b-list-group-item v-for="ingredient in this.shoppingList.ingredients" :key="ingredient._id">
-        {{ ingredient.name }}
-          <b-icon-trash
-            v-if="state"
-            @click="catchEvent(ingredient._id)"/>
+      <b-list-group-item
+        v-for="ingredient in shoppingList.ingredients"
+        :key="ingredient._id"
+        class="ingredient">
+        <b-container>
+          <b-row>
+            <b-col
+              v-if="ingredientState">
+              <b-input-group>
+                <b-form-input
+                  type="text"
+                  v-model="shoppingList.ingredientQuantities[ingredient._id]['quantity']"
+                />
+                <b-input-group-append>
+                  <b-form-select
+                    v-model="shoppingList.ingredientQuantities[ingredient._id]['unit']"
+                    :options="unit"
+                    value-field="item"
+                    text-field="name"
+                  />
+                </b-input-group-append>
+              </b-input-group>
+            </b-col>
+            <b-col cols="4" >
+              <span v-if="!ingredientState">
+                {{shoppingList.ingredientQuantities[ingredient._id]['quantity']}}
+                {{shoppingList.ingredientQuantities[ingredient._id]['unit']}}
+              </span>
+              {{ ingredient.name }}
+              <b-icon-trash
+                v-if="ingredientState"
+                class="delete"
+                @click="deleteIngredient(ingredient._id)"/>
+            </b-col>
+          </b-row>
+        </b-container>
       </b-list-group-item>
     </b-list-group>
     <b-button-group class='mt-3 w-100'>
@@ -21,7 +52,7 @@
       Delete
     </b-button>
     <b-button
-      v-if='!state'
+      v-if='!ingredientState'
       @click='edit'
       variant='outline-primary'
     >
@@ -50,7 +81,14 @@ export default {
   data() {
     return {
       ingredients: [],
-      state: false
+      ingredientState: false,
+      unit: [
+        { item: 'g', name: 'g' },
+        { item: 'kg', name: 'kg' },
+        { item: 'ml', name: 'ml' },
+        { item: 'l', name: 'l' },
+        { item: '', name: 'count' }
+      ]
     }
   },
   props: {
@@ -69,13 +107,13 @@ export default {
     },
     edit() {
       this.setChosenCard()
-      if (this.state) {
+      if (this.ingredientState) {
         this.putShoppingList(this.shoppingList)
       }
       // shift the state
-      this.state = !this.state
+      this.ingredientState = !this.ingredientState
     },
-    catchEvent(event) {
+    deleteIngredient(event) {
       const idx = this.shoppingList.ingredients.findIndex(function (shoppingList) {
         return shoppingList._id === event
       })
@@ -85,10 +123,16 @@ export default {
   computed: {
     ...mapGetters(['oneIngredient'])
   },
+  created() {
+    if (!this.shoppingList.ingredientQuantities) {
+      this.shoppingList.ingredientQuantities = {}
+    }
+  },
   watch: {
     '$store.state.ingredients.selectedIngredient': function () {
-      if (this.state && this.oneIngredient) {
+      if (this.ingredientState && this.oneIngredient) {
         this.shoppingList.ingredients.push(this.oneIngredient)
+        this.shoppingList.ingredientQuantities[this.oneIngredient._id] = { unit: '', quantity: '' }
         this.clearSelectedIngredient()
       }
     }
@@ -97,5 +141,8 @@ export default {
 </script>
 
 <style scoped>
+.delete:hover {
+  color: red;
+}
 
 </style>

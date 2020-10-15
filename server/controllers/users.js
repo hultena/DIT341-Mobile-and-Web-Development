@@ -142,11 +142,11 @@ module.exports = {
 
     postUserShoppingList: async function(req, res, next){
         try {
-            const user = await User.findById(req.params.userId).populate('shoppingLists');
+            const user = await User.findById(req.params.userId);
             if(user === null){
                 next();
             }else {
-                const shoppingList = new ShoppingList(req.body);
+                const shoppingList = new ShoppingList(req.value.body);
                 shoppingList.user = user._id;
                 await shoppingList.save();
                 await user.shoppingLists.push(shoppingList);

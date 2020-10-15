@@ -69,7 +69,16 @@
             </b-list-group-item>
 
             <b-list-group-item>
-              <b-icon-heart @click="like" /> {{ recipe.likes }}
+              <b-icon-heart-fill
+                variant="danger"
+                @click="like"
+                v-if="loggedInUser && liked()"
+              />
+              <b-icon-heart
+                v-else
+                @click="like"
+              />
+              {{ recipe.likes }}
             </b-list-group-item>
 
           </b-list-group>
@@ -92,9 +101,14 @@
           <h2>
             Ingredients
           </h2>
-
           <list-ingredients/>
-
+          <b-button
+            v-if="loggedInUser"
+            @click="addToShoppingList()"
+            variant="outline-primary">
+            <b-icon-cart4/>
+            Add To Shopping List
+          </b-button>
         </b-col>
         <b-col>
           <ad-space />
@@ -125,7 +139,7 @@ export default {
   components: { AdSpace, ListIngredients, ListInstructions },
 
   methods: {
-    ...mapActions(['likeRecipe', 'selectUser']),
+    ...mapActions(['likeRecipe', 'selectUser', 'postShoppingList']),
 
     like() { this.likeRecipe(this.recipe) },
 
@@ -135,6 +149,25 @@ export default {
 
     editRecipe() {
       this.$router.push('/my-recipe')
+    },
+    addToShoppingList() {
+      const shoppingList = {
+        user: this.loggedInUser._id,
+        ingredients: [],
+        ingredientQuantities: this.recipe.ingredientQuantities
+      }
+      for (const ingredient of this.recipe.ingredients) {
+        shoppingList.ingredients.push(ingredient._id)
+      }
+      this.postShoppingList(shoppingList)
+    },
+    liked() {
+      for (const recipe of this.loggedInUser.favourites) {
+        if (this.recipe._id === recipe._id) {
+          return true
+        }
+      }
+      return false
     }
   },
 
