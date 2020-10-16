@@ -83,6 +83,7 @@
     </validation-observer>
     <b-modal
       ref="success"
+      centered
       hide-footer
       hide-header
       @hide="changeView('recipes')"

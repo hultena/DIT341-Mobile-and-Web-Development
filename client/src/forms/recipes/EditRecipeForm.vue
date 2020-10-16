@@ -238,6 +238,7 @@
     </b-container>
     <b-modal
       ref="success"
+      centered
       hide-footer
       hide-header
       @hide="$router.push('my-profile')"
