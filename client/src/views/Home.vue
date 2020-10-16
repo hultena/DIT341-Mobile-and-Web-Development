@@ -92,7 +92,7 @@ export default {
 .hero {
   position: relative;
   height: 70vh !important;
-  width: 100vw;
+  width: 100%;
   background:
     linear-gradient(0deg, rgba(0, 0, 0, .6) 0%, rgba(0, 0, 0, .6) 100%),
     url('../assets/hero-background.gif')
@@ -101,7 +101,7 @@ export default {
   background-size: cover;
 }
 .hero > .content {
-  width: 100vw;
+  width: 100%;
   position: absolute;
   bottom: 0;
   padding-bottom: 50px;

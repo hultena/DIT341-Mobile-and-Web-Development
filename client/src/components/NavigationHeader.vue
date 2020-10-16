@@ -231,7 +231,7 @@ export default {
   z-index: 100;
   position: absolute;
   top: 0;
-  width: 100vw;
+  width: 100%;
   background: transparent !important
 }
 
