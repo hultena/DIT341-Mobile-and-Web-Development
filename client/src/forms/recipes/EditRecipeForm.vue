@@ -299,6 +299,8 @@ export default {
 
       if (message !== undefined) {
         this.$refs.observer.setErrors(message)
+      } else {
+        await this.$router.push('/my-profile')
       }
     },
     async updateImage(event) {

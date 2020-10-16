@@ -101,7 +101,7 @@ export default {
     }
   },
   methods: {
-    ...mapActions(['patchUser']),
+    ...mapActions(['patchUser', 'changeView']),
     async onSubmit() {
       const message = await this.patchUser(this.user)
       if (message) {
@@ -109,6 +109,7 @@ export default {
       } else {
         // TODO: maybe remove this annoying alert
         alert('Success!')
+        await this.changeView('recipes')
       }
     },
     getValidationState({ dirty, validated, valid = null }) {
