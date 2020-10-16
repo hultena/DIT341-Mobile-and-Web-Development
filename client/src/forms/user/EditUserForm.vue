@@ -81,6 +81,14 @@
         </b-button>
       </b-form>
     </validation-observer>
+    <b-modal
+      ref="success"
+      hide-footer
+      hide-header
+      @hide="changeView('recipes')"
+    >
+      {{user.username}} successfully updated!
+    </b-modal>
   </div>
 </template>
 
@@ -107,15 +115,12 @@ export default {
       if (message) {
         this.$refs.observer.setErrors(message)
       } else {
-        // TODO: maybe remove this annoying alert
-        alert('Success!')
-        await this.changeView('recipes')
+        this.$refs.success.show()
       }
     },
     getValidationState({ dirty, validated, valid = null }) {
       return dirty || validated ? valid : null
     },
-
     async setImage(event) {
       this.user.image = event
     }

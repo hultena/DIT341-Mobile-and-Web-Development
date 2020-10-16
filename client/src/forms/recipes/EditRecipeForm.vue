@@ -236,7 +236,14 @@
         </b-col>
       </b-row>
     </b-container>
-
+    <b-modal
+      ref="success"
+      hide-footer
+      hide-header
+      @hide="$router.push('my-profile')"
+    >
+      {{recipe.name}} successfully updated!
+    </b-modal>
   </div>
 </template>
 
@@ -300,7 +307,7 @@ export default {
       if (message !== undefined) {
         this.$refs.observer.setErrors(message)
       } else {
-        await this.$router.push('/my-profile')
+        this.$refs.success.show()
       }
     },
     async updateImage(event) {

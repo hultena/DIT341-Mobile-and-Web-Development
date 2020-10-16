@@ -88,25 +88,25 @@
 
       <b-navbar-nav class="ml-auto" v-if="size > TOGGLE_LIMIT && this.$route.path === '/my-profile'">
         <b-nav-item
-          @click='click="recipes"'
+          @click="changeView('recipes')"
           class='profile-link'
         >
           My recipes
         </b-nav-item>
         <b-nav-item
-          @click='click="shopping"'
+          @click="changeView('shopping')"
           class='profile-link'
         >
           Shopping lists
         </b-nav-item>
         <b-nav-item
-          @click='click="ingredients"'
+          @click="changeView('ingredients')"
           class='profile-link'
         >
           Ingredients
         </b-nav-item>
         <b-nav-item
-          @click='click="favourites"'
+          @click="changeView('favourites')"
           class='profile-link'
         >
           Favourite recipes
@@ -130,25 +130,25 @@
           </template>
           <b-dd-item
             v-if='size <= TOGGLE_LIMIT && this.$route.path === "/my-profile"'
-            @click="click='recipes'"
+            @click="changeView('recipes')"
           >
             My recipes
           </b-dd-item>
           <b-dd-item
             v-if='size <= TOGGLE_LIMIT && this.$route.path === "/my-profile"'
-            @click="click='shopping'"
+            @click="changeView('shopping')"
           >
             Shopping lists
           </b-dd-item>
           <b-dd-item
             v-if='size <= TOGGLE_LIMIT && this.$route.path === "/my-profile"'
-            @click="click='ingredients'"
+            @click="changeView('ingredients')"
           >
             Ingredients
           </b-dd-item>
           <b-dd-item
             v-if='size <= TOGGLE_LIMIT && this.$route.path === "/my-profile"'
-            @click='click="favourites"'
+            @click="changeView('favourites')"
           >
             Favourite recipes
           </b-dd-item>
@@ -158,11 +158,11 @@
           <b-dd-item
             v-if='this.$route.path !== "/my-profile"'
             to="/my-profile"
-            @click='click="recipes"'
+            @click="changeView('recipes')"
           >
             My profile
           </b-dd-item>
-          <b-dd-item @click='click="settings"'>
+          <b-dd-item @click="changeView('settings')">
             My settings
           </b-dd-item>
           <b-dd-item @click='signOut'>
@@ -183,7 +183,6 @@ export default {
 
   data() {
     return {
-      click: null,
       size: null,
       TOGGLE_LIMIT: 991
     }
@@ -209,12 +208,6 @@ export default {
 
   computed: {
     ...mapGetters(['loggedInUser'])
-  },
-
-  watch: {
-    click: function () {
-      this.changeView(this.click)
-    }
   },
   created() {
     this.size = window.innerWidth
