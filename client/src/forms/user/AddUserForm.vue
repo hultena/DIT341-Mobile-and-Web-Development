@@ -92,6 +92,14 @@
 
       </b-form>
     </validation-observer>
+    <b-modal
+      ref="success"
+      hide-footer
+      hide-header
+      @hide="logInUser"
+    >
+      {{form.username}} successfully registered!
+    </b-modal>
   </div>
 </template>
 
@@ -120,9 +128,7 @@ export default {
       if (message) {
         this.$refs.observer.setErrors(message)
       } else {
-        // TODO: maybe remove this annoying alert
-        alert('Sign-up successful')
-        await this.logInUser()
+        this.$refs.success.show()
       }
     },
     getValidationState({ dirty, validated, valid = null }) {
