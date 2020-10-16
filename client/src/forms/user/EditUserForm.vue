@@ -13,7 +13,7 @@
             label-for='username-input'
           >
             <b-form-input
-              v-model='form.username'
+              v-model='user.username'
               :state='getValidationState(validationContext)'
               placeholder='Write your username here'
               id='username-input'
@@ -32,7 +32,7 @@
           label-for='email-input'
           >
             <b-form-input
-              v-model='form.email'
+              v-model='user.email'
               :state='getValidationState(validationContext)'
               placeholder='E-mail'
               id='email-input'
@@ -51,7 +51,7 @@
           label-for='password-input'
           >
             <b-form-input
-              v-model='form.password'
+              v-model='user.password'
               :state='getValidationState(validationContext)'
               type='password'
               placeholder='Password'
@@ -97,19 +97,13 @@ export default {
   },
   data() {
     return {
-      form: {
-        username: null,
-        email: null,
-        password: null,
-        image: null,
-        _id: null
-      }
+      user: {}
     }
   },
   methods: {
     ...mapActions(['patchUser']),
     async onSubmit() {
-      const message = await this.patchUser(this.form)
+      const message = await this.patchUser(this.user)
       if (message) {
         this.$refs.observer.setErrors(message)
       } else {
@@ -122,18 +116,14 @@ export default {
     },
 
     async setImage(event) {
-      this.form.image = event
+      this.user.image = event
     }
   },
   computed: {
     ...mapGetters(['loggedInUser'])
   },
   created() {
-    const user = this.loggedInUser
-    this.form.username = user.username
-    this.form.email = user.email
-    this.form.image = user.image
-    this.form._id = user._id
+    this.user = this.loggedInUser
   }
 }
 </script>
