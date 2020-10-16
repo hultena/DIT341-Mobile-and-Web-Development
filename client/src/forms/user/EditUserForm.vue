@@ -129,9 +129,6 @@ export default {
     },
     async setImage(event) {
       this.user.image = event
-    },
-    test() {
-      console.log('hello')
     }
   },
   computed: {

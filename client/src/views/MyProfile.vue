@@ -34,6 +34,7 @@
         <b-button
           v-if="this.currentView==='ingredients'&&addIngredientState"
           @click="addIngredientState=changeState(addIngredientState)"
+          variant="primary"
           block
         >
           Finish
