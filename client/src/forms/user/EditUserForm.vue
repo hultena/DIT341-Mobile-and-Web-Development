@@ -88,7 +88,12 @@
       hide-header
       @hide="changeView('recipes')"
     >
+      <div @click="$refs.success.hide()">
+      <b-icon-check2/>
+      <span class="modal-text">
       {{user.username}} successfully updated!
+      </span>
+      </div>
     </b-modal>
   </div>
 </template>
@@ -124,6 +129,9 @@ export default {
     },
     async setImage(event) {
       this.user.image = event
+    },
+    test() {
+      console.log('hello')
     }
   },
   computed: {
@@ -136,5 +144,27 @@ export default {
 </script>
 
 <style scoped>
+.bi-check2 {
+  position: relative;
+  top: 1.2em;
+  fill: green;
+  width: 2em;
+  height: 2em;
+}
+/deep/ .modal-text {
+  position: relative;
+  top: 1em;
+}
 
+/deep/ .modal-body > div {
+  padding: 0;
+  height: 100%;
+  width: 100%;
+}
+/deep/ .modal-body {
+  text-align: center;
+  height: 5em;
+  padding: 0;
+  margin: 0;
+}
 </style>

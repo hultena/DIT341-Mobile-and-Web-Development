@@ -243,7 +243,12 @@
       hide-header
       @hide="$router.push('my-profile')"
     >
-      {{recipe.name}} successfully updated!
+      <div @click="$refs.success.hide()">
+        <b-icon-check2/>
+        <span class="modal-text">
+          {{recipe.name}} successfully updated!
+        </span>
+      </div>
     </b-modal>
   </div>
 </template>
@@ -376,5 +381,29 @@ export default {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+
+.bi-check2 {
+  position: relative;
+  top: 1.2em;
+  fill: green;
+  width: 2em;
+  height: 2em;
+}
+/deep/ .modal-text {
+  position: relative;
+  top: 1em;
+}
+
+/deep/ .modal-body > div {
+  padding: 0;
+  height: 100%;
+  width: 100%;
+}
+/deep/ .modal-body {
+  text-align: center;
+  height: 5em;
+  padding: 0;
+  margin: 0;
 }
 </style>
