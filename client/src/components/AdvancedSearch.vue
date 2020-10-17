@@ -10,13 +10,7 @@
         />
         <b-input-group-append>
           <b-button
-            v-b-toggle.collapse-1
-            variant='outline-light'
-          >
-            <b-icon-filter />
-          </b-button>
-          <b-button
-            v-b-toggle.collapse-2
+            @click="$refs.settings.show()"
             variant='outline-light'
           >
             <b-icon-filter />
@@ -94,7 +88,63 @@
         </b-container>
       </b-card>
     </b-collapse>
-
+    <b-modal
+      ref="settings"
+      hide-header
+      no-close-on-backdrop
+      centered
+      ok-only>
+      <b-container>
+        <b-row>
+          <b-col>
+            <b-form-group label="Allergies">
+              <b-form-checkbox-group
+                id="checkbox-group-1"
+                v-model="form.filters.allergies"
+                :options="allergyOptions"
+                stacked
+              ></b-form-checkbox-group>
+            </b-form-group>
+          </b-col>
+          <b-col>
+            <b-form-group label="Dietary Restrictions">
+              <b-form-checkbox-group
+                id="checkbox-group-2"
+                v-model="form.filters.dietaryRestrictions"
+                :options="dietOptions"
+                stacked
+              ></b-form-checkbox-group>
+            </b-form-group>
+          </b-col>
+        </b-row>
+      </b-container>
+      <b-container>
+        <b-row>
+          <b-col>
+            Sort by
+            <b-form-group>
+              <b-form-select
+                v-model="form.sort"
+                :options="sortingOptions"
+              />
+            </b-form-group>
+          </b-col>
+          <b-col>
+            Order
+            <b-form-group>
+              <b-icon-caret-down-square
+                class="order-button"
+                v-if="form.order === 'desc'"
+                @click="form.order='asc'"/>
+              <b-icon-caret-up-square
+                class="order-button"
+                v-else
+                @click="form.order='desc'"/>
+            </b-form-group>
+          </b-col>
+        </b-row>
+      </b-container>
+    </b-modal>
   </div>
 </template>
 
