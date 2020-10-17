@@ -30,7 +30,7 @@
             </b-list-group-item>
 
             <b-list-group-item>
-              Created on: {{ recipe.createdOn }}
+              Created on: {{ date }}
             </b-list-group-item>
 
             <b-list-group-item>
@@ -65,7 +65,7 @@
             </b-list-group-item>
 
             <b-list-group-item>
-              Created on: {{ recipe.createdOn }}
+              Created on: {{ date }}
             </b-list-group-item>
 
             <b-list-group-item>
@@ -178,13 +178,17 @@ export default {
   data() {
     return {
       author: null,
-      recipe: null
+      recipe: null,
+      date: null
     }
   },
 
   created() {
     this.recipe = this.oneRecipe
     this.author = this.recipe.user
+    if (this.recipe.createdOn) {
+      this.date = this.recipe.createdOn.slice(0, 10)
+    }
     this.selectUser(this.author)
   }
 }
