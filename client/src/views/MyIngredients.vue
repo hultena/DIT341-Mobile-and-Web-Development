@@ -4,6 +4,7 @@
       <b-col
         v-for='ingredient in allUserIngredients'
         :key='ingredient._id'
+        class="col-xl-4 col-lg-4 col-md-6 col-sm-12"
       >
         <ingredient-card
           :ingredient='ingredient'

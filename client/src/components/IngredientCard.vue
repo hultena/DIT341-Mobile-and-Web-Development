@@ -1,6 +1,6 @@
 <template>
   <validation-observer ref='observer' v-slot='{ handleSubmit }'>
-    <b-card class='my-2 ingredient-card'>
+    <b-card class='my-3 ingredient-card'>
       <b-card-body>
 
         <b-card-title>
