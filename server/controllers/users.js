@@ -9,8 +9,7 @@ module.exports = {
             const user = await User.findOne(req.body).populate({
                 path: 'favourites',
                 populate: {
-                    path: 'ingredients',
-                    model: 'ingredient'
+                    path: 'ingredients user'
                 }
             });
             if(user === null){

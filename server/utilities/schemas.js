@@ -24,7 +24,7 @@ module.exports = {
     recipeSchema: Joi.object().keys({
         _id: Joi.string().regex(regexPattern),
         __v: Joi.number(),
-        user: Joi.string().regex(regexPattern),
+        user: Joi.object(),
         name: Joi.string().required(),
         category: Joi.string().allow(''),
         description: Joi.string().allow(''),

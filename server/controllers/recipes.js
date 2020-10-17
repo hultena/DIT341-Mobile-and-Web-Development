@@ -65,7 +65,7 @@ module.exports = {
     getAllUserRecipes: async function (req, res, next) {
         try {
             const recipes = await Recipe.find({user: req.params.userId})
-                .populate('ingredients')
+                .populate('ingredients user')
                 .select(req.value.select)
                 .sort(req.value.sort)
                 .skip(req.value.page)
