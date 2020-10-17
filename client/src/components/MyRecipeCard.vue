@@ -70,7 +70,7 @@ export default {
 
 <style scoped>
 .recipe-card {
-  min-width: 300px;
+  min-width: 250px;
 }
 img {
   height: 200px;
