@@ -1,7 +1,7 @@
 <template>
   <b-card
     :title='recipe.name'
-    :img-src='recipe.image'
+    :img-src='image'
     img-top
     role='button'
     @click='handleClick'
@@ -24,12 +24,17 @@
 
 <script>
 import { mapActions, mapGetters } from 'vuex'
+import defaultFood from '@/assets/default-food.jpg'
 export default {
   name: 'RecipeCard',
   props: {
     recipe: null
   },
-
+  data() {
+    return {
+      image: null
+    }
+  },
   methods: {
     ...mapActions(['selectRecipe']),
     handleClick() {
@@ -47,6 +52,13 @@ export default {
   },
   computed: {
     ...mapGetters(['loggedInUser'])
+  },
+  created() {
+    if (this.recipe.image) {
+      this.image = this.recipe.image
+    } else {
+      this.image = defaultFood
+    }
   }
 }
 </script>

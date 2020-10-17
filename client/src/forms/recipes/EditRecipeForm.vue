@@ -12,6 +12,9 @@
             :src='oneRecipe.image'
             alt='This is an image of what the recipe could look like cooked.'
           />
+          <b-img
+            v-else
+            :src="image"/>
           <file-uploader
             @clicked='updateImage'
             class='image-input'
@@ -258,6 +261,7 @@ import { ValidationObserver, ValidationProvider } from 'vee-validate'
 import { mapGetters, mapActions } from 'vuex'
 import FileUploader from '@/components/FileUploader'
 import IngredientSearchBar from '@/components/IngredientSearchBar'
+import defaultFood from '@/assets/default-food.jpg'
 
 export default {
   name: 'EditRecipe',
@@ -268,6 +272,7 @@ export default {
     return {
       recipe: {},
       ingredientState: false,
+      image: null,
       category: [
         { text: 'Cooking', value: 'Cooking' },
         { text: 'Baking', value: 'Baking' }
@@ -344,6 +349,7 @@ export default {
 
   created() {
     this.recipe = this.oneRecipe
+    this.image = defaultFood
     if (!this.recipe.ingredientQuantities) {
       this.recipe.ingredientQuantities = {}
     }
