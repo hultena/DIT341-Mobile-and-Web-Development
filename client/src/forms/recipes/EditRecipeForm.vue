@@ -351,8 +351,16 @@ export default {
   watch: {
     '$store.state.ingredients.selectedIngredient': function () {
       if (this.ingredientState && this.oneIngredient) {
-        this.recipe.ingredients.push(this.oneIngredient)
-        this.recipe.ingredientQuantities[this.oneIngredient._id] = { unit: '', quantity: '' }
+        let found = false
+        for (const item of this.recipe.ingredients) {
+          if (item._id === this.oneIngredient._id) {
+            found = true
+          }
+        }
+        if (!found) {
+          this.recipe.ingredients.push(this.oneIngredient)
+          this.recipe.ingredientQuantities[this.oneIngredient._id] = { unit: '', quantity: '' }
+        }
         this.clearSelectedIngredient()
       }
     }
