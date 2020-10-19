@@ -2,13 +2,14 @@
   <div>
   <b-card class="my-2">
     <b-card-header v-if="ingredientState">
-      <ingredient-search-bar></ingredient-search-bar>
+      <ingredient-search-bar/>
     </b-card-header>
     <b-list-group flush>
       <b-list-group-item
         v-for="ingredient in shoppingList.ingredients"
         :key="ingredient._id"
-        class="ingredient">
+        class="ingredient"
+        :class="{ 'finished': ingredientClasses[ingredient._id] }">
         <b-container>
           <b-row>
             <b-col
@@ -27,6 +28,9 @@
                   />
                 </b-input-group-append>
               </b-input-group>
+            </b-col>
+            <b-col cols="1" v-if="!ingredientState">
+              <b-checkbox v-model="ingredientClasses[ingredient._id]"/>
             </b-col>
             <b-col cols="4" >
               <span v-if="!ingredientState">
@@ -80,7 +84,6 @@ export default {
   components: { IngredientSearchBar },
   data() {
     return {
-      ingredients: [],
       ingredientState: false,
       unit: [
         { item: 'g', name: 'g' },
@@ -88,7 +91,8 @@ export default {
         { item: 'ml', name: 'ml' },
         { item: 'l', name: 'l' },
         { item: '', name: 'count' }
-      ]
+      ],
+      ingredientClasses: {}
     }
   },
   props: {
@@ -127,12 +131,23 @@ export default {
     if (!this.shoppingList.ingredientQuantities) {
       this.shoppingList.ingredientQuantities = {}
     }
+    for (const ingredient of this.shoppingList.ingredients) {
+      this.$set(this.ingredientClasses, ingredient._id, false)
+    }
   },
   watch: {
     '$store.state.ingredients.selectedIngredient': function () {
       if (this.ingredientState && this.oneIngredient) {
-        this.shoppingList.ingredients.push(this.oneIngredient)
-        this.shoppingList.ingredientQuantities[this.oneIngredient._id] = { unit: '', quantity: '' }
+        let found = false
+        for (const item of this.shoppingList.ingredients) {
+          if (item._id === this.oneIngredient._id) {
+            found = true
+          }
+        }
+        if (!found) {
+          this.shoppingList.ingredients.push(this.oneIngredient)
+          this.shoppingList.ingredientQuantities[this.oneIngredient._id] = { unit: '', quantity: '' }
+        }
         this.clearSelectedIngredient()
       }
     }
@@ -144,5 +159,7 @@ export default {
 .delete:hover {
   color: red;
 }
-
+.finished{
+  background: grey;
+}
 </style>

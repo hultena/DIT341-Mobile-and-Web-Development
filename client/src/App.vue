@@ -11,11 +11,25 @@
 <script>
 import NavigationHeader from '@/components/NavigationHeader'
 import NavigationFooter from '@/components/NavigationFooter'
+import { mapGetters } from 'vuex'
 
 export default {
   components: {
     NavigationHeader,
     NavigationFooter
+  },
+  methods: {
+    redirect() {
+      if (!this.loggedInUser && this.$route.path === '/my-profile') {
+        this.$router.push('/')
+      }
+    }
+  },
+  computed: {
+    ...mapGetters(['loggedInUser'])
+  },
+  created() {
+    this.redirect()
   }
 }
 </script>

@@ -14,16 +14,17 @@ module.exports = {
         image: Joi.string(),
         email: Joi.string().email(),
         password: Joi.string(),
-        recipes: Joi.array().items( Joi.object().keys( { _id: Joi.string().regex(regexPattern) } ) ),
-        shoppingLists: Joi.array().items( Joi.object().keys( { _id: Joi.string().regex(regexPattern) } ) ),
-        ingredients: Joi.array().items( Joi.object().keys( { _id: Joi.string().regex(regexPattern) } ) ),
-        favourites: Joi.array().items( Joi.object().keys( { _id: Joi.string().regex(regexPattern) } ) )
+        recipes: Joi.array().items( ),
+        shoppingLists: Joi.array().items(),
+        ingredients: Joi.array().items( ),
+        favourites: Joi.array().items( Joi.object() ),
+        __v: Joi.number()
     }),
 
     recipeSchema: Joi.object().keys({
         _id: Joi.string().regex(regexPattern),
         __v: Joi.number(),
-        user: Joi.string().regex(regexPattern),
+        user: Joi.object(),
         name: Joi.string().required(),
         category: Joi.string().allow(''),
         description: Joi.string().allow(''),

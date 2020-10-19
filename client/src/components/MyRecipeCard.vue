@@ -1,7 +1,7 @@
 <template>
   <b-card
     :title='this.recipe.name'
-    :img-src='this.recipe.image'
+    :img-src='image'
     img-top
     class='recipe-card'
   >
@@ -33,10 +33,15 @@
 
 <script>
 import { mapActions } from 'vuex'
+import defaultFood from '@/assets/default-food.jpg'
 
 export default {
   name: 'MyRecipeCard',
-
+  data() {
+    return {
+      image: null
+    }
+  },
   props: {
     recipe: Object
   },
@@ -52,13 +57,20 @@ export default {
       this.selectRecipe(this.recipe)
       this.$router.push('/my-recipe')
     }
+  },
+  created() {
+    if (this.recipe.image) {
+      this.image = this.recipe.image
+    } else {
+      this.image = defaultFood
+    }
   }
 }
 </script>
 
 <style scoped>
 .recipe-card {
-  min-width: 300px;
+  min-width: 250px;
 }
 img {
   height: 200px;

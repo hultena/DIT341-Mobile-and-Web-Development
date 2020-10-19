@@ -1,9 +1,15 @@
 <template>
   <div>
-    <shopping-list-card
-      v-for="shoppingList in allShoppingLists"
-      :key="shoppingList._id"
-      :shoppingList="shoppingList"/>
+    <b-row>
+      <b-col
+        v-for="shoppingList in allShoppingLists"
+        :key="shoppingList._id"
+        class="col-12">
+        <shopping-list-card
+          :shoppingList="shoppingList"
+          class="my-3"/>
+      </b-col>
+    </b-row>
   </div>
 </template>
 

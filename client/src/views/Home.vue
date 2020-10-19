@@ -27,8 +27,9 @@
           <b-col
             v-for='recipe in allRecipes'
             :key='recipe._id'
+            class="col-xl-3 col-lg-4 col-md-5 col-sm-12"
           >
-            <recipe-card :recipe='recipe' class="my-3" />
+            <recipe-card :recipe='recipe' class="my-3"/>
           </b-col>
         </b-row>
 

@@ -52,6 +52,19 @@
       <b-button type="submit" variant="primary">Create ingredient</b-button>
     </b-form>
     </validation-observer>
+    <b-modal
+      ref="success"
+      centered
+      hide-footer
+      hide-header
+    >
+      <div @click="$refs.success.hide()">
+        <b-icon-check2/>
+        <span class="modal-text">
+      {{form.name}} successfully created!
+      </span>
+      </div>
+    </b-modal>
   </div>
 </template>
 
@@ -81,8 +94,7 @@ export default {
       if (message) {
         this.$refs.observer.setErrors(message)
       } else {
-        // TODO: maybe remove this annoying alert
-        alert('Ingredient created!')
+        this.$refs.success.show()
       }
     },
     getValidationState({ dirty, validated, valid = null }) {
@@ -99,5 +111,27 @@ export default {
 </script>
 
 <style scoped>
+.bi-check2 {
+  position: relative;
+  top: 1.2em;
+  fill: green;
+  width: 2em;
+  height: 2em;
+}
+/deep/ .modal-text {
+  position: relative;
+  top: 1em;
+}
 
+/deep/ .modal-body > div {
+  padding: 0;
+  height: 100%;
+  width: 100%;
+}
+/deep/ .modal-body {
+  text-align: center;
+  height: 5em;
+  padding: 0;
+  margin: 0;
+}
 </style>

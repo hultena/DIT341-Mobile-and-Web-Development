@@ -13,7 +13,7 @@
             label-for='username-input'
           >
             <b-form-input
-              v-model='form.username'
+              v-model='user.username'
               :state='getValidationState(validationContext)'
               placeholder='Write your username here'
               id='username-input'
@@ -32,7 +32,7 @@
           label-for='email-input'
           >
             <b-form-input
-              v-model='form.email'
+              v-model='user.email'
               :state='getValidationState(validationContext)'
               placeholder='E-mail'
               id='email-input'
@@ -51,7 +51,7 @@
           label-for='password-input'
           >
             <b-form-input
-              v-model='form.password'
+              v-model='user.password'
               :state='getValidationState(validationContext)'
               type='password'
               placeholder='Password'
@@ -81,6 +81,20 @@
         </b-button>
       </b-form>
     </validation-observer>
+    <b-modal
+      ref="success"
+      centered
+      hide-footer
+      hide-header
+      @hide="changeView('recipes')"
+    >
+      <div @click="$refs.success.hide()">
+      <b-icon-check2/>
+      <span class="modal-text">
+      {{user.username}} successfully updated!
+      </span>
+      </div>
+    </b-modal>
   </div>
 </template>
 
@@ -97,47 +111,57 @@ export default {
   },
   data() {
     return {
-      form: {
-        username: null,
-        email: null,
-        password: null,
-        image: null,
-        _id: null
-      }
+      user: {}
     }
   },
   methods: {
-    ...mapActions(['patchUser']),
+    ...mapActions(['patchUser', 'changeView']),
     async onSubmit() {
-      const message = await this.patchUser(this.form)
+      const message = await this.patchUser(this.user)
       if (message) {
         this.$refs.observer.setErrors(message)
       } else {
-        // TODO: maybe remove this annoying alert
-        alert('Success!')
+        this.$refs.success.show()
       }
     },
     getValidationState({ dirty, validated, valid = null }) {
       return dirty || validated ? valid : null
     },
-
     async setImage(event) {
-      this.form.image = event
+      this.user.image = event
     }
   },
   computed: {
     ...mapGetters(['loggedInUser'])
   },
   created() {
-    const user = this.loggedInUser
-    this.form.username = user.username
-    this.form.email = user.email
-    this.form.image = user.image
-    this.form._id = user._id
+    this.user = this.loggedInUser
   }
 }
 </script>
 
 <style scoped>
+.bi-check2 {
+  position: relative;
+  top: 1.2em;
+  fill: green;
+  width: 2em;
+  height: 2em;
+}
+/deep/ .modal-text {
+  position: relative;
+  top: 1em;
+}
 
+/deep/ .modal-body > div {
+  padding: 0;
+  height: 100%;
+  width: 100%;
+}
+/deep/ .modal-body {
+  text-align: center;
+  height: 5em;
+  padding: 0;
+  margin: 0;
+}
 </style>

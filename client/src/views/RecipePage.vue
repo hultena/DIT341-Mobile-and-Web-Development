@@ -2,7 +2,7 @@
   <div class='recipe-page'>
     <div class='hero'>
       <b-img
-        :src='this.recipe.image'
+        :src='image'
         alt='Responsive image'
       />
     </div>
@@ -30,7 +30,7 @@
             </b-list-group-item>
 
             <b-list-group-item>
-              Created on: {{ recipe.createdOn }}
+              Created on: {{ date }}
             </b-list-group-item>
 
             <b-list-group-item>
@@ -65,7 +65,7 @@
             </b-list-group-item>
 
             <b-list-group-item>
-              Created on: {{ recipe.createdOn }}
+              Created on: {{ date }}
             </b-list-group-item>
 
             <b-list-group-item>
@@ -133,7 +133,7 @@ import ListIngredients from '@/components/ListIngredients'
 import ListInstructions from '@/components/ListInstructions'
 import { mapGetters, mapActions } from 'vuex'
 import AdSpace from '@/components/AdSpace'
-
+import defaultFood from '@/assets/default-food.jpg'
 export default {
   name: 'RecipePage',
   components: { AdSpace, ListIngredients, ListInstructions },
@@ -178,14 +178,24 @@ export default {
   data() {
     return {
       author: null,
-      recipe: null
+      recipe: null,
+      date: null,
+      image: null
     }
   },
 
   created() {
     this.recipe = this.oneRecipe
     this.author = this.recipe.user
+    if (this.recipe.createdOn) {
+      this.date = this.recipe.createdOn.slice(0, 10)
+    }
     this.selectUser(this.author)
+    if (this.recipe.image) {
+      this.image = this.recipe.image
+    } else {
+      this.image = defaultFood
+    }
   }
 }
 </script>

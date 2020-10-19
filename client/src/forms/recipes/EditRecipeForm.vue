@@ -12,6 +12,9 @@
             :src='oneRecipe.image'
             alt='This is an image of what the recipe could look like cooked.'
           />
+          <b-img
+            v-else
+            :src="image"/>
           <file-uploader
             @clicked='updateImage'
             class='image-input'
@@ -236,7 +239,20 @@
         </b-col>
       </b-row>
     </b-container>
-
+    <b-modal
+      ref="success"
+      centered
+      hide-footer
+      hide-header
+      @hide="$router.push('my-profile')"
+    >
+      <div @click="$refs.success.hide()">
+        <b-icon-check2/>
+        <span class="modal-text">
+          {{recipe.name}} successfully updated!
+        </span>
+      </div>
+    </b-modal>
   </div>
 </template>
 
@@ -245,6 +261,7 @@ import { ValidationObserver, ValidationProvider } from 'vee-validate'
 import { mapGetters, mapActions } from 'vuex'
 import FileUploader from '@/components/FileUploader'
 import IngredientSearchBar from '@/components/IngredientSearchBar'
+import defaultFood from '@/assets/default-food.jpg'
 
 export default {
   name: 'EditRecipe',
@@ -255,6 +272,7 @@ export default {
     return {
       recipe: {},
       ingredientState: false,
+      image: null,
       category: [
         { text: 'Cooking', value: 'Cooking' },
         { text: 'Baking', value: 'Baking' }
@@ -299,6 +317,8 @@ export default {
 
       if (message !== undefined) {
         this.$refs.observer.setErrors(message)
+      } else {
+        this.$refs.success.show()
       }
     },
     async updateImage(event) {
@@ -329,6 +349,7 @@ export default {
 
   created() {
     this.recipe = this.oneRecipe
+    this.image = defaultFood
     if (!this.recipe.ingredientQuantities) {
       this.recipe.ingredientQuantities = {}
     }
@@ -336,8 +357,16 @@ export default {
   watch: {
     '$store.state.ingredients.selectedIngredient': function () {
       if (this.ingredientState && this.oneIngredient) {
-        this.recipe.ingredients.push(this.oneIngredient)
-        this.recipe.ingredientQuantities[this.oneIngredient._id] = { unit: '', quantity: '' }
+        let found = false
+        for (const item of this.recipe.ingredients) {
+          if (item._id === this.oneIngredient._id) {
+            found = true
+          }
+        }
+        if (!found) {
+          this.recipe.ingredients.push(this.oneIngredient)
+          this.recipe.ingredientQuantities[this.oneIngredient._id] = { unit: '', quantity: '' }
+        }
         this.clearSelectedIngredient()
       }
     }
@@ -366,5 +395,29 @@ export default {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+
+.bi-check2 {
+  position: relative;
+  top: 1.2em;
+  fill: green;
+  width: 2em;
+  height: 2em;
+}
+/deep/ .modal-text {
+  position: relative;
+  top: 1em;
+}
+
+/deep/ .modal-body > div {
+  padding: 0;
+  height: 100%;
+  width: 100%;
+}
+/deep/ .modal-body {
+  text-align: center;
+  height: 5em;
+  padding: 0;
+  margin: 0;
 }
 </style>
