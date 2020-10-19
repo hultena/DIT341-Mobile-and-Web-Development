@@ -36,4 +36,6 @@ export default {
 
 <style>
 @import './AppFonts.css';
+
+.app { background: rgb(250, 250, 250)}
 </style>
