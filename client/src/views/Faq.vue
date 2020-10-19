@@ -1,9 +1,9 @@
 <template>
-  <b-container class='my-5 faq-page'>
+  <b-container class='add-white-space faq-page'>
 
     <section>
 
-      <b-row class='mt-5 icon-container'>
+      <b-row class='icon-container'>
         <b-col>
           <b-icon-patch-question />
         </b-col>
@@ -130,10 +130,9 @@ export default {
 </script>
 
 <style scoped>
-.faq-page { padding: 100px 0 50px 0 }
 .faq-page > section:first-child { padding-bottom: 50px }
 .icon-container {
-  min-width: 500px;
+  min-width: 200px;
   font-size: 8rem;
   text-align: center;
 }

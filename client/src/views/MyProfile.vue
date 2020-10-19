@@ -1,5 +1,5 @@
 <template>
-  <div class='profile-page'>
+  <div class='add-white-space'>
 
     <ProfileHero :user='this.loggedInUser'/>
 
@@ -108,10 +108,3 @@ export default {
 }
 
 </script>
-
-<style scoped>
-.profile-page {
-  padding-top: 100px;
-  padding-bottom: 100px;
-}
-</style>
