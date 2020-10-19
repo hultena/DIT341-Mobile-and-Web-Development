@@ -48,7 +48,7 @@ app.use(cors({
 }));
 
 // Parse requests of content-type 'application/json'
-app.use(bodyParser.json({limit: '1mb'}));
+app.use(bodyParser.json({limit: '2mb'}));
 
 // Router middleware
 app.use('/api/users', usersRoute);
