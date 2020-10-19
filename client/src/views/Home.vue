@@ -96,7 +96,7 @@ export default {
   width: 100%;
   background:
     linear-gradient(0deg, rgba(0, 0, 0, .6) 0%, rgba(0, 0, 0, .6) 100%),
-    url('../assets/hero-background.gif')
+    url('../assets/hero-background.jpeg')
     no-repeat
     center;
   background-size: cover;
