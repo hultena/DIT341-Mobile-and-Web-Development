@@ -1,7 +1,8 @@
 <template>
-  <div class='profile-page'>
+  <div class='add-white-space'>
 
-    <profile-hero :user='this.user' />
+    <profile-hero :user='this.user' class='hero' />
+    <list-recipes :user='this.user' />
 
   </div>
 </template>
@@ -9,10 +10,11 @@
 <script>
 import { mapGetters } from 'vuex'
 import ProfileHero from '@/components/ProfileHero'
+import ListRecipes from '@/components/ListRecipes'
 
 export default {
   name: 'profile',
-  components: { ProfileHero },
+  components: { ListRecipes, ProfileHero },
   computed: {
     ...mapGetters(['selectedUser'])
   },
@@ -29,10 +31,6 @@ export default {
   }
 }
 </script>
-
-<style scoped>
-.profile-page {
-  padding-top: 100px;
-  padding-bottom: 100px;
-}
+<style>
+.hero { margin-bottom: 50px }
 </style>
