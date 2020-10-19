@@ -1,71 +1,57 @@
 <template>
-  <b-container class='profile-page'>
+  <div class='profile-page'>
 
-    <b-row class='profile-header'>
-      <b-col class='avatar'>
-        <b-img
-          :src='this.loggedInUser.image'
-          alt='User avatar'
-          rounded='circle'
-        />
-      </b-col>
-      <b-col>
-        <h1>
-          Welcome {{this.loggedInUser.username}}
-        </h1>
+    <ProfileHero :user='this.loggedInUser'/>
 
-        <h2>
-          {{this.loggedInUser.email}}
-        </h2>
-      </b-col>
-    </b-row>
+    <b-container>
 
-    <b-row class="mt-4">
-      <b-col>
-        <b-button
-          v-if="this.currentView==='ingredients'&&!addIngredientState"
-          @click="addIngredientState=changeState(addIngredientState)"
-          block
-          variant='primary'
-        >
-          <b-icon-plus-circle />
-          Add Ingredient
-        </b-button>
-        <b-button
-          v-if="this.currentView==='ingredients'&&addIngredientState"
-          @click="addIngredientState=changeState(addIngredientState)"
-          variant="primary"
-          block
-        >
-          Finish
-        </b-button>
-        <b-button
-          v-if="this.currentView==='shopping'"
-          @click="addShoppingList"
-          block
-          variant="primary"
-        >
-          <b-icon-plus-circle />
-          Add Shopping List
-        </b-button>
-      </b-col>
-    </b-row>
+      <b-row class="mt-4">
+        <b-col>
+          <b-button
+            v-if="this.currentView==='ingredients'&&!addIngredientState"
+            @click="addIngredientState=changeState(addIngredientState)"
+            block
+            variant='primary'
+          >
+            <b-icon-plus-circle />
+            Add Ingredient
+          </b-button>
+          <b-button
+            v-if="this.currentView==='ingredients'&&addIngredientState"
+            @click="addIngredientState=changeState(addIngredientState)"
+            variant="primary"
+            block
+          >
+            Finish
+          </b-button>
+          <b-button
+            v-if="this.currentView==='shopping'"
+            @click="addShoppingList"
+            block
+            variant="primary"
+          >
+            <b-icon-plus-circle />
+            Add Shopping List
+          </b-button>
+        </b-col>
+      </b-row>
 
-    <section>
-      <add-ingredient-form v-if="this.currentView==='ingredients'&&addIngredientState"/>
-    </section>
+      <section>
+        <add-ingredient-form v-if="this.currentView==='ingredients'&&addIngredientState"/>
+      </section>
 
-    <section>
+      <section>
 
-      <my-recipes v-if='this.currentView==="recipes"' />
-      <my-ingredients v-if="this.currentView==='ingredients'"/>
-      <my-shopping-lists v-if="this.currentView==='shopping'"/>
-      <my-settings v-if="this.currentView==='settings'"/>
-      <my-favourites v-if="this.currentView==='favourites'"/>
+        <my-recipes v-if='this.currentView==="recipes"' />
+        <my-ingredients v-if="this.currentView==='ingredients'"/>
+        <my-shopping-lists v-if="this.currentView==='shopping'"/>
+        <my-settings v-if="this.currentView==='settings'"/>
+        <my-favourites v-if="this.currentView==='favourites'"/>
 
-    </section>
+      </section>
 
-  </b-container>
+    </b-container>
+  </div>
 </template>
 
 <script>
@@ -76,10 +62,12 @@ import MyShoppingLists from '@/views/MyShoppingLists'
 import AddIngredientForm from '@/forms/AddIngredientForm'
 import MySettings from '@/views/MySettings'
 import MyFavourites from '@/views/MyFavourites'
+import ProfileHero from '@/components/ProfileHero'
 
 export default {
   name: 'myProfile',
   components: {
+    ProfileHero,
     MyFavourites,
     MyRecipes,
     MySettings,
@@ -125,24 +113,5 @@ export default {
 .profile-page {
   padding-top: 100px;
   padding-bottom: 100px;
-}
-
-.avatar {
-  max-width: 240px !important;
-}
-
-.avatar > img {
-  height: 200px;
-  width: 200px;
-  object-fit: cover;
-  object-position: center;
-}
-
-@media only screen and (max-width: 417px) {
-  .profile-header {
-    text-align: center;
-    justify-content: center;
-  }
-  div.avatar { padding-bottom: 30px }
 }
 </style>
