@@ -1,5 +1,5 @@
 <template>
-  <div class="sign-up-page">
+  <div class="sign-up-page add-white-space">
     <b-card class='sign-up-form-container'>
       <b-card-body class='mx-2'>
 
@@ -32,7 +32,6 @@ export default {
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 75vh;
 }
 .sign-up-form-container {
   max-width: 800px;
