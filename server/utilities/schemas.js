@@ -14,6 +14,7 @@ module.exports = {
         image: Joi.string(),
         email: Joi.string().email(),
         password: Joi.string(),
+        bio: Joi.string(),
         recipes: Joi.array().items( ),
         shoppingLists: Joi.array().items(),
         ingredients: Joi.array().items( ),
