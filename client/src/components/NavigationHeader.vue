@@ -28,11 +28,12 @@
         class='ml-auto'
         v-if="this.$route.path !== '/sign-in' && this.$route.path !== '/sign-up'">
         <b-nav-item>
-          <b-button-group v-if='this.$route.path !== "/faq"'>
+          <b-button-group v-if='this.$route.path !== "/faq" && this.$route.path !== "/profile"'>
 
             <b-button
               @click='signUp'
               variant='light'
+              size='sm'
             >
               Sign up
             </b-button>
@@ -40,6 +41,7 @@
             <b-button
               @click='signIn'
               variant='outline-light'
+              size='sm'
             >
               Sign in
             </b-button>
@@ -50,6 +52,7 @@
             <b-button
               @click='signUp'
               variant='dark'
+              size='sm'
             >
               Sign up
             </b-button>
@@ -57,6 +60,7 @@
             <b-button
               @click='signIn'
               variant='outline-dark'
+              size='sm'
             >
               Sign in
             </b-button>
@@ -238,9 +242,6 @@ export default {
 
 /deep/ .dropdown-menu a:hover {
   background: rgba(74,74,74,.2) !important;
-}
-.header-button-primary:hover, .header-button-primary:focus {
-  background: rgba(74, 74, 74, .5) !important
 }
 
 img.logo {
