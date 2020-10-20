@@ -25,8 +25,12 @@ $font-color_secondary: rgb(108, 117, 125)
   font-family: $font-fam_sans
 
 h1
-  font-weight: $font-weight_thin
+  font-weight: $font-weight_light
   font-size: 3.5rem !important
+
+@media only screen and (max-width: 500px)
+  h1
+    font-size: 3rem !important
 
 h2
   font-weight: $font-weight_light
