@@ -65,7 +65,6 @@ export default {
 
 <style scoped>
 .recipe-card {
-  min-width: 250px;
   transition: .5s;
 }
 

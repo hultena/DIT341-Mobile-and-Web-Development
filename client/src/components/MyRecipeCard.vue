@@ -23,6 +23,7 @@
         <b-button
           variant='dark'
           @click='visitRecipe()'
+          size='sm'
         >
           Go to recipe
         </b-button>
@@ -30,6 +31,7 @@
         <b-button
           variant='outline-dark'
           @click='editRecipe()'
+          size='sm'
         >
           Edit recipe
         </b-button>
@@ -78,9 +80,6 @@ export default {
 </script>
 
 <style scoped>
-.recipe-card {
-  min-width: 260px;
-}
 img {
   height: 200px;
   width: 100%;
