@@ -16,11 +16,14 @@ export default {
   name: 'profile',
   components: { ListRecipes, ProfileHero },
   computed: {
-    ...mapGetters(['selectedUser'])
+    ...mapGetters(['selectedUser', 'loggedInUser'])
   },
 
   created() {
     this.user = this.selectedUser
+    if (this.user._id === this.loggedInUser._id) {
+      this.$router.push('/my-profile')
+    }
   },
 
   data() {
