@@ -18,7 +18,7 @@
         ...
       </p>
 
-      <b-button-group>
+      <b-button-group class='mt-3 w-100'>
 
         <b-button
           variant='dark'
