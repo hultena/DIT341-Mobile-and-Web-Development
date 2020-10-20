@@ -18,14 +18,22 @@
         ...
       </p>
 
-      <b-button
-        variant='outline-primary'
-        @click='visitRecipe()'
-        block
-      >
-        <b-icon-book />
-        Go to recipe
-      </b-button>
+      <b-button-group>
+
+        <b-button
+          variant='dark'
+          @click='visitRecipe()'
+        >
+          Go to recipe
+        </b-button>
+
+        <b-button
+          variant='outline-dark'
+          @click='editRecipe()'
+        >
+          Edit recipe
+        </b-button>
+      </b-button-group>
 
     </b-card-text>
   </b-card>
@@ -49,13 +57,14 @@ export default {
   methods: {
     ...mapActions(['selectRecipe']),
 
-    deleteRecipe() {
-      // todo, issue #73
+    editRecipe() {
+      this.selectRecipe(this.recipe)
+      this.$router.push('/my-recipe')
     },
 
     visitRecipe() {
       this.selectRecipe(this.recipe)
-      this.$router.push('/my-recipe')
+      this.$router.push('/recipe')
     }
   },
   created() {
@@ -70,7 +79,7 @@ export default {
 
 <style scoped>
 .recipe-card {
-  min-width: 250px;
+  min-width: 260px;
 }
 img {
   height: 200px;
