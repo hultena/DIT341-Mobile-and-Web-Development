@@ -10,7 +10,7 @@
       <b-col
         v-for='recipe in this.allUserRecipes'
         :key='recipe._id'
-        class="col-xl-3 col-lg-4 col-md-5 col-sm-12"
+        class="col-xl-3 col-lg-4 col-md-6 col-sm-12"
       >
         <MyRecipeCard
           :recipe='recipe'

@@ -18,14 +18,24 @@
         ...
       </p>
 
-      <b-button
-        variant='outline-primary'
-        @click='visitRecipe()'
-        block
-      >
-        <b-icon-book />
-        Go to recipe
-      </b-button>
+      <b-button-group class='mt-3 w-100'>
+
+        <b-button
+          variant='dark'
+          @click='visitRecipe()'
+          size='sm'
+        >
+          Go to recipe
+        </b-button>
+
+        <b-button
+          variant='outline-dark'
+          @click='editRecipe()'
+          size='sm'
+        >
+          Edit recipe
+        </b-button>
+      </b-button-group>
 
     </b-card-text>
   </b-card>
@@ -49,13 +59,14 @@ export default {
   methods: {
     ...mapActions(['selectRecipe']),
 
-    deleteRecipe() {
-      // todo, issue #73
+    editRecipe() {
+      this.selectRecipe(this.recipe)
+      this.$router.push('/my-recipe')
     },
 
     visitRecipe() {
       this.selectRecipe(this.recipe)
-      this.$router.push('/my-recipe')
+      this.$router.push('/recipe')
     }
   },
   created() {
@@ -69,9 +80,6 @@ export default {
 </script>
 
 <style scoped>
-.recipe-card {
-  min-width: 250px;
-}
 img {
   height: 200px;
   width: 100%;
