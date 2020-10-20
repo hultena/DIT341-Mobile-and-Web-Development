@@ -62,6 +62,16 @@
         </validation-provider>
 
         <b-form-group
+          label='Profile bio'
+          label-for='bio-input'
+        >
+          <b-form-textarea
+            v-model='user.bio'
+            id='bio-input'
+          />
+        </b-form-group>
+
+        <b-form-group
           label='Profile photo'
           label-for='image-input'
         >

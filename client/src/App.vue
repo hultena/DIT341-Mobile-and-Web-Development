@@ -37,5 +37,10 @@ export default {
 <style>
 @import './AppFonts.css';
 
-.app { background: rgb(250, 250, 250)}
+.app { background: rgb(250, 250, 250) }
+
+.add-white-space {
+  padding-top: 200px;
+  padding-bottom: 100px;
+}
 </style>

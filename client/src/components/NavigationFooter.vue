@@ -14,8 +14,9 @@
 
       <b-col>
         <b-button
-          variant='outline-primary'
+          variant='outline-dark'
           @click='toTop'
+          size='sm'
         >
           Go to top <b-icon-arrow-up-circle />
         </b-button>

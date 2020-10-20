@@ -1,5 +1,5 @@
 <template>
-  <div class='sign-in-page'>
+  <div class='sign-in-page add-white-space'>
     <b-card class='sign-in-form-container'>
       <b-card-body class='mx-2'>
 
@@ -32,7 +32,6 @@ export default {
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 75vh;
 }
 .sign-in-form-container {
   max-width: 800px;
