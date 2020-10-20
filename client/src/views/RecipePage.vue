@@ -196,6 +196,8 @@ export default {
     } else {
       this.image = defaultFood
     }
+
+    window.scrollTo(0, 0)
   }
 }
 </script>

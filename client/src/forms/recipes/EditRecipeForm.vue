@@ -353,6 +353,8 @@ export default {
     if (!this.recipe.ingredientQuantities) {
       this.recipe.ingredientQuantities = {}
     }
+
+    window.scrollTo(0, 0)
   },
   watch: {
     '$store.state.ingredients.selectedIngredient': function () {
