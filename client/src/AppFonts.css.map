@@ -1,1 +1,1 @@
-{"version":3,"sourceRoot":"","sources":["AppFonts.sass"],"names":[],"mappings":"AAAQ;AAqBR;EACE;EACA;EACA,aAVc;;;AAYhB;EACE,aAxBiB;EAyBjB;;;AAEF;EACE,aA1BkB;EA2BlB,OAdqB;;;AAgBvB;EACE,aA1BiB;;;AA6BnB;EACE,aA9BiB","file":"AppFonts.css"}
+{"version":3,"sourceRoot":"","sources":["AppFonts.sass"],"names":[],"mappings":"AAAQ;AAqBR;EACE;EACA;EACA,aAVc;;;AAYhB;EACE,aAtBkB;EAuBlB;;;AAEF;EACE;IACE;;;AAEJ;EACE,aA9BkB;EA+BlB,OAlBqB;;;AAoBvB;EACE,aA9BiB;;;AAiCnB;EACE,aAlCiB","file":"AppFonts.css"}

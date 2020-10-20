@@ -63,6 +63,14 @@ export default {
 </script>
 
 <style scoped>
+
 img.logo { width: 100px }
+
 button { float: right }
+
+a {
+  font-size: .95rem;
+  color: rgb(33, 37, 41) !important;
+}
+
 </style>
