@@ -166,7 +166,9 @@
           >
             My profile
           </b-dd-item>
-          <b-dd-item @click="changeView('settings')">
+          <b-dd-item
+            to="/my-profile"
+            @click="changeView('settings')">
             My settings
           </b-dd-item>
           <b-dd-item @click='signOut'>
