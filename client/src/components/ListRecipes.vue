@@ -4,7 +4,7 @@
       <b-col
         v-for='recipe in this.allUserRecipes'
         :key='recipe._id'
-        class='mb-3'
+        class='mb-3 col-xl-3 col-lg-4 col-md-6 col-sm-12'
       >
         <recipe-card :recipe='recipe' />
       </b-col>
